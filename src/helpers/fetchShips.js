@@ -1,13 +1,13 @@
-import axios from "axios";
+import axios from 'axios'
 
 const fetchShips = async (page) => {
-  const apiUrl = `http://swapi.dev/api/starships/?page=${page}`;
-  const ships = await axios.get(apiUrl);
-  const data = ships.data;
+  const apiUrl = `https://swapi.dev/api/starships/?page=${page}`
+  const ships = await axios.get(apiUrl)
+  const data = ships.data
 
   if (data) {
-    return data.results;
+    return data.results
   }
-};
+}
 
-export { fetchShips };
+export { fetchShips }
