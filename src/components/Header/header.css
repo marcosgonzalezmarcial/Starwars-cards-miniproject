@@ -16,11 +16,6 @@ header.header {
   padding: 0;
 }
 
-.logIn-col {
-  color: #343434;
-  /* right: 2% !important; */
-}
-
 .logIn-div {
   color: #999;
   font-weight: 600;
@@ -68,8 +63,7 @@ header.header {
   white-space: nowrap;
 }
 
-@media (max-width: 575px) {
-  .logIn-col {
-    right: 0%;
-  }
+.logIn-col {
+  color: #343434;
+  right: 0%;
 }
