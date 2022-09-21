@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Header from "./components/Header/Header";
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      <Container fluid>
+      <Container fluid className="py-2">
         <Router>
           <Header
             setShowCard={setShowCard}
