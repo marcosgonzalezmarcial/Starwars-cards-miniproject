@@ -8,7 +8,7 @@ header.header {
 
 .bg-col-logo {
   background-color: black;
-  background-image: url(../../assets/star-wars-background-img.jpg);
+  /* background-image: url(../../assets/star-wars-background-img.jpg); */
 }
 
 .navbar-link {
