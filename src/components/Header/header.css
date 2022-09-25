@@ -16,6 +16,11 @@ header.header {
   padding: 0;
 }
 
+.navbar-link:link {
+  text-decoration: none;
+}
+
+
 .logIn-div {
   color: #999;
   font-weight: 600;
@@ -45,7 +50,7 @@ header.header {
 
 .login-nav-link {
   color: #999 !important;
-  background-image: url(../../assets/star-wars-background-img.jpg) !important;
+  /* background-image: url(../../assets/star-wars-background-img.jpg) !important; */
 }
 .login-nav-link:hover {
   color: #ccc !important;
@@ -53,7 +58,7 @@ header.header {
 
 .login-nav-link-bars {
   color: #999 !important;
-  background-image: url(../../assets/star-wars-background-img.jpg) !important;
+  /* background-image: url(../../assets/star-wars-background-img.jpg) !important; */
 }
 .button-toggler {
   background-color: #dee2e6;

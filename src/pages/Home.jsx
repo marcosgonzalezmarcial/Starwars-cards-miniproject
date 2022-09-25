@@ -36,7 +36,7 @@ const Home = ({ setShowCard }) => {
         <p className="mb-4">Recuerda loguarte para acceder al contenido.</p>
         <p className="mb-4">May the force be with you!!</p>
         <Link onClick={handleClick} to="/starships">
-          <Button style={{ fontSize: 19 }} className="py-2 px-3">
+          <Button style={{ fontSize: 19 }} className="py-2 px-3 lead">
             ¿Te animas?
           </Button>
         </Link>
