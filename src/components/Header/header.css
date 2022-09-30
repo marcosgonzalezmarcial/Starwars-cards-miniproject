@@ -28,7 +28,8 @@ header.header {
   font-size: 1rem;
 }
 @media (max-width: 600px) {
-  .nav-link {
+  .nav-link,
+  .login-nav-link {
     font-size: 0.8rem;
   }
 }

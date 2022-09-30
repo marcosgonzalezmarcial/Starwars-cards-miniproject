@@ -11,7 +11,7 @@ const Home = ({ setShowCard }) => {
       <Container>
         <h1>Bienvenid@!!</h1>
         <h3 className="mb-3">Este es un clon de la web de Star Wars.</h3>
-        <p>
+        {/* <p>
           Star Wars, conocida también en español como La guerra de las galaxias
           es una franquicia compuesta primordialmente de una serie de películas
           concebidas por el cineasta estadounidense George Lucas en la década de
@@ -23,9 +23,9 @@ const Home = ({ setShowCard }) => {
           utilizado por los Jedi, y un «lado oscuro» usado por los Sith y
           provocado por la ira, el miedo y el odio.
         </p>
-        <p>Bla,bla,bla..., todo eso ya lo sabés...</p>
+        <p>Bla,bla,bla..., todo eso ya lo sabés...</p> */}
         <p>
-          Ahora te invito a descubrir info interesante sobre una de las sagas de
+          Te invito a descubrir info interesante sobre una de las sagas de
           películas más populares de todos los tiempos.
         </p>
         <p>
