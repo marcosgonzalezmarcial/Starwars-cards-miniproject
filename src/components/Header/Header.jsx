@@ -1,21 +1,29 @@
-import React from "react";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import logo from "../../assets/star-wars-logo.jpg";
+import React from 'react'
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import logo from '../../assets/star-wars-logo.jpg'
 // import LoginNav from "../../pages/Login/LoginNav";
-import "./header.css";
-import { Link } from "react-router-dom";
-import MyNavbar from "./MyNavbar";
+import './header.css'
+import { Link } from 'react-router-dom'
+import MyNavbar from './MyNavbar'
 // import { LinkContainer } from "react-router-bootstrap";
 
 const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
   const handleClick = () => {
-    setLoggedIn(false);
-  };
+    setLoggedIn(false)
+  }
 
   const conditionalNav = loggedIn ? (
-    <Link onClick={handleClick} to="/home" className="nav-link login-nav-link">
-      LOG OUT
-    </Link>
+    <>
+      <span></span>
+      <Link
+        onClick={handleClick}
+        to="/home"
+        className="nav-link login-nav-link"
+      >
+        LOG OUT
+      </Link>
+      <span></span>
+    </>
   ) : (
     <>
       <Link className="login-nav-link navbar-link p-1" to="/loginform">
@@ -26,7 +34,7 @@ const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
         SIGN UP
       </Link>
     </>
-  );
+  )
 
   return (
     <header className="header">
@@ -36,28 +44,36 @@ const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
           className="navbar-container-box text-center position-relative justify-content-end"
           bg="transparent"
         >
-          <Navbar.Brand className="navbar-brand-box m-0">
+          <span></span>
+          <Navbar.Brand className=" m-0">
             <Link className="navbar-link p-2" to="/home">
               <img width="220px" src={logo} alt="logo" />
             </Link>
           </Navbar.Brand>
-          {/* <Navbar.Toggle
+          <Navbar.Toggle
             className="bg-light ms-auto"
             aria-controls="basic-navbar-nav"
           />
-          <Navbar.Collapse
-            className="flex-grow-0 text-center"
-            id="basic-navbar-nav"
-          ></Navbar.Collapse> */}
-          <Nav>{conditionalNav}</Nav>
+          <span></span>
+          <Navbar.Collapse id="responsive-navbar-nav">
+            {/* <Link className="login-nav-link navbar-link p-1" to="/loginform">
+              LOG IN
+            </Link>
+            <div className="login-nav-link p-1">&#8725; &#8725;</div>
+            <Link className="login-nav-link navbar-link p-1" to="/signupform">
+              SIGN UP
+            </Link> */}
+            {conditionalNav}
+          </Navbar.Collapse>
+          <span></span>
         </Container>
       </Navbar>
       <MyNavbar setShowCard={setShowCard} />
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
 
 // <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 //   <Container>

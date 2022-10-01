@@ -1,16 +1,16 @@
-import React from "react";
-import { Container, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Container, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Home = ({ setShowCard }) => {
   const handleClick = () => {
-    setShowCard(false);
-  };
+    setShowCard(false)
+  }
   return (
     <main className="main text-white m-3">
       <Container>
         <h1>Bienvenid@!!</h1>
-        <h3 className="mb-3">Este es un clon de la web de Star Wars.</h3>
+        {/* <h3 className="mb-3">Este es un clon de la web de Star Wars.</h3> */}
         {/* <p>
           Star Wars, conocida también en español como La guerra de las galaxias
           es una franquicia compuesta primordialmente de una serie de películas
@@ -42,7 +42,7 @@ const Home = ({ setShowCard }) => {
         </Link>
       </Container>
     </main>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

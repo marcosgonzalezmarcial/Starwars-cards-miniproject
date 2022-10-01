@@ -75,3 +75,8 @@ header.header {
   transform: translateX(50%);
 }
 /* } */
+
+.navbar-container-box {
+  display: grid !important;
+  grid-template-columns: 1fr 2fr 1fr;
+}
