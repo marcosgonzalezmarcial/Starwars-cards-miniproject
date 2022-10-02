@@ -1,15 +1,11 @@
-/* .navbar {
-  background-color: black;
-} */
-
 header.header {
   position: relative;
 }
 
-.bg-col-logo {
+/* .bg-col-logo {
   background-color: black;
   
-}
+} */
 
 .navbar-link {
   margin: 0;
@@ -19,7 +15,6 @@ header.header {
 .navbar-link:link {
   text-decoration: none;
 }
-
 
 .logIn-div {
   color: #999;
@@ -33,7 +28,8 @@ header.header {
   font-size: 1rem;
 }
 @media (max-width: 600px) {
-  .nav-link {
+  .nav-link,
+  .login-nav-link {
     font-size: 0.8rem;
   }
 }
@@ -50,7 +46,7 @@ header.header {
 
 .login-nav-link {
   color: #999 !important;
-  /* background-image: url(../../assets/star-wars-background-img.jpg) !important; */
+  white-space: nowrap;
 }
 .login-nav-link:hover {
   color: #ccc !important;
@@ -58,17 +54,29 @@ header.header {
 
 .login-nav-link-bars {
   color: #999 !important;
-  /* background-image: url(../../assets/star-wars-background-img.jpg) !important; */
 }
 .button-toggler {
   background-color: #dee2e6;
 }
 
-.login-nav-link {
-  white-space: nowrap;
-}
-
 .logIn-col {
   color: #343434;
   right: 0%;
+}
+
+/* @media (min-width: 768px) { */
+.navbar-box {
+  min-height: 110px;
+  margin-block-start: auto !important;
+}
+.navbar-brand-box {
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+}
+/* } */
+
+.navbar-container-box {
+  display: grid !important;
+  grid-template-columns: 1fr 2fr 1fr;
 }
