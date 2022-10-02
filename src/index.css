@@ -8,5 +8,5 @@ body {
   background-image: url('https://rawcdn.githack.com/marcosgonzalezmarcial/My-StarWars-web/a05d1b16357b446d1fdbeca7189ccd0c9a529f5d/src/assets/star-wars-background-img.jpg');
   min-height: 100vh;
   font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
 }

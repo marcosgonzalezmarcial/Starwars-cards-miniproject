@@ -2,10 +2,19 @@ header.header {
   position: relative;
 }
 
-/* .bg-col-logo {
-  background-color: black;
-  
-} */
+
+@media (max-width: 500px) {
+  .logo-img {
+    width: 180px;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar-toggle-btn {
+    padding: 0.1rem 0.4rem;
+  }
+}
+
 
 .navbar-link {
   margin: 0;
@@ -27,7 +36,7 @@ header.header {
   font-weight: 600;
   font-size: 1rem;
 }
-@media (max-width: 600px) {
+@media (max-width: 576px) {
   .nav-link,
   .login-nav-link {
     font-size: 0.8rem;

@@ -1,11 +1,10 @@
 import React from 'react'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, Container } from 'react-bootstrap'
 import logo from '../../assets/star-wars-logo.jpg'
 // import LoginNav from "../../pages/Login/LoginNav";
 import './header.css'
 import { Link } from 'react-router-dom'
 import MyNavbar from './MyNavbar'
-// import { LinkContainer } from "react-router-bootstrap";
 
 const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
   const handleClick = () => {
@@ -13,7 +12,7 @@ const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
   }
 
   const conditionalNav = loggedIn ? (
-    <>
+    <Nav>
       <span></span>
       <Link
         onClick={handleClick}
@@ -23,9 +22,9 @@ const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
         LOG OUT
       </Link>
       <span></span>
-    </>
+    </Nav>
   ) : (
-    <>
+    <Nav>
       <Link className="login-nav-link navbar-link p-1" to="/loginform">
         LOG IN
       </Link>
@@ -33,12 +32,12 @@ const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
       <Link className="login-nav-link navbar-link p-1" to="/signupform">
         SIGN UP
       </Link>
-    </>
+    </Nav>
   )
 
   return (
     <header className="header">
-      <Navbar className="navbar-box py-3 px-1" expand="md">
+      <Navbar className="navbar-box py-1 py-md-3" expand="md">
         <Container
           fluid
           className="navbar-container-box text-center position-relative justify-content-end"
@@ -47,22 +46,15 @@ const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
           <span></span>
           <Navbar.Brand className=" m-0">
             <Link className="navbar-link p-2" to="/home">
-              <img width="220px" src={logo} alt="logo" />
+              <img width="220px" className='logo-img' src={logo} alt="logo" />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle
-            className="bg-light ms-auto"
+            className="navbar-toggle-btn bg-light ms-auto"
             aria-controls="basic-navbar-nav"
           />
           <span></span>
           <Navbar.Collapse id="responsive-navbar-nav">
-            {/* <Link className="login-nav-link navbar-link p-1" to="/loginform">
-              LOG IN
-            </Link>
-            <div className="login-nav-link p-1">&#8725; &#8725;</div>
-            <Link className="login-nav-link navbar-link p-1" to="/signupform">
-              SIGN UP
-            </Link> */}
             {conditionalNav}
           </Navbar.Collapse>
           <span></span>
@@ -75,32 +67,4 @@ const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
 
 export default Header
 
-// <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-//   <Container>
-//     <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-//     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-//     <Navbar.Collapse id="responsive-navbar-nav">
-//       <Nav className="me-auto">
-//         <Nav.Link href="#features">Features</Nav.Link>
-//         <Nav.Link href="#pricing">Pricing</Nav.Link>
-//         <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-//           <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-//           <NavDropdown.Item href="#action/3.2">
-//             Another action
-//           </NavDropdown.Item>
-//           <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-//           <NavDropdown.Divider />
-//           <NavDropdown.Item href="#action/3.4">
-//             Separated link
-//           </NavDropdown.Item>
-//         </NavDropdown>
-//       </Nav>
-//       <Nav>
-//         <Nav.Link href="#deets">More deets</Nav.Link>
-//         <Nav.Link eventKey={2} href="#memes">
-//           Dank memes
-//         </Nav.Link>
-//       </Nav>
-//     </Navbar.Collapse>
-//   </Container>
-// </Navbar>
+
