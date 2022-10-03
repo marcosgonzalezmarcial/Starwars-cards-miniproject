@@ -13,7 +13,6 @@ const MyNavbar = ({ setShowCard }) => {
     <div className="border-wrapper">
       <Container>
         <Row className="m-auto">
-          {/* <Nav className="justify-content-center border-top border-bottom border-secondary"> */}
           <Nav className="justify-content-center">
             <Col className="border-right">
               <Nav.Item>

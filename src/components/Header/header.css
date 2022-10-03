@@ -89,12 +89,14 @@ header.header {
   grid-template-columns: 1fr 2fr 1fr;
 }
 
-.navbar-collapese-box {
-  margin-inline-start: auto;
+@media (min-width: 768px) {
+  .navbar-collapse-box {
+    margin-inline-start: auto;
+  }
 }
 
 @media (min-width: 768px) {
-  .navbar-collapese-box {
+  .navbar-collapse-box {
     grid-row: 1 / 2;
     grid-column: 3 / 4;
   }

@@ -24,11 +24,11 @@ const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
     </>
   ) : (
     <>
-      <Link className="login-nav-link navbar-link p-1" to="/loginform">
+      <Link className="login-nav-link navbar-link p-2" to="/loginform">
         LOG IN
       </Link>
       <div className="login-nav-link p-1">&#8725; &#8725;</div>
-      <Link className="login-nav-link navbar-link p-1" to="/signupform">
+      <Link className="login-nav-link navbar-link p-2" to="/signupform">
         SIGN UP
       </Link>
     </>
@@ -53,7 +53,7 @@ const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
           />
           <span></span>
           <Navbar.Collapse
-            className="navbar-collapese-box ml-auto"
+            className="navbar-collapse-box mb-2"
             id="responsive-navbar-nav"
           >
             {conditionalNav}
