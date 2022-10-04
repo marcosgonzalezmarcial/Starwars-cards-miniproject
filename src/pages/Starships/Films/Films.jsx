@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchData } from "../../../helpers/fetchData";
+import { fetchData } from "../../../api/fetchData";
 import FilmCard from "./FilmCard";
 import "./filmcard.css";
 

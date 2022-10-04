@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchData } from "../../helpers/fetchData";
+import { fetchData } from "../../api/fetchData";
 
 const PeopleShips = ({ person }) => {
   const [ships, setShips] = useState([]);

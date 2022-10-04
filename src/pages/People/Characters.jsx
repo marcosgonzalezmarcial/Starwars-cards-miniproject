@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import CharacterCard from "./CharacterCard";
-import { fetchPeople } from "../../helpers/fetchPeople";
+import { fetchPeople } from "../../api/fetchPeople";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./character-card.css";
 
@@ -10,7 +10,7 @@ const Characters = ({
   people,
   setPeople,
   page,
-  setPage,
+  setPage
 }) => {
   const [isLoading, setIsloading] = useState(true);
   const [peopleSelected, setPeopleSelected] = useState("");

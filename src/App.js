@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Header from "./components/Header/Header";
 import React, { useState, useEffect } from "react";
-import Starships from "./pages/Starships/Starships";
 import Home from "./pages/Home";
 import LoginForm from "./pages/Login/LoginForm/LoginForm";
 import SignUpForm from "./pages/Login/SignUpForm/SignUpForm";
@@ -10,6 +9,7 @@ import PriveteRouteStarships from "./pages/PriveteRouteStarships";
 import PriveteRoutePeople from "./pages/PriveteRoutePeople";
 import People from "./pages/People/People";
 import ErrorPage from "./pages/ErrorPage";
+import StarShips from "./pages/Starships/StarShips";
 
 function App() {
   const [users, setUsers] = useState(
@@ -42,7 +42,7 @@ function App() {
               <People showCard={showCard} setShowCard={setShowCard} />
             </PriveteRoutePeople>
             <PriveteRouteStarships exact path="/starships" loggedIn={loggedIn}>
-              <Starships
+              <StarShips
                 ships={ships}
                 setShips={setShips}
                 page={page}

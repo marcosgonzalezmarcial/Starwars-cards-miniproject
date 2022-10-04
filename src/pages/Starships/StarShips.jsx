@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import ShipCard from "./ShipCard";
-import { fetchShips } from "../../helpers/fetchShips";
+import { fetchShips } from "../../api/fetchShips";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./shipcard.css";
 
-const Ships = ({ showCard, setShowCard, ships, setShips, page, setPage }) => {
+const StarShips = ({
+  showCard,
+  setShowCard,
+  ships,
+  setShips,
+  page,
+  setPage
+}) => {
   const [isLoading, setIsloading] = useState(true);
   const [shipSelected, setShipSelected] = useState("");
 
@@ -52,4 +59,4 @@ const Ships = ({ showCard, setShowCard, ships, setShips, page, setPage }) => {
   );
 };
 
-export default Ships;
+export default StarShips;
