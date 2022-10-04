@@ -9,6 +9,7 @@ import SignUpForm from "./pages/Login/SignUpForm/SignUpForm";
 import PriveteRouteStarships from "./pages/PriveteRouteStarships";
 import PriveteRoutePeople from "./pages/PriveteRoutePeople";
 import People from "./pages/People/People";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   const [users, setUsers] = useState(
@@ -37,10 +38,10 @@ function App() {
             setLoggedIn={setLoggedIn}
           />
           <Switch>
-            <PriveteRoutePeople path="/people" loggedIn={loggedIn}>
+            <PriveteRoutePeople exact path="/people" loggedIn={loggedIn}>
               <People showCard={showCard} setShowCard={setShowCard} />
             </PriveteRoutePeople>
-            <PriveteRouteStarships path="/starships" loggedIn={loggedIn}>
+            <PriveteRouteStarships exact path="/starships" loggedIn={loggedIn}>
               <Starships
                 ships={ships}
                 setShips={setShips}
@@ -61,6 +62,9 @@ function App() {
             </Route>
             <Route exact path="/">
               <Home loggedIn={loggedIn} />
+            </Route>
+            <Route path="*">
+              <ErrorPage />
             </Route>
           </Switch>
         </Router>
