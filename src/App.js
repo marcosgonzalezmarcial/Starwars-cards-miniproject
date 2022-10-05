@@ -29,47 +29,45 @@ function App() {
   const [page, setPage] = useState(1);
 
   return (
-    <div className="App">
+    <Router>
       <Container fluid className="py-2">
-        <Router>
-          <Header
-            setShowCard={setShowCard}
-            loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn}
-          />
-          <Switch>
-            <PriveteRoutePeople exact path="/people" loggedIn={loggedIn}>
-              <People showCard={showCard} setShowCard={setShowCard} />
-            </PriveteRoutePeople>
-            <PriveteRouteStarships exact path="/starships" loggedIn={loggedIn}>
-              <StarShips
-                ships={ships}
-                setShips={setShips}
-                page={page}
-                setPage={setPage}
-                showCard={showCard}
-                setShowCard={setShowCard}
-              />
-            </PriveteRouteStarships>
-            <Route exact path="/loginform">
-              <LoginForm users={users} setLoggedIn={setLoggedIn} />
-            </Route>
-            <Route exact path="/signupform">
-              <SignUpForm setUsers={setUsers} />
-            </Route>
-            <Route exact path="/home">
-              <Home setShowCard={setShowCard} loggedIn={loggedIn} />
-            </Route>
-            <Route exact path="/">
-              <Home loggedIn={loggedIn} />
-            </Route>
-            <Route path="*">
-              <ErrorPage />
-            </Route>
-          </Switch>
-        </Router>
+        <Header
+          setShowCard={setShowCard}
+          loggedIn={loggedIn}
+          setLoggedIn={setLoggedIn}
+        />
+        <Switch>
+          <PriveteRoutePeople exact path="/people" loggedIn={loggedIn}>
+            <People showCard={showCard} setShowCard={setShowCard} />
+          </PriveteRoutePeople>
+          <PriveteRouteStarships exact path="/starships" loggedIn={loggedIn}>
+            <StarShips
+              ships={ships}
+              setShips={setShips}
+              page={page}
+              setPage={setPage}
+              showCard={showCard}
+              setShowCard={setShowCard}
+            />
+          </PriveteRouteStarships>
+          <Route exact path="/loginform">
+            <LoginForm users={users} setLoggedIn={setLoggedIn} />
+          </Route>
+          <Route exact path="/signupform">
+            <SignUpForm setUsers={setUsers} />
+          </Route>
+          <Route exact path="/home">
+            <Home setShowCard={setShowCard} loggedIn={loggedIn} />
+          </Route>
+          <Route exact path="/">
+            <Home loggedIn={loggedIn} />
+          </Route>
+          <Route path="*">
+            <ErrorPage />
+          </Route>
+        </Switch>
       </Container>
-    </div>
+    </Router>
   );
 }
 

@@ -1,61 +1,62 @@
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import './loginForm.css'
-import ReactLogo from '../../../assets/logosw.svg'
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import "../form.css";
+import ReactLogo from "../../../assets/logosw.svg";
+import { Container } from "react-bootstrap";
 
-const initialUserDataState = { email: '', password: '' }
+const initialUserDataState = { email: "", password: "" };
 
 const LoginForm = ({ setLoggedIn, users }) => {
-  const [userData, setUserData] = useState(initialUserDataState)
-  const [isOpen, setIsOpen] = useState(true)
-  const [errorLog, setErrorLog] = useState(null)
+  const [userData, setUserData] = useState(initialUserDataState);
+  const [isOpen, setIsOpen] = useState(true);
+  const [errorLog, setErrorLog] = useState(null);
 
   const handleClick = () => {
-    setIsOpen(false)
-    history.push('/home')
-  }
+    setIsOpen(false);
+    history.push("/home");
+  };
 
-  let history = useHistory()
+  let history = useHistory();
 
   const handleChangeEmail = (e) => {
-    const user = e.target.value
-    setUserData({ ...userData, email: user })
-    setErrorLog(null)
-  }
+    const user = e.target.value;
+    setUserData({ ...userData, email: user });
+    setErrorLog(null);
+  };
   const handleChangePassword = (e) => {
-    const password = e.target.value
-    setUserData({ ...userData, password: password })
-    setErrorLog(null)
-  }
+    const password = e.target.value;
+    setUserData({ ...userData, password: password });
+    setErrorLog(null);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const equal = (el) =>
-      el.email === userData.email && el.password === userData.password
+      el.email === userData.email && el.password === userData.password;
 
     if (users.length > 0) {
-      const checkUser = users.some(equal)
+      const checkUser = users.some(equal);
       if (checkUser) {
-        setLoggedIn(true)
-        console.log('El usuario se logueo correctamente')
-        history.push('/home')
-        setErrorLog(false)
+        setLoggedIn(true);
+        console.log("El usuario se logueo correctamente");
+        history.push("/home");
+        setErrorLog(false);
       } else {
-        console.log('El usuario introducido no existe')
-        setErrorLog(true)
+        console.log("El usuario introducido no existe");
+        setErrorLog(true);
       }
     }
-    setUserData(initialUserDataState)
-  }
+    setUserData(initialUserDataState);
+  };
 
-  const handleFormInnerClick = (e) => e.stopPropagation()
+  const handleFormInnerClick = (e) => e.stopPropagation();
 
   return (
-    <>
+    <Container>
       <div
         onMouseDown={handleClick}
-        className={`loginForm-container ${isOpen && 'is-open'}`}
+        className={`loginForm-container ${isOpen && "is-open"}`}
       >
         <form onSubmit={handleSubmit}>
           <div
@@ -108,8 +109,8 @@ const LoginForm = ({ setLoggedIn, users }) => {
           </div>
         </form>
       </div>
-    </>
-  )
-}
+    </Container>
+  );
+};
 
-export default LoginForm
+export default LoginForm;

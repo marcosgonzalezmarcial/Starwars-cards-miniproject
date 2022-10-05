@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Container, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const MyNavbar = ({ setShowCard }) => {
+const SectionNav = ({ setShowCard }) => {
   const handleClickStarships = () => {
     setShowCard(false);
   };
@@ -50,4 +50,4 @@ const MyNavbar = ({ setShowCard }) => {
   );
 };
 
-export default MyNavbar;
+export default SectionNav;
