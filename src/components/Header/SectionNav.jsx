@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const SectionNav = ({ setShowCard }) => {
+const SectionNav = () => {
+  const [, setShowCard] = useState(false);
+
   const handleClickStarships = () => {
     setShowCard(false);
   };

@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import TopHeader from "./components/Header";
 import React, { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import LoginForm from "./pages/Login/LoginForm/LoginForm";
@@ -10,6 +9,7 @@ import PriveteRoutePeople from "./pages/PriveteRoutePeople";
 import People from "./pages/People/People";
 import ErrorPage from "./pages/ErrorPage";
 import StarShips from "./pages/Starships/StarShips";
+import Header from "./components/Header";
 
 function App() {
   const [users, setUsers] = useState(
@@ -18,7 +18,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     JSON.parse(localStorage.getItem("loggedIn")) || false
   );
-  const [showCard, setShowCard] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(users));
@@ -31,14 +30,10 @@ function App() {
   return (
     <Router>
       <Container fluid className="py-2">
-        <TopHeader
-          setShowCard={setShowCard}
-          loggedIn={loggedIn}
-          setLoggedIn={setLoggedIn}
-        />
+        <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Switch>
           <PriveteRoutePeople exact path="/people" loggedIn={loggedIn}>
-            <People showCard={showCard} setShowCard={setShowCard} />
+            <People />
           </PriveteRoutePeople>
           <PriveteRouteStarships exact path="/starships" loggedIn={loggedIn}>
             <StarShips
@@ -46,8 +41,6 @@ function App() {
               setShips={setShips}
               page={page}
               setPage={setPage}
-              showCard={showCard}
-              setShowCard={setShowCard}
             />
           </PriveteRouteStarships>
           <Route exact path="/loginform">
@@ -57,7 +50,7 @@ function App() {
             <SignUpForm setUsers={setUsers} />
           </Route>
           <Route exact path="/home">
-            <Home setShowCard={setShowCard} loggedIn={loggedIn} />
+            <Home loggedIn={loggedIn} />
           </Route>
           <Route exact path="/">
             <Home loggedIn={loggedIn} />

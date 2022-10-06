@@ -4,16 +4,10 @@ import { fetchPeople } from "../../api/fetchPeople";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./character-card.css";
 
-const Characters = ({
-  showCard,
-  setShowCard,
-  people,
-  setPeople,
-  page,
-  setPage
-}) => {
+const Characters = ({ people, setPeople, page, setPage }) => {
   const [isLoading, setIsloading] = useState(true);
   const [peopleSelected, setPeopleSelected] = useState("");
+  const [showCard, setShowCard] = useState(false);
 
   useEffect(() => {
     const loadPeople = async () => {

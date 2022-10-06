@@ -1,11 +1,8 @@
-import React from 'react'
-import { Container, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Container, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const Home = ({ setShowCard }) => {
-  const handleClick = () => {
-    setShowCard(false)
-  }
+const Home = () => {
   return (
     <main className="main text-white m-3">
       <Container>
@@ -21,14 +18,14 @@ const Home = ({ setShowCard }) => {
         </p>
         <p className="mb-2">Recuerda loguearte para acceder al contenido.</p>
         <p className="mb-3 mb-md-4">May the force be with you!!</p>
-            <Link onClick={handleClick} to="/starships">
-              <Button style={{ fontSize: 19 }} className="py-2 px-3 lead">
-                ¿Te animas?
-              </Button>
-            </Link>
+        <Link to="/starships">
+          <Button style={{ fontSize: 19 }} className="py-2 px-3 lead">
+            ¿Te animas?
+          </Button>
+        </Link>
       </Container>
     </main>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
