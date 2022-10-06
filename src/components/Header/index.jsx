@@ -1,10 +1,10 @@
 import React from "react";
 import { Navbar, Container } from "react-bootstrap";
 import logo from "../../assets/star-wars-logo.jpg";
-import "./header.css";
+import "./Header.css";
 import { Link } from "react-router-dom";
 import SectionNav from "./SectionNav";
-import LoginNav from "../../pages/Login/LoginNav";
+import LoginNav from "./LoginNav";
 
 const Header = ({ setShowCard, loggedIn, setLoggedIn }) => {
   return (

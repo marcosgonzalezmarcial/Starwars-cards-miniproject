@@ -10,8 +10,6 @@ const LoginForm = ({ setLoggedIn, users }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log(users);
-
   const history = useHistory();
 
   const handleClick = () => {
