@@ -1,115 +1,115 @@
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import './loginForm.css'
-import ReactLogo from '../../../assets/logosw.svg'
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import "../form.css";
+import ReactLogo from "../../../assets/logosw.svg";
 
-const initialUserDataState = { email: '', password: '' }
+const initialUserDataState = { email: "", password: "" };
 
 const LoginForm = ({ setLoggedIn, users }) => {
-  const [userData, setUserData] = useState(initialUserDataState)
-  const [isOpen, setIsOpen] = useState(true)
-  const [errorLog, setErrorLog] = useState(null)
+  const [userData, setUserData] = useState(initialUserDataState);
+  const [isOpen, setIsOpen] = useState(true);
+  const [error, setError] = useState(null);
+
+  const history = useHistory();
 
   const handleClick = () => {
-    setIsOpen(false)
-    history.push('/home')
-  }
-
-  let history = useHistory()
+    setIsOpen(false);
+    history.push("/home");
+  };
 
   const handleChangeEmail = (e) => {
-    const user = e.target.value
-    setUserData({ ...userData, email: user })
-    setErrorLog(null)
-  }
+    const user = e.target.value;
+    setUserData({ ...userData, email: user });
+    // setErrorLog(null);
+  };
   const handleChangePassword = (e) => {
-    const password = e.target.value
-    setUserData({ ...userData, password: password })
-    setErrorLog(null)
-  }
+    const password = e.target.value;
+    setUserData({ ...userData, password: password });
+    // setErrorLog(null);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const equal = (el) =>
-      el.email === userData.email && el.password === userData.password
+    const inputValidation = (user) => {
+      return (
+        user.email === userData.email && user.password === userData.password
+      );
+    };
 
     if (users.length > 0) {
-      const checkUser = users.some(equal)
+      const checkUser = users.some((user) => inputValidation(user));
+
       if (checkUser) {
-        setLoggedIn(true)
-        console.log('El usuario se logueo correctamente')
-        history.push('/home')
-        setErrorLog(false)
+        setLoggedIn(true);
+        console.log("El usuario se logueo correctamente");
+        history.push("/home");
+        setError(false);
       } else {
-        console.log('El usuario introducido no existe')
-        setErrorLog(true)
+        console.log("El usuario introducido no existe");
+        setError(true);
       }
     }
-    setUserData(initialUserDataState)
-  }
+    setUserData(initialUserDataState);
+  };
 
-  const handleFormInnerClick = (e) => e.stopPropagation()
+  const handleFormInnerClick = (e) => e.stopPropagation();
 
   return (
-    <>
-      <div
-        onMouseDown={handleClick}
-        className={`loginForm-container ${isOpen && 'is-open'}`}
-      >
-        <form onSubmit={handleSubmit}>
-          <div
-            onMouseDown={handleFormInnerClick}
-            className="form-inner text-center"
-          >
-            <img className="my-4 p-2" src={ReactLogo} alt="logo" />
-            <button className="login-close" onClick={handleClick}>
-              X
-            </button>
-            <h1 className="log-in-title">SIGN IN</h1>
-            <div className="form-group my-3">
-              <input
-                onChange={handleChangeEmail}
-                placeholder="Email Adress"
-                type="email"
-                value={userData.email}
-                required
-              />
-            </div>
+    <div
+      onMouseDown={handleClick}
+      className={`loginForm-container ${isOpen && "is-open"}`}
+    >
+      <form onSubmit={handleSubmit}>
+        <div
+          onMouseDown={handleFormInnerClick}
+          className="form-inner text-center"
+        >
+          <img className="my-4 p-2" src={ReactLogo} alt="logo" />
+          <button className="login-close" onClick={handleClick}>
+            X
+          </button>
+          <h1 className="log-in-title">SIGN IN</h1>
+          <div className="form-group my-3">
+            <input
+              onChange={handleChangeEmail}
+              placeholder="Email Adress"
+              type="email"
+              value={userData.email}
+              required
+            />
+          </div>
 
-            <div className="form-group my-3">
-              <input
-                onChange={handleChangePassword}
-                placeholder="Password"
-                type="password"
-                value={userData.password}
-                required
-              />
-            </div>
+          <div className="form-group my-3">
+            <input
+              onChange={handleChangePassword}
+              placeholder="Password"
+              type="password"
+              value={userData.password}
+              required
+            />
+          </div>
 
-            <input type="submit" value="Sign In"></input>
-            {
-              errorLog && (
-                <>
-                  <p className="text-danger">
-                    El usuario introducido no existe
-                  </p>
-                  <p className="text-info">Intentalo nuevamente</p>
-                </>
-              ) /*: (
+          <input type="submit" value="Sign In"></input>
+          {
+            error && (
+              <>
+                <p className="text-danger">El usuario introducido no existe</p>
+                <p className="text-info">Intentalo nuevamente</p>
+              </>
+            ) /*: (
               !errorLog &&
               errorLog !== null &&
               console.log("Te has logueado correctamente")
             )*/
-            }
-            <div className="sign-up-link">
-              <Link to="/signupform">Create an account</Link>
-            </div>
+          }
+          <div className="sign-up-link">
+            <Link to="/signupform">Create an account</Link>
           </div>
-        </form>
-      </div>
-    </>
-  )
-}
+        </div>
+      </form>
+    </div>
+  );
+};
 
-export default LoginForm
+export default LoginForm;

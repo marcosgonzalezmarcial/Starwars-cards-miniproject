@@ -1,6 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { fetchData } from "../../../helpers/fetchData";
+import { fetchData } from "../../../api/fetchData";
 import movieImage from "../../../assets/returnOfJedi.jpg";
 import "./filmcard.css";
 

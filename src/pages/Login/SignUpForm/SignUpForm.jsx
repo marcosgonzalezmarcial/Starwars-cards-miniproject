@@ -1,56 +1,56 @@
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import './signupform.css'
-import ReactLogo from '../../../assets/logosw.svg'
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import "../form.css";
+import ReactLogo from "../../../assets/logosw.svg";
 
 const initialUserDetailsState = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: ''
-}
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: ""
+};
 
 const SignUpForm = ({ setUsers }) => {
-  const [userDetails, setUserDetails] = useState(initialUserDetailsState)
-  const [isOpen, setIsOpen] = useState(true)
-  let history = useHistory()
+  const [userDetails, setUserDetails] = useState(initialUserDetailsState);
+  const [isOpen, setIsOpen] = useState(true);
+  let history = useHistory();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setUsers((prev) => [...prev, userDetails])
-    setUserDetails(initialUserDetailsState)
-    alert('Has creado el usuario correctamente, ya puedes logueate')
-    history.push('/loginform')
-  }
+    e.preventDefault();
+    setUsers((prev) => [...prev, userDetails]);
+    setUserDetails(initialUserDetailsState);
+    alert("Has creado el usuario correctamente, ya puedes logueate");
+    history.push("/loginform");
+  };
 
   const handleClick = () => {
-    setIsOpen(false)
-    history.push('/home')
-  }
+    setIsOpen(false);
+    history.push("/home");
+  };
 
   const handleChangeFirstName = (e) => {
-    const inputFirstName = e.target.value
-    setUserDetails({ ...userDetails, firstName: inputFirstName })
-  }
+    const inputFirstName = e.target.value;
+    setUserDetails({ ...userDetails, firstName: inputFirstName });
+  };
   const handleChangeLastName = (e) => {
-    const inputLastName = e.target.value
-    setUserDetails({ ...userDetails, lastName: inputLastName })
-  }
+    const inputLastName = e.target.value;
+    setUserDetails({ ...userDetails, lastName: inputLastName });
+  };
   const handleChangeEmail = (e) => {
-    const inputEmail = e.target.value
-    setUserDetails({ ...userDetails, email: inputEmail })
-  }
+    const inputEmail = e.target.value;
+    setUserDetails({ ...userDetails, email: inputEmail });
+  };
   const handleChangePassword = (e) => {
-    const inputPassword = e.target.value
-    setUserDetails({ ...userDetails, password: inputPassword })
-  }
+    const inputPassword = e.target.value;
+    setUserDetails({ ...userDetails, password: inputPassword });
+  };
 
-  const handleFormInnerClick = (e) => e.stopPropagation()
+  const handleFormInnerClick = (e) => e.stopPropagation();
 
   return (
     <div
       onMouseDown={handleClick}
-      className={`loginForm-container ${isOpen && 'is-open'}`}
+      className={`loginForm-container ${isOpen && "is-open"}`}
     >
       <form onSubmit={handleSubmit} action="">
         <div
@@ -110,7 +110,7 @@ const SignUpForm = ({ setUsers }) => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default SignUpForm
+export default SignUpForm;

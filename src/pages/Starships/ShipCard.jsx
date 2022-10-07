@@ -11,9 +11,8 @@ const ShipCard = ({ ships, shipSelected }) => {
   const [showFilmCard, setShowFilmCard] = useState(false);
 
   useEffect(() => {
-    const areEqual = (ship) => ship.name === shipSelected;
     const findShip = () => {
-      const filteredShip = ships.find(areEqual);
+      const filteredShip = ships.find((ship) => ship.name === shipSelected);
       setShip(filteredShip);
       setShowShip(true);
     };

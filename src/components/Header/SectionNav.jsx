@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const MyNavbar = ({ setShowCard }) => {
+const SectionNav = () => {
+  const [, setShowCard] = useState(false);
+
   const handleClickStarships = () => {
     setShowCard(false);
   };
@@ -24,7 +26,7 @@ const MyNavbar = ({ setShowCard }) => {
             <Col className="border-right">
               <Nav.Item>
                 <Link
-                  onClick={handleClickStarships}
+                  // onClick={handleClickStarships}
                   className="nav-link px-2 text-center"
                   to="/starships"
                 >
@@ -50,4 +52,4 @@ const MyNavbar = ({ setShowCard }) => {
   );
 };
 
-export default MyNavbar;
+export default SectionNav;

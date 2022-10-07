@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-const PriveteRoutePeople = ({ loggedIn, children, ...rest }) => (
+const PriveteRoutePeople = ({ loggedIn, children, path }) => (
   <Route
-    {...rest}
+    path={path}
     render={() => (loggedIn ? children : <Redirect to="/loginform" />)}
   />
 );
