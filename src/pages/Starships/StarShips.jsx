@@ -3,11 +3,15 @@ import ShipCard from "./ShipCard";
 import { fetchShips } from "../../api/fetchShips";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./shipcard.css";
+import { Container } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
-const StarShips = ({ ships, setShips, page, setPage }) => {
+const StarShips = () => {
   const [isLoading, setIsloading] = useState(true);
   const [shipSelected, setShipSelected] = useState("");
   const [showCard, setShowCard] = useState(false);
+  const [page, setPage] = useState(1);
+  const [ships, setShips] = useState([]);
 
   useEffect(() => {
     setIsloading(true);
@@ -27,10 +31,13 @@ const StarShips = ({ ships, setShips, page, setPage }) => {
 
   if (showCard) return <ShipCard shipSelected={shipSelected} ships={ships} />;
 
-  if (isLoading) return <h1>CARGANDO</h1>;
-
   return (
     <>
+      {isLoading && (
+        <Container className="m-3">
+          <div className="text-white display-4">Cargando...</div>
+        </Container>
+      )}
       <InfiniteScroll
         dataLength={ships.length}
         next={() => setPage(ships.length < 36 && page + 1)}
@@ -48,7 +55,6 @@ const StarShips = ({ ships, setShips, page, setPage }) => {
           </div>
         ))}
       </InfiniteScroll>
-      )
     </>
   );
 };

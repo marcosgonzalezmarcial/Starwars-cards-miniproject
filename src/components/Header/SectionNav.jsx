@@ -26,7 +26,7 @@ const SectionNav = () => {
             <Col className="border-right">
               <Nav.Item>
                 <Link
-                  onClick={handleClickStarships}
+                  // onClick={handleClickStarships}
                   className="nav-link px-2 text-center"
                   to="/starships"
                 >

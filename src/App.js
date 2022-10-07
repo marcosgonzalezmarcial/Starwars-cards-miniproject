@@ -20,12 +20,10 @@ function App() {
   );
 
   useEffect(() => {
+    console.log("test ahora");
     localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
   }, [users, loggedIn]);
-
-  const [ships, setShips] = useState([]);
-  const [page, setPage] = useState(1);
 
   return (
     <Router>
@@ -36,12 +34,7 @@ function App() {
             <People />
           </PriveteRoutePeople>
           <PriveteRouteStarships exact path="/starships" loggedIn={loggedIn}>
-            <StarShips
-              ships={ships}
-              setShips={setShips}
-              page={page}
-              setPage={setPage}
-            />
+            <StarShips />
           </PriveteRouteStarships>
           <Route exact path="/loginform">
             <LoginForm users={users} setLoggedIn={setLoggedIn} />
