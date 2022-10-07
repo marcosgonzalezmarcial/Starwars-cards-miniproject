@@ -4,12 +4,14 @@ import React, { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import LoginForm from "./pages/Login/LoginForm/LoginForm";
 import SignUpForm from "./pages/Login/SignUpForm/SignUpForm";
-import PriveteRouteStarships from "./pages/PriveteRouteStarships";
-import PriveteRoutePeople from "./pages/PriveteRoutePeople";
+import PrivateRouteStarships from "./pages/PrivateRouteStarships";
+import PrivateRoutePeople from "./pages/PrivateRoutePeople";
 import People from "./pages/People/People";
 import ErrorPage from "./pages/ErrorPage";
 import StarShips from "./pages/Starships/StarShips";
 import Header from "./components/Header";
+import PrivateRouteSingleShip from "./pages/PrivateRouteSingleShip";
+import SingleShip from "./pages/Starships/SingleShip";
 
 function App() {
   const [users, setUsers] = useState(
@@ -30,12 +32,15 @@ function App() {
       <Container fluid className="py-2">
         <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Switch>
-          <PriveteRoutePeople exact path="/people" loggedIn={loggedIn}>
+          <PrivateRoutePeople exact path="/people" loggedIn={loggedIn}>
             <People />
-          </PriveteRoutePeople>
-          <PriveteRouteStarships exact path="/starships" loggedIn={loggedIn}>
+          </PrivateRoutePeople>
+          <PrivateRouteStarships exact path="/starships" loggedIn={loggedIn}>
             <StarShips />
-          </PriveteRouteStarships>
+          </PrivateRouteStarships>
+          <PrivateRouteSingleShip exact path="/starships/:id" loggedIn={loggedIn}>
+          <SingleShip />
+          </PrivateRouteSingleShip>
           <Route exact path="/loginform">
             <LoginForm users={users} setLoggedIn={setLoggedIn} />
           </Route>
