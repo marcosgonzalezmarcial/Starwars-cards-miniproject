@@ -6,11 +6,14 @@ import LoginForm from "./pages/Login/LoginForm/LoginForm";
 import SignUpForm from "./pages/Login/SignUpForm/SignUpForm";
 import PrivateRouteStarships from "./pages/PrivateRouteStarships";
 import PrivateRoutePeople from "./pages/PrivateRoutePeople";
-import People from "./pages/People/People";
+// import People from "./pages/People/People";
+import SingleCharacter from "./pages/People/SingleCharacter";
+import Characters from "./pages/People/Characters";
 import ErrorPage from "./pages/ErrorPage";
 import StarShips from "./pages/Starships/StarShips";
 import Header from "./components/Header";
 import PrivateRouteSingleShip from "./pages/PrivateRouteSingleShip";
+import PrivateRouteSingleCharacter from "./pages/PrivateRouteSingleCharacter";
 import SingleShip from "./pages/Starships/SingleShip";
 
 function App() {
@@ -20,7 +23,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     JSON.parse(localStorage.getItem("loggedIn")) || false
   );
-
   useEffect(() => {
     console.log("test ahora");
     localStorage.setItem("users", JSON.stringify(users));
@@ -33,7 +35,7 @@ function App() {
         <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Switch>
           <PrivateRoutePeople exact path="/people" loggedIn={loggedIn}>
-            <People />
+            <Characters />
           </PrivateRoutePeople>
           <PrivateRouteStarships exact path="/starships" loggedIn={loggedIn}>
             <StarShips />
@@ -41,6 +43,9 @@ function App() {
           <PrivateRouteSingleShip exact path="/starships/:id" loggedIn={loggedIn}>
           <SingleShip />
           </PrivateRouteSingleShip>
+          <PrivateRouteSingleCharacter exact path="/people/:id" loggedIn={loggedIn}>
+          <SingleCharacter />
+          </PrivateRouteSingleCharacter>
           <Route exact path="/loginform">
             <LoginForm users={users} setLoggedIn={setLoggedIn} />
           </Route>

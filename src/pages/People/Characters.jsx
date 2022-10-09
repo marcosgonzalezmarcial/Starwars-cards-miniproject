@@ -1,55 +1,54 @@
-import { useState, useEffect } from "react";
-import CharacterCard from "./CharacterCard";
-import { fetchPeople } from "../../api/fetchPeople";
-import InfiniteScroll from "react-infinite-scroll-component";
-import "./character-card.css";
+import { useState, useEffect } from 'react'
+import { fetchPeople } from '../../api/fetchPeople'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import './character-card.css'
+import { useHistory } from 'react-router-dom'
+import data from '../../helpers/peopleMappedData.json'
 
-const Characters = ({ people, setPeople, page, setPage }) => {
-  const [isLoading, setIsloading] = useState(true);
-  const [peopleSelected, setPeopleSelected] = useState("");
-  const [showCard, setShowCard] = useState(false);
+const Characters = () => {
+	const [isLoading, setIsLoading] = useState(true)
+	const [page, setPage] = useState(1)
+	const [people, setPeople] = useState([])
 
-  useEffect(() => {
-    const loadPeople = async () => {
-      setIsloading(true);
-      const newPeople = await fetchPeople(page);
-      setPeople((prev) => [...prev, ...newPeople]);
-      setIsloading(false);
-    };
-    loadPeople();
-  }, [page, setPeople]);
+	let history = useHistory()
 
-  const handleClick = (e) => {
-    const peopleSelected = e.target.textContent;
-    setPeopleSelected(peopleSelected);
-    setShowCard(true);
-  };
+	useEffect(() => {
+		setIsLoading(true)
+		const loadPeople = async () => {
+			const newPeople = await fetchPeople(page)
+			setPeople(prev => [...prev, ...newPeople])
+			setIsLoading(false)
+		}
+		loadPeople()
+	}, [page, setPeople])
 
-  return (
-    <>
-      {showCard ? (
-        <CharacterCard peopleSelected={peopleSelected} people={people} />
-      ) : (
-        <InfiniteScroll
-          dataLength={people.length}
-          next={() => setPage(people.length < 82 && page + 1)}
-          hasMore={people.length < 82 ? true : false}
-        >
-          {people.map((people) => (
-            <div
-              key={Date.now() * Math.random()}
-              className="container  rounded text-center text-secondary bg-dark my-4 p-3 flex-column"
-            >
-              <h4 className="ship-title" onClick={handleClick}>
-                {people.name}
-              </h4>
-            </div>
-          ))}
-        </InfiniteScroll>
-      )}
-      {isLoading && <h1>CARGANDO</h1>}
-    </>
-  );
-};
+	const handleClick = e => {
+		const personSelected = e.target.textContent
+		const person = data.people.filter(item => item.name === personSelected)
+		history.push(`/people/${person[0].url}`)
+	}
 
-export default Characters;
+	return (
+		<>
+			<InfiniteScroll
+				dataLength={people.length}
+				next={() => setPage(people.length < 82 && page + 1)}
+				hasMore={people.length < 82 ? true : false}
+			>
+				{people.map(people => (
+					<div
+						key={Date.now() * Math.random()}
+						className="container  rounded text-center text-secondary bg-dark my-4 p-3 flex-column"
+					>
+						<h4 className="ship-title" onClick={handleClick}>
+							{people.name}
+						</h4>
+					</div>
+				))}
+			</InfiniteScroll>
+			{isLoading && <h1>CARGANDO</h1>}
+		</>
+	)
+}
+
+export default Characters

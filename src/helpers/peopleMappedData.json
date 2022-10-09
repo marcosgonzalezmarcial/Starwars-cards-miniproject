@@ -1,0 +1,332 @@
+{
+	"people": [
+		{
+			"name": "Luke Skywalker",
+			"url": 1
+		},
+		{
+			"name": "C-3PO",
+			"url": 2
+		},
+		{
+			"name": "R2-D2",
+			"url": 3
+		},
+		{
+			"name": "Darth Vader",
+			"url": 4
+		},
+		{
+			"name": "Leia Organa",
+			"url": 5
+		},
+		{
+			"name": "Owen Lars",
+			"url": 6
+		},
+		{
+			"name": "Beru Whitesun lars",
+			"url": 7
+		},
+		{
+			"name": "R5-D4",
+			"url": 8
+		},
+		{
+			"name": "Biggs Darklighter",
+			"url": 9
+		},
+		{
+			"name": "Obi-Wan Kenobi",
+			"url": 10
+		},
+		{
+			"name": "Anakin Skywalker",
+			"url": 11
+		},
+		{
+			"name": "Wilhuff Tarkin",
+			"url": 12
+		},
+		{
+			"name": "Chewbacca",
+			"url": 13
+		},
+		{
+			"name": "Han Solo",
+			"url": 14
+		},
+		{
+			"name": "Greedo",
+			"url": 15
+		},
+		{
+			"name": "Jabba Desilijic Tiure",
+			"url": 16
+		},
+		{
+			"name": "Wedge Antilles",
+			"url": 18
+		},
+		{
+			"name": "Jek Tono Porkins",
+			"url": 19
+		},
+		{
+			"name": "Yoda",
+			"url": 20
+		},
+		{
+			"name": "Palpatine",
+			"url": 21
+		},
+		{
+			"name": "Boba Fett",
+			"url": 22
+		},
+		{
+			"name": "IG-88",
+			"url": 23
+		},
+		{
+			"name": "Bossk",
+			"url": 24
+		},
+		{
+			"name": "Lando Calrissian",
+			"url": 25
+		},
+		{
+			"name": "Lobot",
+			"url": 26
+		},
+		{
+			"name": "Ackbar",
+			"url": 27
+		},
+		{
+			"name": "Mon Mothma",
+			"url": 28
+		},
+		{
+			"name": "Arvel Crynyd",
+			"url": 29
+		},
+		{
+			"name": "Wicket Systri Warrick",
+			"url": 30
+		},
+		{
+			"name": "Nien Nunb",
+			"url": 31
+		},
+		{
+			"name": "Qui-Gon Jinn",
+			"url": 32
+		},
+		{
+			"name": "Nute Gunray",
+			"url": 33
+		},
+		{
+			"name": "Finis Valorum",
+			"url": 34
+		},
+		{
+			"name": "Padmé Amidala",
+			"url": 35
+		},
+		{
+			"name": "Jar Jar Binks",
+			"url": 36
+		},
+		{
+			"name": "Roos Tarpals",
+			"url": 37
+		},
+		{
+			"name": "Rugor Nass",
+			"url": 38
+		},
+		{
+			"name": "Ric Olié",
+			"url": 39
+		},
+		{
+			"name": "Watto",
+			"url": 40
+		},
+		{
+			"name": "Sebulba",
+			"url": 41
+		},
+		{
+			"name": "Quarsh Panaka",
+			"url": 42
+		},
+		{
+			"name": "Shmi Skywalker",
+			"url": 43
+		},
+		{
+			"name": "Darth Maul",
+			"url": 44
+		},
+		{
+			"name": "Bib Fortuna",
+			"url": 45
+		},
+		{
+			"name": "Ayla Secura",
+			"url": 46
+		},
+		{
+			"name": "Ratts Tyerel",
+			"url": 47
+		},
+		{
+			"name": "Dud Bolt",
+			"url": 48
+		},
+		{
+			"name": "Gasgano",
+			"url": 49
+		},
+		{
+			"name": "Ben Quadinaros",
+			"url": 50
+		},
+		{
+			"name": "Mace Windu",
+			"url": 51
+		},
+		{
+			"name": "Ki-Adi-Mundi",
+			"url": 52
+		},
+		{
+			"name": "Kit Fisto",
+			"url": 53
+		},
+		{
+			"name": "Eeth Koth",
+			"url": 54
+		},
+		{
+			"name": "Adi Gallia",
+			"url": 55
+		},
+		{
+			"name": "Saesee Tiin",
+			"url": 56
+		},
+		{
+			"name": "Yarael Poof",
+			"url": 57
+		},
+		{
+			"name": "Plo Koon",
+			"url": 58
+		},
+		{
+			"name": "Mas Amedda",
+			"url": 59
+		},
+		{
+			"name": "Gregar Typho",
+			"url": 60
+		},
+		{
+			"name": "Cordé",
+			"url": 61
+		},
+		{
+			"name": "Cliegg Lars",
+			"url": 62
+		},
+		{
+			"name": "Poggle the Lesser",
+			"url": 63
+		},
+		{
+			"name": "Luminara Unduli",
+			"url": 64
+		},
+		{
+			"name": "Barriss Offee",
+			"url": 65
+		},
+		{
+			"name": "Dormé",
+			"url": 66
+		},
+		{
+			"name": "Dooku",
+			"url": 67
+		},
+		{
+			"name": "Bail Prestor Organa",
+			"url": 68
+		},
+		{
+			"name": "Jango Fett",
+			"url": 69
+		},
+		{
+			"name": "Zam Wesell",
+			"url": 70
+		},
+		{
+			"name": "Dexter Jettster",
+			"url": 71
+		},
+		{
+			"name": "Lama Su",
+			"url": 72
+		},
+		{
+			"name": "Taun We",
+			"url": 73
+		},
+		{
+			"name": "Jocasta Nu",
+			"url": 74
+		},
+		{
+			"name": "R4-P17",
+			"url": 75
+		},
+		{
+			"name": "Wat Tambor",
+			"url": 76
+		},
+		{
+			"name": "San Hill",
+			"url": 77
+		},
+		{
+			"name": "Shaak Ti",
+			"url": 78
+		},
+		{
+			"name": "Grievous",
+			"url": 79
+		},
+		{
+			"name": "Tarfful",
+			"url": 80
+		},
+		{
+			"name": "Raymus Antilles",
+			"url": 81
+		},
+		{
+			"name": "Sly Moore",
+			"url": 82
+		},
+		{
+			"name": "Tion Medon",
+			"url": 83
+		}
+	]
+}
