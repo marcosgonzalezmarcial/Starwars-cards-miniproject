@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useNavigate } from "react-router-dom";
 import "../form.css";
 import ReactLogo from "../../../assets/logosw.svg";
 
@@ -13,19 +13,19 @@ const initialUserDetailsState = {
 const SignUpForm = ({ setUsers }) => {
   const [userDetails, setUserDetails] = useState(initialUserDetailsState);
   const [isOpen, setIsOpen] = useState(true);
-  let history = useHistory();
-
+  // let history = useHistory();
+  let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     setUsers((prev) => [...prev, userDetails]);
     setUserDetails(initialUserDetailsState);
     alert("Has creado el usuario correctamente, ya puedes logueate");
-    history.push("/loginform");
+    navigate("/loginform");
   };
 
   const handleClick = () => {
     setIsOpen(false);
-    history.push("/home");
+    navigate("/home");
   };
 
   const handleChangeFirstName = (e) => {

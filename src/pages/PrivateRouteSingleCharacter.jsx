@@ -1,11 +1,11 @@
-import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import React from "react";
+import { Route, Navigate } from "react-router-dom";
 
 const PrivateRouteSingleCharacter = ({ loggedIn, children, path }) => (
-	<Route
-		path={path}
-		render={() => (loggedIn ? children : <Redirect to="/loginform" />)}
-	/>
-)
+  <Route
+    path={path}
+    render={() => (loggedIn ? children : <Navigate to="/loginform" />)}
+  />
+);
 
-export default PrivateRouteSingleCharacter
+export default PrivateRouteSingleCharacter;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../form.css";
 import ReactLogo from "../../../assets/logosw.svg";
 
@@ -10,11 +10,12 @@ const LoginForm = ({ setLoggedIn, users }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [error, setError] = useState(null);
 
-  const history = useHistory();
+  // const history = useHistory();
+  let navigate = useNavigate();
 
   const handleClick = () => {
     setIsOpen(false);
-    history.push("/home");
+    navigate("/home");
   };
 
   const handleChangeEmail = (e) => {
@@ -43,7 +44,7 @@ const LoginForm = ({ setLoggedIn, users }) => {
       if (checkUser) {
         setLoggedIn(true);
         console.log("El usuario se logueo correctamente");
-        history.push("/home");
+        navigate("/home");
         setError(false);
       } else {
         console.log("El usuario introducido no existe");
