@@ -1,4 +1,5 @@
 {
   "editor.wordWrap": "on",
-  "editor.fontSize": 13
+  "editor.fontSize": 13,
+  "editor.formatOnSave": true
 }
