@@ -3,34 +3,42 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Films from "./Films/Films";
 import Pilots from "./Pilots/Pilots";
+import starshipsJsonArr from "../../helpers/starshipMappedData.json";
 
 const SingleShip = () => {
   const [ship, setShip] = useState({});
   const [showPilotCard, setShowPilotCard] = useState(false);
   const [showFilmCard, setShowFilmCard] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState(null);
 
   let { id } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    const imageURL = `https://rawcdn.githack.com/tbone849/star-wars-guide/dca24610b4651d0823e8fe36a5be18a10945878a/build/assets/img/starships/${id}.jpg`;
 
-    const getImg = async () => {
-      const img = await fetch(`${imageURL}`);
-      return img;
-    };
+    const [shipFiltered] = starshipsJsonArr.filter(
+      (starship) => starship.id === Number(id)
+    );
+    console.log(shipFiltered);
+    setImg(shipFiltered.url);
 
-    getImg().then((res) => {
-      if (res.status === 200) {
-        setImg(res.url);
-      } else {
-        setImg(
-          "https://rawcdn.githack.com/tbone849/star-wars-guide/dca24610b4651d0823e8fe36a5be18a10945878a/build/assets/img/placeholder.jpg"
-        );
-      }
-    });
+    // const imageURL = `https://rawcdn.githack.com/tbone849/star-wars-guide/dca24610b4651d0823e8fe36a5be18a10945878a/build/assets/img/starships/${id}.jpg`;
+
+    // const getImg = async () => {
+    //   const img = await fetch(`${imageURL}`);
+    //   return img;
+    // };
+
+    // getImg().then((res) => {
+    //   if (res.status === 200) {
+    //     setImg(res.url);
+    //   } else {
+    //     setImg(
+    //       "https://rawcdn.githack.com/tbone849/star-wars-guide/dca24610b4651d0823e8fe36a5be18a10945878a/build/assets/img/placeholder.jpg"
+    //     );
+    //   }
+    // });
 
     const getShip = async () => {
       const data = await fetch(`https://swapi.dev/api/starships/${id}/`);
@@ -50,7 +58,12 @@ const SingleShip = () => {
       ) : (
         <div className="container text-secondary my-3">
           <div className="spaceship-img-container">
-            <img src={img} width="100%" alt="spaceShip" />
+            <img
+              src={img}
+              width="100%"
+              style={{ aspectRatio: 16 / 9, color: "transparent" }}
+              alt="spaceShip"
+            />
           </div>
           <div className="ship-description-container p-2">
             <h2 className="mb-3 pt-2 px-2">{ship.name}</h2>

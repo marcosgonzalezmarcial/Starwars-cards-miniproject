@@ -3,7 +3,7 @@ import { fetchShips } from "../../api/fetchShips";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import data from "../../helpers/starshipMappedData.json";
+import starshipsJsonArr from "../../helpers/starshipMappedData.json";
 
 const StarShips = () => {
   const [page, setPage] = useState(1);
@@ -23,8 +23,10 @@ const StarShips = () => {
 
   const handleClick = (e) => {
     const shipSelected = e.target.textContent;
-    const ship = data.starships.filter((item) => item.name === shipSelected);
-    navigate(`${ship[0].id}`);
+    const [ship] = starshipsJsonArr.filter(
+      (item) => item.name === shipSelected
+    );
+    navigate(`${ship.id}`);
   };
 
   return (
