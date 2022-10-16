@@ -1,0 +1,27 @@
+@media (min-width: 576px) {
+  .shipsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+.card-hero {
+  height: 60%;
+}
+.card-info {
+  height: 40%;
+}
+.starship-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-radius: 5px;
+  /* border-collapse: separate; */
+  overflow: hidden;
+}
+
+.card-hero-img {
+  object-fit: cover;
+  width: 100%;
+}

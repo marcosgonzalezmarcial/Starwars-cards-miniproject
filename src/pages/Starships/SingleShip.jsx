@@ -20,25 +20,8 @@ const SingleShip = () => {
     const [shipFiltered] = starshipsJsonArr.filter(
       (starship) => starship.id === Number(id)
     );
-    console.log(shipFiltered);
+
     setImg(shipFiltered.url);
-
-    // const imageURL = `https://rawcdn.githack.com/tbone849/star-wars-guide/dca24610b4651d0823e8fe36a5be18a10945878a/build/assets/img/starships/${id}.jpg`;
-
-    // const getImg = async () => {
-    //   const img = await fetch(`${imageURL}`);
-    //   return img;
-    // };
-
-    // getImg().then((res) => {
-    //   if (res.status === 200) {
-    //     setImg(res.url);
-    //   } else {
-    //     setImg(
-    //       "https://rawcdn.githack.com/tbone849/star-wars-guide/dca24610b4651d0823e8fe36a5be18a10945878a/build/assets/img/placeholder.jpg"
-    //     );
-    //   }
-    // });
 
     const getShip = async () => {
       const data = await fetch(`https://swapi.dev/api/starships/${id}/`);
