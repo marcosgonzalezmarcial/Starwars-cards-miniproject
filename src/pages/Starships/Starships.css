@@ -1,27 +1,51 @@
-@media (min-width: 576px) {
-  .shipsGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
+.shipsGrid {
+  margin-inline: auto;
+  width: min(90vw, 1100px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 2rem;
 }
+
 .card-hero {
   height: 60%;
+  overflow: hidden;
 }
 .card-info {
   height: 40%;
+  border-top: 2px solid #9e4f60;
+}
+
+.card-info h4 {
+  font-size: 18px;
+}
+.card-info h4:hover {
+  cursor: pointer;
+  font-weight: 800;
+  color: white;
+}
+
+.card-info p {
+  font-size: 14px;
 }
 .starship-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
   border-radius: 5px;
-  /* border-collapse: separate; */
   overflow: hidden;
+  min-height: 40vh;
+}
+@media (max-width: 576px) {
+  .starship-card {
+    min-height: 65vh;
+  }
 }
 
 .card-hero-img {
-  object-fit: cover;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease-in-out;
+}
+.card-hero-img:hover {
+  transform: scale(1.05);
 }

@@ -5,6 +5,7 @@ import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import starshipsJsonArr from "../../helpers/starshipMappedData.json";
 import "./Starships.css";
+import { transformShipsArray } from "../../utils/transformShipsArray";
 
 const StarShips = () => {
   const [page, setPage] = useState(1);
@@ -13,21 +14,12 @@ const StarShips = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    const loadShips = async () => {
+    const loadTransformedShips = async () => {
       const newShips = await fetchShips(page);
-      setShips((prev) => {
-        const modifiedShipsArr = newShips.map((shipFromNewShips) => {
-          const auxStarshipsJsonArr = [...starshipsJsonArr];
-          const imgUrl = auxStarshipsJsonArr.filter(
-            (item) => item.name === shipFromNewShips.name
-          );
-
-          return { ...shipFromNewShips, ...imgUrl[0] };
-        });
-        return [...prev, ...modifiedShipsArr];
-      });
+      const modifiedShipsArr = transformShipsArray(newShips);
+      setShips((prev) => [...prev, ...modifiedShipsArr]);
     };
-    loadShips();
+    loadTransformedShips();
   }, [page]);
 
   const handleClick = (e) => {
@@ -50,7 +42,7 @@ const StarShips = () => {
           </Container>
         }
       >
-        <div className="container mt-3 shipsGrid">
+        <div className="my-3 my-md-5 shipsGrid">
           {ships.map((ship, index) => (
             <>
               <div key={index} className="starship-card">
@@ -61,8 +53,8 @@ const StarShips = () => {
                     alt="starship"
                   />
                 </div>
-                <div className="text-secondary bg-dark p-2 card-info">
-                  <h4 className="ship-title" onClick={handleClick}>
+                <div className="text-secondary bg-dark p-3 card-info">
+                  <h4 className="card-ship-title" onClick={handleClick}>
                     {ship.name}
                   </h4>
                   <p>{ship.model}</p>
