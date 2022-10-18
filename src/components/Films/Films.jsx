@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { fetchData } from "../../../api/fetchData";
+import { fetchData } from "../../api/fetchData";
 import FilmCard from "./FilmCard";
 import "./filmcard.css";
 
 const Films = ({ ship }) => {
-  const [films, setFilms] = useState([]);
+  const [filmsTitles, setFilmsTitles] = useState([]);
   const [showFilmCard, setShowFilmCard] = useState(false);
   const [filmSelected, setFilmSelected] = useState(null);
 
   useEffect(() => {
-    ship.films.map((filmUrl) => {
-      const getFilms = async () => {
+    ship.films.forEach((filmUrl) => {
+      const getFilmsTitles = async () => {
         const film = await fetchData(filmUrl);
-        setFilms((prev) => [...prev, film.title]);
+        setFilmsTitles((prev) => [...prev, film.title]);
       };
-      getFilms();
-      return null;
+      getFilmsTitles();
+      // return null;
     });
-  }, [ship.films]);
+  }, [ship]);
 
   const selectFilm = (e) => {
     const selectFilm = e.target.textContent;
@@ -28,12 +28,12 @@ const Films = ({ ship }) => {
 
   return (
     <>
-      {films.map((film) => (
-        <div style={{ cursor: "pointer" }} key={Date.now() * Math.random()}>
+      {filmsTitles.map((film, index) => (
+        <div style={{ cursor: "pointer" }} key={index}>
           <span
             onClick={selectFilm}
             className="films-span"
-            key={Date.now() * Math.random()}
+            // key={Date.now() * Math.random()}
           >
             {film}
           </span>

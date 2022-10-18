@@ -1,7 +1,7 @@
 import { Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { fetchData } from "../../../api/fetchData";
-import pilotImage from "../../../assets/pilot.jpeg";
+import { fetchData } from "../../api/fetchData";
+import pilotImage from "../../assets/pilot.jpeg";
 import "./pilotcard.css";
 
 const PilotCard = ({ pilotSelected, ship }) => {
