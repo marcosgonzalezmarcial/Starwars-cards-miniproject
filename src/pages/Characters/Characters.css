@@ -4,11 +4,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: 2rem;
-  justify-items: center;
 }
 
 .card-hero {
-  /* height: 60%; */
+  height: 60%;
   overflow: hidden;
 }
 .card-info {
@@ -33,13 +32,11 @@
   flex-direction: column;
   border-radius: 5px;
   overflow: hidden;
-  height: 40vh;
-  width: 85%;
-  /* align-items: center; */
+  /* min-height: 40vh; */
 }
 @media (max-width: 576px) {
   .people-card {
-    min-height: 45vh;
+    height: 35vh;
   }
 }
 

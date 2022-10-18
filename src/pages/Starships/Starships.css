@@ -32,11 +32,11 @@
   flex-direction: column;
   border-radius: 5px;
   overflow: hidden;
-  min-height: 40vh;
+  /* min-height: 40vh; */
 }
 @media (max-width: 576px) {
   .starship-card {
-    min-height: 65vh;
+    height: 30vh;
   }
 }
 
