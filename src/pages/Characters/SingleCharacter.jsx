@@ -1,51 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import PeopleFilms from './PeopleFilms'
-import PeopleShips from './PeopleShips'
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import CharacterFilms from "./CharacterFilms";
+import CharacterShips from "./CharacterShips";
 
 const SingleShip = () => {
-  const [person, setPerson] = useState({
-    birth_year: '19 BBY',
-    eye_color: 'Blue',
-    films: ['https://swapi.dev/api/films/1/'],
-    gender: 'Male',
-    hair_color: 'Blond',
-    height: '172',
-    homeworld: 'https://swapi.dev/api/planets/1/',
-    mass: '77',
-    name: 'Luke Skywalker',
-    skin_color: 'Fair',
-    created: '2014-12-09T13:50:51.644000Z',
-    edited: '2014-12-10T13:52:43.172000Z',
-    species: ['https://swapi.dev/api/species/1/'],
-    starships: ['https://swapi.dev/api/starships/12/'],
-    url: 'https://swapi.dev/api/people/1/',
-    vehicles: ['https://swapi.dev/api/vehicles/14/']
-  })
-  const [isLoading, setIsLoading] = useState(true)
-  const [img, setImg] = useState('')
+  const [person, setPerson] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [img, setImg] = useState("");
 
-  let { id } = useParams()
+  let { id } = useParams();
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     fetch(`https://swapi.dev/api/people/${id}/`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        setPerson(data)
+        setPerson(data);
       })
-      .catch(console.log)
+      .catch(console.log);
     fetch(`https://miadil.github.io/starwars-api/api/id/${id}.json`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        setImg(data.image)
-        setIsLoading(false)
+        setImg(data.image);
+        setIsLoading(false);
       })
-      .catch(console.log)
-  }, [id])
+      .catch(console.log);
+  }, [id]);
 
   return (
     <>
@@ -97,7 +78,7 @@ const SingleShip = () => {
                 </Row>
                 <Row>
                   <div className="container-films">
-                    <PeopleFilms person={person} />
+                    <CharacterFilms id={id} />
                   </div>
                 </Row>
               </Row>
@@ -107,7 +88,7 @@ const SingleShip = () => {
                 </Row>
                 <Row>
                   <div className="container-films">
-                    <PeopleShips person={person} />
+                    <CharacterShips id={id} />
                   </div>
                 </Row>
               </Row>
@@ -116,7 +97,7 @@ const SingleShip = () => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SingleShip
+export default SingleShip;

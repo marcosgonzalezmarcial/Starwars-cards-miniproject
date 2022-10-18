@@ -1,17 +1,18 @@
 .peopleGrid {
   margin-inline: auto;
-  width: min(90vw, 1100px);
+  max-width: min(90vw, 1100px);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-auto-rows: 50vh;
   gap: 2rem;
 }
 
 .card-hero {
-  height: 60%;
+  height: 70%;
   overflow: hidden;
 }
 .card-info {
-  height: 40%;
+  height: 30%;
   border-top: 2px solid #9e4f60;
 }
 
@@ -36,7 +37,7 @@
 }
 @media (max-width: 576px) {
   .people-card {
-    height: 35vh;
+    /* height: 35vh; */
   }
 }
 

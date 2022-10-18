@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchPeople } from "../../api/fetchPeople";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import peopleJsonArr from "../../helpers/peopleMappedData.json";
 import { transformPeopleArray } from "../../utils/transformPeopleArray";
@@ -37,9 +36,9 @@ const Characters = () => {
         next={() => setPage(people.length < 82 && page + 1)}
         hasMore={people.length < 82 ? true : false}
         loader={
-          <Container className="m-3">
+          <div className="m-3">
             <div className="text-white display-4">Cargando...</div>
-          </Container>
+          </div>
         }
       >
         <div className="my-3 my-md-5 peopleGrid">
