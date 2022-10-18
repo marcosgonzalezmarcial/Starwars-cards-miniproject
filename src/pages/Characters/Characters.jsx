@@ -1,33 +1,33 @@
 import { useState, useEffect } from "react";
 import { fetchPeople } from "../../api/fetchPeople";
 import InfiniteScroll from "react-infinite-scroll-component";
-import "./character-card.css";
-import { useNavigate } from "react-router-dom";
-import data from "../../helpers/peopleMappedData.json";
 import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import peopleJsonArr from "../../helpers/peopleMappedData.json";
+import { transformPeopleArray } from "../../utils/transformPeopleArray";
+import "./Characters.css";
 
 const Characters = () => {
-  // const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [people, setPeople] = useState([]);
 
-  // let history = useHistory();
   let navigate = useNavigate();
 
   useEffect(() => {
-    // setIsLoading(true);
-    const loadPeople = async () => {
+    const loadTransfordedPeople = async () => {
       const newPeople = await fetchPeople(page);
-      setPeople((prev) => [...prev, ...newPeople]);
-      // setIsLoading(false);
+      const newModifiedArr = transformPeopleArray(newPeople);
+      setPeople((prev) => {
+        return [...prev, ...newModifiedArr];
+      });
     };
-    loadPeople();
-  }, [page, setPeople]);
+    loadTransfordedPeople();
+  }, [page]);
 
   const handleClick = (e) => {
     const personSelected = e.target.textContent;
-    const person = data.people.filter((item) => item.name === personSelected);
-    navigate(`/people/${person[0].url}`);
+    const person = peopleJsonArr.filter((item) => item.name === personSelected);
+    navigate(`/people/${person[0].id}`);
   };
 
   return (
@@ -42,18 +42,26 @@ const Characters = () => {
           </Container>
         }
       >
-        {people.map((people) => (
-          <div
-            key={Date.now() * Math.random()}
-            className="container  rounded text-center text-secondary bg-dark my-4 p-3 flex-column"
-          >
-            <h4 className="ship-title" onClick={handleClick}>
-              {people.name}
-            </h4>
-          </div>
-        ))}
+        <div className="my-3 my-md-5 peopleGrid">
+          {people.map((person, index) => (
+            <div key={person.id} className="people-card">
+              <div className="card-hero">
+                <img
+                  className="card-hero-img"
+                  src={person.image}
+                  alt="starship"
+                />
+              </div>
+              <div className="text-secondary bg-dark p-3 card-info">
+                <h4 className="card-ship-title" onClick={handleClick}>
+                  {person.name}
+                </h4>
+                <p>{person.species}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </InfiniteScroll>
-      {/* {isLoading && <h1>CARGANDO</h1>} */}
     </>
   );
 };

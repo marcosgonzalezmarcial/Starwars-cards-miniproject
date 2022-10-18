@@ -8,7 +8,7 @@ import Characters from "./pages/Characters/Characters";
 import ErrorPage from "./pages/ErrorPage";
 import StarShips from "./pages/Starships/StarShips";
 import Header from "./components/Header";
-import SingleShip from "./pages/Starships/SingleShip";
+import SingleShip from "./components/SingleShip";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import NestedRoutes from "./pages/NestedRoutes";
 

@@ -44,23 +44,17 @@ const StarShips = () => {
       >
         <div className="my-3 my-md-5 shipsGrid">
           {ships.map((ship, index) => (
-            <>
-              <div key={index} className="starship-card">
-                <div className="card-hero">
-                  <img
-                    className="card-hero-img"
-                    src={ship.url}
-                    alt="starship"
-                  />
-                </div>
-                <div className="text-secondary bg-dark p-3 card-info">
-                  <h4 className="card-ship-title" onClick={handleClick}>
-                    {ship.name}
-                  </h4>
-                  <p>{ship.model}</p>
-                </div>
+            <div key={index} className="starship-card">
+              <div className="card-hero">
+                <img className="card-hero-img" src={ship.url} alt="starship" />
               </div>
-            </>
+              <div className="text-secondary bg-dark p-3 card-info">
+                <h4 className="card-ship-title" onClick={handleClick}>
+                  {ship.name}
+                </h4>
+                <p>{ship.model}</p>
+              </div>
+            </div>
           ))}
         </div>
       </InfiniteScroll>
