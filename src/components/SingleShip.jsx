@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import Films from "./Films/Films";
-import Pilots from "./Pilots/Pilots";
+import StarshipFilms from "./Films/StarshipFilms";
+import StarshipPilots from "./Pilots/StarshipPilots";
 import starshipsJsonArr from "../api/mocked-data/starshipMappedData.json";
+import { fetchSingleShip } from "../api/fetchSingleShip";
 
 const SingleShip = () => {
   const [ship, setShip] = useState({});
-  const [showPilotCard, setShowPilotCard] = useState(false);
-  const [showFilmCard, setShowFilmCard] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [img, setImg] = useState(null);
 
@@ -20,16 +19,12 @@ const SingleShip = () => {
     const [shipFiltered] = starshipsJsonArr.filter(
       (starship) => starship.id === Number(id)
     );
-
     setImg(shipFiltered.url);
 
-    const getShip = async () => {
-      const data = await fetch(`https://swapi.dev/api/starships/${id}/`);
-      const ship = await data.json();
+    fetchSingleShip(id).then((ship) => {
       setShip(ship);
       setIsLoading(false);
-    };
-    getShip();
+    });
   }, [id]);
 
   return (
@@ -89,12 +84,7 @@ const SingleShip = () => {
                 </Row>
                 <Row>
                   <div className="container-films">
-                    <Films
-                      showFilmCard={showFilmCard}
-                      setShowFilmCard={setShowFilmCard}
-                      setShowPilotCard={setShowPilotCard}
-                      ship={ship}
-                    />
+                    <StarshipFilms filmsUrls={ship.films} />
                   </div>
                 </Row>
 
@@ -103,12 +93,7 @@ const SingleShip = () => {
                 </Row>
                 <Row>
                   <div className="container-films">
-                    <Pilots
-                      showPilotCard={showPilotCard}
-                      setShowPilotCard={setShowFilmCard}
-                      setShowFilmCard={setShowPilotCard}
-                      ship={ship}
-                    />
+                    <StarshipPilots ship={ship} />
                   </div>
                 </Row>
               </Row>

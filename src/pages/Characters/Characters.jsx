@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchPeople } from "../../api/fetchPeople";
+import { fetchCharacters } from "../../api/fetchCharacters";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import peopleJsonArr from "../../api/mocked-data/peopleMappedData.json";
@@ -14,7 +14,7 @@ const Characters = () => {
 
   useEffect(() => {
     const loadTransfordedPeople = async () => {
-      const newPeople = await fetchPeople(page);
+      const newPeople = await fetchCharacters(page);
       const newModifiedArr = transformPeopleArray(newPeople);
       setPeople((prev) => {
         return [...prev, ...newModifiedArr];
@@ -25,8 +25,10 @@ const Characters = () => {
 
   const handleClick = (e) => {
     const personSelected = e.target.textContent;
-    const person = peopleJsonArr.filter((item) => item.name === personSelected);
-    navigate(`/people/${person[0].id}`);
+    const [person] = peopleJsonArr.filter(
+      (item) => item.name === personSelected
+    );
+    navigate(`/people/${person.id}`);
   };
 
   return (

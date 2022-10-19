@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchData } from "../../api/fetchData";
 import PilotCard from "./PilotCard";
 
-const Pilots = ({ ship }) => {
+const StarshipPilots = ({ ship }) => {
   const [pilots, setpilots] = useState([]);
   const [showPilotCard, setShowPilotCard] = useState(false);
   const [pilotSelected, setPilotSelected] = useState(null);
@@ -46,4 +46,4 @@ const Pilots = ({ ship }) => {
   );
 };
 
-export default Pilots;
+export default StarshipPilots;
