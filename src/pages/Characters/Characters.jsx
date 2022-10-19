@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchPeople } from "../../api/fetchPeople";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
-import peopleJsonArr from "../../helpers/peopleMappedData.json";
+import peopleJsonArr from "../../api/mocked-data/peopleMappedData.json";
 import { transformPeopleArray } from "../../utils/transformPeopleArray";
 import "./Characters.css";
 

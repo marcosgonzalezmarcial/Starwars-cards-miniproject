@@ -3,7 +3,7 @@ import { fetchShips } from "../../api/fetchShips";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import starshipsJsonArr from "../../helpers/starshipMappedData.json";
+import starshipsJsonArr from "../../api/mocked-data/starshipMappedData.json";
 import "./Starships.css";
 import { transformShipsArray } from "../../utils/transformShipsArray";
 

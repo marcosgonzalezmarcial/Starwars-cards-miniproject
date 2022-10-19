@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Films from "./Films/Films";
 import Pilots from "./Pilots/Pilots";
-import starshipsJsonArr from "../helpers/starshipMappedData.json";
+import starshipsJsonArr from "../api/mocked-data/starshipMappedData.json";
 
 const SingleShip = () => {
   const [ship, setShip] = useState({});
