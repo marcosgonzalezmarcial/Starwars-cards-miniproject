@@ -1,10 +1,10 @@
-import { Container, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const Home = () => {
 	return (
 		<main className="main text-white m-3">
-			<Container>
+			<div className="main-wrapper">
 				<h1>Bienvenid@!!</h1>
 				<p className="mb-2">
 					Te invito a descubrir info interesante sobre una de las sagas de
@@ -22,7 +22,7 @@ const Home = () => {
 						¿Te animas?
 					</Button>
 				</Link>
-			</Container>
+			</div>
 		</main>
 	)
 }
