@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { fetchShips } from '../../api/fetchShips'
+
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { Container } from 'react-bootstrap'
+
 import { useNavigate } from 'react-router-dom'
 import starshipsJsonArr from '../../api/mocked-data/starshipMappedData.json'
 import './Starships.css'
-import { transformShipsArray } from '../../utils/transformShipsArray'
+import { getTransformedShipsArray } from '../../api/getTransformedShipsArray'
 
 const StarShips = () => {
 	const [page, setPage] = useState(1)
@@ -14,12 +14,9 @@ const StarShips = () => {
 	let navigate = useNavigate()
 
 	useEffect(() => {
-		const loadTransformedShips = async () => {
-			const newShips = await fetchShips(page)
-			const modifiedShipsArr = transformShipsArray(newShips)
-			setShips(prev => [...prev, ...modifiedShipsArr])
-		}
-		loadTransformedShips()
+		getTransformedShipsArray(page).then(data =>
+			setShips(prev => [...prev, ...data])
+		)
 	}, [page])
 
 	const handleClick = e => {
@@ -33,11 +30,7 @@ const StarShips = () => {
 			dataLength={ships.length}
 			next={() => setPage(ships.length < 36 && page + 1)}
 			hasMore={ships.length < 36 ? true : false}
-			loader={
-				<Container className="m-3">
-					<div className="text-white display-4">Cargando...</div>
-				</Container>
-			}
+			loader={<div className="text-white display-4">Cargando...</div>}
 		>
 			<div className="my-3 my-md-5 shipsGrid">
 				{ships.map((ship, index) => (
