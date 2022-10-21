@@ -1,5 +1,8 @@
-header.header {
-  position: relative;
+.header {
+ position: relative;
+}
+.navbar-collapse-box {
+  padding-block: 3px;
 }
 
 @media (max-width: 500px) {
@@ -88,6 +91,7 @@ header.header {
   display: grid !important;
   grid-template-columns: 1fr 2fr 1fr;
 }
+
 
 @media (min-width: 768px) {
   .navbar-collapse-box {

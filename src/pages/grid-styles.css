@@ -10,7 +10,6 @@
 .card-hero {
   height: 70%;
   overflow: hidden;
- 
 }
 .card-info {
   height: 30%;
@@ -26,7 +25,6 @@
   color: #ddd;
   display: inline-block;
   transition: color 275ms cubic-bezier(0.075, 0.82, 0.165, 1) ;
-  
 }
 .card-info h4:hover {
   cursor: pointer;

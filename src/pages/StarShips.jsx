@@ -18,6 +18,7 @@ const StarShips = () => {
 	}, [page])
 
 	const handleClick = e => {
+		console.log(e)
 		const shipSelected = e.target.textContent
 		const [ship] = starshipsMappedData.filter(
 			item => item.name === shipSelected

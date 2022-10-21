@@ -43,7 +43,7 @@ const LoginForm = ({ setLoggedIn, users }) => {
 
 			if (checkUser) {
 				setLoggedIn(true)
-				console.log('El usuario se logueo correctamente')
+				console.log('El usuario se logueó correctamente')
 				navigate('/home')
 				setError(false)
 			} else {
@@ -74,7 +74,7 @@ const LoginForm = ({ setLoggedIn, users }) => {
 					<div className="form-group my-3">
 						<input
 							onChange={handleChangeEmail}
-							placeholder="Email Adress"
+							placeholder="Email Address"
 							type="email"
 							value={userData.email}
 							required

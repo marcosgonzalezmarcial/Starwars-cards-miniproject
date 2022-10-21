@@ -4,5 +4,8 @@
   "editor.formatOnSave": true,
   "cSpell.words": [
     "pilotcard"
+  ],
+  "cSpell.ignoreWords": [
+    "logueó"
   ]
 }
