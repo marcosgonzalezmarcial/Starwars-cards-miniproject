@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-import { fetchCharacters } from '../../api/fetchCharacters'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
 import peopleJsonArr from '../../api/mocked-data/peopleMappedData.json'
-import { transformPeopleArray } from '../../utils/transformPeopleArray'
 import './Characters.css'
 import { getTransformedCharactersArray } from '../../api/getTransformedCharactersArray'
 
@@ -31,11 +29,7 @@ const Characters = () => {
 				dataLength={characters.length}
 				next={() => setPage(prev => characters.length < 82 && prev + 1)}
 				hasMore={characters.length < 82 && true}
-				loader={
-					<div className="m-3">
-						<div className="text-white display-4">Cargando...</div>
-					</div>
-				}
+				loader={<div className="text-white display-4">Cargando...</div>}
 			>
 				<div className="my-3 my-md-5 peopleGrid">
 					{characters.map(character => (

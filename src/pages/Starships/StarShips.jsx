@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-
 import InfiniteScroll from 'react-infinite-scroll-component'
-
 import { useNavigate } from 'react-router-dom'
-import starshipsJsonArr from '../../api/mocked-data/starshipMappedData.json'
+import starshipsMappedData from '../../api/mocked-data/starshipsMappedData.json'
 import './Starships.css'
 import { getTransformedShipsArray } from '../../api/getTransformedShipsArray'
 
@@ -21,22 +19,24 @@ const StarShips = () => {
 
 	const handleClick = e => {
 		const shipSelected = e.target.textContent
-		const [ship] = starshipsJsonArr.filter(item => item.name === shipSelected)
+		const [ship] = starshipsMappedData.filter(
+			item => item.name === shipSelected
+		)
 		navigate(`${ship.id}`)
 	}
 
 	return (
 		<InfiniteScroll
 			dataLength={ships.length}
-			next={() => setPage(ships.length < 36 && page + 1)}
-			hasMore={ships.length < 36 ? true : false}
+			next={() => setPage(prev => ships.length < 36 && prev + 1)}
+			hasMore={ships.length < 36 && true}
 			loader={<div className="text-white display-4">Cargando...</div>}
 		>
-			<div className="my-3 my-md-5 shipsGrid">
+			<div className="my-3 my-md-4 shipsGrid">
 				{ships.map((ship, index) => (
 					<div key={index} className="starship-card">
 						<div className="card-hero">
-							<img className="card-hero-img" src={ship.url} alt="starship" />
+							<img className="card-hero-img" src={ship.imgUrl} alt="starship" />
 						</div>
 						<div className="text-secondary bg-dark p-3 card-info">
 							<h4 className="card-ship-title" onClick={handleClick}>

@@ -1,15 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { fetchFilms } from '../../api/fetchFilms'
+import { fetchListOfDataFromUrlsArr } from '../api/fetchListOfDataFromUrlsArr'
 import FilmCard from './FilmCard'
-import './filmcard.css'
+import './Filmcard.css'
 
-const StarshipFilms = ({ filmsUrls }) => {
+const ListOfFilms = ({ filmsUrls }) => {
 	const [films, setFilms] = useState([])
 	const [filmSelected, setFilmSelected] = useState(null)
-	console.log('StarshipFilms RENDER')
 
 	useEffect(() => {
-		fetchFilms(filmsUrls)
+		fetchListOfDataFromUrlsArr(filmsUrls)
 			.then(films => {
 				setFilms(films)
 			})
@@ -40,4 +39,4 @@ const StarshipFilms = ({ filmsUrls }) => {
 	)
 }
 
-export default StarshipFilms
+export default ListOfFilms

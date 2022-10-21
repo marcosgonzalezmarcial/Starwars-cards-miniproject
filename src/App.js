@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import LoginForm from "./pages/Login/LoginForm/LoginForm";
 import SignUpForm from "./pages/Login/SignUpForm/SignUpForm";
-import SingleCharacter from "./pages/Characters/SingleCharacter";
+import SingleCharacter from "./components/SingleCharacter";
 import Characters from "./pages/Characters/Characters";
 import ErrorPage from "./pages/ErrorPage";
 import StarShips from "./pages/Starships/StarShips";

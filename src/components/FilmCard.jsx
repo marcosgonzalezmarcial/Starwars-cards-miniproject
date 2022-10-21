@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
-import movieImage from '../../assets/returnOfJedi.jpg'
-import './filmcard.css'
+import movieImage from '../assets/returnOfJedi.jpg'
+import './Filmcard.css'
 
 const FilmCard = ({ filmSelectedData }) => {
 	return (
