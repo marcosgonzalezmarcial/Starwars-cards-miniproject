@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import movieImage from '../assets/returnOfJedi.jpg'
-import './Filmcard.css'
+import './card-styles.css'
 
 const FilmCard = ({ filmSelectedData }) => {
 	return (
@@ -9,7 +9,11 @@ const FilmCard = ({ filmSelectedData }) => {
 			{filmSelectedData && (
 				<div className="d-flex container-filmCard text-secondary my-3">
 					<Col sm={6}>
-						<img style={{ width: '100%' }} src={movieImage} alt="spaceShip" />
+						<img
+							style={{ width: '100%' }}
+							src={movieImage}
+							alt={filmSelectedData.title}
+						/>
 					</Col>
 					<Col sm={6}>
 						<div className="movie-description-container p-2">

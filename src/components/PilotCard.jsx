@@ -1,8 +1,8 @@
 import { Row, Col } from 'react-bootstrap'
-
+import './card-styles.css'
 const PilotCard = ({ pilotSelectedData }) => {
 	return (
-		<div className="d-flex container-pilotCard text-secondary my-3">
+		<div className="d-flex text-secondary my-3">
 			<Col sm={6}>
 				<img
 					style={{ width: '100%' }}

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
-import starshipsMappedData from '../../api/mocked-data/starshipsMappedData.json'
-import './Starships.css'
-import { getTransformedShipsArray } from '../../api/getTransformedShipsArray'
+import starshipsMappedData from '../api/mocked-data/starshipsMappedData.json'
+import './grid-styles.css'
+import { getTransformedShipsArray } from '../api/getTransformedShipsArray'
 
 const StarShips = () => {
 	const [page, setPage] = useState(1)
@@ -31,22 +31,21 @@ const StarShips = () => {
 			next={() => setPage(prev => ships.length < 36 && prev + 1)}
 			hasMore={ships.length < 36 && true}
 			loader={<div className="text-white display-4">Cargando...</div>}
+			className="my-3 my-md-4 elementsGrid"
 		>
-			<div className="my-3 my-md-4 shipsGrid">
-				{ships.map((ship, index) => (
-					<div key={index} className="starship-card">
-						<div className="card-hero">
-							<img className="card-hero-img" src={ship.imgUrl} alt="starship" />
-						</div>
-						<div className="text-secondary bg-dark p-3 card-info">
-							<h4 className="card-ship-title" onClick={handleClick}>
-								{ship.name}
-							</h4>
-							<p>{ship.model}</p>
-						</div>
+			{ships.map((ship, index) => (
+				<div key={index} className="element-card">
+					<div className="card-hero">
+						<img className="card-hero-img" src={ship.imgUrl} alt="starship" />
 					</div>
-				))}
-			</div>
+					<div className="text-secondary bg-dark p-3 card-info">
+						<h4 className="card-ship-title" onClick={handleClick}>
+							{ship.name}
+						</h4>
+						<p>{ship.model}</p>
+					</div>
+				</div>
+			))}
 		</InfiniteScroll>
 	)
 }

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { fetchListOfDataFromUrlsArr } from '../api/fetchListOfDataFromUrlsArr'
 import FilmCard from './FilmCard'
-import './Filmcard.css'
+import './card-styles.css'
 
 const ListOfFilms = ({ filmsUrls }) => {
 	const [films, setFilms] = useState([])
@@ -20,7 +20,7 @@ const ListOfFilms = ({ filmsUrls }) => {
 			const selectFilm = e.target.textContent
 			const [selectedFilm] = films.filter(film => film.title === selectFilm)
 			setFilmSelected(selectedFilm)
-			// e.target.scrollIntoView({ block: 'start', behavior: 'smooth' })
+			e.target.scrollIntoView({ block: 'start', behavior: 'smooth' })
 		},
 		[films]
 	)

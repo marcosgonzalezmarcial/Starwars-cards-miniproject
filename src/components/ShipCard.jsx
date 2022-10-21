@@ -1,5 +1,5 @@
 import { Row, Col } from 'react-bootstrap'
-
+import './card-styles.css'
 const ShipCard = ({ shipSelectedData }) => {
 	return (
 		<div className="d-flex container-pilotCard text-secondary my-3">

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
-import peopleJsonArr from '../../api/mocked-data/peopleMappedData.json'
-import './Characters.css'
-import { getTransformedCharactersArray } from '../../api/getTransformedCharactersArray'
+import peopleJsonArr from '../api/mocked-data/peopleMappedData.json'
+import './grid-styles.css'
+import { getTransformedCharactersArray } from '../api/getTransformedCharactersArray'
 
 const Characters = () => {
 	const [page, setPage] = useState(1)
@@ -30,26 +30,25 @@ const Characters = () => {
 				next={() => setPage(prev => characters.length < 82 && prev + 1)}
 				hasMore={characters.length < 82 && true}
 				loader={<div className="text-white display-4">Cargando...</div>}
+				className="my-3 my-md-4 elementsGrid"
 			>
-				<div className="my-3 my-md-5 peopleGrid">
-					{characters.map(character => (
-						<div key={character.id} className="people-card">
-							<div className="card-hero">
-								<img
-									className="card-hero-img"
-									src={character.image}
-									alt="starship"
-								/>
-							</div>
-							<div className="text-secondary bg-dark p-3 card-info">
-								<h4 className="card-ship-title" onClick={handleClick}>
-									{character.name}
-								</h4>
-								<p>{character.species}</p>
-							</div>
+				{characters.map(character => (
+					<div key={character.id} className="element-card">
+						<div className="card-hero">
+							<img
+								className="card-hero-img"
+								src={character.image}
+								alt={character.name}
+							/>
 						</div>
-					))}
-				</div>
+						<div className="text-secondary p-3 card-info">
+							<h4 className="card-ship-title" onClick={handleClick}>
+								{character.name}
+							</h4>
+							<p>{character.species}</p>
+						</div>
+					</div>
+				))}
 			</InfiniteScroll>
 		</>
 	)

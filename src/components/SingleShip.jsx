@@ -93,7 +93,7 @@ const SingleShip = () => {
 								</Row>
 								<Row>
 									<div className="container-films">
-										{ship.pilots > 0 ? (
+										{ship.pilots.length > 0 ? (
 											<ListOfPilots pilotsUrls={ship.pilots} />
 										) : (
 											<span>No pilots registered for this ship</span>

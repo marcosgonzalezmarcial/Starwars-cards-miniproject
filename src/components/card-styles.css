@@ -1,11 +1,11 @@
-div.spaceship-img-container {
+.spaceship-img-container {
   border-bottom: 3px solid #9e4f60;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-h4.ship-title:hover {
+.ship-title:hover {
   color: rgba(255, 255, 255, 0.712);
   cursor: pointer;
 }
@@ -23,6 +23,20 @@ h4.ship-title:hover {
   height: 100%;
   border-left: 2px solid #edd700;
 }
+.movies-span {
+  color: #9e4f60;
+}
+
+.films-span {
+  color: #9e4f60 !important;
+}
+.films-span:hover {
+  color: rgb(183, 104, 121) !important;
+}
+
+.movies-span:hover {
+  color: rgb(183, 104, 121);
+}
 
 .ship-description-container span {
   font-size: 0.91rem;
@@ -30,7 +44,8 @@ h4.ship-title:hover {
   color: #999;
 }
 
-span.movies-span {
+
+.movies-span {
   color: #9e4f60;
 }
 .pilots-span {
