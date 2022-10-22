@@ -1,15 +1,11 @@
-import { Row, Col } from 'react-bootstrap'
-import './card-styles.css'
+import { Row, Col } from "react-bootstrap";
+import "./card-styles.css";
 
 const ShipCard = ({ shipSelectedData }) => {
   return (
     <div className="d-flex text-secondary my-3">
       <div className="col-6 col-md-5 col-lg-4 img-wrapper">
-        <img
-          className="w-100 h-100"
-          src={shipSelectedData.imgUrl}
-          alt={shipSelectedData.name}
-        />
+        <img src={shipSelectedData.imgUrl} alt={shipSelectedData.name} />
       </div>
       <div className="col-6 col-md-5 col-lg-4">
         <div className="card-description-container p-2">
@@ -27,7 +23,7 @@ const ShipCard = ({ shipSelectedData }) => {
                 <span>
                   {shipSelectedData.manufacturer
                     ? shipSelectedData.manufacturer
-                    : 'unknown'}
+                    : "unknown"}
                 </span>
               </Col>
             </Row>
@@ -47,7 +43,7 @@ const ShipCard = ({ shipSelectedData }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ShipCard
+export default ShipCard;

@@ -1,31 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import ListOfPilots from './ListOfPilots'
-import starshipsMappedData from '../api/mocked-data/starshipsMappedData.json'
-import { fetchSingleShip } from '../api/fetchSingleShip'
-import ListOfFilms from './ListOfFilms'
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import ListOfPilots from "./ListOfPilots";
+import starshipsMappedData from "../api/mocked-data/starshipsMappedData.json";
+import { fetchSingleShip } from "../api/fetchSingleShip";
+import ListOfFilms from "./ListOfFilms";
 
 const SingleShip = () => {
-  const [ship, setShip] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-  const [img, setImg] = useState(null)
+  const [ship, setShip] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [img, setImg] = useState(null);
 
-  let { id } = useParams()
+  let { id } = useParams();
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
 
     const [shipFiltered] = starshipsMappedData.filter(
       (starship) => starship.id === Number(id)
-    )
-    setImg(shipFiltered.imgUrl)
+    );
+    setImg(shipFiltered.imgUrl);
 
-    fetchSingleShip(id).then((ship) => {
-      setShip(ship)
-      setIsLoading(false)
-    })
-  }, [id])
+    fetchSingleShip(id)
+      .then((ship) => {
+        setShip(ship);
+        setIsLoading(false);
+      })
+      .catch(console.log);
+  }, [id]);
 
   return (
     <>
@@ -34,16 +36,11 @@ const SingleShip = () => {
           <div className="text-white display-4">Cargando...</div>
         </Container>
       ) : (
-        <div className="container text-secondary my-3">
-          <div className="spaceship-img-container">
-            <img
-              src={img}
-              width="100%"
-              style={{ aspectRatio: 16 / 9, color: 'transparent' }}
-              alt="spaceShip"
-            />
+        <div className="container wrapper text-secondary my-3">
+          <div className="img-container">
+            <img src={img} alt="spaceShip" />
           </div>
-          <div className="ship-description-container p-2">
+          <div className="page-description-container p-2">
             <h2 className="mb-3 pt-2 px-2">{ship.name}</h2>
             <div className="px-2 my-3">
               <Row className="py-2">
@@ -54,7 +51,7 @@ const SingleShip = () => {
                 <Col>
                   <h4>Manufacturer:</h4>
                   <span>
-                    {ship.manufacturer ? ship.manufacturer : 'unknown'}
+                    {ship.manufacturer ? ship.manufacturer : "unknown"}
                   </span>
                 </Col>
               </Row>
@@ -102,7 +99,7 @@ const SingleShip = () => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SingleShip
+export default SingleShip;

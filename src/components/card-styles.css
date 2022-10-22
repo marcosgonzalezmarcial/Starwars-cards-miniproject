@@ -1,8 +1,22 @@
-.spaceship-img-container {
+.img-container {
   border-bottom: 3px solid #9e4f60;
+}
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 2.7/1;
+}
+
+.wrapper {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    max-width: 70%;
+  }
 }
 
 .ship-title:hover {
@@ -10,7 +24,7 @@
   cursor: pointer;
 }
 
-.ship-description-container {
+.page-description-container {
   background-color: #282727cc;
   border-radius: 0 0 9px 9px;
   color: #ddd;
@@ -41,7 +55,7 @@
   color: rgb(183, 104, 121);
 }
 
-.ship-description-container span {
+.page-description-container span {
   font-size: 0.91rem;
   display: block;
   color: #999;
@@ -62,13 +76,16 @@
   color: rgb(183, 104, 121);
 }
 
-.ship-description-container a {
+.page-description-container a {
   text-decoration: none;
 }
 
-.ship-description-container h4 {
+.page-description-container h4 {
   font-size: 1.15rem;
 }
 .img-wrapper img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  aspect-ratio: 2/1;
 }

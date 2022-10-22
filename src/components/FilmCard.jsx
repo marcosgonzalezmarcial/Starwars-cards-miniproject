@@ -1,16 +1,12 @@
-import { Row, Col } from 'react-bootstrap'
-import movieImage from '../assets/returnOfJedi.jpg'
-import './card-styles.css'
+import { Row, Col } from "react-bootstrap";
+import movieImage from "../assets/returnOfJedi.jpg";
+import "./card-styles.css";
 
 const FilmCard = ({ filmSelectedData }) => {
   return (
     <div className="d-flex text-secondary my-3">
       <div className="col-6 col-md-5 col-lg-4 img-wrapper">
-        <img
-          className="w-100 h-100"
-          src={movieImage}
-          alt={filmSelectedData.title}
-        />
+        <img src={movieImage} alt={filmSelectedData.title} />
       </div>
       <div className="col-6 col-md-5 col-lg-4">
         <div className="card-description-container p-2">
@@ -44,7 +40,7 @@ const FilmCard = ({ filmSelectedData }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FilmCard
+export default FilmCard;
