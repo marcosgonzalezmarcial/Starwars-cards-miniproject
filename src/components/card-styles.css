@@ -16,12 +16,15 @@
   color: #ddd;
 }
 
-.movie-description-container {
+.card-description-container {
   background-color: #282727cc;
   border-radius: 0 0 9px 9px;
   color: #ddd;
   height: 100%;
   border-left: 2px solid #edd700;
+}
+.card-description-container h2 {
+  overflow-wrap: break-word;
 }
 .movies-span {
   color: #9e4f60;
@@ -43,7 +46,6 @@
   display: block;
   color: #999;
 }
-
 
 .movies-span {
   color: #9e4f60;
@@ -67,7 +69,6 @@
 .ship-description-container h4 {
   font-size: 1.15rem;
 }
-
-.appearances-row {
-  margin-left: 1px;
+.img-wrapper img {
+  object-fit: cover;
 }
