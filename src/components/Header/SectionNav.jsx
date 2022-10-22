@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const SectionNav = () => {
   const [, setShowCard] = useState(false);
 
-  const handleClickStarships = () => {
-    setShowCard(false);
-  };
+  // const handleClickStarships = () => {
+  //   setShowCard(false);
+  // };
   const handleClickPeople = () => {
     setShowCard(false);
   };
@@ -16,14 +16,14 @@ const SectionNav = () => {
       <Container>
         <Row className="m-auto">
           <Nav className="justify-content-center">
-            <Col className="border-right">
+            <Col className="border-silver">
               <Nav.Item>
                 <Link className="nav-link px-2 text-center" to="/home">
                   HOME
                 </Link>
               </Nav.Item>
             </Col>
-            <Col className="border-right">
+            <Col className="border-silver">
               <Nav.Item>
                 <Link
                   // onClick={handleClickStarships}
@@ -34,7 +34,7 @@ const SectionNav = () => {
                 </Link>
               </Nav.Item>
             </Col>
-            <Col>
+            <Col className="border-silver">
               <Nav.Item>
                 <Link
                   onClick={handleClickPeople}

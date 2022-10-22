@@ -1,5 +1,5 @@
 .header {
- position: relative;
+  position: relative;
 }
 .navbar-collapse-box {
   padding-block: 3px;
@@ -92,7 +92,6 @@
   grid-template-columns: 1fr 2fr 1fr;
 }
 
-
 @media (min-width: 768px) {
   .navbar-collapse-box {
     margin-inline-start: auto;
@@ -108,13 +107,14 @@
 .border-wrapper {
   margin-inline: auto;
   width: min(90vw, 1100px);
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
 }
 
-.border-right {
-  border-right: 2px solid var(--bs-link-color);
+.border-silver {
+  border-right: 1px solid #333;
+  border-left: 1px solid #333;
 }
-.border-left {
+/* .border-left {
   border-left: 2px solid var(--bs-link-color);
-}
+} */
