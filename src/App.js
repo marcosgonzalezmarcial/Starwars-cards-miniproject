@@ -44,7 +44,7 @@ function App() {
               <Route index element={<StarShips />} />
               <Route path=":id" element={<SingleShip />} />
             </Route>
-            <Route path="people" element={<NestedRoutes />}>
+            <Route path="characters" element={<NestedRoutes />}>
               <Route index element={<Characters />} />
               <Route path=":id" element={<SingleCharacter />} />
             </Route>

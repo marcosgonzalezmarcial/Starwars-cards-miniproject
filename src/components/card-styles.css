@@ -5,7 +5,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: 2.7/1;
+  aspect-ratio: 4/3;
 }
 
 .wrapper {
@@ -22,12 +22,6 @@
 .ship-title:hover {
   color: rgba(255, 255, 255, 0.712);
   cursor: pointer;
-}
-
-.page-description-container {
-  background-color: #282727cc;
-  border-radius: 0 0 9px 9px;
-  color: #ddd;
 }
 
 .card-description-container {
@@ -55,12 +49,6 @@
   color: rgb(183, 104, 121);
 }
 
-.page-description-container span {
-  font-size: 0.91rem;
-  display: block;
-  color: #999;
-}
-
 .movies-span {
   color: #9e4f60;
 }
@@ -76,16 +64,34 @@
   color: rgb(183, 104, 121);
 }
 
-.page-description-container a {
-  text-decoration: none;
-}
-
-.page-description-container h4 {
-  font-size: 1.15rem;
-}
 .img-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   aspect-ratio: 2/1;
+}
+
+.page-description-container {
+  background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
+  background-size: 7px;
+  background-repeat: repeat-x;
+  background-color: #282727;
+  border-radius: 0 0 9px 9px;
+  color: #ddd;
+}
+
+.page-description-container a {
+  text-decoration: none;
+}
+
+.page-description-container h1 {
+  font-size: 1.15rem;
+}
+.page-description-container h3 {
+  font-size: 0.9rem;
+}
+.page-description-container span {
+  font-size: 0.75rem;
+  display: block;
+  color: #999;
 }

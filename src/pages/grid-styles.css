@@ -17,14 +17,13 @@
   background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
   background-size: 7px;
   background-repeat: repeat-x;
-  background-color: #282727;
 }
 
 .card-info h4 {
   font-size: 18px;
   color: #ddd;
   display: inline-block;
-  transition: color 275ms cubic-bezier(0.075, 0.82, 0.165, 1) ;
+  transition: color 275ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .card-info h4:hover {
   cursor: pointer;

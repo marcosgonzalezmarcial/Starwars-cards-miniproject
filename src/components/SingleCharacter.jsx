@@ -1,100 +1,98 @@
-import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import charactersMappedData from "../api/mocked-data/peopleMappedData.json";
-import { fetchSingleCharacter } from "../api/fetchSingleCharacter";
-import ListOfFilms from "./ListOfFilms";
-import ListOfShips from "./ListOfShips";
+import { useEffect, useState } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import charactersMappedData from '../api/mocked-data/peopleMappedData.json'
+import { fetchSingleCharacter } from '../api/fetchSingleCharacter'
+import ListOfFilms from './ListOfFilms'
+import ListOfShips from './ListOfShips'
 
 const SingleCharacter = () => {
-  const [character, setCharacter] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [img, setImg] = useState("");
+  const [character, setCharacter] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+  const [img, setImg] = useState('')
 
-  let { id } = useParams();
+  let { id } = useParams()
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(true)
 
     const [characterFiltered] = charactersMappedData.filter(
       (character) => character.id === Number(id)
-    );
-    setImg(characterFiltered.image);
+    )
+    setImg(characterFiltered.image)
 
-    fetchSingleCharacter(id).then((character) => {
-      setCharacter(character);
-      setIsLoading(false);
-    });
-  }, [id]);
+    fetchSingleCharacter(id)
+      .then((character) => {
+        setCharacter(character)
+        setIsLoading(false)
+      })
+      .catch(console.log)
+  }, [id])
 
   return (
     <>
       {isLoading ? (
         <Container className="m-3">
-          <div className="text-white display-4">Cargando...</div>
+          <div className="text-white display-4">Loading...</div>
         </Container>
       ) : (
         <div className="container wrapper text-secondary my-3">
           <div className="img-container">
-            <img src={img} alt="spaceShip" />
+            <img src={img} alt={character.name} />
           </div>
-          <div className="page-description-container p-2">
-            <h2 className="mb-3 pt-2 px-2">{character.name}</h2>
-            <div className="px-2 my-3">
-              <Row className="py-2">
+          <div className="page-description-container bg-dark p-2">
+            <h1 className="mb-2 pt-1 px-2">{character.name}</h1>
+            <div className="px-2">
+              <Row className="py-1">
                 <Col>
-                  <h4>Height:</h4>
+                  <h3>Height:</h3>
                   <span>{character.height}</span>
                 </Col>
                 <Col>
-                  <h4>Birth Year</h4>
+                  <h3>Birth Year</h3>
                   <span>{character.birth_year}</span>
                 </Col>
               </Row>
-              <Row className="py-2">
+              <Row className="py-1">
                 <Col>
-                  <h4>Gender:</h4>
+                  <h3>Gender:</h3>
                   <span>{character.gender}</span>
                 </Col>
                 <Col>
-                  <h4>Mass</h4>
+                  <h3>Mass</h3>
                   <span>{character.mass}</span>
                 </Col>
               </Row>
-              <Row className="py-2">
+              <Row className="py-1">
                 <Col>
-                  <h4>Skin Color</h4>
+                  <h3>Skin Color</h3>
                   <span>{character.skin_color}</span>
                 </Col>
                 <Col>
-                  <h4>Eye Color</h4>
+                  <h3>Eye Color</h3>
                   <span>{character.eye_color}</span>
                 </Col>
               </Row>
-              <Col className="pt-2">
-                <div className="py-2">
-                  <h4 className="m-0">Films</h4>
+              <Col className="pt-1">
+                <div className="py-1">
+                  <h3 className="m-0">Appearances</h3>
                 </div>
-                <Row>
-                  <ListOfFilms filmsUrls={character.films} />
-                </Row>
+                <ListOfFilms filmsUrls={character.films} />
               </Col>
-              <Row className="pt-2">
-                <div className="py-2">
-                  <h4 className="m-0">Ships</h4>
+              <Row className="pt-1">
+                <div className="py-1">
+                  <h3 className="m-0">Ships</h3>
                 </div>
-                <Row>
-                  <div className="container-films">
-                    <ListOfShips shipsUrls={character.starships} />
-                  </div>
-                </Row>
+                <div className="container-films">
+                  <ListOfShips shipsUrls={character.starships} />
+                </div>
               </Row>
             </div>
           </div>
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default SingleCharacter;
+export default SingleCharacter
