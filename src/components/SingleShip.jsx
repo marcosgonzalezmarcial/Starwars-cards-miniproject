@@ -51,7 +51,7 @@ const SingleShip = () => {
                 <Col>
                   <h3>Manufacturer:</h3>
                   <span>
-                    {ship.manufacturer ? ship.manufacturer : 'unknown'}
+                    {ship.manufacturer ? ship.manufacturer : 'Unknown'}
                   </span>
                 </Col>
               </Row>
@@ -76,22 +76,18 @@ const SingleShip = () => {
                 </Col>
               </Row>
               <Col className="pt-1">
-                <div className="py-1">
-                  <h3 className="m-0">Appearances</h3>
-                </div>
+                <h3 className="m-0 py-1">Appearances</h3>
                 <ListOfFilms filmsUrls={ship.films} />
               </Col>
               <Row className="pt-1">
                 <div className="py-1">
-                  <h3 className="m-0">Ships</h3>
+                  <h3 className="m-0">Pilots</h3>
                 </div>
-                <div className="container-films">
-                  {ship.pilots.length > 0 ? (
-                    <ListOfPilots pilotsUrls={ship.pilots} />
-                  ) : (
-                    <span>No pilots registered for this ship</span>
-                  )}
-                </div>
+                {ship.pilots.length > 0 ? (
+                  <ListOfPilots pilotsUrls={ship.pilots} />
+                ) : (
+                  <span>No pilots registered for this ship</span>
+                )}
               </Row>
             </div>
           </div>

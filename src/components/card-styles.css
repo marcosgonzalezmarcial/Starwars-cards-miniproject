@@ -34,34 +34,13 @@
 .card-description-container h2 {
   overflow-wrap: break-word;
 }
-.movies-span {
-  color: #9e4f60;
-}
-
-.films-span {
+.list-element {
   color: #9e4f60 !important;
+  padding-block: 0.1rem;
 }
-.films-span:hover {
+.list-element:hover {
   color: rgb(183, 104, 121) !important;
-}
-
-.movies-span:hover {
-  color: rgb(183, 104, 121);
-}
-
-.movies-span {
-  color: #9e4f60;
-}
-.pilots-span {
-  color: #9e4f60 !important;
-}
-
-.pilots-span:hover {
-  color: rgb(183, 104, 121) !important;
-}
-
-.movies-span:hover {
-  color: rgb(183, 104, 121);
+  cursor: pointer;
 }
 
 .img-wrapper img {
@@ -78,10 +57,6 @@
   background-color: #282727;
   border-radius: 0 0 9px 9px;
   color: #ddd;
-}
-
-.page-description-container a {
-  text-decoration: none;
 }
 
 .page-description-container h1 {

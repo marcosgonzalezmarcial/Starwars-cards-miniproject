@@ -5,25 +5,17 @@
   padding-block: 3px;
 }
 
+.nav-wrapper {
+  width: min(90vw, 1100px);
+}
+
 @media (max-width: 500px) {
   .logo-img {
     width: 180px;
   }
-}
-
-@media (max-width: 500px) {
   .navbar-toggle-btn {
     padding: 0.1rem 0.4rem;
   }
-}
-
-.navbar-link {
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-link:link {
-  text-decoration: none;
 }
 
 .logIn-div {
@@ -93,15 +85,11 @@
 @media (min-width: 768px) {
   .navbar-collapse-box {
     margin-inline-start: auto;
-  }
-}
-
-@media (min-width: 768px) {
-  .navbar-collapse-box {
     grid-row: 1 / 2;
     grid-column: 3 / 4;
   }
 }
+
 .border-wrapper {
   margin-inline: auto;
   width: 100%;
@@ -113,6 +101,3 @@
   border-right: 1px solid #333;
   border-left: 1px solid #333;
 }
-/* .border-left {
-  border-left: 2px solid var(--bs-link-color);
-} */

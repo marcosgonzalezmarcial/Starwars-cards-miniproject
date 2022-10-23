@@ -1,33 +1,33 @@
-import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import charactersMappedData from '../api/mocked-data/peopleMappedData.json'
-import { fetchSingleCharacter } from '../api/fetchSingleCharacter'
-import ListOfFilms from './ListOfFilms'
-import ListOfShips from './ListOfShips'
+import { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import charactersMappedData from "../api/mocked-data/peopleMappedData.json";
+import { fetchSingleCharacter } from "../api/fetchSingleCharacter";
+import ListOfFilms from "./ListOfFilms";
+import ListOfShips from "./ListOfShips";
 
 const SingleCharacter = () => {
-  const [character, setCharacter] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-  const [img, setImg] = useState('')
+  const [character, setCharacter] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [img, setImg] = useState("");
 
-  let { id } = useParams()
+  let { id } = useParams();
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
 
     const [characterFiltered] = charactersMappedData.filter(
       (character) => character.id === Number(id)
-    )
-    setImg(characterFiltered.image)
+    );
+    setImg(characterFiltered.image);
 
     fetchSingleCharacter(id)
       .then((character) => {
-        setCharacter(character)
-        setIsLoading(false)
+        setCharacter(character);
+        setIsLoading(false);
       })
-      .catch(console.log)
-  }, [id])
+      .catch(console.log);
+  }, [id]);
 
   return (
     <>
@@ -74,25 +74,23 @@ const SingleCharacter = () => {
                 </Col>
               </Row>
               <Col className="pt-1">
-                <div className="py-1">
-                  <h3 className="m-0">Appearances</h3>
-                </div>
+                <h3 className="m-0 py-1">Appearances</h3>
                 <ListOfFilms filmsUrls={character.films} />
               </Col>
               <Row className="pt-1">
-                <div className="py-1">
-                  <h3 className="m-0">Ships</h3>
-                </div>
-                <div className="container-films">
+                <h3 className="m-0 py-1">Ships</h3>
+                {character.starships.length > 0 ? (
                   <ListOfShips shipsUrls={character.starships} />
-                </div>
+                ) : (
+                  <span>There aren't ships for this character</span>
+                )}
               </Row>
             </div>
           </div>
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SingleCharacter
+export default SingleCharacter;

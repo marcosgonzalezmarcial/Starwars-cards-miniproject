@@ -27,7 +27,7 @@
   padding: 1rem;
 }
 
-button.login-close {
+.login-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -38,7 +38,7 @@ button.login-close {
   transition: color 0.1s;
 }
 
-button.login-close:hover {
+.login-close:hover {
   color: #3f6dac;
 }
 
@@ -61,7 +61,7 @@ button.login-close:hover {
   background-color: #484848;
   color: #edd700;
 }
-input[type="submit"] {
+input[type='submit'] {
   display: block;
   width: 90%;
   margin: 1.3rem auto;
@@ -75,11 +75,11 @@ input[type="submit"] {
   transition: background-color 0.2s;
 }
 
-input[type="submit"]:hover {
+input[type='submit']:hover {
   background-color: #3f6dac;
 }
 
-div.sign-up-link {
+.sign-up-link {
   width: 90%;
   margin: 0 auto;
   margin-top: 3.5rem;
@@ -90,7 +90,7 @@ div.sign-up-link {
   transition: border 350ms;
 }
 
-div.sign-up-link:hover {
+.sign-up-link:hover {
   border: solid 1px #edd700;
 }
 
@@ -98,7 +98,6 @@ div.sign-up-link:hover {
   display: block;
   width: 100%;
   color: #edd700;
-  text-decoration: none;
 }
 
 .signup-link-group p {
@@ -107,7 +106,6 @@ div.sign-up-link:hover {
 .signup-link-group a {
   font-size: 13px;
   color: #edd700;
-  text-decoration: none;
 }
 
 .signup-link-group a:hover {

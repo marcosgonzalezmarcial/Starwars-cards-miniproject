@@ -1,4 +1,4 @@
-.elementsGrid {
+.grid-container {
   margin-inline: auto;
   max-width: min(90vw, 1100px);
   display: grid;

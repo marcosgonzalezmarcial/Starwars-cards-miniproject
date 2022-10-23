@@ -4,42 +4,47 @@ import { transformPeopleArray } from '../utils/transformPeopleArray'
 import PilotCard from './PilotCard'
 
 const ListOfPilots = ({ pilotsUrls }) => {
-	const [pilots, setPilots] = useState([])
-	const [pilotSelected, setPilotSelected] = useState(null)
+  const [pilots, setPilots] = useState([])
+  const [pilotSelected, setPilotSelected] = useState(null)
 
-	useEffect(() => {
-		fetchListOfDataFromUrlsArr(pilotsUrls)
-			.then(pilots => {
-				const newPilots = transformPeopleArray(pilots)
-				setPilots(newPilots)
-			})
-			.catch(console.log)
-	}, [pilotsUrls])
+  useEffect(() => {
+    fetchListOfDataFromUrlsArr(pilotsUrls)
+      .then((pilots) => {
+        const newPilots = transformPeopleArray(pilots)
+        setPilots(newPilots)
+      })
+      .catch(console.log)
+  }, [pilotsUrls])
 
-	const selectPilot = useCallback(
-		e => {
-			const selectedValue = e.target.textContent
-			const [selectedPilot] = pilots.filter(
-				pilot => pilot.name === selectedValue
-			)
-			setPilotSelected(selectedPilot)
-			// e.target.scrollIntoView({ block: 'start', behavior: 'smooth' })
-		},
-		[pilots]
-	)
+  const selectPilot = useCallback(
+    (e) => {
+      const selectedValue = e.target.textContent
+      const [selectedPilot] = pilots.filter(
+        (pilot) => pilot.name === selectedValue
+      )
+      setPilotSelected(selectedPilot)
+      // e.target.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    },
+    [pilots]
+  )
 
-	return (
-		<>
-			{pilots.map((pilot, index) => (
+  return (
+    <>
+      {/* {pilots.map((pilot, index) => (
 				<div style={{ cursor: 'pointer' }} key={index}>
 					<span onClick={selectPilot} className="films-span">
 						{pilot.name}
 					</span>
 				</div>
-			))}
-			{pilotSelected && <PilotCard pilotSelectedData={pilotSelected} />}
-		</>
-	)
+			))} */}
+      {pilots.map((pilot) => (
+        <span key={pilot.id} onClick={selectPilot} className="list-element">
+          {pilot.name}
+        </span>
+      ))}
+      {pilotSelected && <PilotCard pilotSelectedData={pilotSelected} />}
+    </>
+  )
 }
 
 export default ListOfPilots

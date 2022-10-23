@@ -1,10 +1,10 @@
-import { Col, Nav, Row } from 'react-bootstrap'
+import { Col, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const SectionNav = () => {
   return (
     <div className="border-wrapper">
-      <Row className="m-auto w-50">
+      <div className="m-auto nav-wrapper ">
         <Nav className="justify-content-center">
           <Col className="border-silver">
             <Nav.Item>
@@ -28,7 +28,7 @@ const SectionNav = () => {
             </Nav.Item>
           </Col>
         </Nav>
-      </Row>
+      </div>
     </div>
   )
 }

@@ -32,7 +32,7 @@ const Characters = () => {
         next={() => setPage((prev) => characters.length < 82 && prev + 1)}
         hasMore={characters.length < 82 && true}
         loader={<div className="text-white display-4">Cargando...</div>}
-        className="my-3 my-md-4 elementsGrid"
+        className="my-3 my-md-4 grid-container"
       >
         {characters.map((character) => (
           <div key={character.id} className="element-card">
