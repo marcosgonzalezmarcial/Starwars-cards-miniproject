@@ -4,11 +4,11 @@ import "./card-styles.css";
 const PilotCard = ({ pilotSelectedData }) => {
   return (
     <div className="d-flex text-secondary my-3">
-      <div className="col-6 col-md-5 col-lg-4 img-wrapper">
+      <div className="col-6 col-md-5 col-lg-4 inner-card-img-wrapper">
         <img src={pilotSelectedData.image} alt={pilotSelectedData.name} />
       </div>
       <div className="col-6 col-md-5 col-lg-4">
-        <div className="card-description-container p-2">
+        <div className="inner-card-description-container p-2">
           <h2 className="mb-3 pt-2 px-2">{pilotSelectedData.name}</h2>
 
           <div className="px-2 my-3">

@@ -36,8 +36,8 @@ const SingleCharacter = () => {
           <div className="text-white display-4">Loading...</div>
         </Container>
       ) : (
-        <div className="container wrapper text-secondary my-3">
-          <div className="img-container">
+        <div className="page-wrapper text-secondary my-3">
+          <div className="page-img-container">
             <img src={img} alt={character.name} />
           </div>
           <div className="page-description-container bg-dark p-2">

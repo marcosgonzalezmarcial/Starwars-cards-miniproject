@@ -1,54 +1,51 @@
-import { useState, useEffect } from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import { useNavigate } from 'react-router-dom'
-import starshipsMappedData from '../api/mocked-data/starshipsMappedData.json'
-import './grid-styles.css'
-import { getTransformedShipsArray } from '../api/getTransformedShipsArray'
+import { useState, useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useNavigate } from "react-router-dom";
+import starshipsMappedData from "../api/mocked-data/starshipsMappedData.json";
+import "./grid-styles.css";
+import { getTransformedShipsArray } from "../api/getTransformedShipsArray";
 
 const StarShips = () => {
-  const [page, setPage] = useState(1)
-  const [ships, setShips] = useState([])
+  const [page, setPage] = useState(1);
+  const [ships, setShips] = useState([]);
 
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   useEffect(() => {
     getTransformedShipsArray(page).then((data) =>
       setShips((prev) => [...prev, ...data])
-    )
-  }, [page])
+    );
+  }, [page]);
 
   const handleClick = (e) => {
-    console.log(e)
-    const shipSelected = e.target.textContent
+    const shipSelected = e.target.textContent;
     const [ship] = starshipsMappedData.filter(
       (item) => item.name === shipSelected
-    )
-    navigate(`${ship.id}`)
-  }
+    );
+    navigate(`${ship.id}`);
+  };
 
   return (
     <InfiniteScroll
       dataLength={ships.length}
       next={() => setPage((prev) => ships.length < 36 && prev + 1)}
       hasMore={ships.length < 36 && true}
-      loader={<div className="text-white display-4">Cargando...</div>}
+      loader={<div className="text-white display-4">Loading...</div>}
       className="my-3 my-md-4 grid-container"
     >
       {ships.map((ship, index) => (
-        <div key={index} className="element-card">
+        <div key={index} className="grid-element-card">
           <div className="card-hero">
-            <img className="card-hero-img" src={ship.imgUrl} alt="starship" />
+            <img className="card-hero-img" src={ship.imgUrl} alt={ship.name} />
           </div>
           <div className="text-secondary bg-dark p-3 card-info">
-            <h4 className="card-ship-title" onClick={handleClick}>
-              {ship.name}
-            </h4>
+            <h4 onClick={handleClick}>{ship.name}</h4>
             <p>{ship.model}</p>
           </div>
         </div>
       ))}
     </InfiniteScroll>
-  )
-}
+  );
+};
 
-export default StarShips
+export default StarShips;

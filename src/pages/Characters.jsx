@@ -1,29 +1,29 @@
-import { useState, useEffect } from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import { useNavigate } from 'react-router-dom'
-import peopleJsonArr from '../api/mocked-data/peopleMappedData.json'
-import './grid-styles.css'
-import { getTransformedCharactersArray } from '../api/getTransformedCharactersArray'
+import { useState, useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useNavigate } from "react-router-dom";
+import peopleJsonArr from "../api/mocked-data/peopleMappedData.json";
+import "./grid-styles.css";
+import { getTransformedCharactersArray } from "../api/getTransformedCharactersArray";
 
 const Characters = () => {
-  const [page, setPage] = useState(1)
-  const [characters, setCharacters] = useState([])
+  const [page, setPage] = useState(1);
+  const [characters, setCharacters] = useState([]);
 
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   useEffect(() => {
     getTransformedCharactersArray(page).then((data) =>
       setCharacters((prev) => [...prev, ...data])
-    )
-  }, [page])
+    );
+  }, [page]);
 
   const handleClick = (e) => {
-    const personSelected = e.target.textContent
+    const personSelected = e.target.textContent;
     const [person] = peopleJsonArr.filter(
       (item) => item.name === personSelected
-    )
-    navigate(`/characters/${person.id}`)
-  }
+    );
+    navigate(`/characters/${person.id}`);
+  };
 
   return (
     <>
@@ -35,7 +35,7 @@ const Characters = () => {
         className="my-3 my-md-4 grid-container"
       >
         {characters.map((character) => (
-          <div key={character.id} className="element-card">
+          <div key={character.id} className="grid-element-card">
             <div className="card-hero">
               <img
                 className="card-hero-img"
@@ -44,16 +44,14 @@ const Characters = () => {
               />
             </div>
             <div className="text-secondary p-3 card-info bg-dark">
-              <h4 className="card-ship-title" onClick={handleClick}>
-                {character.name}
-              </h4>
+              <h4 onClick={handleClick}>{character.name}</h4>
               <p>{character.species}</p>
             </div>
           </div>
         ))}
       </InfiniteScroll>
     </>
-  )
-}
+  );
+};
 
-export default Characters
+export default Characters;

@@ -5,11 +5,11 @@ import "./card-styles.css";
 const FilmCard = ({ filmSelectedData }) => {
   return (
     <div className="d-flex text-secondary my-3">
-      <div className="col-6 col-md-5 col-lg-4 img-wrapper">
+      <div className="col-6 col-md-5 col-lg-4 inner-card-img-wrapper">
         <img src={movieImage} alt={filmSelectedData.title} />
       </div>
       <div className="col-6 col-md-5 col-lg-4">
-        <div className="card-description-container p-2">
+        <div className="inner-card-description-container p-2">
           <h2 className="mb-3 pt-2 px-2">{filmSelectedData.title}</h2>
 
           <div className="px-2 my-3">
