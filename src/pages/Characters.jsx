@@ -36,14 +36,14 @@ const Characters = () => {
       >
         {characters.map((character) => (
           <div key={character.id} className="grid-element-card">
-            <div className="card-hero">
+            <div className="grid-card-hero">
               <img
-                className="card-hero-img"
+                className="grid-card-hero-img"
                 src={character.image}
                 alt={character.name}
               />
             </div>
-            <div className="text-secondary p-3 card-info bg-dark">
+            <div className="text-secondary p-3 grid-card-info bg-dark">
               <h4 onClick={handleClick}>{character.name}</h4>
               <p>{character.species}</p>
             </div>

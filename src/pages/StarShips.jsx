@@ -35,10 +35,14 @@ const StarShips = () => {
     >
       {ships.map((ship, index) => (
         <div key={index} className="grid-element-card">
-          <div className="card-hero">
-            <img className="card-hero-img" src={ship.imgUrl} alt={ship.name} />
+          <div className="grid-card-hero">
+            <img
+              className="grid-card-hero-img"
+              src={ship.imgUrl}
+              alt={ship.name}
+            />
           </div>
-          <div className="text-secondary bg-dark p-3 card-info">
+          <div className="text-secondary bg-dark p-3 grid-card-info">
             <h4 onClick={handleClick}>{ship.name}</h4>
             <p>{ship.model}</p>
           </div>

@@ -1,21 +1,16 @@
 .page-wrapper {
+  width: min(90vw, 1100px);
   display: flex;
-  flex-direction: column;
   margin-inline: auto;
 }
-@media (min-width: 768px) {
-  .page-wrapper {
-    max-width: 70%;
-  }
-}
+
 .page-description-container {
   background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
   background-size: 8px;
   background-repeat: repeat-x;
   background-color: #282727;
-  border-radius: 0 0 9px 9px;
   color: #ddd;
-  border-top: 3px solid #9e4f60;
+  border-left: 3px solid #9e4f60;
 }
 .page-description-container h1 {
   font-size: 1.15rem;
@@ -27,6 +22,25 @@
   font-size: 0.75rem;
   display: block;
   color: #999;
+}
+
+.page-img-container {
+  width: 50%;
+  flex: auto;
+}
+
+@media (max-width: 768px) {
+  .page-img-container {
+    width: 100%;
+    flex: auto;
+  }
+  .page-description-container {
+    border-top: 3px solid #9e4f60;
+    border-left: none;
+  }
+  .page-wrapper {
+    flex-direction: column;
+  }
 }
 
 .page-img-container img {
@@ -43,7 +57,6 @@
 
 .inner-card-description-container {
   background-color: #282727cc;
-  border-radius: 0 0 9px 9px;
   color: #ddd;
   height: 100%;
   border-left: 2px solid #edd700;
