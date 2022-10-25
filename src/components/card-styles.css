@@ -44,10 +44,11 @@
 }
 
 .page-img-container img {
+  height: 68vh;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  /* aspect-ratio: 4/3; */
   object-fit: cover;
-  aspect-ratio: 4/3;
 }
 
 .inner-card-img-wrapper img {

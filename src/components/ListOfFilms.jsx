@@ -6,7 +6,6 @@ import './card-styles.css'
 const ListOfFilms = ({ filmsUrls }) => {
   const [films, setFilms] = useState([])
   const [filmSelected, setFilmSelected] = useState(null)
-  console.log(films)
 
   useEffect(() => {
     fetchListOfDataFromUrlsArr(filmsUrls)
