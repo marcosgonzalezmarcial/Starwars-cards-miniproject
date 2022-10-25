@@ -1,29 +1,29 @@
-import { useState, useEffect } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useNavigate } from "react-router-dom";
-import peopleJsonArr from "../api/mocked-data/peopleMappedData.json";
-import "./grid-styles.css";
-import { getTransformedCharactersArray } from "../api/getTransformedCharactersArray";
+import { useState, useEffect } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import { useNavigate } from 'react-router-dom'
+import peopleJsonArr from '../api/mocked-data/peopleMappedData.json'
+import './grid-styles.css'
+import { getTransformedCharactersArray } from '../api/getTransformedCharactersArray'
 
 const Characters = () => {
-  const [page, setPage] = useState(1);
-  const [characters, setCharacters] = useState([]);
+  const [page, setPage] = useState(1)
+  const [characters, setCharacters] = useState([])
 
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
   useEffect(() => {
     getTransformedCharactersArray(page).then((data) =>
       setCharacters((prev) => [...prev, ...data])
-    );
-  }, [page]);
+    )
+  }, [page])
 
   const handleClick = (e) => {
-    const personSelected = e.target.textContent;
+    const personSelected = e.target.textContent
     const [person] = peopleJsonArr.filter(
       (item) => item.name === personSelected
-    );
-    navigate(`/characters/${person.id}`);
-  };
+    )
+    navigate(`${person.name.replaceAll(' ', '~')}`)
+  }
 
   return (
     <>
@@ -51,7 +51,7 @@ const Characters = () => {
         ))}
       </InfiniteScroll>
     </>
-  );
-};
+  )
+}
 
-export default Characters;
+export default Characters

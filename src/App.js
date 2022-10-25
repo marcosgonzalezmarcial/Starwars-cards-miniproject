@@ -42,11 +42,11 @@ function App() {
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path="starships" element={<NestedRoutes />}>
               <Route index element={<StarShips />} />
-              <Route path=":id" element={<SingleShip />} />
+              <Route path=":starshipName" element={<SingleShip />} />
             </Route>
             <Route path="characters" element={<NestedRoutes />}>
               <Route index element={<Characters />} />
-              <Route path=":id" element={<SingleCharacter />} />
+              <Route path=":characterName" element={<SingleCharacter />} />
             </Route>
           </Route>
           <Route path="*" element={<ErrorPage />} />

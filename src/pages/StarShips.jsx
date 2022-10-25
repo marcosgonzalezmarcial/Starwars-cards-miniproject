@@ -1,29 +1,30 @@
-import { useState, useEffect } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useNavigate } from "react-router-dom";
-import starshipsMappedData from "../api/mocked-data/starshipsMappedData.json";
-import "./grid-styles.css";
-import { getTransformedShipsArray } from "../api/getTransformedShipsArray";
+import { useState, useEffect } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import { useNavigate } from 'react-router-dom'
+import starshipsMappedData from '../api/mocked-data/starshipsMappedData.json'
+import './grid-styles.css'
+import { getTransformedShipsArray } from '../api/getTransformedShipsArray'
 
 const StarShips = () => {
-  const [page, setPage] = useState(1);
-  const [ships, setShips] = useState([]);
+  const [page, setPage] = useState(1)
+  const [ships, setShips] = useState([])
 
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
   useEffect(() => {
     getTransformedShipsArray(page).then((data) =>
       setShips((prev) => [...prev, ...data])
-    );
-  }, [page]);
+    )
+  }, [page])
 
   const handleClick = (e) => {
-    const shipSelected = e.target.textContent;
+    const shipSelected = e.target.textContent
     const [ship] = starshipsMappedData.filter(
       (item) => item.name === shipSelected
-    );
-    navigate(`${ship.id}`);
-  };
+    )
+    // navigate(`${ship.id}`)
+    navigate(`${ship.name.replaceAll(' ', '~')}`)
+  }
 
   return (
     <InfiniteScroll
@@ -49,7 +50,7 @@ const StarShips = () => {
         </div>
       ))}
     </InfiniteScroll>
-  );
-};
+  )
+}
 
-export default StarShips;
+export default StarShips

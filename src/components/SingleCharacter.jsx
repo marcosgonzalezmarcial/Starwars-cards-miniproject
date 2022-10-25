@@ -1,33 +1,40 @@
-import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import charactersMappedData from "../api/mocked-data/peopleMappedData.json";
-import { fetchSingleCharacter } from "../api/fetchSingleCharacter";
-import ListOfFilms from "./ListOfFilms";
-import ListOfShips from "./ListOfShips";
+import { useEffect, useState } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import charactersMappedData from '../api/mocked-data/peopleMappedData.json'
+import { fetchSingleCharacter } from '../api/fetchSingleCharacter'
+import ListOfFilms from './ListOfFilms'
+import ListOfShips from './ListOfShips'
+import { urlStringify } from '../utils/urlStringify'
 
 const SingleCharacter = () => {
-  const [character, setCharacter] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [img, setImg] = useState("");
+  const [character, setCharacter] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+  const [img, setImg] = useState('')
 
-  let { id } = useParams();
+  let { characterName } = useParams()
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(true)
+
+    const newPerson = urlStringify(characterName)
+
+    const { id } = charactersMappedData.find(
+      (person) => person.name === newPerson
+    )
 
     const [characterFiltered] = charactersMappedData.filter(
       (character) => character.id === Number(id)
-    );
-    setImg(characterFiltered.image);
+    )
+    setImg(characterFiltered.image)
 
     fetchSingleCharacter(id)
       .then((character) => {
-        setCharacter(character);
-        setIsLoading(false);
+        setCharacter(character)
+        setIsLoading(false)
       })
-      .catch(console.log);
-  }, [id]);
+      .catch(console.log)
+  }, [characterName])
 
   return (
     <>
@@ -90,7 +97,7 @@ const SingleCharacter = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default SingleCharacter;
+export default SingleCharacter

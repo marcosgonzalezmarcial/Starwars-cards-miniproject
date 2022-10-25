@@ -1,33 +1,41 @@
-import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import starshipsMappedData from "../api/mocked-data/starshipsMappedData.json";
-import { fetchSingleShip } from "../api/fetchSingleShip";
-import ListOfPilots from "./ListOfPilots";
-import ListOfFilms from "./ListOfFilms";
+import { useEffect, useState } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import starshipsMappedData from '../api/mocked-data/starshipsMappedData.json'
+import { fetchSingleShip } from '../api/fetchSingleShip'
+import ListOfPilots from './ListOfPilots'
+import ListOfFilms from './ListOfFilms'
+import { urlStringify } from '../utils/urlStringify'
 
 const SingleShip = () => {
-  const [ship, setShip] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [img, setImg] = useState(null);
+  const [ship, setShip] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+  const [img, setImg] = useState(null)
 
-  let { id } = useParams();
+  let { starshipName } = useParams()
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(true)
+
+    const shipNameFromUrl = urlStringify(starshipName)
+
+    const { id } = starshipsMappedData.find(
+      (ship) => ship.name === shipNameFromUrl
+    )
 
     const [shipFiltered] = starshipsMappedData.filter(
       (starship) => starship.id === Number(id)
-    );
-    setImg(shipFiltered.imgUrl);
+    )
+
+    setImg(shipFiltered.imgUrl)
 
     fetchSingleShip(id)
       .then((ship) => {
-        setShip(ship);
-        setIsLoading(false);
+        setShip(ship)
+        setIsLoading(false)
       })
-      .catch(console.log);
-  }, [id]);
+      .catch(console.log)
+  }, [starshipName])
 
   return (
     <>
@@ -51,7 +59,7 @@ const SingleShip = () => {
                 <Col>
                   <h3>Manufacturer:</h3>
                   <span>
-                    {ship.manufacturer ? ship.manufacturer : "Unknown"}
+                    {ship.manufacturer ? ship.manufacturer : 'Unknown'}
                   </span>
                 </Col>
               </Row>
@@ -94,7 +102,7 @@ const SingleShip = () => {
         </main>
       )}
     </>
-  );
-};
+  )
+}
 
-export default SingleShip;
+export default SingleShip
