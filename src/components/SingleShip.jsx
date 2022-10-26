@@ -1,41 +1,41 @@
-import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import starshipsMappedData from '../api/mocked-data/starshipsMappedData.json'
-import { fetchSingleShip } from '../api/fetchSingleShip'
-import ListOfPilots from './ListOfPilots'
-import ListOfFilms from './ListOfFilms'
-import { urlStringify } from '../utils/urlStringify'
+import { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import starshipsMappedData from "../api/mocked-data/starshipsMappedData.json";
+import { fetchSingleShip } from "../api/fetchSingleShip";
+import ListOfPilots from "./ListOfPilots";
+import ListOfFilms from "./ListOfFilms";
+import { urlStringify } from "../utils/urlStringify";
 
 const SingleShip = () => {
-  const [ship, setShip] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-  const [img, setImg] = useState(null)
+  const [ship, setShip] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [img, setImg] = useState(null);
 
-  let { starshipName } = useParams()
+  let { starshipName } = useParams();
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
 
-    const shipNameFromUrl = urlStringify(starshipName)
+    const shipNameFromUrl = urlStringify(starshipName);
 
     const { id } = starshipsMappedData.find(
       (ship) => ship.name === shipNameFromUrl
-    )
+    );
 
     const [shipFiltered] = starshipsMappedData.filter(
       (starship) => starship.id === Number(id)
-    )
+    );
 
-    setImg(shipFiltered.imgUrl)
+    setImg(shipFiltered.imgUrl);
 
     fetchSingleShip(id)
       .then((ship) => {
-        setShip(ship)
-        setIsLoading(false)
+        setShip(ship);
+        setIsLoading(false);
       })
-      .catch(console.log)
-  }, [starshipName])
+      .catch(console.log);
+  }, [starshipName]);
 
   return (
     <>
@@ -59,7 +59,7 @@ const SingleShip = () => {
                 <Col>
                   <h3>Manufacturer:</h3>
                   <span>
-                    {ship.manufacturer ? ship.manufacturer : 'Unknown'}
+                    {ship.manufacturer ? ship.manufacturer : "Unknown"}
                   </span>
                 </Col>
               </Row>
@@ -83,26 +83,26 @@ const SingleShip = () => {
                   <span>{ship.crew}</span>
                 </Col>
               </Row>
-              <Col className="pt-1">
-                <h3 className="m-0 py-1">Appearances</h3>
-                <ListOfFilms filmsUrls={ship.films} />
-              </Col>
-              <Row className="pt-1">
-                <div className="py-1">
-                  <h3 className="m-0">Pilots</h3>
-                </div>
-                {ship.pilots.length > 0 ? (
-                  <ListOfPilots pilotsUrls={ship.pilots} />
-                ) : (
-                  <span>No pilots registered for this ship</span>
-                )}
+              <Row className="py-1">
+                <Col className="pt-1">
+                  <h3 className="m-0 py-1">Appearances</h3>
+                  <ListOfFilms filmsUrls={ship.films} />
+                </Col>
+                <Col className="pt-1">
+                  <h3 className="m-0 py-1">Pilots</h3>
+                  {ship.pilots.length > 0 ? (
+                    <ListOfPilots pilotsUrls={ship.pilots} />
+                  ) : (
+                    <span>No pilots registered for this ship</span>
+                  )}
+                </Col>
               </Row>
             </div>
           </div>
         </main>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SingleShip
+export default SingleShip;

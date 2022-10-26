@@ -1,40 +1,40 @@
-import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import charactersMappedData from '../api/mocked-data/peopleMappedData.json'
-import { fetchSingleCharacter } from '../api/fetchSingleCharacter'
-import ListOfFilms from './ListOfFilms'
-import ListOfShips from './ListOfShips'
-import { urlStringify } from '../utils/urlStringify'
+import { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import charactersMappedData from "../api/mocked-data/peopleMappedData.json";
+import { fetchSingleCharacter } from "../api/fetchSingleCharacter";
+import ListOfFilms from "./ListOfFilms";
+import ListOfShips from "./ListOfShips";
+import { urlStringify } from "../utils/urlStringify";
 
 const SingleCharacter = () => {
-  const [character, setCharacter] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-  const [img, setImg] = useState('')
+  const [character, setCharacter] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [img, setImg] = useState("");
 
-  let { characterName } = useParams()
+  let { characterName } = useParams();
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
 
-    const newPerson = urlStringify(characterName)
+    const newPerson = urlStringify(characterName);
 
     const { id } = charactersMappedData.find(
       (person) => person.name === newPerson
-    )
+    );
 
     const [characterFiltered] = charactersMappedData.filter(
       (character) => character.id === Number(id)
-    )
-    setImg(characterFiltered.image)
+    );
+    setImg(characterFiltered.image);
 
     fetchSingleCharacter(id)
       .then((character) => {
-        setCharacter(character)
-        setIsLoading(false)
+        setCharacter(character);
+        setIsLoading(false);
       })
-      .catch(console.log)
-  }, [characterName])
+      .catch(console.log);
+  }, [characterName]);
 
   return (
     <>
@@ -80,24 +80,26 @@ const SingleCharacter = () => {
                   <span>{character.eye_color}</span>
                 </Col>
               </Row>
-              <Col className="pt-1">
-                <h3 className="m-0 py-1">Appearances</h3>
-                <ListOfFilms filmsUrls={character.films} />
-              </Col>
-              <Row className="pt-1">
-                <h3 className="m-0 py-1">Ships</h3>
-                {character.starships.length > 0 ? (
-                  <ListOfShips shipsUrls={character.starships} />
-                ) : (
-                  <span>There aren't ships for this character</span>
-                )}
+              <Row className="py-1">
+                <Col className="pt-1">
+                  <h3 className="m-0 py-1">Appearances</h3>
+                  <ListOfFilms filmsUrls={character.films} />
+                </Col>
+                <Col className="pt-1">
+                  <h3 className="m-0 py-1">Ships</h3>
+                  {character.starships.length > 0 ? (
+                    <ListOfShips shipsUrls={character.starships} />
+                  ) : (
+                    <span>There aren't ships for this character</span>
+                  )}
+                </Col>
               </Row>
             </div>
           </div>
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SingleCharacter
+export default SingleCharacter;

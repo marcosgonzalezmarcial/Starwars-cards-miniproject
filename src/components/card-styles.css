@@ -2,6 +2,8 @@
   width: min(90vw, 1100px);
   display: flex;
   margin-inline: auto;
+  border-radius: 0px 15px 0px 15px;
+  overflow: hidden;
 }
 
 .page-description-container {
@@ -44,10 +46,8 @@
 }
 
 .page-img-container img {
-  height: 68vh;
+  height: 60vh;
   width: 100%;
-  /* height: 100%; */
-  /* aspect-ratio: 4/3; */
   object-fit: cover;
 }
 
