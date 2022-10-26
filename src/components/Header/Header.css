@@ -9,12 +9,19 @@
   width: min(90vw, 1100px);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 576px) {
+  .nav-wrapper {
+    width: 100%;
+  }
   .logo-img {
     width: 180px;
   }
   .navbar-toggle-btn {
     padding: 0.1rem 0.4rem;
+  }
+  .nav-link,
+  .login-nav-link {
+    font-size: 0.8rem;
   }
 }
 
@@ -29,12 +36,12 @@
   font-weight: 600;
   font-size: 1rem;
 }
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
   .nav-link,
   .login-nav-link {
     font-size: 0.8rem;
   }
-}
+} */
 
 .nav-link:hover {
   color: white;
