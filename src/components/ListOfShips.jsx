@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { fetchListOfDataFromUrlsArr } from '../api/fetchListOfDataFromUrlsArr'
 import { transformShipsArray } from '../utils/transformShipsArray'
-import ShipCard from './ShipCard'
-// import PilotCard from './Pilots/PilotCard'
+// import { urlStringify } from '../utils/urlStringify'
+// import ShipCard from './ShipCard'
 
 const ListOfShips = ({ shipsUrls }) => {
   const [ships, setShips] = useState([])
-  const [shipSelected, setShipSelected] = useState(null)
+  // const [shipSelected, setShipSelected] = useState(null)
+  let navigate = useNavigate()
 
   useEffect(() => {
     fetchListOfDataFromUrlsArr(shipsUrls)
@@ -20,11 +22,12 @@ const ListOfShips = ({ shipsUrls }) => {
   const selectShip = useCallback(
     (e) => {
       const selectedValue = e.target.textContent
-      const [selectedShip] = ships.filter((ship) => ship.name === selectedValue)
-      setShipSelected(selectedShip)
-      // e.target.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      // const [selectedShip] = ships.filter((ship) => ship.name === selectedValue)
+      // setShipSelected(selectedShip)
+
+      navigate(`/starships/${selectedValue.replaceAll(' ', '~')}`)
     },
-    [ships]
+    [navigate]
   )
 
   return (
@@ -34,7 +37,7 @@ const ListOfShips = ({ shipsUrls }) => {
           {ship.name}
         </span>
       ))}
-      {shipSelected && <ShipCard shipSelectedData={shipSelected} />}
+      {/* {shipSelected && <ShipCard shipSelectedData={shipSelected} />} */}
     </>
   )
 }

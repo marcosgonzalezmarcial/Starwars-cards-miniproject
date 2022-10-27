@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { fetchListOfDataFromUrlsArr } from '../api/fetchListOfDataFromUrlsArr'
 import { transformPeopleArray } from '../utils/transformPeopleArray'
-import PilotCard from './PilotCard'
 
 const ListOfPilots = ({ pilotsUrls }) => {
   const [pilots, setPilots] = useState([])
-  const [pilotSelected, setPilotSelected] = useState(null)
+  let navigate = useNavigate()
 
   useEffect(() => {
     fetchListOfDataFromUrlsArr(pilotsUrls)
@@ -19,30 +19,19 @@ const ListOfPilots = ({ pilotsUrls }) => {
   const selectPilot = useCallback(
     (e) => {
       const selectedValue = e.target.textContent
-      const [selectedPilot] = pilots.filter(
-        (pilot) => pilot.name === selectedValue
-      )
-      setPilotSelected(selectedPilot)
-      // e.target.scrollIntoView({ block: 'start', behavior: 'smooth' })
+
+      navigate(`/characters/${selectedValue.replaceAll(' ', '~')}`)
     },
-    [pilots]
+    [navigate]
   )
 
   return (
     <>
-      {/* {pilots.map((pilot, index) => (
-				<div style={{ cursor: 'pointer' }} key={index}>
-					<span onClick={selectPilot} className="films-span">
-						{pilot.name}
-					</span>
-				</div>
-			))} */}
       {pilots.map((pilot) => (
         <span key={pilot.id} onClick={selectPilot} className="list-element">
           {pilot.name}
         </span>
       ))}
-      {pilotSelected && <PilotCard pilotSelectedData={pilotSelected} />}
     </>
   )
 }

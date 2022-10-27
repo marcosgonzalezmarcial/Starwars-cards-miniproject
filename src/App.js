@@ -11,6 +11,7 @@ import Header from './components/Header'
 import SingleShip from './components/SingleShip'
 import ProtectedRoute from './pages/ProtectedRoute'
 import NestedRoutes from './pages/NestedRoutes'
+import SingleFilm from './components/SingleFilm'
 
 function App() {
   const [users, setUsers] = useState(
@@ -47,6 +48,10 @@ function App() {
             <Route path="characters" element={<NestedRoutes />}>
               <Route index element={<Characters />} />
               <Route path=":characterName" element={<SingleCharacter />} />
+            </Route>
+            <Route path="films" element={<NestedRoutes />}>
+              {/* <Route index element={<Films />} /> */}
+              <Route path=":filmTitle" element={<SingleFilm />} />
             </Route>
           </Route>
           <Route path="*" element={<ErrorPage />} />
