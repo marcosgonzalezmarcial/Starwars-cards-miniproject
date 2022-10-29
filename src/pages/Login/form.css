@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .loginForm-container.is-open {
   display: flex;
 }
@@ -22,10 +23,24 @@
 .form-inner {
   background-color: #181818;
   letter-spacing: 0.06em;
-  min-height: 23rem;
   width: min(540px, 85vw);
   padding: 1rem;
 }
+
+@media (max-width: 576px) {
+  .form-inner {
+    width: 100%;
+    min-height: 100vh;
+  }
+  .loginForm-container form {
+    width: 100%;
+  }
+  .loginForm-container.is-open > form {
+    position: absolute;
+    top: 0%;
+  }
+
+} 
 
 .login-close {
   position: absolute;

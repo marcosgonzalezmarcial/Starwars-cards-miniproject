@@ -52,7 +52,7 @@
     gap: 1rem;
   }
   .grid-element-card {
-    height: 20vh;
+    height: 16vh;
     flex-direction: row;
   }
   .grid-card-hero {
