@@ -16,7 +16,7 @@ const Header = ({ loggedIn, setLoggedIn }) => {
 					className="navbar-container-box text-center position-relative justify-content-end px-0"
 				>
 					<span></span>
-					<Navbar.Brand className=" m-0">
+					<Navbar.Brand className="m-0 p-3">
 						<Link className="navbar-link p-2" to="/home">
 							<img width="220px" className="logo-img" src={logo} alt="logo" />
 						</Link>
