@@ -8,6 +8,11 @@
 .nav-wrapper {
 	width: min(90vw, 1100px);
 }
+.nav-link,
+.login-nav-link {
+	font-size: 0.875em !important;
+	font-weight: 800 !important;
+}
 
 @media (max-width: 576px) {
 	.nav {
@@ -21,10 +26,6 @@
 	}
 	.navbar-toggle-btn {
 		padding: 0.1rem 0.4rem;
-	}
-	.nav-link,
-	.login-nav-link {
-		font-size: 0.75rem !important;
 	}
 }
 
@@ -83,13 +84,13 @@
 /* .navbar-box {
   min-height: 110px;
   margin-block-start: auto !important;
-}
+}*/
 
-@media (max-width: 768px) {
-  .navbar-box {
-    min-height: 70px;
-  }
-} */
+@media (min-width: 768px) {
+	.navbar-brand {
+		grid-column: 2 /3;
+	}
+}
 .navbar-brand-box {
 	position: absolute;
 	right: 50%;

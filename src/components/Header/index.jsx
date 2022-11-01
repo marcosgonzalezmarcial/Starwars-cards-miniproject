@@ -15,16 +15,16 @@ const Header = ({ loggedIn, setLoggedIn }) => {
 					fluid
 					className="navbar-container-box text-center position-relative justify-content-end px-0"
 				>
-					<span></span>
+					<Navbar.Toggle
+						className="navbar-toggle-btn bg-light me-auto"
+						aria-controls="basic-navbar-nav"
+					/>
 					<Navbar.Brand className="m-0 p-3">
 						<Link className="navbar-link p-2" to="/home">
 							<img width="220px" className="logo-img" src={logo} alt="logo" />
 						</Link>
 					</Navbar.Brand>
-					<Navbar.Toggle
-						className="navbar-toggle-btn bg-light ms-auto"
-						aria-controls="basic-navbar-nav"
-					/>
+					<span></span>
 					<span></span>
 					<Navbar.Collapse
 						className="navbar-collapse-box"
