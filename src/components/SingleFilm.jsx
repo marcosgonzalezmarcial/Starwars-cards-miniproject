@@ -72,22 +72,12 @@ const SingleFilm = () => {
                   <span>{film.release_date}</span>
                 </Col>
               </Row>
-              {/* <Row className="py-1">
-                <Col>
-                  <h3>Skin Color</h3>
-                  <span>{film.skin_color}</span>
-                </Col>
-                <Col>
-                  <h3>Eye Color</h3>
-                  <span>{film.eye_color}</span>
-                </Col>
-              </Row> */}
               <Row className="py-1">
-                <Col className="pt-1">
+                {/* <Col md="6" className="pt-1">
                   <h3 className="m-0 py-1">Appearances</h3>
                   <ListOfPilots filmsUrls={film.characters} />
-                </Col>
-                <Col className="pt-1">
+                </Col> */}
+                <Col /*md="6"*/ className="pt-1">
                   <h3 className="m-0 py-1">Ships</h3>
                   {film.starships.length > 0 ? (
                     <ListOfShips shipsUrls={film.starships} />
