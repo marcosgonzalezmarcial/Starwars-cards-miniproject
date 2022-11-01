@@ -30,16 +30,19 @@ const ListOfShips = ({ shipsUrls }) => {
 		[navigate]
 	)
 
-	return (
-		<>
-			{ships.map(ship => (
-				<span key={ship.id} onClick={selectShip} className="list-element">
-					{ship.name}
-				</span>
-			))}
-			{/* {shipSelected && <ShipCard shipSelectedData={shipSelected} />} */}
-		</>
-	)
+  return (
+    <>
+      {ships.map((ship) => (
+        <>
+          <span key={ship.id} onClick={selectShip} className="list-element">
+            {ship.name}
+          </span>{' '}
+          <span className="ship-name-separator">|</span>
+        </>
+      ))}
+      {/* {shipSelected && <ShipCard shipSelectedData={shipSelected} />} */}
+    </>
+  )
 }
 
 export default ListOfShips
