@@ -1,4 +1,4 @@
-import starshipsMappedData from "../api/mocked-data/starshipsMappedData";
+import starshipsMappedData from "../services/mocked-data/starshipsMappedData";
 
 export const transformShipsArray = (newShips) => {
   const modifiedShipsArr = newShips.map((shipFromNewShips) => {

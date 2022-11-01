@@ -1,42 +1,40 @@
 import { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import filmsMappedData from '../api/mocked-data/filmsMappedData.json'
+import filmsMappedData from '../services/mocked-data/filmsMappedData.json'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
-import { fetchSingleFilm } from '../api/fetchSingleFilm'
+import { fetchSingleFilm } from '../services/fetchSingleFilm'
 import ListOfPilots from './ListOfPilots'
 
 const SingleFilm = () => {
-  const [film, setFilm] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-  const [img, setImg] = useState('')
+	const [film, setFilm] = useState({})
+	const [isLoading, setIsLoading] = useState(true)
+	const [img, setImg] = useState('')
 
-  let { filmTitle } = useParams()
+	let { filmTitle } = useParams()
 
-  useEffect(() => {
-    setIsLoading(true)
+	useEffect(() => {
+		setIsLoading(true)
 
-    const filmTitleFromUrl = urlStringify(filmTitle)
-    console.log(filmTitleFromUrl)
+		const filmTitleFromUrl = urlStringify(filmTitle)
+		console.log(filmTitleFromUrl)
 
-    const { id } = filmsMappedData.find(
-      (film) => film.title === filmTitleFromUrl
-    )
+		const { id } = filmsMappedData.find(film => film.title === filmTitleFromUrl)
 
-    const [filmFiltered] = filmsMappedData.filter(
-      (film) => film.id === Number(id)
-    )
+		const [filmFiltered] = filmsMappedData.filter(
+			film => film.id === Number(id)
+		)
 
-    setImg(filmFiltered.imgUrl)
+		setImg(filmFiltered.imgUrl)
 
-    fetchSingleFilm(id)
-      .then((film) => {
-        setFilm(film)
-        setIsLoading(false)
-      })
-      .catch(console.log)
-  }, [filmTitle])
+		fetchSingleFilm(id)
+			.then(film => {
+				setFilm(film)
+				setIsLoading(false)
+			})
+			.catch(console.log)
+	}, [filmTitle])
 
   return (
     <>
