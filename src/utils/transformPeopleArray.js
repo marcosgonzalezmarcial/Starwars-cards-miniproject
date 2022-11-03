@@ -1,4 +1,4 @@
-import peopleJsonArr from '../services/mocked-data/peopleMappedData'
+import peopleJsonArr from '../utils/mocked-data/peopleMappedData'
 
 export const transformPeopleArray = (newPeople) => {
   const modifiedPeoplesArr = newPeople.map((personFromNewPeople) => {

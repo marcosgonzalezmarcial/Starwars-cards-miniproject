@@ -9,7 +9,7 @@ const SectionNav = () => {
           <Col className="border-silver">
             <Nav.Item>
               <Link className="nav-link px-2 text-center" to="/home">
-                HOME
+                PLANETS
               </Link>
             </Nav.Item>
           </Col>

@@ -1,13 +1,13 @@
-import starshipsMappedData from "../services/mocked-data/starshipsMappedData";
+import starshipsMappedData from '../utils/mocked-data/starshipsMappedData'
 
 export const transformShipsArray = (newShips) => {
   const modifiedShipsArr = newShips.map((shipFromNewShips) => {
-    const auxStarshipsJsonArr = [...starshipsMappedData];
+    const auxStarshipsJsonArr = [...starshipsMappedData]
     const imgUrl = auxStarshipsJsonArr.filter(
       (item) => item.name === shipFromNewShips.name
-    );
+    )
 
-    return { ...shipFromNewShips, ...imgUrl[0] };
-  });
-  return modifiedShipsArr;
-};
+    return { ...shipFromNewShips, ...imgUrl[0] }
+  })
+  return modifiedShipsArr
+}
