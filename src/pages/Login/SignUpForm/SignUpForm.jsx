@@ -56,14 +56,17 @@ const SignUpForm = ({ setUsers }) => {
       <form onSubmit={handleSubmit} action="">
         <div
           onMouseDown={handleFormInnerClick}
-          className="form-inner text-center"
+          className="form-inner p-3  position-relative d-flex flex-column align-items-center text-center"
         >
           <img className="login-img my-4 p-2" src={ReactLogo} alt="logo" />
-          <button className="login-close" onClick={handleClick}>
+          <button
+            className="login-close-btn position-absolute"
+            onClick={handleClick}
+          >
             X
           </button>
           <h1 className="log-in-title">CREATE YOUR ACCOUNT</h1>
-          <div className="form-group my-3">
+          <div className="form-group w-100 my-3">
             <input
               onChange={handleChangeFirstName}
               placeholder="First Name"
@@ -72,7 +75,7 @@ const SignUpForm = ({ setUsers }) => {
               required
             />
           </div>
-          <div className="form-group my-3">
+          <div className="form-group w-100 my-3">
             <input
               onChange={handleChangeLastName}
               placeholder="Last Name"
@@ -81,7 +84,7 @@ const SignUpForm = ({ setUsers }) => {
               required
             />
           </div>
-          <div className="form-group my-3">
+          <div className="form-group w-100 my-3">
             <input
               onChange={handleChangeEmail}
               placeholder="Email Adress"
@@ -90,7 +93,7 @@ const SignUpForm = ({ setUsers }) => {
               required
             />
           </div>
-          <div className="form-group my-3">
+          <div className="form-group w-100 my-3">
             <input
               onChange={handleChangePassword}
               placeholder="Password"
