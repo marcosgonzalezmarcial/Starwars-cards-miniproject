@@ -12,6 +12,8 @@ import SingleShip from './components/SingleShip'
 import ProtectedRoute from './pages/ProtectedRoute'
 import NestedRoutes from './pages/NestedRoutes'
 import SingleFilm from './components/SingleFilm'
+import Planets from './pages/Planets'
+import SinglePlanet from './components/SinglePlanet'
 
 function App() {
   const [users, setUsers] = useState(
@@ -45,12 +47,15 @@ function App() {
               <Route index element={<StarShips />} />
               <Route path=":starshipName" element={<SingleShip />} />
             </Route>
+            <Route path="planets" element={<NestedRoutes />}>
+              <Route index element={<Planets />} />
+              <Route path=":planetName" element={<SinglePlanet />} />
+            </Route>
             <Route path="characters" element={<NestedRoutes />}>
               <Route index element={<Characters />} />
               <Route path=":characterName" element={<SingleCharacter />} />
             </Route>
             <Route path="films" element={<NestedRoutes />}>
-              {/* <Route index element={<Films />} /> */}
               <Route path=":filmTitle" element={<SingleFilm />} />
             </Route>
           </Route>

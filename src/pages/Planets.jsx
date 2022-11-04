@@ -1,50 +1,50 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
-import starshipsMappedData from '../utils/mocked-data/starshipsMappedData.json'
+import planetsMappedData from '../utils/mocked-data/planetsMappedData.js'
 import './grid-styles.css'
-import { getTransformedShipsArray } from '../services/getTransformedShipsArray'
+import { getTransformedPlanetsArray } from '../services/getTransformedPlanetsArray'
 
 const Planets = () => {
   const [page, setPage] = useState(1)
-  const [ships, setShips] = useState([])
+  const [planets, setPlanets] = useState([])
 
   let navigate = useNavigate()
 
   useEffect(() => {
-    getTransformedShipsArray(page).then((data) =>
-      setShips((prev) => [...prev, ...data])
-    )
+    getTransformedPlanetsArray(page).then((data) => {
+      setPlanets((prev) => [...prev, ...data])
+    })
   }, [page])
 
   const handleClick = (e) => {
-    const shipSelected = e.target.textContent
-    const [ship] = starshipsMappedData.filter(
-      (item) => item.name === shipSelected
+    const planetSelected = e.target.textContent
+    const [planet] = planetsMappedData.filter(
+      (item) => item.name === planetSelected
     )
-    navigate(`${ship.name.replaceAll(' ', '~')}`)
+    navigate(`${planet.name.replaceAll(' ', '~')}`)
   }
 
   return (
     <InfiniteScroll
-      dataLength={ships.length}
-      next={() => setPage((prev) => ships.length < 36 && prev + 1)}
-      hasMore={ships.length < 36 && true}
+      dataLength={planets.length}
+      next={() => setPage((prev) => planets.length < 59 && prev + 1)}
+      hasMore={planets.length < 59 && true}
       loader={<div className="text-white display-4">Loading...</div>}
       className="my-3 my-md-4 grid-container"
     >
-      {ships.map((ship, index) => (
-        <div key={index} className="grid-element-card">
+      {planets.map((planet) => (
+        <div key={planet.name} className="grid-element-card">
           <div className="grid-card-hero">
             <img
               className="grid-card-hero-img"
-              src={ship.imgUrl}
-              alt={ship.name}
+              src={planet.imgUrl}
+              alt={planet.name}
             />
           </div>
           <div className="text-secondary bg-dark p-3 grid-card-info">
-            <h4 onClick={handleClick}>{ship.name}</h4>
-            <p>{ship.model}</p>
+            <h4 onClick={handleClick}>{planet.name}</h4>
+            <p>{planet.climate}</p>
           </div>
         </div>
       ))}

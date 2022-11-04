@@ -2,7 +2,7 @@
   width: min(90vw, 1100px);
   display: flex;
   margin-inline: auto;
-  border-radius: 0px 15px 0px 15px;
+  border-radius: 15px;
   overflow: hidden;
 }
 
