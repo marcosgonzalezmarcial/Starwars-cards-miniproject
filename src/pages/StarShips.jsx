@@ -34,8 +34,8 @@ const StarShips = () => {
       loader={<div className="text-white display-4">Loading...</div>}
       className="my-3 my-md-4 grid-container"
     >
-      {ships.map((ship, index) => (
-        <div key={index} className="grid-element-card">
+      {ships.map((ship) => (
+        <div key={ship.name} className="grid-element-card">
           <div className="grid-card-hero">
             <img
               className="grid-card-hero-img"
