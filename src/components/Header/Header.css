@@ -11,6 +11,14 @@
   font-weight: 800 !important;
 }
 
+.navbar-toggle-btn {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.navbar-toggle-btn:focus {
+  box-shadow: 0 0 0 0.1rem;
+}
+
 @media (max-width: 576px) {
   .nav {
     flex-wrap: nowrap;

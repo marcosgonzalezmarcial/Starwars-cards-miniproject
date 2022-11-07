@@ -14,6 +14,10 @@
   display: flex;
 }
 
+.signup-link-group {
+  flex-grow: 1;
+}
+
 .form-inner {
   background-color: #181818;
   letter-spacing: 0.06em;
@@ -52,7 +56,7 @@
   background-color: #484848;
   color: #edd700;
 }
-input[type='submit'] {
+input[type="submit"] {
   display: block;
   width: 90%;
   margin: 1.3rem auto;
@@ -66,7 +70,7 @@ input[type='submit'] {
   transition: background-color 0.2s;
 }
 
-input[type='submit']:hover {
+input[type="submit"]:hover {
   background-color: #3f6dac;
 }
 
