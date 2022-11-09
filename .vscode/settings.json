@@ -1,5 +1,11 @@
 {
   "editor.wordWrap": "on",
   "editor.fontSize": 13,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "cSpell.words": [
+    "pilotcard"
+  ],
+  "cSpell.ignoreWords": [
+    "logueó"
+  ]
 }

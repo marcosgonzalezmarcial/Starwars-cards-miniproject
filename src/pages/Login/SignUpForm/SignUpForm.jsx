@@ -1,68 +1,72 @@
-import React, { useState } from "react";
-import { Link, useHistory, useNavigate } from "react-router-dom";
-import "../form.css";
-import ReactLogo from "../../../assets/logosw.svg";
+import React, { useState } from 'react'
+import { Link, useHistory, useNavigate } from 'react-router-dom'
+import '../form.css'
+import ReactLogo from '../../../assets/logosw.svg'
 
 const initialUserDetailsState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: ""
-};
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: ''
+}
 
 const SignUpForm = ({ setUsers }) => {
-  const [userDetails, setUserDetails] = useState(initialUserDetailsState);
-  const [isOpen, setIsOpen] = useState(true);
+  const [userDetails, setUserDetails] = useState(initialUserDetailsState)
+  const [isOpen, setIsOpen] = useState(true)
   // let history = useHistory();
-  let navigate = useNavigate();
+  let navigate = useNavigate()
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setUsers((prev) => [...prev, userDetails]);
-    setUserDetails(initialUserDetailsState);
-    alert("Has creado el usuario correctamente, ya puedes logueate");
-    navigate("/loginform");
-  };
+    e.preventDefault()
+    setUsers((prev) => [...prev, userDetails])
+    setUserDetails(initialUserDetailsState)
+    alert('Has creado el usuario correctamente, ya puedes logueate')
+    navigate('/loginform')
+  }
 
   const handleClick = () => {
-    setIsOpen(false);
-    navigate("/home");
-  };
+    setIsOpen(false)
+    navigate('/home')
+  }
 
   const handleChangeFirstName = (e) => {
-    const inputFirstName = e.target.value;
-    setUserDetails({ ...userDetails, firstName: inputFirstName });
-  };
+    const inputFirstName = e.target.value
+    setUserDetails({ ...userDetails, firstName: inputFirstName })
+  }
   const handleChangeLastName = (e) => {
-    const inputLastName = e.target.value;
-    setUserDetails({ ...userDetails, lastName: inputLastName });
-  };
+    const inputLastName = e.target.value
+    setUserDetails({ ...userDetails, lastName: inputLastName })
+  }
   const handleChangeEmail = (e) => {
-    const inputEmail = e.target.value;
-    setUserDetails({ ...userDetails, email: inputEmail });
-  };
+    const inputEmail = e.target.value
+    setUserDetails({ ...userDetails, email: inputEmail })
+  }
   const handleChangePassword = (e) => {
-    const inputPassword = e.target.value;
-    setUserDetails({ ...userDetails, password: inputPassword });
-  };
+    const inputPassword = e.target.value
+    setUserDetails({ ...userDetails, password: inputPassword })
+  }
 
-  const handleFormInnerClick = (e) => e.stopPropagation();
+  const handleFormInnerClick = (e) => e.stopPropagation()
 
   return (
+    // <div className="form-layer">
     <div
       onMouseDown={handleClick}
-      className={`loginForm-container ${isOpen && "is-open"}`}
+      className={`loginForm-container ${isOpen && 'is-open'}`}
     >
       <form onSubmit={handleSubmit} action="">
         <div
           onMouseDown={handleFormInnerClick}
-          className="form-inner text-center"
+          className="form-inner p-3  position-relative d-flex flex-column align-items-center text-center"
         >
-          <img className="my-4 p-2" src={ReactLogo} alt="logo" />
-          <button className="login-close" onClick={handleClick}>
+          <img className="login-img my-4 p-2" src={ReactLogo} alt="logo" />
+          <button
+            className="login-close-btn position-absolute"
+            onClick={handleClick}
+          >
             X
           </button>
           <h1 className="log-in-title">CREATE YOUR ACCOUNT</h1>
-          <div className="form-group my-3">
+          <div className="form-group w-100 my-3">
             <input
               onChange={handleChangeFirstName}
               placeholder="First Name"
@@ -71,7 +75,7 @@ const SignUpForm = ({ setUsers }) => {
               required
             />
           </div>
-          <div className="form-group my-3">
+          <div className="form-group w-100 my-3">
             <input
               onChange={handleChangeLastName}
               placeholder="Last Name"
@@ -80,7 +84,7 @@ const SignUpForm = ({ setUsers }) => {
               required
             />
           </div>
-          <div className="form-group my-3">
+          <div className="form-group w-100 my-3">
             <input
               onChange={handleChangeEmail}
               placeholder="Email Adress"
@@ -89,7 +93,7 @@ const SignUpForm = ({ setUsers }) => {
               required
             />
           </div>
-          <div className="form-group my-3">
+          <div className="form-group w-100 my-3">
             <input
               onChange={handleChangePassword}
               placeholder="Password"
@@ -110,7 +114,8 @@ const SignUpForm = ({ setUsers }) => {
         </div>
       </form>
     </div>
-  );
-};
+    // </div>
+  )
+}
 
-export default SignUpForm;
+export default SignUpForm

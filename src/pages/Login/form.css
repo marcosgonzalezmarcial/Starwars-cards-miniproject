@@ -1,36 +1,31 @@
 .loginForm-container {
   position: fixed;
-  z-index: 999;
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   display: none;
   align-items: center;
   justify-content: center;
 }
+
 .loginForm-container.is-open {
   display: flex;
 }
 
-.loginForm-container.is-open > form {
-  position: absolute;
-  top: 25%;
+.signup-link-group {
+  flex-grow: 1;
 }
 
 .form-inner {
   background-color: #181818;
   letter-spacing: 0.06em;
-  min-height: 23rem;
   width: min(540px, 85vw);
-  padding: 1rem;
 }
-
-button.login-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+.login-close-btn {
+  /* top: 4vh; */
+  right: 1.5rem;
   border: 0;
   background-color: transparent;
   font-size: 2rem;
@@ -38,7 +33,7 @@ button.login-close {
   transition: color 0.1s;
 }
 
-button.login-close:hover {
+.login-close-btn:hover {
   color: #3f6dac;
 }
 
@@ -79,10 +74,10 @@ input[type="submit"]:hover {
   background-color: #3f6dac;
 }
 
-div.sign-up-link {
+.sign-up-link {
   width: 90%;
   margin: 0 auto;
-  margin-top: 3.5rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
   padding: 0.5rem;
   border: 0;
@@ -90,7 +85,7 @@ div.sign-up-link {
   transition: border 350ms;
 }
 
-div.sign-up-link:hover {
+.sign-up-link:hover {
   border: solid 1px #edd700;
 }
 
@@ -98,7 +93,6 @@ div.sign-up-link:hover {
   display: block;
   width: 100%;
   color: #edd700;
-  text-decoration: none;
 }
 
 .signup-link-group p {
@@ -107,9 +101,29 @@ div.sign-up-link:hover {
 .signup-link-group a {
   font-size: 13px;
   color: #edd700;
-  text-decoration: none;
 }
 
 .signup-link-group a:hover {
   text-decoration: underline;
+}
+
+.login-img {
+  width: 200px;
+}
+
+@media (max-width: 576px) {
+  .loginForm-container {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    min-height: 100vh;
+  }
+  .loginForm-container form {
+    width: 100%;
+    height: 100%;
+  }
+  .form-inner {
+    width: 100%;
+    height: 100%;
+  }
 }
