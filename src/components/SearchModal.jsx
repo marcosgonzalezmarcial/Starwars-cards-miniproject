@@ -3,7 +3,6 @@ import { Button, Form, Modal } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 const SearchModal = ({ show, onHide }) => {
-  // const [searchTerm, setSearchTerm] = useState(null)
   const [searchCategory, setSearchCategory] = useState(null)
 
   let navigate = useNavigate()

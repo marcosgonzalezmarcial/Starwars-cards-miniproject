@@ -28,29 +28,6 @@ const StarShips = () => {
   }
 
   return (
-    // <InfiniteScroll
-    //   dataLength={ships.length}
-    //   next={() => setPage((prev) => ships.length < 36 && prev + 1)}
-    //   hasMore={ships.length < 36 && true}
-    //   loader={<div className="text-white display-4">Loading...</div>}
-    //   className="my-3 my-md-4 grid-container"
-    // >
-    //   {ships.map((ship) => (
-    //     <div key={ship.name} className="grid-element-card">
-    //       <div className="grid-card-hero">
-    //         <img
-    //           className="grid-card-hero-img"
-    //           src={ship.imgUrl}
-    //           alt={ship.name}
-    //         />
-    //       </div>
-    //       <div className="text-secondary bg-dark p-3 grid-card-info">
-    //         <h4 onClick={handleClick}>{ship.name}</h4>
-    //         <p>{ship.model}</p>
-    //       </div>
-    //     </div>
-    //   ))}
-    // </InfiniteScroll>
     <>
       {searchItems.length > 0 ? (
         <div className="my-3 my-md-4 grid-container">

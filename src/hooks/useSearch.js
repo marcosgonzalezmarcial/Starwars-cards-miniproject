@@ -14,8 +14,6 @@ export const useSearch = (/*searchParams, query*/) => {
     category = 'people'
   }
 
-  // console.log(`https://swapi.dev/api/${category}/?search=${query}`)
-
   useEffect(() => {
     if (query && category === '/planets/') {
       fetch(`https://swapi.dev/api/${category}/?search=${query}`)
