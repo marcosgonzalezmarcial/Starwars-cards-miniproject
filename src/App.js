@@ -54,6 +54,7 @@ function App() {
             <Route path="characters" element={<NestedRoutes />}>
               <Route index element={<Characters />} />
               <Route path=":characterName" element={<SingleCharacter />} />
+              {/* <Route path=":search" element={<h1>Hello </h1>} /> */}
             </Route>
             <Route path="films" element={<NestedRoutes />}>
               <Route path=":filmTitle" element={<SingleFilm />} />

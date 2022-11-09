@@ -1,8 +1,20 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom'
 
 const NestedRoutes = () => {
-	return <Outlet />
+  // const [searchParams] = useSearchParams()
+  // const { pathname } = useLocation()
+  // if (searchParams && pathname) {
+  //   fetch(
+  //     `https://swapi.dev/api/${pathname.slice(1)}/?search=${searchParams.get(
+  //       'search'
+  //     )}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data.results))
+  // }
+
+  return <Outlet />
 }
 
 export default NestedRoutes

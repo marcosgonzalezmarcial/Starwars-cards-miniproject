@@ -1,12 +1,26 @@
-import { useRef, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { useRef, useState } from 'react'
+import { Button, Form, Modal } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 const SearchModal = ({ show, onHide }) => {
-  const [searchTerm, setSearchTerm] = useState(null);
-  const inputRef = useRef(null);
-  const handleChange = (e) => {
-    inputRef.current.value = e.target.value;
-  };
+  // const [searchTerm, setSearchTerm] = useState(null)
+  const [searchCategory, setSearchCategory] = useState(null)
+
+  let navigate = useNavigate()
+
+  const inputRef = useRef(null)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate(`/${searchCategory}/?search=${inputRef.current.value}`)
+    inputRef.current.value = ''
+    onHide()
+  }
+
+  const handleSelection = (e) => {
+    setSearchCategory(e.target.getAttribute('data-type'))
+  }
+
   return (
     <Modal
       show={show}
@@ -15,30 +29,62 @@ const SearchModal = ({ show, onHide }) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Search</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {/* <Container> */}
-        <Form>
-          <Form.Group controlId="form.Name">
+      <Form onSubmit={handleSubmit}>
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">Search</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Group>
+            <fieldset>
+              <legend style={{ fontSize: '1rem' }}>Select a category</legend>
+              <Form.Check
+                onChange={handleSelection}
+                inline
+                name="radio-stacked"
+                type="radio"
+                label="Planets"
+                role="switch"
+                required
+                data-type="planets"
+              />
+              <Form.Check
+                onChange={handleSelection}
+                inline
+                name="radio-stacked"
+                type="radio"
+                label="Characters"
+                role="switch"
+                required
+                data-type="characters"
+              />
+              <Form.Check
+                onChange={handleSelection}
+                inline
+                name="radio-stacked"
+                type="radio"
+                role="switch"
+                label="Starships"
+                required
+                data-type="starships"
+              />
+            </fieldset>
+          </Form.Group>
+          <Form.Group className="mt-2" controlId="form.Name">
             {/* <Form.Label>Search term</Form.Label> */}
             <Form.Control
-              onChange={handleChange}
               ref={inputRef}
-              // value={inputRef}
+              name="searchInput"
               type="text"
               placeholder="Enter search term"
             />
           </Form.Group>
-        </Form>
-        {/* </Container> */}
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
-      </Modal.Footer>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button type="submit" /*onClick={onHide}*/>Search</Button>
+        </Modal.Footer>
+      </Form>
     </Modal>
-  );
-};
+  )
+}
 
-export default SearchModal;
+export default SearchModal

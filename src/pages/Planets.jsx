@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import planetsMappedData from '../utils/mocked-data/planetsMappedData.js'
 import './grid-styles.css'
 import { getTransformedPlanetsArray } from '../services/getTransformedPlanetsArray'
+import { transformPlanetsArray } from '../utils/transformPlanetsArray.js'
+import { useSearch } from '../hooks/useSearch.js'
 
 const Planets = () => {
   const [page, setPage] = useState(1)
   const [planets, setPlanets] = useState([])
+  const { searchItems } = useSearch()
 
   let navigate = useNavigate()
 
@@ -26,29 +29,51 @@ const Planets = () => {
   }
 
   return (
-    <InfiniteScroll
-      dataLength={planets.length}
-      next={() => setPage((prev) => planets.length < 59 && prev + 1)}
-      hasMore={planets.length < 59 && true}
-      loader={<div className="text-white display-4">Loading...</div>}
-      className="my-3 my-md-4 grid-container"
-    >
-      {planets.map((planet) => (
-        <div key={planet.name} className="grid-element-card">
-          <div className="grid-card-hero">
-            <img
-              className="grid-card-hero-img"
-              src={planet.imgUrl}
-              alt={planet.name}
-            />
-          </div>
-          <div className="text-secondary bg-dark p-3 grid-card-info">
-            <h4 onClick={handleClick}>{planet.name}</h4>
-            <p>{planet.climate}</p>
-          </div>
+    <>
+      {searchItems.length > 0 ? (
+        <div className="my-3 my-md-4 grid-container">
+          {searchItems.map((planet) => (
+            <div key={planet.name} className="grid-element-card">
+              <div className="grid-card-hero">
+                <img
+                  className="grid-card-hero-img"
+                  src={planet.imgUrl}
+                  alt={planet.name}
+                />
+              </div>
+              <div className="text-secondary bg-dark p-3 grid-card-info">
+                <h4 onClick={handleClick}>{planet.name}</h4>
+                <p>{planet.climate}</p>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </InfiniteScroll>
+      ) : (
+        <InfiniteScroll
+          dataLength={planets.length}
+          next={() => setPage((prev) => planets.length < 59 && prev + 1)}
+          hasMore={planets.length < 59 && true}
+          loader={<div className="text-white display-4">Loading...</div>}
+          className="my-3 my-md-4 grid-container"
+        >
+          {planets.map((planet) => (
+            <div key={planet.name} className="grid-element-card">
+              <div className="grid-card-hero">
+                <img
+                  className="grid-card-hero-img"
+                  src={planet.imgUrl}
+                  alt={planet.name}
+                />
+              </div>
+              <div className="text-secondary bg-dark p-3 grid-card-info">
+                <h4 onClick={handleClick}>{planet.name}</h4>
+                <p>{planet.climate}</p>
+              </div>
+            </div>
+          ))}
+        </InfiniteScroll>
+      )}
+    </>
   )
 }
 
