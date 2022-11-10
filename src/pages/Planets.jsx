@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import planetsMappedData from '../utils/mocked-data/planetsMappedData.js'
 import './grid-styles.css'
 import { getTransformedPlanetsArray } from '../services/getTransformedPlanetsArray'
-import { transformPlanetsArray } from '../utils/transformPlanetsArray.js'
 import { useSearch } from '../hooks/useSearch.js'
 
 const Planets = () => {

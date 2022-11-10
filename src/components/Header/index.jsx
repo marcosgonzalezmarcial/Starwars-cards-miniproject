@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   Navbar,
   Container,
@@ -7,18 +7,26 @@ import {
   // NavDropdown,
   // Nav,
   Button
-} from 'react-bootstrap'
-import logo from '../../assets/sw_logo_mobile.png'
-import './Header.css'
-import { Link, redirect, useNavigate } from 'react-router-dom'
-import SectionNav from './SectionNav'
-import LoginNav from './LoginNav'
-import SearchIcon from '../SearchIcon'
-import SearchModal from '../SearchModal'
+} from "react-bootstrap";
+import logo from "../../assets/sw_logo_mobile.png";
+import "./Header.css";
+import { Link, useNavigate } from "react-router-dom";
+import SectionNav from "./SectionNav";
+import LoginNav from "./LoginNav";
+import SearchIcon from "../SearchIcon";
+import SearchModal from "../SearchModal";
 
 const Header = ({ loggedIn, setLoggedIn }) => {
-  const [modalShow, setModalShow] = useState(false)
-  const navigate = useNavigate()
+  const [modalShow, setModalShow] = useState(false);
+  let navigate = useNavigate();
+
+  const handleSearchClick = () => {
+    if (loggedIn) {
+      setModalShow(true);
+    } else {
+      navigate("/loginform");
+    }
+  };
   return (
     <header className="header">
       <Navbar variant="dark" className="navbar-box py-1 py-md-3" expand="md">
@@ -45,19 +53,9 @@ const Header = ({ loggedIn, setLoggedIn }) => {
           {/* <div className="ms-auto d-md-none search-icon-container">
             <SearchIcon onClick={() => setModalShow(true)} />
           </div> */}
-          <div className="ms-auto d-md-none search-icon-container">
-            <Button
-              variant="dark"
-              onClick={() => {
-                if (loggedIn) {
-                  setModalShow(true)
-                } else {
-                  navigate('/loginform')
-                }
-              }}
-            >
-              {/* <div className="ms-auto d-md-none search-icon-container"> */}
-              <SearchIcon onClick={() => setModalShow(true)} />
+          <div className="ms-auto me-md-auto ms-md-0 search-icon-container">
+            <Button variant="dark" onClick={() => handleSearchClick()}>
+              <SearchIcon onClick={(prev) => setModalShow(!prev)} />
             </Button>
           </div>
 
@@ -103,7 +101,7 @@ const Header = ({ loggedIn, setLoggedIn }) => {
       </Navbar>
       <SectionNav />
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

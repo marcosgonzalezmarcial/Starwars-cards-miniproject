@@ -12,7 +12,7 @@ const SearchModal = ({ show, onHide }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     navigate(`/${searchCategory}/?search=${inputRef.current.value}`)
-    inputRef.current.value = ''
+    // inputRef.current.value = ''
     onHide()
   }
 
@@ -27,6 +27,7 @@ const SearchModal = ({ show, onHide }) => {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      variant="dark"
     >
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
@@ -75,6 +76,7 @@ const SearchModal = ({ show, onHide }) => {
               name="searchInput"
               type="text"
               placeholder="Enter search term"
+              required
             />
           </Form.Group>
         </Modal.Body>
