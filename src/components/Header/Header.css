@@ -174,3 +174,39 @@
 /* .navbar-link {
   background-image: url(https://res.cloudinary.com/dn9mr6kwc/image/upload/v1667039687/Starwars%20miniproject/sw_logo_mobile_q66vst.png);
 }  */
+
+.modal {
+	backdrop-filter: blur(2px);
+}
+
+.modal-form {
+	background-color: #282a2b;
+	color: #edd700;
+}
+
+.modal-backdrop.show {
+	opacity: 0.75;
+}
+.modal-search-btn {
+	display: block;
+	width: 100%;
+	margin: 1.3rem auto;
+	padding: 0.6rem;
+	border: none;
+	border-radius: 5px;
+	font-weight: 500;
+	font-size: 14px;
+	background-color: #484848;
+	color: white;
+	transition: background-color 0.2s;
+}
+
+input[name='searchInput'] {
+	font-size: 12px;
+	width: 100%;
+	padding: 0.7rem;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+	margin: auto;
+}

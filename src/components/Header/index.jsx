@@ -55,7 +55,6 @@ const Header = ({ loggedIn, setLoggedIn }) => {
 						<Button
 							// as="div"
 							className="search-icon-btn"
-							// variant="dark"
 							onClick={() => handleSearchClick()}
 						>
 							<SearchIcon onClick={prev => setModalShow(!prev)} />
