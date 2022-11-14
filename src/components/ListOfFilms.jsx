@@ -1,19 +1,27 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { fetchListOfDataFromUrlsArr } from '../services/fetchListOfDataFromUrlsArr'
-import FilmCard from './FilmCard'
 import './card-styles.css'
 import { useNavigate } from 'react-router-dom'
+import { Spinner } from './Spinner'
 
 const ListOfFilms = ({ filmsUrls }) => {
   const [films, setFilms] = useState([])
+  const [loading, setIsLoading] = useState(false)
   let navigate = useNavigate()
 
   useEffect(() => {
+    setIsLoading(true)
     fetchListOfDataFromUrlsArr(filmsUrls)
       .then((films) => {
         setFilms(films)
       })
       .catch(console.log)
+      .finally(() => {
+        setIsLoading(false)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }, [filmsUrls])
 
   const selectFilm = useCallback(
@@ -26,11 +34,15 @@ const ListOfFilms = ({ filmsUrls }) => {
 
   return (
     <>
-      {films.map((film) => (
-        <span key={film?.title} onClick={selectFilm} className="list-element">
-          {film.title}
-        </span>
-      ))}
+      {loading ? (
+        <Spinner />
+      ) : (
+        films.map((film) => (
+          <span key={film?.title} onClick={selectFilm} className="list-element">
+            {film.title}
+          </span>
+        ))
+      )}
     </>
   )
 }

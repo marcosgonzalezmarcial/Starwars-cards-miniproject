@@ -67,9 +67,9 @@
     display: inline-block;
     padding-inline: 0.3rem;
   }
-  .page-description-container span {
+  /* .page-description-container span {
     display: inline-block;
-  }
+  } */
 }
 
 .inner-card-description-container {
@@ -84,6 +84,7 @@
 .list-element {
   color: #9e4f60 !important;
   padding-block: 0.1rem;
+  /* display: block; */
 }
 .list-element:hover {
   color: rgb(183, 104, 121) !important;
