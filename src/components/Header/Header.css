@@ -5,6 +5,10 @@
 .nav-wrapper {
   width: min(90vw, 1100px);
 }
+
+.nav-item {
+  position: relative;
+}
 .nav-link,
 .login-nav-link {
   font-size: 0.8em !important;
@@ -250,4 +254,17 @@ input[name='searchInput']:focus-visible {
 .modal-header .btn-close {
   /* color: white !important; */
   opacity: 1;
+}
+
+.light-saber {
+  /* position: absolute; */
+  /* bottom: 13%; */
+  border-radius: 10px;
+  /* left: 40%; */
+  width: 35px;
+  height: 2px;
+  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+    0 0 100px #03e9f4;
+  background: white;
+  margin: 0 auto;
 }
