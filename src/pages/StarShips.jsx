@@ -5,6 +5,7 @@ import starshipsMappedData from '../utils/mocked-data/starshipsMappedData.json'
 import './grid-styles.css'
 import { getTransformedShipsArray } from '../services/getTransformedShipsArray'
 import { useSearch } from '../hooks/useSearch'
+import { Spinner } from '../components/Spinner'
 
 const StarShips = () => {
   const [page, setPage] = useState(1)
@@ -13,10 +14,23 @@ const StarShips = () => {
 
   let navigate = useNavigate()
 
+  // useEffect(() => {
+  //   getTransformedShipsArray(page)
+  //     .then((data) => setShips((prev) => [...prev, ...data]))
+  //     .catch((error) => console.log(error))
+  // }, [page])
+
   useEffect(() => {
-    getTransformedShipsArray(page).then((data) =>
-      setShips((prev) => [...prev, ...data])
-    )
+    getTransformedShipsArray(page)
+      .then((data) => {
+        //checking data is not null
+        if (data) {
+          setShips((prev) => [...prev, ...data])
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }, [page])
 
   const handleClick = (e) => {
@@ -31,7 +45,7 @@ const StarShips = () => {
     <>
       {searchItems.length > 0 ? (
         <div className="my-3 my-md-4 grid-container">
-          {searchItems.map((starship) => (
+          {searchItems?.map((starship) => (
             <div key={starship.name} className="grid-element-card">
               <div className="grid-card-hero">
                 <img
@@ -52,8 +66,9 @@ const StarShips = () => {
           dataLength={ships.length}
           next={() => setPage((prev) => ships.length < 36 && prev + 1)}
           hasMore={ships.length < 36 && true}
-          loader={<div className="text-white display-4">Loading...</div>}
-          className="my-3 my-md-4 grid-container"
+          // loader={<div className="text-white display-4">Loading...</div>}
+          loader={<Spinner />}
+          className={`my-3 my-md-4 ${ships.length > 0 ? 'grid-container' : ''}`}
         >
           {ships.map((ship) => (
             <div key={ship.name} className="grid-element-card">

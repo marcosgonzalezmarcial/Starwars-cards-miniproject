@@ -14,9 +14,16 @@ const Planets = () => {
   let navigate = useNavigate()
 
   useEffect(() => {
-    getTransformedPlanetsArray(page).then((data) => {
-      setPlanets((prev) => [...prev, ...data])
-    })
+    getTransformedPlanetsArray(page)
+      .then((data) => {
+        //checking data is not null
+        if (data) {
+          setPlanets((prev) => [...prev, ...data])
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }, [page])
 
   const handleClick = (e) => {
