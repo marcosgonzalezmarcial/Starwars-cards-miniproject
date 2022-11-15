@@ -5,6 +5,7 @@ import planetsMappedData from '../utils/mocked-data/planetsMappedData.js'
 import './grid-styles.css'
 import { getTransformedPlanetsArray } from '../services/getTransformedPlanetsArray'
 import { useSearch } from '../hooks/useSearch.js'
+import { Spinner } from '../components/Spinner.jsx'
 
 const Planets = () => {
   const [page, setPage] = useState(1)
@@ -59,8 +60,12 @@ const Planets = () => {
           dataLength={planets.length}
           next={() => setPage((prev) => planets.length < 59 && prev + 1)}
           hasMore={planets.length < 59 && true}
-          loader={<div className="text-white display-4">Loading...</div>}
-          className="my-3 my-md-4 grid-container"
+          // loader={<div className="text-white display-4">Cargando...</div>}
+          // className="my-3 my-md-4 grid-container"
+          loader={<Spinner />}
+          className={`my-3 my-md-4 ${
+            planets.length > 0 ? 'grid-container' : ''
+          }`}
         >
           {planets.map((planet) => (
             <div key={planet.name} className="grid-element-card">

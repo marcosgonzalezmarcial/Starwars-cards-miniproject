@@ -5,6 +5,7 @@ import peopleJsonArr from '../utils/mocked-data/peopleMappedData.json'
 import './grid-styles.css'
 import { getTransformedCharactersArray } from '../services/getTransformedCharactersArray'
 import { useSearch } from '../hooks/useSearch'
+import { Spinner } from '../components/Spinner'
 
 const Characters = () => {
   const [page, setPage] = useState(1)
@@ -65,8 +66,12 @@ const Characters = () => {
           dataLength={characters.length}
           next={() => setPage((prev) => characters.length < 82 && prev + 1)}
           hasMore={characters.length < 82 && true}
-          loader={<div className="text-white display-4">Cargando...</div>}
-          className="my-3 my-md-4 grid-container"
+          // loader={<div className="text-white display-4">Cargando...</div>}
+          // className="my-3 my-md-4 grid-container"
+          loader={<Spinner />}
+          className={`my-3 my-md-4 ${
+            characters.length > 0 ? 'grid-container' : ''
+          }`}
         >
           {characters.map((character) => (
             <div key={character.id} className="grid-element-card">
