@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
+import { API_URL } from '../constants'
 // import { getTransformedCharactersArray } from '../services/getTransformedCharactersArray'
 import { transformPeopleArray } from '../utils/transformPeopleArray'
 import { transformPlanetsArray } from '../utils/transformPlanetsArray'
@@ -16,7 +17,7 @@ export const useSearch = (/*searchParams, query*/) => {
 
   useEffect(() => {
     if (query && category === '/planets/') {
-      fetch(`https://swapi.dev/api/${category}/?search=${query}`)
+      fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data.results)
@@ -29,7 +30,7 @@ export const useSearch = (/*searchParams, query*/) => {
         })
     }
     if (query && category === 'people') {
-      fetch(`https://swapi.dev/api/${category}/?search=${query}`)
+      fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data.results)
@@ -44,7 +45,7 @@ export const useSearch = (/*searchParams, query*/) => {
         })
     }
     if (query && category === '/starships/') {
-      fetch(`https://swapi.dev/api/${category}/?search=${query}`)
+      fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data.results)
