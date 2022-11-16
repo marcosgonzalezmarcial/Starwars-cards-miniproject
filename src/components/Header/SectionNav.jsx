@@ -6,7 +6,7 @@ const SectionNav = () => {
   return (
     <div className="border-wrapper">
       <div className="m-auto nav-wrapper">
-        <Nav className="p-0 justify-content-center">
+        <Nav className="py-0 px-4 justify-content-center">
           <Col className="border-silver">
             <Nav.Item>
               {/* <Link className="nav-link px-2 text-center" to="/planets">
@@ -51,7 +51,7 @@ const SectionNav = () => {
               {/* <Link className="nav-link px-2 text-center" to="/characters">
                 CHARACTERS
               </Link> */}
-              <NavLink className="nav-link text-center py-1" to="characters">
+              <NavLink className="nav-link text-center py-1 " to="characters">
                 {({ isActive }) => (
                   <>
                     <div className="h-100 w-100 py-1 position-realitive">
