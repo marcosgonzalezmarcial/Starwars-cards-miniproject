@@ -10,7 +10,7 @@ import { Spinner } from './Spinner'
 
 const SinglePlanet = () => {
   const [planet, setPlanet] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [img, setImg] = useState(null)
 
   let { planetName } = useParams()
@@ -87,7 +87,7 @@ const SinglePlanet = () => {
                 </Col>
                 <Col className="pt-1">
                   <h3 className="m-0 py-1">Residents</h3>
-                  {planet.residents.length > 0 ? (
+                  {planet.residents?.length > 0 ? (
                     <ListOfPilots pilotsUrls={planet.residents} />
                   ) : (
                     <span>No residents registered for this ship</span>

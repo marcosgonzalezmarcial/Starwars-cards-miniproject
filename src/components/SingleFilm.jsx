@@ -5,12 +5,12 @@ import filmsMappedData from '../utils/mocked-data/filmsMappedData.json'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
 import { fetchSingleFilm } from '../services/fetchSingleFilm'
-import ListOfPilots from './ListOfPilots'
+// import ListOfPilots from './ListOfPilots'
 import { Spinner } from './Spinner'
 
 const SingleFilm = () => {
   const [film, setFilm] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [img, setImg] = useState('')
 
   let { filmTitle } = useParams()
@@ -74,7 +74,7 @@ const SingleFilm = () => {
               <Row className="py-1">
                 <Col className="pt-1">
                   <h3 className="m-0 py-1">Ships</h3>
-                  {film.starships.length > 0 ? (
+                  {film.starships?.length > 0 ? (
                     <ListOfShips shipsUrls={film.starships} />
                   ) : (
                     <span>There aren't ships for this character</span>

@@ -10,7 +10,7 @@ import { Spinner } from './Spinner'
 
 const SingleCharacter = () => {
   const [character, setCharacter] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [img, setImg] = useState('')
 
   let { characterName } = useParams()
@@ -86,7 +86,7 @@ const SingleCharacter = () => {
                 </Col>
                 <Col className="pt-1">
                   <h3 className="m-0 py-1">Ships</h3>
-                  {character.starships.length > 0 ? (
+                  {character.starships?.length > 0 ? (
                     <ListOfShips shipsUrls={character.starships} />
                   ) : (
                     <span>There aren't ships for this character</span>
