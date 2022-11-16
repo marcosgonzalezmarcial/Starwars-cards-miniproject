@@ -32,16 +32,9 @@ const ListOfPilots = ({ pilotsUrls }) => {
   )
 
   return (
-    // <>
-    //   {pilots.map((pilot) => (
-    //     <span key={pilot.id} onClick={selectPilot} className="list-element">
-    //       {pilot.name}
-    //     </span>
-    //   ))}
-    // </>
     <>
       {loading ? (
-        <Spinner />
+        <Spinner small />
       ) : (
         pilots.map((pilot) => (
           <span key={pilot.id} onClick={selectPilot} className="list-element">

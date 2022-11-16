@@ -6,6 +6,7 @@ import { fetchSingleCharacter } from '../services/fetchSingleCharacter'
 import ListOfFilms from './ListOfFilms'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
+import { Spinner } from './Spinner'
 
 const SingleCharacter = () => {
   const [character, setCharacter] = useState({})
@@ -39,9 +40,7 @@ const SingleCharacter = () => {
   return (
     <>
       {isLoading ? (
-        <Container className="m-3">
-          <div className="text-white display-4">Loading...</div>
-        </Container>
+        <Spinner />
       ) : (
         <div className="page-wrapper text-secondary my-3">
           <div className="page-img-container">

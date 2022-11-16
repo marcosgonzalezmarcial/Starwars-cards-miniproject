@@ -32,17 +32,14 @@ const ListOfShips = ({ shipsUrls }) => {
   )
 
   return (
-    // <Spinner />
     <>
       {loading ? (
-        <Spinner />
+        <Spinner small />
       ) : (
         ships.map((ship) => (
           <span key={ship.model} onClick={selectShip} className="list-element">
             {ship.name}
           </span>
-          // {' '}
-          /* <span className="ship-name-separator">|</span> */
         ))
       )}
     </>

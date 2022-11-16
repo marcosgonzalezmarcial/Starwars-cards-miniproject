@@ -6,6 +6,7 @@ import { fetchSinglePlanet } from '../services/fetchSinglePlanet'
 import ListOfPilots from './ListOfPilots'
 import ListOfFilms from './ListOfFilms'
 import { urlStringify } from '../utils/urlStringify'
+import { Spinner } from './Spinner'
 
 const SinglePlanet = () => {
   const [planet, setPlanet] = useState({})
@@ -40,9 +41,7 @@ const SinglePlanet = () => {
   return (
     <>
       {isLoading ? (
-        <Container className="m-3">
-          <div className="text-white display-4">Loading...</div>
-        </Container>
+        <Spinner />
       ) : (
         <main className="page-wrapper text-secondary my-3">
           <div className="page-img-container">

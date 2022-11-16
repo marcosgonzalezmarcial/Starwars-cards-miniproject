@@ -6,6 +6,7 @@ import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
 import { fetchSingleFilm } from '../services/fetchSingleFilm'
 import ListOfPilots from './ListOfPilots'
+import { Spinner } from './Spinner'
 
 const SingleFilm = () => {
   const [film, setFilm] = useState({})
@@ -41,9 +42,7 @@ const SingleFilm = () => {
   return (
     <>
       {isLoading ? (
-        <Container className="m-3">
-          <div className="text-white display-4">Loading...</div>
-        </Container>
+        <Spinner />
       ) : (
         <div className="page-wrapper text-secondary my-3">
           <div className="page-img-container">

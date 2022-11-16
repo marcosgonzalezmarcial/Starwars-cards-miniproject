@@ -14,12 +14,6 @@ const StarShips = () => {
 
   let navigate = useNavigate()
 
-  // useEffect(() => {
-  //   getTransformedShipsArray(page)
-  //     .then((data) => setShips((prev) => [...prev, ...data]))
-  //     .catch((error) => console.log(error))
-  // }, [page])
-
   useEffect(() => {
     getTransformedShipsArray(page)
       .then((data) => {
@@ -66,8 +60,6 @@ const StarShips = () => {
           dataLength={ships.length}
           next={() => setPage((prev) => ships.length < 36 && prev + 1)}
           hasMore={ships.length < 36 && true}
-          // loader={<div className="text-white display-4">Cargando...</div>}
-          // className="my-3 my-md-4 grid-container"
           loader={<Spinner />}
           className={`my-3 my-md-4 ${ships.length > 0 ? 'grid-container' : ''}`}
         >

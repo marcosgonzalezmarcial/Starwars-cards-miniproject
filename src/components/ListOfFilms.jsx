@@ -35,7 +35,7 @@ const ListOfFilms = ({ filmsUrls }) => {
   return (
     <>
       {loading ? (
-        <Spinner />
+        <Spinner small />
       ) : (
         films.map((film) => (
           <span key={film?.title} onClick={selectFilm} className="list-element">

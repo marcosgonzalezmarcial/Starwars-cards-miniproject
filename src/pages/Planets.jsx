@@ -60,8 +60,6 @@ const Planets = () => {
           dataLength={planets.length}
           next={() => setPage((prev) => planets.length < 59 && prev + 1)}
           hasMore={planets.length < 59 && true}
-          // loader={<div className="text-white display-4">Cargando...</div>}
-          // className="my-3 my-md-4 grid-container"
           loader={<Spinner />}
           className={`my-3 my-md-4 ${
             planets.length > 0 ? 'grid-container' : ''

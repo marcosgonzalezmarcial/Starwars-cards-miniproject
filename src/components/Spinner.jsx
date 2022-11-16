@@ -1,10 +1,11 @@
-// import spinner from '../assets/Eclipse-1s-100px.svg'
 import './Spinner.css'
-export const Spinner = () => {
+export const Spinner = ({ small }) => {
   return (
-    <div className="loadingio-spinner-eclipse-fduq9l551me">
-      <div className="ldio-h4qp1t6um59">
-        <div></div>
+    <div className={`spinner-wrapper ${small ? 'small' : ''}`}>
+      <div class="loadingio-spinner-eclipse-3z3n0w49pdf">
+        <div class="ldio-c0fsg7uppru">
+          <div></div>
+        </div>
       </div>
     </div>
   )

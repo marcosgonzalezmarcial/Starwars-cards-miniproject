@@ -14,12 +14,6 @@ const Characters = () => {
 
   let navigate = useNavigate()
 
-  // useEffect(() => {
-  //   getTransformedCharactersArray(page).then((data) =>
-  //     setCharacters((prev) => [...prev, ...data])
-  //   );
-  // }, [page]);
-
   useEffect(() => {
     getTransformedCharactersArray(page)
       .then((data) => {
@@ -66,8 +60,6 @@ const Characters = () => {
           dataLength={characters.length}
           next={() => setPage((prev) => characters.length < 82 && prev + 1)}
           hasMore={characters.length < 82 && true}
-          // loader={<div className="text-white display-4">Cargando...</div>}
-          // className="my-3 my-md-4 grid-container"
           loader={<Spinner />}
           className={`my-3 my-md-4 ${
             characters.length > 0 ? 'grid-container' : ''
