@@ -1,4 +1,4 @@
-import './Spinner.css'
+import './Spinner.scss'
 export const Spinner = ({ small }) => {
   return (
     <div className={`spinner-wrapper ${small ? 'small' : ''}`}>

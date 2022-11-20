@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
 import planetsMappedData from '../utils/mocked-data/planetsMappedData.js'
-import './grid-styles.css'
-import { getTransformedPlanetsArray } from '../services/getTransformedPlanetsArray'
 import { useSearch } from '../hooks/useSearch.js'
+import { getTransformedPlanetsArray } from '../services/getTransformedPlanetsArray'
 import { Spinner } from '../components/Spinner.jsx'
+import './styles.scss'
 
 const Planets = () => {
   const [page, setPage] = useState(1)

@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
 import peopleJsonArr from '../utils/mocked-data/peopleMappedData.json'
-import './grid-styles.css'
 import { getTransformedCharactersArray } from '../services/getTransformedCharactersArray'
 import { useSearch } from '../hooks/useSearch'
 import { Spinner } from '../components/Spinner'
+import './styles.scss'
 
 const Characters = () => {
   const [page, setPage] = useState(1)

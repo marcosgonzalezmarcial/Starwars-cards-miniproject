@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link, useHistory, useNavigate } from 'react-router-dom'
-import '../form.css'
+import { Link, useNavigate } from 'react-router-dom'
+import '../form.scss'
 import ReactLogo from '../../../assets/logosw.svg'
 
 const initialUserDetailsState = {
@@ -13,7 +13,6 @@ const initialUserDetailsState = {
 const SignUpForm = ({ setUsers }) => {
   const [userDetails, setUserDetails] = useState(initialUserDetailsState)
   const [isOpen, setIsOpen] = useState(true)
-  // let history = useHistory();
   let navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()

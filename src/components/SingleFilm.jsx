@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import filmsMappedData from '../utils/mocked-data/filmsMappedData.json'
 import ListOfShips from './ListOfShips'
@@ -44,7 +44,7 @@ const SingleFilm = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="page-wrapper text-secondary my-3">
+        <div className="main text-secondary my-3">
           <div className="page-img-container">
             <img src={img} alt={film.title} />
           </div>

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { fetchListOfDataFromUrlsArr } from '../services/fetchListOfDataFromUrlsArr'
-import './card-styles.css'
+import './page-styles.scss'
 import { useNavigate } from 'react-router-dom'
 import { Spinner } from './Spinner'
 

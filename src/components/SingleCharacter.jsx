@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import charactersMappedData from '../utils/mocked-data/peopleMappedData.json'
 import { fetchSingleCharacter } from '../services/fetchSingleCharacter'
@@ -17,9 +17,7 @@ const SingleCharacter = () => {
 
   useEffect(() => {
     setIsLoading(true)
-
     const newPerson = urlStringify(characterName)
-
     const { id } = charactersMappedData.find(
       (person) => person.name === newPerson
     )
@@ -42,7 +40,7 @@ const SingleCharacter = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="page-wrapper text-secondary my-3">
+        <div className="main text-secondary my-3">
           <div className="page-img-container">
             <img src={img} alt={character.name} />
           </div>
@@ -60,20 +58,20 @@ const SingleCharacter = () => {
                 </Col>
               </Row>
               <Row className="py-1">
-                <Col>
+                {/* <Col>
                   <h3>Gender:</h3>
                   <span>{character.gender}</span>
-                </Col>
-                <Col>
+                </Col> */}
+                {/* <Col>
                   <h3>Mass</h3>
                   <span>{character.mass}</span>
-                </Col>
+                </Col> */}
               </Row>
               <Row className="py-1">
-                <Col>
+                {/* <Col>
                   <h3>Skin Color</h3>
                   <span>{character.skin_color}</span>
-                </Col>
+                </Col> */}
                 <Col>
                   <h3>Eye Color</h3>
                   <span>{character.eye_color}</span>

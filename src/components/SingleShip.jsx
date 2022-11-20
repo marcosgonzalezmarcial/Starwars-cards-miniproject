@@ -43,7 +43,7 @@ const SingleShip = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <main className="page-wrapper text-secondary my-3">
+        <main className="main text-secondary my-3">
           <div className="page-img-container">
             <img src={img} alt={ship.name} />
           </div>
