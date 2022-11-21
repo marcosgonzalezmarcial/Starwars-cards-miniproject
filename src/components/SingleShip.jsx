@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import starshipsMappedData from '../utils/mocked-data/starshipsMappedData.json'
 import { fetchSingleShip } from '../services/fetchSingleShip'
 import ListOfPilots from './ListOfPilots'
 import ListOfFilms from './ListOfFilms'
 import { urlStringify } from '../utils/urlStringify'
-import { Spinner } from './Spinner'
+import { Spinner } from './Spinner/Spinner'
+import { transformShipsArray } from '../utils/transformShipsArray'
 
 const SingleShip = () => {
   const [ship, setShip] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const [img, setImg] = useState(null)
 
   let { starshipName } = useParams()
 
@@ -24,15 +24,12 @@ const SingleShip = () => {
       (ship) => ship.name === shipNameFromUrl
     )
 
-    const [shipFiltered] = starshipsMappedData.filter(
-      (starship) => starship.id === Number(id)
-    )
-
-    setImg(shipFiltered.imgUrl)
-
     fetchSingleShip(id)
       .then((ship) => {
-        setShip(ship)
+        // setShip(ship)
+        const [transformedShip] = transformShipsArray([ship])
+        setShip(transformedShip)
+        console.log(transformedShip)
         setIsLoading(false)
       })
       .catch(console.log)
@@ -45,7 +42,7 @@ const SingleShip = () => {
       ) : (
         <main className="main text-secondary my-3">
           <div className="page-img-container">
-            <img src={img} alt={ship.name} />
+            <img src={ship.imgUrl} alt={ship.name} />
           </div>
           <div className="page-description-container bg-dark p-2">
             <h2 className="mb-2 pt-1 px-2">{ship.name}</h2>

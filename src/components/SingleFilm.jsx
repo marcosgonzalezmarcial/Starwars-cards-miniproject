@@ -5,8 +5,7 @@ import filmsMappedData from '../utils/mocked-data/filmsMappedData.json'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
 import { fetchSingleFilm } from '../services/fetchSingleFilm'
-// import ListOfPilots from './ListOfPilots'
-import { Spinner } from './Spinner'
+import { Spinner } from './Spinner/Spinner'
 
 const SingleFilm = () => {
   const [film, setFilm] = useState({})

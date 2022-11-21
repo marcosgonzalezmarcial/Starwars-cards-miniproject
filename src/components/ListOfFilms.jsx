@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { fetchListOfDataFromUrlsArr } from '../services/fetchListOfDataFromUrlsArr'
-import './page-styles.scss'
 import { useNavigate } from 'react-router-dom'
-import { Spinner } from './Spinner'
+import { Spinner } from './Spinner/Spinner'
+// import '../styles.scss'
 
 const ListOfFilms = ({ filmsUrls }) => {
   const [films, setFilms] = useState([])
@@ -37,7 +37,7 @@ const ListOfFilms = ({ filmsUrls }) => {
       {loading ? (
         <Spinner small />
       ) : (
-        films.map((film) => (
+        films?.map((film) => (
           <span key={film?.title} onClick={selectFilm} className="list-element">
             {film.title}
           </span>

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import planetsMappedData from '../utils/mocked-data/planetsMappedData.js'
 import { useSearch } from '../hooks/useSearch.js'
 import { getTransformedPlanetsArray } from '../services/getTransformedPlanetsArray'
-import { Spinner } from '../components/Spinner.jsx'
-import './styles.scss'
+import { Spinner } from '../components/Spinner/Spinner'
+import '../styles.scss'
 
 const Planets = () => {
   const [page, setPage] = useState(1)

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import starshipsMappedData from '../utils/mocked-data/starshipsMappedData.json'
 import { getTransformedShipsArray } from '../services/getTransformedShipsArray'
 import { useSearch } from '../hooks/useSearch'
-import { Spinner } from '../components/Spinner'
-import './styles.scss'
+import { Spinner } from '../components/Spinner/Spinner'
+import '../styles.scss'
 
 const StarShips = () => {
   const [page, setPage] = useState(1)

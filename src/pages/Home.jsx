@@ -1,4 +1,4 @@
-import { LandingAnimation } from '../components/LandingAnimation'
+import { LandingAnimation } from '../components/LandingAnimation/LandingAnimation'
 
 const Home = () => {
   return (

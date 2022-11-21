@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import planetsMappedData from '../utils/mocked-data/planetsMappedData'
 import { fetchSinglePlanet } from '../services/fetchSinglePlanet'
 import ListOfPilots from './ListOfPilots'
 import ListOfFilms from './ListOfFilms'
 import { urlStringify } from '../utils/urlStringify'
-import { Spinner } from './Spinner'
+import { Spinner } from './Spinner/Spinner'
 
 const SinglePlanet = () => {
   const [planet, setPlanet] = useState({})

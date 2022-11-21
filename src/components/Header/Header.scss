@@ -1,0 +1,151 @@
+.header {
+  position: relative;
+}
+
+.nav-wrapper {
+  width: min(90vw, 1100px);
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link,
+.login-nav-link {
+  font-size: 0.8em !important;
+  font-weight: 800 !important;
+}
+
+
+.navbar-toggle-btn.collapsed {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background-color: transparent;
+}
+
+.navbar-toggle-btn {
+  background-color: #424649;
+}
+
+.navbar-toggle-btn:focus {
+  box-shadow: none;
+}
+
+.logIn-div {
+  color: #999;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.nav-link {
+  color: #999;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.nav-link:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.nav-link:focus {
+  outline: none;
+  color: white;
+}
+
+.login-nav-link {
+  color: #999 !important;
+  white-space: nowrap;
+}
+.login-nav-link:hover {
+  color: #ccc !important;
+}
+
+.login-nav-link-bars {
+  color: #999 !important;
+}
+.button-toggler {
+  background-color: #dee2e6;
+}
+
+.logIn-col {
+  color: #343434;
+  right: 0%;
+}
+
+.navbar-container-box {
+  width: min(90vw, 1100px) !important;
+  display: grid !important;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.navbar-collapse-box {
+  line-height: 2.5rem;
+}
+
+/* Media queries */
+
+@media (max-width: 576px) {
+  .nav {
+    flex-wrap: nowrap;
+  }
+  .nav-wrapper {
+    width: 100%;
+  }
+  .logo-img {
+    width: 180px;
+  }
+  .navbar-toggle-btn {
+    padding: 0.1rem 0.4rem;
+  }
+  .nav-link {
+    padding-inline: 0.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .login-nav-link {
+    font-size: 0.875em;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.375rem;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .navbar-collapse-box {
+    margin-inline-start: auto;
+    grid-row: 1 / 2;
+    grid-column: 3 / 4;
+  }
+  .navbar-brand {
+    grid-column: 2 /3;
+  }
+}
+
+.border-wrapper {
+  margin-inline: auto;
+  width: 100%;
+  border-bottom: 1px solid #333;
+  border-top: 1px solid #333;
+  padding: 0.1rem;
+}
+
+.border-silver {
+  border-right: 1px solid #333;
+  border-left: 1px solid #333;
+}
+
+.active-link-light-saber {
+  position: absolute;
+  bottom: 10%;
+  border-radius: 10px;
+  left: 44%;
+  width: 12%;
+  height: 2px;
+  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+    0 0 100px #03e9f4;
+  background: white;
+  margin: 0 auto;
+}

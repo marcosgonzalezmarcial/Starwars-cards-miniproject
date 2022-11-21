@@ -1,0 +1,75 @@
+.modal {
+  backdrop-filter: blur(2px);
+}
+
+.modal-form {
+  background-color: #282a2b;
+  color: #edd700;
+}
+
+.modal-backdrop.show {
+  opacity: 0.75;
+}
+.modal-search-btn {
+  display: block;
+  width: 100%;
+  margin: 1.3rem auto;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 14px;
+  background-color: #484848;
+  color: white;
+  transition: background-color 0.2s;
+}
+.modal-search-btn:hover {
+  background-color: #3f6dac !important;
+}
+
+input[name='searchInput'] {
+  font-size: 12px;
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  margin: auto;
+}
+
+input[name='searchInput']:focus-visible {
+  border: 2px solid #edd700;
+  background-color: #484848;
+  color: #edd700;
+  outline: none;
+  box-shadow: none;
+}
+
+.custom-modal-title {
+  color: #edd700;
+  font-size: 1.5rem;
+  margin-top: 0;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.modal-body label {
+  font-size: 0.8rem;
+}
+
+.form-check-inline {
+  margin-right: 0.3rem;
+}
+.form-label:not(:first-child) {
+  margin-left: 0.8rem;
+}
+
+@media (max-width: 576px) {
+  .form-label:not(:first-child) {
+    margin-left: 0.5rem;
+  }
+}
+
+.modal-header .btn-close {
+  opacity: 1;
+}

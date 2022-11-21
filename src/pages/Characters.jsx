@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import peopleJsonArr from '../utils/mocked-data/peopleMappedData.json'
 import { getTransformedCharactersArray } from '../services/getTransformedCharactersArray'
 import { useSearch } from '../hooks/useSearch'
-import { Spinner } from '../components/Spinner'
-import './styles.scss'
+import { Spinner } from '../components/Spinner/Spinner'
+import '../styles.scss'
 
 const Characters = () => {
   const [page, setPage] = useState(1)

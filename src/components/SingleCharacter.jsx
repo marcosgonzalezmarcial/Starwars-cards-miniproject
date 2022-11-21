@@ -6,12 +6,12 @@ import { fetchSingleCharacter } from '../services/fetchSingleCharacter'
 import ListOfFilms from './ListOfFilms'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
-import { Spinner } from './Spinner'
+import { Spinner } from './Spinner/Spinner'
+import { transformPeopleArray } from '../utils/transformPeopleArray'
 
 const SingleCharacter = () => {
   const [character, setCharacter] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const [img, setImg] = useState('')
 
   let { characterName } = useParams()
 
@@ -22,14 +22,10 @@ const SingleCharacter = () => {
       (person) => person.name === newPerson
     )
 
-    const [characterFiltered] = charactersMappedData.filter(
-      (character) => character.id === Number(id)
-    )
-    setImg(characterFiltered.image)
-
     fetchSingleCharacter(id)
       .then((character) => {
-        setCharacter(character)
+        const [transformedCharacter] = transformPeopleArray([character])
+        setCharacter(transformedCharacter)
         setIsLoading(false)
       })
       .catch(console.log)
@@ -42,10 +38,10 @@ const SingleCharacter = () => {
       ) : (
         <div className="main text-secondary my-3">
           <div className="page-img-container">
-            <img src={img} alt={character.name} />
+            <img src={character.image} alt={character.name} />
           </div>
           <div className="page-description-container bg-dark p-2">
-            <h1 className="mb-2 pt-1 px-2">{character.name}</h1>
+            <h2 className="mb-2 pt-1 px-2">{character.name}</h2>
             <div className="px-2">
               <Row className="py-1">
                 <Col>
@@ -68,10 +64,10 @@ const SingleCharacter = () => {
                 </Col> */}
               </Row>
               <Row className="py-1">
-                {/* <Col>
+                <Col>
                   <h3>Skin Color</h3>
                   <span>{character.skin_color}</span>
-                </Col> */}
+                </Col>
                 <Col>
                   <h3>Eye Color</h3>
                   <span>{character.eye_color}</span>

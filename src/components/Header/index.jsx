@@ -4,8 +4,8 @@ import logo from '../../assets/sw_logo_mobile.png'
 import { Link, useNavigate } from 'react-router-dom'
 import SectionNav from './SectionNav'
 import LoginNav from './LoginNav'
-import SearchIcon from '../SearchIcon'
-import SearchModal from '../SearchModal'
+import SearchIcon from '../SearchIcon/SearchIcon'
+import SearchModal from '../SearchModal/SearchModal'
 import './Header.scss'
 
 const Header = ({ loggedIn, setLoggedIn }) => {
