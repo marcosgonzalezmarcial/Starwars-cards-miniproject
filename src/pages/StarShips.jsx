@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
-import starshipsMappedData from '../utils/mocked-data/starshipsMappedData.json'
+import starshipsMappedData from '../utils/mocked-data/starshipsMappedData'
 import { getTransformedShipsArray } from '../services/getTransformedShipsArray'
 import { useSearch } from '../hooks/useSearch'
 import { Spinner } from '../components/Spinner/Spinner'

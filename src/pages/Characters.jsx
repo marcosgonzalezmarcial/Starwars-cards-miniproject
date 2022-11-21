@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
-import peopleJsonArr from '../utils/mocked-data/peopleMappedData.json'
+import peopleMappedData from '../utils/mocked-data/peopleMappedData'
 import { getTransformedCharactersArray } from '../services/getTransformedCharactersArray'
 import { useSearch } from '../hooks/useSearch'
 import { Spinner } from '../components/Spinner/Spinner'
@@ -29,7 +29,7 @@ const Characters = () => {
 
   const handleClick = (e) => {
     const personSelected = e.target.textContent
-    const [person] = peopleJsonArr.filter(
+    const [person] = peopleMappedData.filter(
       (item) => item.name === personSelected
     )
     navigate(`${person.name.replaceAll(' ', '~')}`)

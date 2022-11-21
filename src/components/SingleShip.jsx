@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import starshipsMappedData from '../utils/mocked-data/starshipsMappedData.json'
+import starshipsMappedData from '../utils/mocked-data/starshipsMappedData'
 import { fetchSingleShip } from '../services/fetchSingleShip'
 import ListOfPilots from './ListOfPilots'
 import ListOfFilms from './ListOfFilms'

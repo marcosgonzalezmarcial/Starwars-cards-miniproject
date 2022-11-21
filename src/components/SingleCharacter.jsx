@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import charactersMappedData from '../utils/mocked-data/peopleMappedData.json'
+import peopleMappedData from '../utils/mocked-data/peopleMappedData'
 import { fetchSingleCharacter } from '../services/fetchSingleCharacter'
 import ListOfFilms from './ListOfFilms'
 import ListOfShips from './ListOfShips'
@@ -18,9 +18,7 @@ const SingleCharacter = () => {
   useEffect(() => {
     setIsLoading(true)
     const newPerson = urlStringify(characterName)
-    const { id } = charactersMappedData.find(
-      (person) => person.name === newPerson
-    )
+    const { id } = peopleMappedData.find((person) => person.name === newPerson)
 
     fetchSingleCharacter(id)
       .then((character) => {
