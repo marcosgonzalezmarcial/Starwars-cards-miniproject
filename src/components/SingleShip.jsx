@@ -26,10 +26,8 @@ const SingleShip = () => {
 
     fetchSingleShip(id)
       .then((ship) => {
-        // setShip(ship)
         const [transformedShip] = transformShipsArray([ship])
         setShip(transformedShip)
-        console.log(transformedShip)
         setIsLoading(false)
       })
       .catch(console.log)

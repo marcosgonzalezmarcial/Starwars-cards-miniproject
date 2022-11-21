@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import filmsMappedData from '../utils/mocked-data/filmsMappedData.json'
+import filmsMappedData from '../utils/mocked-data/filmsMappedData'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
 import { fetchSingleFilm } from '../services/fetchSingleFilm'
 import { Spinner } from './Spinner/Spinner'
+import { transformFilmsArray } from '../utils/transformFilmsArray'
 
 const SingleFilm = () => {
   const [film, setFilm] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const [img, setImg] = useState('')
 
   let { filmTitle } = useParams()
 
@@ -24,15 +24,10 @@ const SingleFilm = () => {
       (film) => film.title === filmTitleFromUrl
     )
 
-    const [filmFiltered] = filmsMappedData.filter(
-      (film) => film.id === Number(id)
-    )
-
-    setImg(filmFiltered.imgUrl)
-
     fetchSingleFilm(id)
-      .then((film) => {
-        setFilm(film)
+      .then((ship) => {
+        const [transformedShip] = transformFilmsArray([ship])
+        setFilm(transformedShip)
         setIsLoading(false)
       })
       .catch(console.log)
@@ -45,7 +40,7 @@ const SingleFilm = () => {
       ) : (
         <div className="main text-secondary my-3">
           <div className="page-img-container">
-            <img src={img} alt={film.title} />
+            <img src={film.imgUrl} alt={film.title} />
           </div>
           <div className="page-description-container bg-dark p-2">
             <h1 className="mb-2 pt-1 px-2">{film.title}</h1>

@@ -7,11 +7,11 @@ import ListOfPilots from './ListOfPilots'
 import ListOfFilms from './ListOfFilms'
 import { urlStringify } from '../utils/urlStringify'
 import { Spinner } from './Spinner/Spinner'
+import { transformPlanetsArray } from '../utils/transformPlanetsArray'
 
 const SinglePlanet = () => {
   const [planet, setPlanet] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const [img, setImg] = useState(null)
 
   let { planetName } = useParams()
 
@@ -24,15 +24,10 @@ const SinglePlanet = () => {
       (planet) => planet.name === planetNameFromUrl
     )
 
-    const [planetFiltered] = planetsMappedData.filter(
-      (planet) => planet.id === Number(id)
-    )
-
-    setImg(planetFiltered.imgUrl)
-
     fetchSinglePlanet(id)
       .then((planet) => {
-        setPlanet(planet)
+        const [transformedPlanet] = transformPlanetsArray([planet])
+        setPlanet(transformedPlanet)
         setIsLoading(false)
       })
       .catch(console.log)
@@ -45,7 +40,7 @@ const SinglePlanet = () => {
       ) : (
         <main className="main text-secondary my-3">
           <div className="page-img-container">
-            <img src={img} alt={planet.name} />
+            <img src={planet.imgUrl} alt={planet.name} />
           </div>
           <div className="page-description-container bg-dark p-2">
             <h2 className="mb-2 pt-1 px-2">{planet.name}</h2>
