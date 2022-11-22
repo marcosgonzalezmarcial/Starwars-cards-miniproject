@@ -7,6 +7,5 @@ export const transformFilmsArray = (newFilms) => {
     )
     return { ...filmFromNewFilms, ...filteredFilm }
   })
-
   return transformedFilmsArray
 }

@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import peopleMappedData from '../utils/mocked-data/peopleMappedData'
 import { fetchSingleCharacter } from '../services/fetchSingleCharacter'
 import ListOfFilms from './ListOfFilms'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
 import { Spinner } from './Spinner/Spinner'
 import { transformPeopleArray } from '../utils/transformPeopleArray'
+import { transformDataArray } from '../utils/transformDataArray'
+import mockedData from '../utils/mocked-data/peopleMappedData'
 
 const SingleCharacter = () => {
   const [character, setCharacter] = useState({})
@@ -18,11 +19,15 @@ const SingleCharacter = () => {
   useEffect(() => {
     setIsLoading(true)
     const newPerson = urlStringify(characterName)
-    const { id } = peopleMappedData.find((person) => person.name === newPerson)
+    const { id } = mockedData.find((person) => person.name === newPerson)
 
     fetchSingleCharacter(id)
       .then((character) => {
-        const [transformedCharacter] = transformPeopleArray([character])
+        const [transformedCharacter] = transformDataArray({
+          fetchedData: [character],
+          mockedData,
+          typeOfData: 'people'
+        })
         setCharacter(transformedCharacter)
         setIsLoading(false)
       })

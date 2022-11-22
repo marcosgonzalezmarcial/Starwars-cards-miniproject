@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import starshipsMappedData from '../utils/mocked-data/starshipsMappedData'
 import { fetchSingleShip } from '../services/fetchSingleShip'
 import ListOfPilots from './ListOfPilots'
 import ListOfFilms from './ListOfFilms'
 import { urlStringify } from '../utils/urlStringify'
 import { Spinner } from './Spinner/Spinner'
-import { transformShipsArray } from '../utils/transformShipsArray'
+import { transformDataArray } from '../utils/transformDataArray'
+import mockedData from '../utils/mocked-data/starshipsMappedData'
 
 const SingleShip = () => {
   const [ship, setShip] = useState({})
@@ -20,13 +20,15 @@ const SingleShip = () => {
 
     const shipNameFromUrl = urlStringify(starshipName)
 
-    const { id } = starshipsMappedData.find(
-      (ship) => ship.name === shipNameFromUrl
-    )
+    const { id } = mockedData.find((ship) => ship.name === shipNameFromUrl)
 
     fetchSingleShip(id)
       .then((ship) => {
-        const [transformedShip] = transformShipsArray([ship])
+        const [transformedShip] = transformDataArray({
+          fetchedData: [ship],
+          mockedData,
+          typeOfData: 'ships'
+        })
         setShip(transformedShip)
         setIsLoading(false)
       })

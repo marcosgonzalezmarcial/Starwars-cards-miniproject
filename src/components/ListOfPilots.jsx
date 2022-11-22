@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { fetchListOfDataFromUrlsArr } from '../services/fetchListOfDataFromUrlsArr'
-import { transformPeopleArray } from '../utils/transformPeopleArray'
 import { Spinner } from './Spinner/Spinner'
 
 const ListOfPilots = ({ pilotsUrls }) => {
@@ -13,8 +12,7 @@ const ListOfPilots = ({ pilotsUrls }) => {
     setIsLoading(true)
     fetchListOfDataFromUrlsArr(pilotsUrls)
       .then((pilots) => {
-        const newPilots = transformPeopleArray(pilots)
-        setPilots(newPilots)
+        setPilots(pilots)
       })
       .catch(console.log)
       .finally(() => {
@@ -37,7 +35,7 @@ const ListOfPilots = ({ pilotsUrls }) => {
         <Spinner small />
       ) : (
         pilots.map((pilot) => (
-          <span key={pilot.id} onClick={selectPilot} className="list-element">
+          <span key={pilot.name} onClick={selectPilot} className="list-element">
             {pilot.name}
           </span>
         ))

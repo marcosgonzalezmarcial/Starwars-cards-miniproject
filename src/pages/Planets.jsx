@@ -11,6 +11,7 @@ const Planets = () => {
   const [page, setPage] = useState(1)
   const [planets, setPlanets] = useState([])
   const { searchItems } = useSearch()
+  console.log(searchItems)
 
   let navigate = useNavigate()
 

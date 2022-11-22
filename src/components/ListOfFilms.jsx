@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { fetchListOfDataFromUrlsArr } from '../services/fetchListOfDataFromUrlsArr'
 import { useNavigate } from 'react-router-dom'
 import { Spinner } from './Spinner/Spinner'
-// import '../styles.scss'
 
 const ListOfFilms = ({ filmsUrls }) => {
   const [films, setFilms] = useState([])

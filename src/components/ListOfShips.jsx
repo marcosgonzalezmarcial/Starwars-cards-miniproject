@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { fetchListOfDataFromUrlsArr } from '../services/fetchListOfDataFromUrlsArr'
-import { transformShipsArray } from '../utils/transformShipsArray'
 import { Spinner } from './Spinner/Spinner'
 
 const ListOfShips = ({ shipsUrls }) => {
@@ -13,8 +12,7 @@ const ListOfShips = ({ shipsUrls }) => {
     setIsLoading(true)
     fetchListOfDataFromUrlsArr(shipsUrls)
       .then((ships) => {
-        const newShips = transformShipsArray(ships)
-        setShips(newShips)
+        setShips(ships)
       })
       .catch(console.log)
       .finally(() => {

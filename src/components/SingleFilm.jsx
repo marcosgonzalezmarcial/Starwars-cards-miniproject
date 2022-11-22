@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import filmsMappedData from '../utils/mocked-data/filmsMappedData'
+import mockedData from '../utils/mocked-data/filmsMappedData'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
 import { fetchSingleFilm } from '../services/fetchSingleFilm'
 import { Spinner } from './Spinner/Spinner'
-import { transformFilmsArray } from '../utils/transformFilmsArray'
+import { transformDataArray } from '../utils/transformDataArray'
 
 const SingleFilm = () => {
   const [film, setFilm] = useState({})
@@ -18,16 +18,17 @@ const SingleFilm = () => {
     setIsLoading(true)
 
     const filmTitleFromUrl = urlStringify(filmTitle)
-    console.log(filmTitleFromUrl)
 
-    const { id } = filmsMappedData.find(
-      (film) => film.title === filmTitleFromUrl
-    )
+    const { id } = mockedData.find((film) => film.title === filmTitleFromUrl)
 
     fetchSingleFilm(id)
-      .then((ship) => {
-        const [transformedShip] = transformFilmsArray([ship])
-        setFilm(transformedShip)
+      .then((film) => {
+        const [transformedFilm] = transformDataArray({
+          fetchedData: [film],
+          mockedData,
+          typeOfData: 'films'
+        })
+        setFilm(transformedFilm)
         setIsLoading(false)
       })
       .catch(console.log)
