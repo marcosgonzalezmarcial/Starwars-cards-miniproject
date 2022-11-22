@@ -76,6 +76,7 @@ input[type="submit"]:hover {
 
 .sign-up-link {
   width: 90%;
+  height: 100%;
   margin: 0 auto;
   margin-top: 1rem;
   margin-bottom: 2rem;
@@ -124,6 +125,6 @@ input[type="submit"]:hover {
   }
   .form-inner {
     width: 100%;
-    height: 100%;
+    // height: 100%;
   }
 }
