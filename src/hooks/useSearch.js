@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
-// import { getTransformedCharactersArray } from '../services/getTransformedCharactersArray'
-import { transformPeopleArray } from '../utils/transformPeopleArray'
-import { transformPlanetsArray } from '../utils/transformPlanetsArray'
-import { transformShipsArray } from '../utils/transformShipsArray'
+import { API_URL } from '../constants'
+import { transformDataArray } from '../utils/transformDataArray'
+import mockedDataPlanets from '../utils/mocked-data/planetsMappedData'
+import mockedDataPeople from '../utils/mocked-data/peopleMappedData'
+import mockedDataShips from '../utils/mocked-data/starshipsMappedData'
 
-export const useSearch = (/*searchParams, query*/) => {
+export const useSearch = () => {
   const [searchItems, setSearchItems] = useState([])
   const [searchParams] = useSearchParams()
   const query = searchParams.get('search')
@@ -14,46 +15,55 @@ export const useSearch = (/*searchParams, query*/) => {
     category = 'people'
   }
 
-  // console.log(`https://swapi.dev/api/${category}/?search=${query}`)
-
   useEffect(() => {
     if (query && category === '/planets/') {
-      fetch(`https://swapi.dev/api/${category}/?search=${query}`)
+      fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
-        .then((data) => {
-          console.log(data.results)
-          if (!data.results) {
+        .then(({ results }) => {
+          if (!results) {
             return <h1>No results found</h1>
           } else {
-            const newArr = transformPlanetsArray(data.results)
+            // const newArr = transformPlanetsArray(results)
+            const newArr = transformDataArray({
+              fetchedData: results,
+              mockedData: mockedDataPlanets,
+              typeOfData: 'planets'
+            })
             setSearchItems(() => [...newArr])
           }
         })
     }
     if (query && category === 'people') {
-      fetch(`https://swapi.dev/api/${category}/?search=${query}`)
+      fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
-        .then((data) => {
-          console.log(data.results)
-          if (!data.results) {
+        .then(({ results }) => {
+          if (!results) {
             return <h1>No results found</h1>
           } else {
-            const newArr = transformPeopleArray(data.results)
-            console.log(newArr)
-
+            // const newArr = transformPeopleArray(results)
+            const newArr = transformDataArray({
+              fetchedData: results,
+              mockedData: mockedDataPeople,
+              typeOfData: 'people'
+            })
             setSearchItems(() => [...newArr])
           }
         })
     }
     if (query && category === '/starships/') {
-      fetch(`https://swapi.dev/api/${category}/?search=${query}`)
+      fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
-        .then((data) => {
-          console.log(data.results)
-          if (!data.results) {
+        .then(({ results }) => {
+          console.log(results)
+          if (!results) {
             return <h1>No results found</h1>
           } else {
-            const newArr = transformShipsArray(data.results)
+            // const newArr = transformShipsArray(results)
+            const newArr = transformDataArray({
+              fetchedData: results,
+              mockedData: mockedDataShips,
+              typeOfData: 'starships'
+            })
             setSearchItems(() => [...newArr])
           }
         })

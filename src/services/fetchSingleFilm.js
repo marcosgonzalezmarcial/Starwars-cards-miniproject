@@ -1,5 +1,7 @@
+import { API_URL } from '../constants'
+
 export const fetchSingleFilm = async (id) => {
-  const data = await fetch(`https://swapi.dev/api/films/${id}/`);
-  const film = await data.json();
-  return film;
-};
+  const data = await fetch(`${API_URL}/films/${id}/`)
+  const film = await data.json()
+  return film
+}

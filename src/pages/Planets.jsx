@@ -1,23 +1,31 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import planetsMappedData from '../utils/mocked-data/planetsMappedData.js'
-import './grid-styles.css'
-import { getTransformedPlanetsArray } from '../services/getTransformedPlanetsArray'
-import { transformPlanetsArray } from '../utils/transformPlanetsArray.js'
 import { useSearch } from '../hooks/useSearch.js'
+import { getTransformedPlanetsArray } from '../services/getTransformedPlanetsArray'
+import { Spinner } from '../components/Spinner/Spinner'
+import '../styles.scss'
 
 const Planets = () => {
   const [page, setPage] = useState(1)
   const [planets, setPlanets] = useState([])
   const { searchItems } = useSearch()
+  console.log(searchItems)
 
   let navigate = useNavigate()
 
   useEffect(() => {
-    getTransformedPlanetsArray(page).then((data) => {
-      setPlanets((prev) => [...prev, ...data])
-    })
+    getTransformedPlanetsArray(page)
+      .then((data) => {
+        //checking data is not null
+        if (data) {
+          setPlanets((prev) => [...prev, ...data])
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }, [page])
 
   const handleClick = (e) => {
@@ -53,8 +61,10 @@ const Planets = () => {
           dataLength={planets.length}
           next={() => setPage((prev) => planets.length < 59 && prev + 1)}
           hasMore={planets.length < 59 && true}
-          loader={<div className="text-white display-4">Loading...</div>}
-          className="my-3 my-md-4 grid-container"
+          loader={<Spinner />}
+          className={`my-3 my-md-4 ${
+            planets.length > 0 ? 'grid-container' : ''
+          }`}
         >
           {planets.map((planet) => (
             <div key={planet.name} className="grid-element-card">

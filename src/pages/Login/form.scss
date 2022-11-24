@@ -76,6 +76,7 @@ input[type="submit"]:hover {
 
 .sign-up-link {
   width: 90%;
+  height: 100%;
   margin: 0 auto;
   margin-top: 1rem;
   margin-bottom: 2rem;
@@ -112,11 +113,12 @@ input[type="submit"]:hover {
 }
 
 @media (max-width: 576px) {
-  .loginForm-container {
+  .loginForm-container {  
     width: 100%;
     position: absolute;
     top: 0;
-    min-height: 100vh;
+    //avoid mobile keyword partially hiding the form
+    min-height: max(700px, 100vh);
   }
   .loginForm-container form {
     width: 100%;

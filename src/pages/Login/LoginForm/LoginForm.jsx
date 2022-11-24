@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import '../form.css'
+import '../form.scss'
 import ReactLogo from '../../../assets/logosw.svg'
 
 const initialUserDataState = { email: '', password: '' }

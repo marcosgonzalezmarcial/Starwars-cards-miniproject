@@ -1,4 +1,4 @@
-import './LandingAnimation.css'
+import './LandingAnimation.scss'
 export const LandingAnimation = () => {
   return (
     <div className="starwars-demo">

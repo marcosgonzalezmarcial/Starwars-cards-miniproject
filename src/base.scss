@@ -14,13 +14,6 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  overflow-x: hidden;
-  transition: 0.5s ease-in-out;
-}
-
-.main-wrapper {
-  margin-inline: auto;
-  width: min(90vw, 1100px);
 }
 
 a {

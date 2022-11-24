@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import starshipsMappedData from '../utils/mocked-data/starshipsMappedData.json'
 import { fetchSingleShip } from '../services/fetchSingleShip'
 import ListOfPilots from './ListOfPilots'
 import ListOfFilms from './ListOfFilms'
 import { urlStringify } from '../utils/urlStringify'
+import { Spinner } from './Spinner/Spinner'
+import { transformDataArray } from '../utils/transformDataArray'
+import mockedData from '../utils/mocked-data/starshipsMappedData'
 
 const SingleShip = () => {
   const [ship, setShip] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-  const [img, setImg] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   let { starshipName } = useParams()
 
@@ -19,19 +20,16 @@ const SingleShip = () => {
 
     const shipNameFromUrl = urlStringify(starshipName)
 
-    const { id } = starshipsMappedData.find(
-      (ship) => ship.name === shipNameFromUrl
-    )
-
-    const [shipFiltered] = starshipsMappedData.filter(
-      (starship) => starship.id === Number(id)
-    )
-
-    setImg(shipFiltered.imgUrl)
+    const { id } = mockedData.find((ship) => ship.name === shipNameFromUrl)
 
     fetchSingleShip(id)
       .then((ship) => {
-        setShip(ship)
+        const [transformedShip] = transformDataArray({
+          fetchedData: [ship],
+          mockedData,
+          typeOfData: 'ships'
+        })
+        setShip(transformedShip)
         setIsLoading(false)
       })
       .catch(console.log)
@@ -40,13 +38,11 @@ const SingleShip = () => {
   return (
     <>
       {isLoading ? (
-        <Container className="m-3">
-          <div className="text-white display-4">Loading...</div>
-        </Container>
+        <Spinner />
       ) : (
-        <main className="page-wrapper text-secondary my-3">
+        <main className="main text-secondary my-3">
           <div className="page-img-container">
-            <img src={img} alt={ship.name} />
+            <img src={ship.imgUrl} alt={ship.name} />
           </div>
           <div className="page-description-container bg-dark p-2">
             <h2 className="mb-2 pt-1 px-2">{ship.name}</h2>
@@ -90,7 +86,7 @@ const SingleShip = () => {
                 </Col>
                 <Col className="pt-1">
                   <h3 className="m-0 py-1">Pilots</h3>
-                  {ship.pilots.length > 0 ? (
+                  {ship.pilots?.length > 0 ? (
                     <ListOfPilots pilotsUrls={ship.pilots} />
                   ) : (
                     <span>No pilots registered for this ship</span>

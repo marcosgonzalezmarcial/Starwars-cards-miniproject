@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
-import peopleJsonArr from '../utils/mocked-data/peopleMappedData.json'
-import './grid-styles.css'
+import peopleMappedData from '../utils/mocked-data/peopleMappedData'
 import { getTransformedCharactersArray } from '../services/getTransformedCharactersArray'
 import { useSearch } from '../hooks/useSearch'
+import { Spinner } from '../components/Spinner/Spinner'
+import '../styles.scss'
 
 const Characters = () => {
   const [page, setPage] = useState(1)
@@ -14,14 +15,21 @@ const Characters = () => {
   let navigate = useNavigate()
 
   useEffect(() => {
-    getTransformedCharactersArray(page).then((data) =>
-      setCharacters((prev) => [...prev, ...data])
-    )
+    getTransformedCharactersArray(page)
+      .then((data) => {
+        //checking data is not null
+        if (data) {
+          setCharacters((prev) => [...prev, ...data])
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }, [page])
 
   const handleClick = (e) => {
     const personSelected = e.target.textContent
-    const [person] = peopleJsonArr.filter(
+    const [person] = peopleMappedData.filter(
       (item) => item.name === personSelected
     )
     navigate(`${person.name.replaceAll(' ', '~')}`)
@@ -52,8 +60,10 @@ const Characters = () => {
           dataLength={characters.length}
           next={() => setPage((prev) => characters.length < 82 && prev + 1)}
           hasMore={characters.length < 82 && true}
-          loader={<div className="text-white display-4">Cargando...</div>}
-          className="my-3 my-md-4 grid-container"
+          loader={<Spinner />}
+          className={`my-3 my-md-4 ${
+            characters.length > 0 ? 'grid-container' : ''
+          }`}
         >
           {characters.map((character) => (
             <div key={character.id} className="grid-element-card">

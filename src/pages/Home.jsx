@@ -1,8 +1,8 @@
-import { LandingAnimation } from '../components/LandingAnimation'
+import { LandingAnimation } from '../components/LandingAnimation/LandingAnimation'
 
 const Home = () => {
   return (
-    <main className="main text-white m-3">
+    <main /*className="main text-white m-3"*/>
       <div className="main-wrapper">
         <LandingAnimation />
       </div>

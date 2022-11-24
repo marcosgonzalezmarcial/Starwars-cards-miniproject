@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import filmsMappedData from '../utils/mocked-data/filmsMappedData.json'
+import mockedData from '../utils/mocked-data/filmsMappedData'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
 import { fetchSingleFilm } from '../services/fetchSingleFilm'
-import ListOfPilots from './ListOfPilots'
+import { Spinner } from './Spinner/Spinner'
+import { transformDataArray } from '../utils/transformDataArray'
 
 const SingleFilm = () => {
   const [film, setFilm] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-  const [img, setImg] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   let { filmTitle } = useParams()
 
@@ -18,21 +18,17 @@ const SingleFilm = () => {
     setIsLoading(true)
 
     const filmTitleFromUrl = urlStringify(filmTitle)
-    console.log(filmTitleFromUrl)
 
-    const { id } = filmsMappedData.find(
-      (film) => film.title === filmTitleFromUrl
-    )
-
-    const [filmFiltered] = filmsMappedData.filter(
-      (film) => film.id === Number(id)
-    )
-
-    setImg(filmFiltered.imgUrl)
+    const { id } = mockedData.find((film) => film.title === filmTitleFromUrl)
 
     fetchSingleFilm(id)
       .then((film) => {
-        setFilm(film)
+        const [transformedFilm] = transformDataArray({
+          fetchedData: [film],
+          mockedData,
+          typeOfData: 'films'
+        })
+        setFilm(transformedFilm)
         setIsLoading(false)
       })
       .catch(console.log)
@@ -41,13 +37,11 @@ const SingleFilm = () => {
   return (
     <>
       {isLoading ? (
-        <Container className="m-3">
-          <div className="text-white display-4">Loading...</div>
-        </Container>
+        <Spinner />
       ) : (
-        <div className="page-wrapper text-secondary my-3">
+        <div className="main text-secondary my-3">
           <div className="page-img-container">
-            <img src={img} alt={film.title} />
+            <img src={film.imgUrl} alt={film.title} />
           </div>
           <div className="page-description-container bg-dark p-2">
             <h1 className="mb-2 pt-1 px-2">{film.title}</h1>
@@ -75,7 +69,7 @@ const SingleFilm = () => {
               <Row className="py-1">
                 <Col className="pt-1">
                   <h3 className="m-0 py-1">Ships</h3>
-                  {film.starships.length > 0 ? (
+                  {film.starships?.length > 0 ? (
                     <ListOfShips shipsUrls={film.starships} />
                   ) : (
                     <span>There aren't ships for this character</span>

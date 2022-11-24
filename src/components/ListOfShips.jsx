@@ -1,22 +1,23 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { fetchListOfDataFromUrlsArr } from '../services/fetchListOfDataFromUrlsArr'
-import { transformShipsArray } from '../utils/transformShipsArray'
-// import { urlStringify } from '../utils/urlStringify'
-// import ShipCard from './ShipCard'
+import { Spinner } from './Spinner/Spinner'
 
 const ListOfShips = ({ shipsUrls }) => {
   const [ships, setShips] = useState([])
-  // const [shipSelected, setShipSelected] = useState(null)
+  const [loading, setIsLoading] = useState(false)
   let navigate = useNavigate()
 
   useEffect(() => {
+    setIsLoading(true)
     fetchListOfDataFromUrlsArr(shipsUrls)
       .then((ships) => {
-        const newShips = transformShipsArray(ships)
-        setShips(newShips)
+        setShips(ships)
       })
       .catch(console.log)
+      .finally(() => {
+        setIsLoading(false)
+      })
   }, [shipsUrls])
 
   const selectShip = useCallback(
@@ -30,14 +31,15 @@ const ListOfShips = ({ shipsUrls }) => {
 
   return (
     <>
-      {ships.map((ship) => (
-        <>
-          <span key={ship.id} onClick={selectShip} className="list-element">
+      {loading ? (
+        <Spinner small />
+      ) : (
+        ships.map((ship) => (
+          <span key={ship.model} onClick={selectShip} className="list-element">
             {ship.name}
-          </span>{' '}
-          <span className="ship-name-separator">|</span>
-        </>
-      ))}
+          </span>
+        ))
+      )}
     </>
   )
 }
