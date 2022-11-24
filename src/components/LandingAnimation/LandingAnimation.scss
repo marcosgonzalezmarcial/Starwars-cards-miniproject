@@ -1,241 +1,239 @@
 /* Animation properties */
 .star {
-  animation: star 10s ease-out infinite;
+	animation: star 10s ease-out infinite;
 }
 .wars {
-  animation: wars 10s ease-out infinite;
+	animation: wars 10s ease-out infinite;
 }
 .byline span {
-  animation: spin-letters 10s linear infinite;
+	animation: spin-letters 10s linear infinite;
 }
 .byline {
-  animation: move-byline 10s linear infinite;
+	animation: move-byline 10s linear infinite;
 }
 
 /* Keyframes */
 @keyframes star {
-  0% {
-    opacity: 0;
-    transform: scale(1.5) translateY(-0.75em);
-  }
-  20% {
-    opacity: 1;
-  }
-  89% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateZ(-1000em);
-  }
+	0% {
+		opacity: 0;
+		transform: scale(1.5) translateY(-0.75em);
+	}
+	20% {
+		opacity: 1;
+	}
+	89% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translateZ(-1000em);
+	}
 }
 
 @keyframes wars {
-  0% {
-    opacity: 0;
-    transform: scale(1.5) translateY(0.5em);
-  }
-  20% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateZ(-1000em);
-  }
+	0% {
+		opacity: 0;
+		transform: scale(1.5) translateY(0.5em);
+	}
+	20% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translateZ(-1000em);
+	}
 }
 
 @keyframes spin-letters {
-  0%,
-  10% {
-    opacity: 0;
-    transform: rotateY(90deg);
-  }
-  30% {
-    opacity: 1;
-  }
-  70%,
-  86% {
-    transform: rotateY(0);
-    opacity: 1;
-  }
-  95%,
-  100% {
-    opacity: 0;
-  }
+	0%,
+	10% {
+		opacity: 0;
+		transform: rotateY(90deg);
+	}
+	30% {
+		opacity: 1;
+	}
+	70%,
+	86% {
+		transform: rotateY(0);
+		opacity: 1;
+	}
+	95%,
+	100% {
+		opacity: 0;
+	}
 }
 
 @keyframes move-byline {
-  0% {
-    transform: translateZ(5em);
-  }
-  100% {
-    transform: translateZ(0);
-  }
+	0% {
+		transform: translateZ(5em);
+	}
+	100% {
+		transform: translateZ(0);
+	}
 }
 
 /* Make the 3D work on the container */
 
 .starwars-demo {
-  perspective: 800px;
-  transform-style: preserve3d;
+	perspective: 800px;
+	transform-style: preserve3d;
 
-  height: 28vh;
-  left: 50%;
-  position: absolute;
-  top: 45%;
-  transform: translate(-50%, -50%);
-  width: 48vw;
+	height: 28vh;
+	left: 50%;
+	position: absolute;
+	top: 45%;
+	transform: translate(-50%, -50%);
+	width: 48vw;
 
-  img {
-    width: 100%;
-  }
-  .byline {
-    span {
-      display: inline-block;
-    }
-  }
+	img {
+		width: 100%;
+	}
+	.byline {
+		span {
+			display: inline-block;
+		}
+	}
 }
 
 .star,
 .wars,
 .byline {
-  position: absolute;
+	position: absolute;
 }
 
 .star {
-  top: -0.75em;
+	top: -0.75em;
 }
 
 .wars {
-  bottom: -0.5em;
+	bottom: -0.5em;
 }
 
 .byline {
-  color: #fff;
-  font-size: 1rem;
-  left: -2em;
-  letter-spacing: 0.4em;
-  right: -2em;
-  text-align: center;
-  text-transform: uppercase;
-  top: 120%;
+	color: #fff;
+	font-size: 1rem;
+	left: -2em;
+	letter-spacing: 0.4em;
+	right: -2em;
+	text-align: center;
+	text-transform: uppercase;
+	top: 120%;
 }
 
 /*** Media queries for adjusting to different screen sizes ***/
 
-@media (width > 1440px) {
-  .starwars-demo {
-    top: 50%;
-    height: 11rem;
-    width: 24rem;
-    h2 {
-      font-size: 1.25rem;
-    }
-    .byline {
-      top: 115%;
-    }
-  }
+@media (min-width: 1440px) {
+	.starwars-demo {
+		top: 50%;
+		height: 11rem;
+		width: 24rem;
+		h2 {
+			font-size: 1.25rem;
+		}
+		.byline {
+			top: 115%;
+		}
+	}
 }
 
-@media (width < 1440px) {
-  .starwars-demo {
-    top: 50%;
-    height: 10.3rem;
-    width: 22rem;
-    h2 {
-      font-size: 1.10rem;
-    }
-    .byline {
-      top: 125%;
-    }
-  }
+@media (max-width: 1440px) {
+	.starwars-demo {
+		top: 50%;
+		height: 10.3rem;
+		width: 22rem;
+		h2 {
+			font-size: 1.1rem;
+		}
+		.byline {
+			top: 125%;
+		}
+	}
 }
 
-@media (width < 900px) {
-  .starwars-demo {
-    top: 55%;
-  }
+@media (max-width: 900px) {
+	.starwars-demo {
+		top: 55%;
+	}
 }
 
-
-@media (width < 800px) {
-  .starwars-demo {
-    top: 50%;
-    height: 9.75rem;
-    width: 21rem;
-  }
+@media (max-width: 800px) {
+	.starwars-demo {
+		top: 50%;
+		height: 9.75rem;
+		width: 21rem;
+	}
 }
 
-@media (width < 700px) {
-  .starwars-demo {
-    height: 8.75rem;
-    width: 19rem;
-    h2 {
-      font-size: 1.05rem;
-    }
-  }
+@media (max-width: 700px) {
+	.starwars-demo {
+		height: 8.75rem;
+		width: 19rem;
+		h2 {
+			font-size: 1.05rem;
+		}
+	}
 }
 
-@media (width < 600px) {
-  .starwars-demo {
-    height: 8rem;
-    width: 17.5rem;
-    h2 {
-      font-size: 1rem;
-    }
-  }
+@media (max-width: 600px) {
+	.starwars-demo {
+		height: 8rem;
+		width: 17.5rem;
+		h2 {
+			font-size: 1rem;
+		}
+	}
 }
 
-@media (width < 900px) and (orientation: landscape) {
-  .starwars-demo {
-    top: 70%;
-    height: 4rem;
-    width: 10rem;
-  }
-  h2 {
-    font-size: 0.6rem !important;
-  }
-  .byline {
-    top: 150%;
-  }
+@media (max-width: 900px) and (orientation: landscape) {
+	.starwars-demo {
+		top: 70%;
+		height: 4rem;
+		width: 10rem;
+	}
+	h2 {
+		font-size: 0.6rem !important;
+	}
+	.byline {
+		top: 150%;
+	}
 }
 
-@media (width < 500px) and (orientation: portrait) {
-  .starwars-demo {
-    top: 45%;
-    height: 7.5rem;
-    width: 16.5rem;
-  }
+@media (max-width: 500px) and (orientation: portrait) {
+	.starwars-demo {
+		top: 45%;
+		height: 7.5rem;
+		width: 16.5rem;
+	}
 }
 
-
-@media (width < 400px) {
-  .starwars-demo {
-    height: 5.5rem;
-    width: 13rem;
-    h2 {
-      font-size: 0.75rem;
-    }
-    .byline {
-      top: 135%;
-    }
-  }
+@media (max-width: 400px) {
+	.starwars-demo {
+		height: 5.5rem;
+		width: 13rem;
+		h2 {
+			font-size: 0.75rem;
+		}
+		.byline {
+			top: 135%;
+		}
+	}
 }
 
-@media (width < 350px) {
-  .starwars-demo {
-    height: 3.5rem;
-    width: 8.5rem;
-    h2 {
-      font-size: 0.60rem;
-    }
-    .byline {
-      top: 150%;
-    }
-  }
+@media (max-width: 350px) {
+	.starwars-demo {
+		height: 3.5rem;
+		width: 8.5rem;
+		h2 {
+			font-size: 0.6rem;
+		}
+		.byline {
+			top: 150%;
+		}
+	}
 }
