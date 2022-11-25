@@ -4,9 +4,10 @@ import { useParams } from 'react-router-dom'
 import { filmsMockedData } from '../utils/mocked-data'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
-import { fetchSingleFilm } from '../services/fetchSingleFilm'
 import { Spinner } from './Spinner/Spinner'
 import { transformDataArray } from '../utils/transformDataArray'
+import { fetchItem } from '../services/fetchItem'
+import { TYPE_OF_DATA } from '../constants'
 
 const SingleFilm = () => {
 	const [film, setFilm] = useState({})
@@ -21,16 +22,17 @@ const SingleFilm = () => {
 
 		const { id } = filmsMockedData.find(film => film.title === filmTitleFromUrl)
 
-		fetchSingleFilm(id)
-			.then(film => {
-				const [transformedFilm] = transformDataArray({
-					fetchedData: [film],
-					typeOfData: 'films',
+		fetchItem({ id, typeOfData: TYPE_OF_DATA.FILMS })
+			.then(item => {
+				const [transformedFilmData] = transformDataArray({
+					// fetched data must be an array for implementation requirements
+					fetchedData: [item],
+					typeOfData: TYPE_OF_DATA.FILMS,
 				})
-				setFilm(transformedFilm)
-				setIsLoading(false)
+				setFilm(transformedFilmData)
 			})
 			.catch(console.log)
+			.finally(() => setIsLoading(false))
 	}, [filmTitle])
 
 	return (

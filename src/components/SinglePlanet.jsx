@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { fetchSinglePlanet } from '../services/fetchSinglePlanet'
 import ListOfPilots from './ListOfPilots'
 import ListOfFilms from './ListOfFilms'
 import { urlStringify } from '../utils/urlStringify'
 import { Spinner } from './Spinner/Spinner'
 import { transformDataArray } from '../utils/transformDataArray'
 import { planetsMockedData } from '../utils/mocked-data'
+import { TYPE_OF_DATA } from '../constants'
+import { fetchItem } from '../services/fetchItem'
 
 const SinglePlanet = () => {
 	const [planet, setPlanet] = useState({})
@@ -17,23 +18,23 @@ const SinglePlanet = () => {
 
 	useEffect(() => {
 		setIsLoading(true)
-
 		const planetNameFromUrl = urlStringify(planetName)
 
 		const { id } = planetsMockedData.find(
 			planet => planet.name === planetNameFromUrl
 		)
 
-		fetchSinglePlanet(id)
-			.then(planet => {
-				const [transformedPlanet] = transformDataArray({
-					fetchedData: [planet],
-					typeOfData: 'planets',
+		fetchItem({ id, typeOfData: TYPE_OF_DATA.PLANETS })
+			.then(item => {
+				const [transformedPlanetData] = transformDataArray({
+					// fetched data must be an array for implementation requirements
+					fetchedData: [item],
+					typeOfData: TYPE_OF_DATA.PLANETS,
 				})
-				setPlanet(transformedPlanet)
-				setIsLoading(false)
+				setPlanet(transformedPlanetData)
 			})
 			.catch(console.log)
+			.finally(() => setIsLoading(false))
 	}, [planetName])
 
 	return (

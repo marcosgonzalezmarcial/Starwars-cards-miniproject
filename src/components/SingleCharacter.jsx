@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { fetchSingleCharacter } from '../services/fetchSingleCharacter'
 import ListOfFilms from './ListOfFilms'
 import ListOfShips from './ListOfShips'
 import { urlStringify } from '../utils/urlStringify'
 import { Spinner } from './Spinner/Spinner'
 import { transformDataArray } from '../utils/transformDataArray'
 import { peopleMockedData } from '../utils/mocked-data'
+import { fetchItem } from '../services/fetchItem'
+import { TYPE_OF_DATA } from '../constants'
 
 const SingleCharacter = () => {
 	const [character, setCharacter] = useState({})
@@ -20,16 +21,17 @@ const SingleCharacter = () => {
 		const newPerson = urlStringify(characterName)
 		const { id } = peopleMockedData.find(person => person.name === newPerson)
 
-		fetchSingleCharacter(id)
-			.then(character => {
-				const [transformedCharacter] = transformDataArray({
-					fetchedData: [character],
-					typeOfData: 'people',
+		fetchItem({ id, typeOfData: TYPE_OF_DATA.PEOPLE })
+			.then(item => {
+				const [transformedCharacterData] = transformDataArray({
+					// fetched data must be an array for implementation requirements
+					fetchedData: [item],
+					typeOfData: TYPE_OF_DATA.PEOPLE,
 				})
-				setCharacter(transformedCharacter)
-				setIsLoading(false)
+				setCharacter(transformedCharacterData)
 			})
 			.catch(console.log)
+			.finally(() => setIsLoading(false))
 	}, [characterName])
 
 	return (
