@@ -30,10 +30,7 @@ const Planets = () => {
 
 	const handleClick = e => {
 		const planetSelected = e.target.textContent
-		const [planet] = planetsMockedData.filter(
-			item => item.name === planetSelected
-		)
-		navigate(`${planet.name.replaceAll(' ', '~')}`)
+		navigate(`${planetSelected.replaceAll(' ', '~')}`)
 	}
 
 	return (

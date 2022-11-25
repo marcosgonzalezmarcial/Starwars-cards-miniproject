@@ -31,10 +31,7 @@ const Characters = () => {
 
 	const handleClick = e => {
 		const personSelected = e.target.textContent
-		const [person] = peopleMockedData.filter(
-			item => item.name === personSelected
-		)
-		navigate(`${person.name.replaceAll(' ', '~')}`)
+		navigate(`${personSelected.replaceAll(' ', '~')}`)
 	}
 
 	return (

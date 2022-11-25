@@ -30,10 +30,7 @@ const StarShips = () => {
 
 	const handleClick = e => {
 		const shipSelected = e.target.textContent
-		const [ship] = starshipsMockedData.filter(
-			item => item.name === shipSelected
-		)
-		navigate(`${ship.name.replaceAll(' ', '~')}`)
+		navigate(`${shipSelected.replaceAll(' ', '~')}`)
 	}
 
 	return (
