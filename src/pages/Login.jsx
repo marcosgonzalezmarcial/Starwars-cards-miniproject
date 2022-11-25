@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import '../form.scss'
-import ReactLogo from '../../../assets/logosw.svg'
+import './form.scss'
+import swLogo from '../assets/logosw.svg'
 
 const initialUserDataState = { email: '', password: '' }
 
-const LoginForm = ({ setLoggedIn, users }) => {
+const Login = ({ setLoggedIn, users }) => {
 	const [userData, setUserData] = useState(initialUserDataState)
 	const [isOpen, setIsOpen] = useState(true)
 	const [error, setError] = useState(null)
 
-	// const history = useHistory();
 	let navigate = useNavigate()
 
 	const handleClick = () => {
@@ -66,7 +65,7 @@ const LoginForm = ({ setLoggedIn, users }) => {
 					onMouseDown={handleFormInnerClick}
 					className="form-inner p-3  position-relative d-flex flex-column align-items-center text-center"
 				>
-					<img className="login-img my-4 p-2" src={ReactLogo} alt="logo" />
+					<img className="login-img my-4 p-2" src={swLogo} alt="logo" />
 					<button
 						className="form-close-btn position-absolute"
 						onClick={handleClick}
@@ -110,4 +109,4 @@ const LoginForm = ({ setLoggedIn, users }) => {
 	)
 }
 
-export default LoginForm
+export default Login

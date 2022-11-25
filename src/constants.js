@@ -1,4 +1,5 @@
-export const API_URL = 'https://swapi.py4e.com/api'
+// export const API_URL = 'https://swapi.py4e.com/api'
+export const API_URL = 'https://swapi.dev/api/'
 export const TYPE_OF_DATA = {
   PLANETS: 'planets',
   STARSHIPS: 'starships',

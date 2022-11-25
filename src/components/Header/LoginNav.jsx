@@ -16,11 +16,11 @@ const LoginNav = ({ loggedIn, setLoggedIn }) => {
 		</>
 	) : (
 		<>
-			<Link className="login-nav-link navbar-link px-md-2" to="/loginform">
+			<Link className="login-nav-link navbar-link px-md-2" to="/login">
 				LOG IN
 			</Link>
 			<div className="login-nav-link">&#8725; &#8725;</div>
-			<Link className="login-nav-link navbar-link px-md-2" to="/signupform">
+			<Link className="login-nav-link navbar-link px-md-2" to="/signup">
 				SIGN UP
 			</Link>
 		</>

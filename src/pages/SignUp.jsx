@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import '../form.scss'
-import logosw from '../../../assets/logosw.svg'
+import './form.scss'
+import swLogo from '../assets/logosw.svg'
 
 const initialUserDetailsState = {
 	firstName: '',
@@ -10,7 +10,7 @@ const initialUserDetailsState = {
 	password: '',
 }
 
-const SignUpForm = ({ setUsers }) => {
+const SignUp = ({ setUsers }) => {
 	const [userDetails, setUserDetails] = useState(initialUserDetailsState)
 	const [isOpen, setIsOpen] = useState(true)
 	let navigate = useNavigate()
@@ -20,7 +20,7 @@ const SignUpForm = ({ setUsers }) => {
 		setUsers(prev => [...prev, userDetails])
 		setUserDetails(initialUserDetailsState)
 		alert('Has creado el usuario correctamente, ya puedes loguéate')
-		navigate('/loginform')
+		navigate('/login')
 	}
 
 	const handleClick = () => {
@@ -62,7 +62,7 @@ const SignUpForm = ({ setUsers }) => {
 						width="200px"
 						height="100px"
 						className="login-img my-4 p-2"
-						src={logosw}
+						src={swLogo}
 						alt="logo"
 					/>
 					<button
@@ -114,7 +114,7 @@ const SignUpForm = ({ setUsers }) => {
 							Already have an account?
 						</p>
 						<span className="m-3">
-							<Link to="/loginform">Sign In</Link>
+							<Link to="/login">Sign In</Link>
 						</span>
 					</div>
 				</div>
@@ -124,4 +124,4 @@ const SignUpForm = ({ setUsers }) => {
 	)
 }
 
-export default SignUpForm
+export default SignUp

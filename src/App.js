@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import Home from './pages/Home'
-import LoginForm from './pages/Login/LoginForm/LoginForm'
-import SignUpForm from './pages/Login/SignUpForm/SignUpForm'
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 import SingleCharacter from './components/SingleCharacter'
 import Characters from './pages/Characters'
 import ErrorPage from './pages/ErrorPage'
@@ -35,12 +35,12 @@ function App() {
           <Route index element={<Home loggedIn={loggedIn} />} />
           <Route path="home" element={<Home loggedIn={loggedIn} />} />
           <Route
-            path="loginform"
-            element={<LoginForm users={users} setLoggedIn={setLoggedIn} />}
+            path="login"
+            element={<Login users={users} setLoggedIn={setLoggedIn} />}
           />
           <Route
-            path="signupform"
-            element={<SignUpForm setUsers={setUsers} />}
+            path="signup"
+            element={<SignUp setUsers={setUsers} />}
           />
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path="starships" element={<NestedRoutes />}>
