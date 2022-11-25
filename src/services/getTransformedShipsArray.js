@@ -1,16 +1,11 @@
-import { transformShipsArray } from '../utils/transformShipsArray'
+import { transformDataArray } from '../utils/transformDataArray'
 import { fetchShips } from './fetchShips'
 
-// export const getTransformedShipsArray = async (page) => {
-//   const newShips = await fetchShips(page)
-//   const modifiedShipsArr = transformShipsArray(newShips)
-//   return modifiedShipsArr
-// }
 
 export const getTransformedShipsArray = async (page) => {
   try {
-    const newShips = await fetchShips(page)
-    const modifiedShipsArr = transformShipsArray(newShips)
+    const fetchedShips = await fetchShips(page)
+    const modifiedShipsArr = transformDataArray({fetchedData:fetchedShips, typeOfData:'starships'})
     return modifiedShipsArr
   } catch (error) {
     console.log(error)

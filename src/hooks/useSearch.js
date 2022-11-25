@@ -2,9 +2,16 @@ import { useEffect, useState } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { API_URL } from '../constants'
 import { transformDataArray } from '../utils/transformDataArray'
-import mockedDataPlanets from '../utils/mocked-data/planetsMappedData'
-import mockedDataPeople from '../utils/mocked-data/peopleMappedData'
-import mockedDataShips from '../utils/mocked-data/starshipsMappedData'
+// import mockedDataPlanets from '../utils/mocked-data/planetsMappedData'
+// import mockedDataPeople from '../utils/mocked-data/peopleMappedData'
+// import mockedDataShips from '../utils/mocked-data/starshipsMappedData'
+
+import {
+  // filmsMockedData,
+  planetsMockedData,
+  peopleMockedData,
+  starshipsMockedData,
+} from '../utils/mocked-data';
 
 export const useSearch = () => {
   const [searchItems, setSearchItems] = useState([])
@@ -26,7 +33,7 @@ export const useSearch = () => {
             // const newArr = transformPlanetsArray(results)
             const newArr = transformDataArray({
               fetchedData: results,
-              mockedData: mockedDataPlanets,
+              mockedData: planetsMockedData,
               typeOfData: 'planets'
             })
             setSearchItems(() => [...newArr])
@@ -43,7 +50,7 @@ export const useSearch = () => {
             // const newArr = transformPeopleArray(results)
             const newArr = transformDataArray({
               fetchedData: results,
-              mockedData: mockedDataPeople,
+              mockedData: peopleMockedData,
               typeOfData: 'people'
             })
             setSearchItems(() => [...newArr])
@@ -61,7 +68,7 @@ export const useSearch = () => {
             // const newArr = transformShipsArray(results)
             const newArr = transformDataArray({
               fetchedData: results,
-              mockedData: mockedDataShips,
+              mockedData: starshipsMockedData,
               typeOfData: 'starships'
             })
             setSearchItems(() => [...newArr])

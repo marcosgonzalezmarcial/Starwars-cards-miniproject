@@ -1,4 +1,4 @@
-export default [
+const peopleMockedData = [
   {
     "id": 1,
     "name": "Luke Skywalker",
@@ -2030,3 +2030,5 @@ export default [
     "formerAffiliations": []
   }
 ]
+
+export default peopleMockedData

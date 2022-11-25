@@ -1,4 +1,4 @@
-export default [
+const mockedFilms = [
   {
     title: 'A New Hope',
     id: 4,
@@ -36,3 +36,5 @@ export default [
       'https://res.cloudinary.com/dn9mr6kwc/image/upload/q_auto:low/v1666864463/Starwars%20miniproject/Films/episode3_j5erlx.webp'
   }
 ]
+
+export default mockedFilms

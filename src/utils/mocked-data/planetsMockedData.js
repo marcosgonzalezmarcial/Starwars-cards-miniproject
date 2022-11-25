@@ -1,4 +1,4 @@
-export default [
+const mockedPlanets = [
   {
     name: 'Tatooine',
     id: 1,
@@ -354,3 +354,5 @@ export default [
       'https://res.cloudinary.com/dn9mr6kwc/image/upload/q_auto:low/v1667547815/Starwars%20miniproject/Planets/Umbara_tavtpf.webp'
   }
 ]
+
+export default mockedPlanets
