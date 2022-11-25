@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
-import { planetsMockedData } from '../utils/mocked-data'
 import { useSearch } from '../hooks/useSearch.js'
 import { Spinner } from '../components/Spinner/Spinner'
 import '../styles.scss'
