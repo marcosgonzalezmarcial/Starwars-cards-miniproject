@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
-// import planetsMappedData from '../utils/mocked-data/planetsMappedData.js'
 import { planetsMockedData } from '../utils/mocked-data'
 import { useSearch } from '../hooks/useSearch.js'
-import { getTransformedPlanetsArray } from '../services/getTransformedPlanetsArray'
 import { Spinner } from '../components/Spinner/Spinner'
 import '../styles.scss'
+import { getTransformedDataArray } from '../services/getTransformedDataArray'
+import { TYPE_OF_DATA } from '../constants'
 
 const Planets = () => {
 	const [page, setPage] = useState(1)
@@ -16,7 +16,7 @@ const Planets = () => {
 	let navigate = useNavigate()
 
 	useEffect(() => {
-		getTransformedPlanetsArray(page)
+		getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PLANETS })
 			.then(data => {
 				//checking data is not null
 				if (data) {

@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
 import { peopleMockedData } from '../utils/mocked-data'
-import { getTransformedCharactersArray } from '../services/getTransformedCharactersArray'
+// import { getTransformedCharactersArray } from '../services/getTransformedCharactersArray'
 import { useSearch } from '../hooks/useSearch'
 import { Spinner } from '../components/Spinner/Spinner'
 import '../styles.scss'
+import { TYPE_OF_DATA } from '../constants'
+import { getTransformedDataArray } from '../services/getTransformedDataArray'
 
 const Characters = () => {
 	const [page, setPage] = useState(1)
@@ -15,7 +17,7 @@ const Characters = () => {
 	let navigate = useNavigate()
 
 	useEffect(() => {
-		getTransformedCharactersArray(page)
+		getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PEOPLE })
 			.then(data => {
 				//checking data is not null
 				if (data) {

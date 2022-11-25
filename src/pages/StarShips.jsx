@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useNavigate } from 'react-router-dom'
-// import starshipsMappedData from '../utils/mocked-data/starshipsMappedData'
 import { starshipsMockedData } from '../utils/mocked-data'
-import { getTransformedShipsArray } from '../services/getTransformedShipsArray'
 import { useSearch } from '../hooks/useSearch'
 import { Spinner } from '../components/Spinner/Spinner'
 import '../styles.scss'
+import { getTransformedDataArray } from '../services/getTransformedDataArray'
+import { TYPE_OF_DATA } from '../constants'
 
 const StarShips = () => {
 	const [page, setPage] = useState(1)
@@ -16,7 +16,7 @@ const StarShips = () => {
 	let navigate = useNavigate()
 
 	useEffect(() => {
-		getTransformedShipsArray(page)
+		getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.STARSHIPS })
 			.then(data => {
 				//checking data is not null
 				if (data) {
@@ -41,7 +41,10 @@ const StarShips = () => {
 			{searchItems.length > 0 ? (
 				<div className="my-3 my-md-4 grid-container">
 					{searchItems?.map(starship => (
-						<div key={starship.name} className="grid-element-card">
+						<div
+							key={`${starship.model}${starship.crew}`}
+							className="grid-element-card"
+						>
 							<div className="grid-card-hero">
 								<img
 									className="grid-card-hero-img"
@@ -65,7 +68,10 @@ const StarShips = () => {
 					className={`my-3 my-md-4 ${ships.length > 0 ? 'grid-container' : ''}`}
 				>
 					{ships.map(ship => (
-						<div key={ship.name} className="grid-element-card">
+						<div
+							key={`${ship.model}${ship.crew}`}
+							className="grid-element-card"
+						>
 							<div className="grid-card-hero">
 								<img
 									className="grid-card-hero-img"
