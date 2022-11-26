@@ -29,10 +29,10 @@ const SearchModal = ({ show, onHide }) => {
 		<Modal
 			show={show}
 			onHide={onHide}
-			size="lg"
+			// size="lg"
 			aria-labelledby="contained-modal-title-vcenter"
 			centered
-			dialogClassName="modal"
+			dialogClassName="search-modal"
 		>
 			<Form className="modal-form" onSubmit={handleSubmit}>
 				<Modal.Header closeVariant="white" closeButton>
