@@ -101,7 +101,7 @@ const Login = ({ setLoggedIn, users }) => {
 						</>
 					)}
 					<div className="sign-up-link">
-						<Link to="/signupform">Create an account</Link>
+						<Link to="/signup">Create an account</Link>
 					</div>
 				</div>
 			</form>

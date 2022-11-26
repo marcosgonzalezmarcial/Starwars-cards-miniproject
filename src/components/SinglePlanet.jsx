@@ -44,7 +44,7 @@ const SinglePlanet = () => {
 			) : (
 				<main className="main text-secondary my-3">
 					<div className="page-img-container">
-						<img src={planet.imgUrl} alt={planet.name} />
+						<img width="400px" height="400px" src={planet.imgUrl} alt={planet.name} />
 					</div>
 					<div className="page-description-container bg-dark p-2">
 						<h2 className="mb-2 pt-1 px-2">{planet.name}</h2>

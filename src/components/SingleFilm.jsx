@@ -40,46 +40,48 @@ const SingleFilm = () => {
 			{isLoading ? (
 				<Spinner />
 			) : (
-				<div className="main text-secondary my-3">
-					<div className="page-img-container">
-						<img src={film.imgUrl} alt={film.title} />
-					</div>
-					<div className="page-description-container bg-dark p-2">
-						<h1 className="mb-2 pt-1 px-2">{film.title}</h1>
-						<div className="px-2">
-							<Row className="py-1">
-								<Col>
-									<h3>Episode:</h3>
-									<span>{film.episode_id}</span>
-								</Col>
-								<Col>
-									<h3>Director</h3>
-									<span>{film.director}</span>
-								</Col>
-							</Row>
-							<Row className="py-1">
-								<Col>
-									<h3>Producer:</h3>
-									<span>{film.producer}</span>
-								</Col>
-								<Col>
-									<h3>Release date</h3>
-									<span>{film.release_date}</span>
-								</Col>
-							</Row>
-							<Row className="py-1">
-								<Col className="pt-1">
-									<h3 className="m-0 py-1">Ships</h3>
-									{film.starships?.length > 0 ? (
-										<ListOfShips shipsUrls={film.starships} />
-									) : (
-										<span>There aren't ships for this character</span>
-									)}
-								</Col>
-							</Row>
+				<main className="main text-secondary my-3">
+					{/* <div className='page-wrapper'>		 */}
+						<div className="page-img-container">
+							<img src={film.imgUrl} alt={film.title} />
 						</div>
-					</div>
-				</div>
+						<div className="page-description-container bg-dark p-2">
+							<h1 className="mb-2 pt-1 px-2">{film.title}</h1>
+							<div className="px-2">
+								<Row className="py-1">
+									<Col>
+										<h3>Episode:</h3>
+										<span>{film.episode_id}</span>
+									</Col>
+									<Col>
+										<h3>Director</h3>
+										<span>{film.director}</span>
+									</Col>
+								</Row>
+								<Row className="py-1">
+									<Col>
+										<h3>Producer:</h3>
+										<span>{film.producer}</span>
+									</Col>
+									<Col>
+										<h3>Release date</h3>
+										<span>{film.release_date}</span>
+									</Col>
+								</Row>
+								<Row className="py-1">
+									<Col className="pt-1">
+										<h3 className="m-0 py-1">Ships</h3>
+										{film.starships?.length > 0 ? (
+											<ListOfShips shipsUrls={film.starships} />
+										) : (
+											<span>There aren't ships for this character</span>
+										)}
+									</Col>
+								</Row>
+							</div>
+						</div>
+					{/* </div> */}
+				</main>
 			)}
 		</>
 	)

@@ -19,7 +19,7 @@
 	flex-direction: column;
 	border-radius: 5px;
 	overflow: hidden;
-	height: 60vh;
+	height: 45vh;
 }
 
 .grid-card-hero {
@@ -86,6 +86,18 @@
 	overflow: hidden;
 }
 
+// .page-wrapper {
+// 	display: flex;
+// 	margin: 0 auto;
+// }
+
+
+// @media (min-width: 768px) {
+// 	.page-wrapper {
+// 		max-width: 60%;
+// }
+// }
+
 .page-description-container {
 	background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
 	background-size: 8px;
@@ -109,12 +121,18 @@
 }
 
 .page-img-container {
+	display: grid;
+	place-content: center;
 	width: 50%;
-	flex: auto;
 	img {
 		height: 72vh;
 		width: 100%;
 		object-fit: cover;
+	}
+	img[src*="Planets"] {
+		clip-path: circle(46%);
+		height: 400px;
+		width: 400px;
 	}
 }
 
@@ -124,10 +142,15 @@
 	}
 	.page-img-container {
 		width: 100%;
-		flex: auto;
 		img {
-			height: 35vh;
+			max-height: 40vh;
+			max-width: 90vh;
+			object-fit: contain;
 		}
+		img[src*="Planets"] {
+			clip-path: none;
+		clip-path: circle(35.5%);
+	}
 	}
 	.page-description-container {
 		border-top: 3px solid #9e4f60;
