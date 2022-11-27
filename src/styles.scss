@@ -1,11 +1,4 @@
-.app {
-	min-height: 100%;
-}
-.main-wrapper {
-	margin-inline: auto;
-	width: calc(min(90vw, 1100px));
-}
-
+//Grid styles
 .grid-container {
 	max-width: calc(min(90vw, 1200px));
 	margin-inline: auto;
@@ -17,20 +10,20 @@
 .grid-element-card {
 	display: flex;
 	flex-direction: column;
-	border-radius: 5px;
+	border-radius: 15px;
 	overflow: hidden;
-	height: 45vh;
+	height: 43vh;
 }
 
 .grid-card-hero {
-	height: 70%;
+	height: 63%;
 	overflow: hidden;
 }
 
 .grid-card-hero-img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	// object-fit: cover;
 	transition: transform 0.25s ease-in-out;
 	&:hover {
 		transform: scale(1.05);
@@ -38,7 +31,7 @@
 }
 
 .grid-card-info {
-	height: 30%;
+	height: 37%;
 	border-top: 2px solid #9e4f60;
 	background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
 	background-size: 7px;
@@ -78,27 +71,14 @@
 	}
 }
 
+//////// SingleItem page styles  /////////////////
 .main {
-	width: calc(min(90vw, 1100px));
 	display: flex;
 	margin-inline: auto;
 	border-radius: 15px;
 	overflow: hidden;
-	
-	max-height: calc(100vh - 148px);
 }
 
-// .page-wrapper {
-// 	display: flex;
-// 	margin: 0 auto;
-// }
-
-
-// @media (min-width: 768px) {
-// 	.page-wrapper {
-// 		max-width: 60%;
-// }
-// }
 
 .page-description-container {
 	background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
@@ -108,10 +88,8 @@
 	color: #ddd;
 	border-left: 3px solid #9e4f60;
 	width: 50%;
-	// overflow: auto;
-
 	h2 {
-		font-size: 1.15rem;
+		font-size: 1.25rem;
 	}
 	h3 {
 		font-size: 0.9rem;
@@ -126,11 +104,10 @@
 .page-img-container {
 	display: grid;
 	place-content: center;
+	place-content: stretch;
 	width: 50%;
 	img {
-		height: 72vh;
 		width: 100%;
-		object-fit: cover;
 	}
 	img[src*="Planets"] {
 		clip-path: circle(46%);
@@ -139,19 +116,47 @@
 	}
 }
 
+@media (min-width: 576px) and (max-width: 768px) {
+	.main:has(img[src*="Starships"]) {
+		min-height: 75vh
+	}
+}
+
 @media (min-width: 768px) {
 	.main:has(img[src*="Starships"]) {
-		width: calc(max(65vw, 768px));
+		width: calc(max(70vw, 758px));
 	}
 	.page-img-container:has(img[src*="Starships"]) {
   		img {
 		height: 60vh;
-		width: 100%;
 		object-fit: cover;
-	}
+		}
 	}
 }
 
+@media (min-width: 768px) and (max-width: 992px) and (orientation: portrait) {
+	.main {
+		flex-direction: column;
+	}
+	.main:has(img[src*="Starships"]) {
+		max-width: calc(max(85vw, 540px) );
+		min-height: 70vh;
+	}
+	.grid-element-card {
+		height: 27vh;
+	}
+	.page-img-container {
+		width: 100%;
+		img {
+			max-height: 33vh;
+		}
+	}
+	.page-description-container {
+		border-top: 3px solid #9e4f60;
+		border-left: none;
+		width: 100%;
+	}
+}
 
 
 @media (max-width: 768px) {
@@ -159,10 +164,9 @@
 		flex-direction: column;
 	}
 	.main:has(img[src*="Starships"]) {
-		max-width: 70vw;
+		max-width: calc(max(75vw, 540px) );
 	}
 	.page-img-container:has(img[src*="Starships"]) {
-  		place-content: stretch;
 		  img {
 			  object-fit: cover;
 		  }
@@ -170,7 +174,7 @@
 	.page-img-container {
 		width: 100%;
 		img {
-			max-height: 37vh;
+			max-height: 33vh;
 			max-width: 90vh;
 			object-fit: contain;
 		}
@@ -188,18 +192,12 @@
 
 @media (max-width: 576px) {
 	.main:has(img[src*="Starships"]) {
-		width: 95vw;
 		max-width: 94vw;
 		min-height: 75vh;
-		// max-height: 60vh;
-	}
-	.page-img-container:has(img[src*="Starships"]) {
-		img {
-			max-height: 29vh;
-		}
 	}
 }
 
+// ListOfItems components
 .list-element {
 	color: #9e4f60 !important;
 	padding-block: 0.1rem;

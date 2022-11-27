@@ -18,9 +18,6 @@ const ListOfFilms = ({ filmsUrls }) => {
       .finally(() => {
         setIsLoading(false)
       })
-      .finally(() => {
-        setIsLoading(false)
-      })
   }, [filmsUrls])
 
   const selectFilm = useCallback(
