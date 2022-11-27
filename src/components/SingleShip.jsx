@@ -43,11 +43,11 @@ const SingleShip = () => {
 			{isLoading ? (
 				<Spinner />
 			) : (
-				<main className="main text-secondary my-3">
+				<main className="main text-secondary m-0-auto mt-3 mt-sm-4 mt-md-5">
 					<div className="page-img-container">
 						<img src={ship.imgUrl} alt={ship.name} />
 					</div>
-					<div className="page-description-container bg-dark p-2">
+					<div className="page-description-container flex-grow-1 bg-dark p-2">
 						<h2 className="mb-2 pt-1 px-2">{ship.name}</h2>
 						<div className="px-2">
 							<Row className="py-1">
@@ -63,19 +63,19 @@ const SingleShip = () => {
 								</Col>
 							</Row>
 							<Row className="py-1">
-								<Col>
+								{/* <Col>
 									<h3>Cost in credits:</h3>
 									<span>{ship.cost_in_credits}</span>
-								</Col>
-								<Col>
+								</Col> */}
+								{/* <Col>
 									<h3>Atmospheric speed:</h3>
 									<span>{ship.max_atmosphering_speed}</span>
-								</Col>
+								</Col> */}
 							</Row>
 							<Row className="py-1">
 								<Col>
-									<h3>Length:</h3>
-									<span>{ship.length}</span>
+									<h3>Atmospheric speed:</h3>
+									<span>{ship.max_atmosphering_speed}</span>
 								</Col>
 								<Col>
 									<h3>Crew:</h3>
