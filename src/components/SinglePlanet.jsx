@@ -44,12 +44,12 @@ const SinglePlanet = () => {
 			) : (
 				<main className="main text-secondary my-3">
 					<div className="page-img-container">
-						<img width="400px" height="400px" src={planet.imgUrl} alt={planet.name} />
+						<img /*width="400px" height="400px"*/ src={planet.imgUrl} alt={planet.name} />
 					</div>
 					<div className="page-description-container bg-dark p-2">
 						<h2 className="mb-2 pt-1 px-2">{planet.name}</h2>
 						<div className="px-2">
-							<Row className="py-1">
+							{/* <Row className="py-1">
 								<Col>
 									<h3>Climate:</h3>
 									<span>{planet.climate}</span>
@@ -58,7 +58,7 @@ const SinglePlanet = () => {
 									<h3>Gravity:</h3>
 									<span>{planet.gravity ? planet.gravity : 'Unknown'}</span>
 								</Col>
-							</Row>
+							</Row> */}
 							<Row className="py-1">
 								<Col>
 									<h3>Terrain:</h3>
