@@ -39,12 +39,12 @@ const SingleCharacter = () => {
 			{isLoading ? (
 				<Spinner />
 			) : (
-				<div className="main text-secondary my-3">
+				<main className="main text-secondary my-3">
 					<div className="page-img-container">
 						<img src={character.image} alt={character.name} />
 					</div>
 					<div className="page-description-container bg-dark p-2">
-						<h2 className="mb-2 pt-1 px-2">{character.name}</h2>
+						<h1 className="mb-2 pt-1 px-2">{character.name}</h1>
 						<div className="px-2">
 							<Row className="py-1">
 								<Col>
@@ -92,7 +92,7 @@ const SingleCharacter = () => {
 							</Row>
 						</div>
 					</div>
-				</div>
+				</main>
 			)}
 		</>
 	)

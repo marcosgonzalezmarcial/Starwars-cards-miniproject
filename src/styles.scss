@@ -29,6 +29,10 @@
 	&:hover {
 		transform: scale(1.05);
 	}
+
+	&:where(img[src*="vignette"]) {
+		object-position: top;
+	}
 }
 
 .grid-card-info {
@@ -80,18 +84,94 @@
 	overflow: hidden;
 	min-height: 50vh;
 	
-	@media (min-width: 768px) {
-		& {
-			width: calc(max(70vw, 758px));
-			max-height: 60vh;			
-		}
-		&:has(img[src*="Planets"]) {
+	.page-img-container:has(img[src*="Starships"]) {
+			// object-position: top;
+			place-content:stretch;
 			img {
-				object-fit: contain;
+				min-height: 100%;
+				object-fit: cover;
 			}
+			
+	}
+	img[src*="vignette"] {
+			object-fit: contain;
+			
+		}
+	
+	&:has(img[src*="Films"]) {
+		@media (min-width: 768px) {
+			max-height: 60vh;
+		}
+	
+	}
+	
+	@media (min-width: 576px) {
+		width: calc(max(70vw, 758px));
+		min-height: 65vh;
+		// max-height: 70vh;			
+		// :has(img[src*="Planets"]) {
+		// 	img {
+		// 		object-fit: contain;
+		// 	}
+		// }
 		
+		.page-img-container:has(img[src*="Films"]) {
+			object-position: top;
+			place-content:stretch;
+		}
+		// .page-img-container:has(img[src*="Starships"]) {
+		// 	// object-position: top;
+		// 	place-content:stretch;
+		// 	img {
+		// 		min-height: 100%;
+		// 		object-fit: cover;
+		// 	}
+		// }
+		
+	}
+	@media (min-width: 576px) and (max-width: 768px) {
+		max-width: calc(max(80vw, 540px));
+		&:has(img[src*="Planets"]) {
+		max-width: calc(max(70vw, 540px));
 		}
 	}
+	@media (max-width: 575px) {
+		max-width: 94vw;
+		max-width: calc(min(94vw, 540px));
+    	min-height: 72vh;
+		img[src*="Films"] {
+			object-position: bottom;
+		}
+		img[src*="vignette"] {
+			object-position: 50% 10%;
+		}
+	}
+	@media (min-width: 576px) {
+		
+		img[src*="vignette"] {
+			min-height: 100%;
+		}
+	}
+	@media (min-width: 576px) and (max-width: 768px) {
+		&:has(img[src*="Films"], img[src*="vignette"]) {
+			flex-direction: row;
+			.page-description-container {
+				border-left: 3px solid #9e4f60;
+				border-top: none;
+			}
+			img {
+				max-height: unset;
+				object-position:top;
+			}
+		}
+	}
+	@media (min-width: 992px) {
+		&:has(img[src*="vignette"]) {
+			max-height: 500px;
+		}
+	}
+	
+	
 }
 
 
@@ -104,6 +184,9 @@
 	border-left: 3px solid #9e4f60;
 	width: 50%;
 	flex-grow: 1;
+	h1 {
+		font-size: 1.50rem
+	}
 	h2 {
 		font-size: 1.25rem;
 	}
@@ -116,14 +199,24 @@
 		color: #999;
 	}
 	
+	@media (min-width: 768px) {
+		h1 {
+			font-size: 1.75rem;
+			padding-inline-start: 0;
+		}
+	}
+	
 	@media (max-width: 768px) {
 		& {
 			flex-grow: 1;
+			// border-left: 3px solid #9e4f60;
+			// border-top: none;
 		}
 		img {
 		height: 60vh;
 		object-fit: contain;
 		}
+		
 	}
 }
 
@@ -138,18 +231,40 @@
 	img[src*="Planets"] {
 		clip-path: circle(45%);
 	}
+	&:has(img[src*="Films"]) {
+		object-fit: center;
+	}
+	&:has(img[src*="vignette"]) {
+		place-content: stretch;
+	}
 	
+	img[src*="Films"] {
+		object-fit: cover;
+		min-height: 100%;
+	}
+	@media (min-width: 992px) {
+		&:has(img[src*="Films"]) {
+		object-position: bottom;
+	}
+	}
 	@media (max-width: 768px) {
 		& {
 			width: 100%;
 		}
+		
 		img {
-			max-height: 32vh;
+			max-height: calc(29vh);
 			object-fit: contain;
-		}	
+		}
+		img[src*="Films"], img[src*="vignette"] {
+			object-fit: cover;			
+		}
+		// img[src*="Films"] {
+		// 	object-position: bottom;
+		// }
 	}
 	@media (min-width: 768px) {
-		img[src*="Planets"] {
+		img:not([src*="Planets"], [src*="Starships"]) {
 		max-height: 58vh;
 	}
 		& {
@@ -158,19 +273,20 @@
 	}
 }
 
-@media (min-width: 576px) and (max-width: 768px) {
-	.main:has(img[src*="Starships"]), .main:has(img[src*="Planets"]) {
-		min-height: 75vh
-	}
-}
+// @media (min-width: 576px) and (max-width: 768px) {
+// 	.main:has(img[src*="Starships"]), .main:has(img[src*="Planets"]) {
+// 		min-height: 75vh
+// 	}
+// }
 
 @media (min-width: 768px) and (max-width: 992px) and (orientation: portrait) {
 	.main {
 		flex-direction: column;
 	}
 	.main:has(img[src*="Starships"]), .main:has(img[src*="Planets"]) {
-		max-width: calc(max(85vw, 540px) );
+		max-width: calc(max(85vw, 540px));
 		min-height: 70vh;
+		max-height: 85vh;
 	}
 	
 	.grid-element-card {
@@ -183,10 +299,23 @@
 			max-height: 33vh;
 		}
 	}
+	.page-img-container:has(img[src*="vignette"]) {
+		place-content: stretch;
+		img {
+			object-fit: cover;
+			// object-fit: contain;
+		}
+		
+	}
+	img[src*="Planets"] {
+		max-height: 33vh; 
+	}
+	
 	.page-description-container {
 		border-top: 3px solid #9e4f60;
 		border-left: none;
 		width: 100%;
+		flex-grow: 1;
 		h2 {
 			font-size: 1.75rem;
 		}
@@ -204,15 +333,15 @@
 	.main {
 		flex-direction: column;
 	}
-	.main:has(img[src*="Starships"]), .main:has(img[src*="Planets"]) {
-		max-width: calc(max(75vw, 540px) );
-	}
-	.page-img-container:has(img[src*="Starships"]) {
-		  img {
-			  object-fit: cover;
-			  max-height: 29vh;
-		  }
-	}
+	// .main:has(img[src*="Starships"]), .main:has(img[src*="Planets"]) {
+	// 	max-width: calc(max(75vw, 540px) );
+	// }
+	// .page-img-container:has(img[src*="Starships"]) {
+	// 	  img {
+	// 		  object-fit: cover;
+	// 		  max-height: 29vh;
+	// 	  }
+	// }
 	.page-img-container:has(img[src*="Planets"]) {
 		img {
 			clip-path: circle(29vw);
@@ -226,12 +355,12 @@
 	}
 }
 
-@media (max-width: 576px) {
-	.main:has(img[src*="Starships"]), .main:has(img[src*="Planets"]) {
-		max-width: 94vw;
-		min-height: 72vh;
-	}
-}
+// @media (max-width: 576px) {
+// 	.main:has(img[src*="Starships"]), .main:has(img[src*="Planets"]) {
+// 		max-width: calc(max(94vw, 540px) );
+// 		min-height: 72vh;
+// 	}
+// }
 
 // ListOfItems components
 .list-element {

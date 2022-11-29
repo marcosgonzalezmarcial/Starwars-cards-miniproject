@@ -43,12 +43,13 @@ const SingleShip = () => {
 			{isLoading ? (
 				<Spinner />
 			) : (
-				<main className="main text-secondary m-0-auto mt-3 mt-sm-4 mt-md-5">
+				// m-0-auto mt-3 mt-sm-4 mt-md-5
+				<main className="main text-secondary my-3 ">
 					<div className="page-img-container">
 						<img src={ship.imgUrl} alt={ship.name} />
 					</div>
 					<div className="page-description-container flex-grow-1 bg-dark p-2">
-						<h2 className="mb-2 pt-1 px-2">{ship.name}</h2>
+						<h1 className="mb-2 pt-1 px-2">{ship.name}</h1>
 						<div className="px-2">
 							<Row className="py-1">
 								<Col>

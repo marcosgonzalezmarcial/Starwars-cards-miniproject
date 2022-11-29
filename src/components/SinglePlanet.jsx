@@ -47,7 +47,7 @@ const SinglePlanet = () => {
 						<img /*width="400px" height="400px"*/ src={planet.imgUrl} alt={planet.name} />
 					</div>
 					<div className="page-description-container bg-dark p-2">
-						<h2 className="mb-2 pt-1 px-2">{planet.name}</h2>
+						<h1 className="mb-2 pt-1 px-2">{planet.name}</h1>
 						<div className="px-2">
 							{/* <Row className="py-1">
 								<Col>
