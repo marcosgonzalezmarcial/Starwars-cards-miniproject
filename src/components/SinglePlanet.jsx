@@ -43,7 +43,7 @@ const SinglePlanet = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <main className="main text-secondary my-3">
+        <main className="main text-secondary">
           <div className="page-img-container">
             <img
               /*width="400px" height="400px"*/ src={planet.imgUrl}
@@ -51,7 +51,7 @@ const SinglePlanet = () => {
             />
           </div>
           <div className="page-description-container bg-dark p-2">
-            <h1 className="mb-2 pt-1 px-2">{planet.name}</h1>
+            <h1 className="mb-3 pt-1 px-2">{planet.name}</h1>
             <div className="px-2">
               {/* <Row className="py-1">
 								<Col>

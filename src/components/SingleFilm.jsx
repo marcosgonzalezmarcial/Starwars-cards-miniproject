@@ -20,6 +20,7 @@ const SingleFilm = () => {
     setIsLoading(true);
 
     const filmTitleFromUrl = urlStringify(filmTitle);
+    // console.log(filmTitleFromUrl);
 
     const { id } = filmsMockedData.find(
       (film) => film.title === filmTitleFromUrl
@@ -32,6 +33,7 @@ const SingleFilm = () => {
           fetchedData: [item],
           typeOfData: TYPE_OF_DATA.FILMS,
         });
+        // console.log(transformedFilmData);
         setFilm(transformedFilmData);
       })
       .catch(console.log)
@@ -43,13 +45,13 @@ const SingleFilm = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <main className="main text-secondary my-3">
+        <main className="main text-secondary">
           {/* <div className='page-wrapper'>		 */}
           <div className="page-img-container">
             <img src={film.imgUrl} alt={film.title} />
           </div>
           <div className="page-description-container bg-dark p-2">
-            <h1 className="mb-2 pt-1 px-2">{film.title}</h1>
+            <h1 className="mb-3 pt-1 px-2">{film.title}</h1>
             <div className="px-2">
               <Row className="py-1">
                 <Col>

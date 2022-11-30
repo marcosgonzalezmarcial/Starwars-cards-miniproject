@@ -4,7 +4,8 @@
 	margin-inline: auto;
 	border-radius: 15px;
 	overflow: hidden;
-	// min-height: 50vh;
+    flex-direction: column;
+    margin-block-start: 1rem;
 	
 	.page-img-container:has(img[src*="Starships"]) {
 		place-content:stretch;
@@ -17,23 +18,22 @@
 			object-fit: cover;
 			object-position: top;
 	}
-	
-	
-	@media (max-width: 575px) {
-		max-width: 94vw;
-		max-width: calc(min(94vw, 540px));
-    	min-height: 72vh;
-		img[src*="Films"] {
+	img[src*="Films"] {
 			object-position: bottom;
 		}
+	
+	@media (max-width: 575px) {
+		max-width: calc(min(94vw, 540px));
+    	min-height: 72vh;
 		img[src*="vignette"] {
-			object-position: 50% 10%;
+			object-position: 50% 15%;
 		}
 	}
 	@media (min-width: 576px) {
-		width: calc(max(70vw, 758px));
-		max-width: 90vw;
+        margin-block-start: 2rem;
+		max-width: calc(min(90vw, 758px));
 		min-height: 65vh;
+		max-height: 600px;
 		
 		img[src*="vignette"] {
 			min-height: 100%;
@@ -43,15 +43,11 @@
 			object-position: top;
 			place-content:stretch;
 		}
-		&:has(img[src*="Films"], img[src*="vignette"]) {
-			flex-direction: row;
-			.page-description-container {
-				border-left: 3px solid #9e4f60;
-				border-top: none;
-			}
-		}
 	}
 	@media (min-width: 768px) {
+        & {
+            flex-direction: row;
+        }
 		h1 {
 			font-size: 1.75rem;
 			padding-inline-start: 0;
@@ -93,6 +89,7 @@
 			flex-grow: 1;
 			border-top: 3px solid #9e4f60;          
 			border-left: none;
+            width: 100%;
 		}
 		img {
 		height: 60vh;
@@ -101,21 +98,8 @@
 	}
 }
 
-.main:has(img[src*="Film"]){
-	@media (max-width: 576px) {
-		.page-description-container {
-			border-left: 3px solid #9e4f60;
-			border-top: none;
-		}
-		img {
-			object-fit: cover;
-		}
-	}
-}
-
 .page-img-container {
 	display: grid;
-	place-content: center;
 	place-content: stretch;
 	width: 50%;
 	img {
@@ -152,6 +136,12 @@
 		img[src*="Films"], img[src*="vignette"] {
 			object-fit: cover;			
 		}
+        &:has(img[src*="Planets"]) {
+		img {
+			clip-path: circle(29vw);
+			margin-bottom: 1rem;
+		  }
+	}
 	}
 	@media (min-width: 768px) {
 		img:not([src*="Planets"], [src*="Starships"]) {
@@ -164,19 +154,14 @@
 }
 
 // Styles for tablets
-@media (min-width: 768px) and (max-width: 992px) and (orientation: portrait) {
+@media (min-width: 768px) /*and (max-width: 992px)*/ and (orientation: portrait) {
 	.main {
+        margin-block-start: 2rem;
 		flex-direction: column;
 	}
-	.main:has(img[src*="vignette"], img[src*="Films"]) {
-		flex-direction: row;
-		.page-description-container {
-			border-left: 3px solid #9e4f60;
-			border-top: none;
-		}
-	}
+	
 	.main:has(img[src*="Starships"]), .main:has(img[src*="Planets"]) {
-		max-width: calc(max(85vw, 540px));
+		// max-width: calc(max(85vw, 540px));
 		min-height: 70vh;
 		max-height: 85vh;
 	}
@@ -214,24 +199,5 @@
 		span {
 			font-size: 1rem;
 		}
-	}
-}
-
-
-@media (max-width: 768px) {
-	.main {
-		flex-direction: column;
-	}
-	.main:has(img[src*="Films"]) {
-		flex-direction: row;
-	}
-	.page-img-container:has(img[src*="Planets"]) {
-		img {
-			clip-path: circle(29vw);
-			margin-bottom: 1rem;
-		  }
-	}
-	.page-description-container {
-		width: 100%;
 	}
 }

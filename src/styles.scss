@@ -12,7 +12,7 @@
 	flex-direction: column;
 	border-radius: 15px;
 	overflow: hidden;
-	height: 43vh;
+	height: 45vh;
 }
 
 .grid-card-hero {
@@ -40,7 +40,8 @@
 	background-size: 7px;
 	background-repeat: repeat-x;
 	h4 {
-		font-size: 18px;
+		font-size: 1.15rem;
+		
 		color: #ddd;
 		transition: color 275ms cubic-bezier(0.075, 0.82, 0.165, 1);
 		&:hover {
@@ -49,7 +50,7 @@
 		}
 	}
 	p {
-		font-size: 14px;
+		font-size: 0.8rem;
 	}
 }
 
@@ -87,5 +88,13 @@
 @media (min-width: 768px) and (max-width: 992px) and (orientation: portrait) {
 	.grid-element-card {
 		height: 30vh;
+	}
+	.grid-card-info {
+		h4 {
+		font-size: 1.5rem;
+		}
+	}
+	.list-element {
+		font-size: 1rem;
 	}
 }
