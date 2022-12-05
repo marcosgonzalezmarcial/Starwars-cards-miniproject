@@ -6,6 +6,7 @@ import { Spinner } from '../components/Spinner/Spinner'
 import '../styles.scss'
 import { getTransformedDataArray } from '../services/getTransformedDataArray'
 import { TYPE_OF_DATA } from '../constants'
+import { sortObjItems } from '../utils/sortItems.js'
 
 const Planets = () => {
 	const [page, setPage] = useState(1)
@@ -18,9 +19,8 @@ const Planets = () => {
 		getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PLANETS })
 			.then(data => {
 				//checking data is not null
-				if (data) {
-					setPlanets(prev => [...prev, ...data])
-				}
+				data && setPlanets(prev => sortObjItems([...prev, ...data]))
+				
 			})
 			.catch(error => {
 				console.log(error)
