@@ -78,26 +78,34 @@
 /* Media queries */
 
 @media (max-width: 576px) {
+	.nav {
+		flex-wrap: nowrap;
+	}
+
 	.nav-wrapper {
 		width: 100%;
 	}
+
 	.logo-img {
 		width: 180px;
 	}
+
 	.navbar-toggle-btn {
 		padding: 0.1rem 0.4rem;
 	}
+
 	.nav-link {
 		padding-inline: 0.5rem;
 	}
 }
-@media (max-width: 768px) { 
+
+@media (max-width: 768px) {
 	.logo-img {
 		width: 200px;
 	}
 }
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
 	.logo-img {
 		width: 220px;
 	}
@@ -119,6 +127,7 @@
 		grid-row: 1 / 2;
 		grid-column: 3 / 4;
 	}
+
 	.navbar-brand {
 		grid-column: 2 /3;
 	}

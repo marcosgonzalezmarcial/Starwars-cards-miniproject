@@ -18,18 +18,21 @@
 .grid-card-hero {
 	height: 60%;
 	overflow: hidden;
+
 	.grid-card-hero-img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		transition: transform 0.25s ease-in-out;
+
 		&:hover {
 			transform: scale(1.05);
 		}
+
 		&[src*="vignette"] {
 			object-position: (50% 30%);
 		}
-	}	
+	}
 }
 
 .grid-card-info {
@@ -38,15 +41,18 @@
 	background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
 	background-size: 7px;
 	background-repeat: repeat-x;
+
 	h4 {
 		font-size: 1.25rem;
 		color: #ddd;
 		transition: color 275ms cubic-bezier(0.075, 0.82, 0.165, 1);
+
 		&:hover {
 			cursor: pointer;
 			color: #9e4f60;
 		}
 	}
+
 	p {
 		font-size: 0.9rem;
 	}
@@ -56,14 +62,17 @@
 	.grid-container {
 		gap: 1rem;
 	}
+
 	.grid-element-card {
 		height: 20vh;
 		flex-direction: row;
 	}
+
 	.grid-card-hero {
 		min-height: 100%;
 		width: 35%;
 	}
+
 	.grid-card-info {
 		min-height: 100%;
 		border-left: 2px solid #9e4f60;
@@ -74,10 +83,11 @@
 
 // ListOfItems components
 .list-element {
-	color: #9e4f60 ;
+	color: #9e4f60;
 	margin-block: 0.5rem;
 	font-size: 0.9rem;
 }
+
 .list-element:hover {
 	color: rgb(183, 104, 121);
 	cursor: pointer;
@@ -87,11 +97,13 @@
 	.grid-element-card {
 		height: 30vh;
 	}
+
 	.grid-card-info {
 		h4 {
-		font-size: 1.5rem;
+			font-size: 1.5rem;
 		}
 	}
+
 	.list-element {
 		font-size: 1rem;
 	}
