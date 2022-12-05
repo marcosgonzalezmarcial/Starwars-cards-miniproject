@@ -62,7 +62,7 @@
 	right: 0%;
 }
 
-.navbar-container-box {
+.navbar-container {
 	display: grid;
 	width: calc(min(90vw, 1200px));
 	grid-template-columns: 1fr 2fr 1fr;
@@ -78,9 +78,6 @@
 /* Media queries */
 
 @media (max-width: 576px) {
-	.nav {
-		flex-wrap: nowrap;
-	}
 	.nav-wrapper {
 		width: 100%;
 	}
@@ -92,6 +89,17 @@
 	}
 	.nav-link {
 		padding-inline: 0.5rem;
+	}
+}
+@media (max-width: 768px) { 
+	.logo-img {
+		width: 200px;
+	}
+}
+
+@media (min-width: 768px) { 
+	.logo-img {
+		width: 220px;
 	}
 }
 

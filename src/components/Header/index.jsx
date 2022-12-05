@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Navbar } from "react-bootstrap";
-import logo from "../../assets/sw_logo_mobile.png";
+import smallLogo from "../../assets/sw_logo_mobile.png";
+import bigLogo from "../../assets/star-wars-logo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import SectionNav from "./SectionNav";
 import LoginNav from "./LoginNav";
@@ -21,17 +22,27 @@ const Header = ({ loggedIn, setLoggedIn }) => {
   };
   return (
     <header className="header">
-      <Navbar variant="dark" className="navbar-box py-1 py-md-3" expand="md">
-        <div className="navbar-container-box text-center position-relative justify-content-end px-0">
+      <Navbar variant="dark" className="py-1" expand="md">
+        <div className="navbar-container text-center position-relative justify-content-end px-0">
           <Navbar.Toggle
             className="navbar-toggle-btn me-auto"
             aria-controls="basic-navbar-nav"
           />
           <SearchModal show={modalShow} onHide={() => setModalShow(false)} />
 
-          <Navbar.Brand className="m-0 p-3">
+          <Navbar.Brand className="m-0 p-3 p-md-0">
             <Link className="navbar-link p-2" to="/home">
-              <img width="220px" className="logo-img" src={logo} alt="logo" />
+              <picture>
+                <source media="(max-width: 768px)" srcset={smallLogo} />
+                <source media="(min-width: 769px)" srcset={bigLogo} />
+                <img
+                  // width="220px"
+                  className="logo-img"
+                  src={smallLogo}
+                  alt="logo"
+                />
+              </picture>
+              {/* <img width="220px" className="logo-img" src={logo} alt="logo" /> */}
             </Link>
           </Navbar.Brand>
 
