@@ -16,7 +16,7 @@
 }
 
 .grid-card-hero {
-	height: 63%;
+	height: 60%;
 	overflow: hidden;
 	.grid-card-hero-img {
 		width: 100%;
@@ -33,13 +33,13 @@
 }
 
 .grid-card-info {
-	height: 37%;
+	height: 40%;
 	border-top: 2px solid #9e4f60;
 	background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
 	background-size: 7px;
 	background-repeat: repeat-x;
 	h4 {
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 		color: #ddd;
 		transition: color 275ms cubic-bezier(0.075, 0.82, 0.165, 1);
 		&:hover {
@@ -48,7 +48,7 @@
 		}
 	}
 	p {
-		font-size: 1rem;
+		font-size: 0.9rem;
 	}
 }
 

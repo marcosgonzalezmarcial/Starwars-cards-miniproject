@@ -10,19 +10,23 @@
 	position: relative;
 }
 
+
 .nav-link,
 .login-nav-link {
-	font-size: 0.8em !important;
-	font-weight: 800 !important;
+	font-size: 0.8em;
+	font-weight: 800;
+	color: #999;
 }
 
 .navbar-toggle-btn.collapsed {
-	border-color: rgba(255, 255, 255, 0.3) !important;
+	border-color: rgba(255, 255, 255, 0.3);
 	background-color: transparent;
 }
 
 .navbar-toggle-btn {
 	background-color: #424649;
+	max-height: 40px;
+	max-width: 56px;
 }
 
 .navbar-toggle-btn:focus {
@@ -35,12 +39,6 @@
 	font-size: 15px;
 }
 
-.nav-link {
-	color: #999;
-	font-weight: 600;
-	font-size: 1rem;
-}
-
 .nav-link:hover {
 	color: white;
 	cursor: pointer;
@@ -51,17 +49,10 @@
 	color: white;
 }
 
-.login-nav-link {
-	color: #999 !important;
-	white-space: nowrap;
-}
 .login-nav-link:hover {
-	color: #ccc !important;
+	color: #ccc;
 }
 
-.login-nav-link-bars {
-	color: #999 !important;
-}
 .button-toggler {
 	background-color: #dee2e6;
 }
@@ -72,13 +63,16 @@
 }
 
 .navbar-container-box {
-	width: calc(min(90vw, 1200px)) !important;
-	display: grid !important;
+	display: grid;
+	width: calc(min(90vw, 1200px));
 	grid-template-columns: 1fr 2fr 1fr;
+	align-items: center;
+	margin: 0 auto;
 }
 
 .navbar-collapse-box {
 	line-height: 2.5rem;
+	white-space: nowrap;
 }
 
 /* Media queries */
