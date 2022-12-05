@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navbar, Container, Button } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import logo from "../../assets/sw_logo_mobile.png";
 import { Link, useNavigate } from "react-router-dom";
 import SectionNav from "./SectionNav";
@@ -35,15 +35,12 @@ const Header = ({ loggedIn, setLoggedIn }) => {
             </Link>
           </Navbar.Brand>
 
-          <div className="ms-auto me-md-auto ms-md-0 search-icon-container">
-            <Button
-              // as="div"
-              className="search-icon-btn"
-              onClick={() => handleSearchClick()}
-            >
-              <SearchIcon onClick={(prev) => setModalShow(!prev)} />
-            </Button>
-          </div>
+          <button
+            className="search-icon-btn ms-auto me-md-auto ms-md-0"
+            onClick={() => handleSearchClick()}
+          >
+            <SearchIcon onClick={(prev) => setModalShow(!prev)} />
+          </button>
 
           <span></span>
           <Navbar.Collapse
