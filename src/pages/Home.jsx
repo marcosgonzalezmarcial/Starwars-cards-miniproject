@@ -2,10 +2,8 @@ import { LandingAnimation } from '../components/LandingAnimation/LandingAnimatio
 
 const Home = () => {
   return (
-    <main /*className="main text-white m-3"*/>
-      <div className="main-wrapper">
+    <main className="animation-wrapper">
         <LandingAnimation />
-      </div>
     </main>
   )
 }

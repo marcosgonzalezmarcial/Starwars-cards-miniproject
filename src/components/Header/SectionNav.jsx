@@ -8,7 +8,7 @@ const SectionNav = () => {
       <div className="m-auto nav-wrapper">
         <Nav className="py-0 px-4 justify-content-center">
           <Col className="border-silver">
-            <Nav.Item>
+            <Nav.Item>           
               <NavLink className="nav-link text-center py-1" to="planets">
                 {({ isActive }) => (
                   <>

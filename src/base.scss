@@ -9,12 +9,15 @@
 body {
 	background-image: url('https://res.cloudinary.com/dn9mr6kwc/image/upload/v1666519655/Starwars%20miniproject/star-wars-background-img_cpqurg.jpg');
 	font-family: 'Orbitron', sans-serif;
-	letter-spacing: 1.35px;
+	letter-spacing: 1.25px;
 	min-height: 100vh;
 	scroll-behavior: smooth;
 	text-rendering: optimizeSpeed;
 	line-height: 1.5;
 }
+// .app {
+// 	min-height: 100%;
+// }
 
 a {
 	text-decoration: none;
@@ -31,4 +34,3 @@ select {
 	font-size: inherit;
 	font: inherit;
 }
-

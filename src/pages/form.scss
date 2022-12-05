@@ -83,18 +83,18 @@
 	display: flex;
 }
 
-// .form-close-btn {
-// 	right: 1.5rem;
-// 	border: 0;
-// 	background-color: transparent;
-// 	font-size: 2rem;
-// 	color: white;
-// 	transition: color 225ms;
+.form-close-btn {
+	right: 1.5rem;
+	border: 0;
+	background-color: transparent;
+	font-size: 2rem;
+	color: white;
+	transition: color 225ms;
 
-// 	&:hover {
-// 		color: #3f6dac;
-// 	}
-// }
+	&:hover {
+		color: #3f6dac;
+	}
+}
 
 .sign-up-link {
 	width: 90%;
