@@ -1,50 +1,51 @@
-import { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import { fetchSingleCharacter } from '../services/fetchSingleCharacter'
-import ListOfFilms from './ListOfFilms'
-import ListOfShips from './ListOfShips'
-import { urlStringify } from '../utils/urlStringify'
-import { Spinner } from './Spinner/Spinner'
-import { transformPeopleArray } from '../utils/transformPeopleArray'
-import { transformDataArray } from '../utils/transformDataArray'
-import mockedData from '../utils/mocked-data/peopleMappedData'
+import { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import ListOfFilms from "./ListOfFilms";
+import ListOfShips from "./ListOfShips";
+import { urlStringify } from "../utils/urlStringify";
+import { Spinner } from "./Spinner/Spinner";
+import { transformDataArray } from "../utils/transformDataArray";
+import { peopleMockedData } from "../utils/mocked-data";
+import { fetchItem } from "../services/fetchItem";
+import { TYPE_OF_DATA } from "../constants";
+import "./single-item-page-styles.scss";
 
 const SingleCharacter = () => {
-  const [character, setCharacter] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
+  const [character, setCharacter] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  let { characterName } = useParams()
+  let { characterName } = useParams();
 
   useEffect(() => {
-    setIsLoading(true)
-    const newPerson = urlStringify(characterName)
-    const { id } = mockedData.find((person) => person.name === newPerson)
+    setIsLoading(true);
+    const newPerson = urlStringify(characterName);
+    const { id } = peopleMockedData.find((person) => person.name === newPerson);
 
-    fetchSingleCharacter(id)
-      .then((character) => {
-        const [transformedCharacter] = transformDataArray({
-          fetchedData: [character],
-          mockedData,
-          typeOfData: 'people'
-        })
-        setCharacter(transformedCharacter)
-        setIsLoading(false)
+    fetchItem({ id, typeOfData: TYPE_OF_DATA.PEOPLE })
+      .then((item) => {
+        const [transformedCharacterData] = transformDataArray({
+          // fetched data must be an array for implementation requirements
+          fetchedData: [item],
+          typeOfData: TYPE_OF_DATA.PEOPLE,
+        });
+        setCharacter(transformedCharacterData);
       })
       .catch(console.log)
-  }, [characterName])
+      .finally(() => setIsLoading(false));
+  }, [characterName]);
 
   return (
     <>
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="main text-secondary my-3">
+        <main className="main text-secondary">
           <div className="page-img-container">
             <img src={character.image} alt={character.name} />
           </div>
           <div className="page-description-container bg-dark p-2">
-            <h2 className="mb-2 pt-1 px-2">{character.name}</h2>
+            <h1 className="mb-3 pt-1 px-2">{character.name}</h1>
             <div className="px-2">
               <Row className="py-1">
                 <Col>
@@ -92,10 +93,10 @@ const SingleCharacter = () => {
               </Row>
             </div>
           </div>
-        </div>
+        </main>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SingleCharacter
+export default SingleCharacter;

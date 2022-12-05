@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { API_URL } from '../constants'
 import { transformDataArray } from '../utils/transformDataArray'
-import mockedDataPlanets from '../utils/mocked-data/planetsMappedData'
-import mockedDataPeople from '../utils/mocked-data/peopleMappedData'
-import mockedDataShips from '../utils/mocked-data/starshipsMappedData'
+import { TYPE_OF_DATA } from '../constants'
 
 export const useSearch = () => {
   const [searchItems, setSearchItems] = useState([])
@@ -12,22 +10,21 @@ export const useSearch = () => {
   const query = searchParams.get('search')
   let { pathname: category } = useLocation()
   if (category === '/characters/') {
-    category = 'people'
+    category = `${TYPE_OF_DATA.PEOPLE}`
   }
 
   useEffect(() => {
-    if (query && category === '/planets/') {
+    if (query && category === `/${TYPE_OF_DATA.PLANETS}/`) {
       fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
         .then(({ results }) => {
           if (!results) {
             return <h1>No results found</h1>
           } else {
-            // const newArr = transformPlanetsArray(results)
+            console.log(category);
             const newArr = transformDataArray({
               fetchedData: results,
-              mockedData: mockedDataPlanets,
-              typeOfData: 'planets'
+              typeOfData: TYPE_OF_DATA.PLANETS
             })
             setSearchItems(() => [...newArr])
           }
@@ -40,29 +37,25 @@ export const useSearch = () => {
           if (!results) {
             return <h1>No results found</h1>
           } else {
-            // const newArr = transformPeopleArray(results)
+
             const newArr = transformDataArray({
               fetchedData: results,
-              mockedData: mockedDataPeople,
-              typeOfData: 'people'
+              typeOfData: TYPE_OF_DATA.PEOPLE
             })
             setSearchItems(() => [...newArr])
           }
         })
     }
-    if (query && category === '/starships/') {
+    if (query && category === `/${TYPE_OF_DATA.STARSHIPS}/`) {
       fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
         .then(({ results }) => {
-          console.log(results)
           if (!results) {
             return <h1>No results found</h1>
           } else {
-            // const newArr = transformShipsArray(results)
             const newArr = transformDataArray({
               fetchedData: results,
-              mockedData: mockedDataShips,
-              typeOfData: 'starships'
+              typeOfData: TYPE_OF_DATA.STARSHIPS
             })
             setSearchItems(() => [...newArr])
           }

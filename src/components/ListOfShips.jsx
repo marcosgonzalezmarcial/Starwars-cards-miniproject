@@ -1,33 +1,33 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { fetchListOfDataFromUrlsArr } from '../services/fetchListOfDataFromUrlsArr'
-import { Spinner } from './Spinner/Spinner'
+import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { fetchListOfDataFromUrlsArr } from "../services/fetchListOfDataFromUrlsArr";
+import { Spinner } from "./Spinner/Spinner";
 
 const ListOfShips = ({ shipsUrls }) => {
-  const [ships, setShips] = useState([])
-  const [loading, setIsLoading] = useState(false)
-  let navigate = useNavigate()
+  const [ships, setShips] = useState([]);
+  const [loading, setIsLoading] = useState(false);
+  let navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     fetchListOfDataFromUrlsArr(shipsUrls)
       .then((ships) => {
-        setShips(ships)
+        setShips(ships);
       })
       .catch(console.log)
       .finally(() => {
-        setIsLoading(false)
-      })
-  }, [shipsUrls])
+        setIsLoading(false);
+      });
+  }, [shipsUrls]);
 
   const selectShip = useCallback(
     (e) => {
-      const selectedValue = e.target.textContent
+      const selectedValue = e.target.textContent;
 
-      navigate(`/starships/${selectedValue.replaceAll(' ', '~')}`)
+      navigate(`/starships/${selectedValue.replaceAll(" ", "~")}`);
     },
     [navigate]
-  )
+  );
 
   return (
     <>
@@ -35,13 +35,13 @@ const ListOfShips = ({ shipsUrls }) => {
         <Spinner small />
       ) : (
         ships.map((ship) => (
-          <span key={ship.model} onClick={selectShip} className="list-element">
+          <p key={ship.model} onClick={selectShip} className="list-element">
             {ship.name}
-          </span>
+          </p>
         ))
       )}
     </>
-  )
-}
+  );
+};
 
-export default ListOfShips
+export default ListOfShips;

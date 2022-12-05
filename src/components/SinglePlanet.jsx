@@ -1,64 +1,66 @@
-import { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import { fetchSinglePlanet } from '../services/fetchSinglePlanet'
-import ListOfPilots from './ListOfPilots'
-import ListOfFilms from './ListOfFilms'
-import { urlStringify } from '../utils/urlStringify'
-import { Spinner } from './Spinner/Spinner'
-import { transformDataArray } from '../utils/transformDataArray'
-import mockedData from '../utils/mocked-data/planetsMappedData'
+import { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import ListOfPilots from "./ListOfPilots";
+import ListOfFilms from "./ListOfFilms";
+import { urlStringify } from "../utils/urlStringify";
+import { Spinner } from "./Spinner/Spinner";
+import { transformDataArray } from "../utils/transformDataArray";
+import { planetsMockedData } from "../utils/mocked-data";
+import { TYPE_OF_DATA } from "../constants";
+import { fetchItem } from "../services/fetchItem";
+import "./single-item-page-styles.scss";
 
 const SinglePlanet = () => {
-  const [planet, setPlanet] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
+  const [planet, setPlanet] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  let { planetName } = useParams()
+  let { planetName } = useParams();
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
+    const planetNameFromUrl = urlStringify(planetName);
 
-    const planetNameFromUrl = urlStringify(planetName)
-
-    const { id } = mockedData.find(
+    const { id } = planetsMockedData.find(
       (planet) => planet.name === planetNameFromUrl
-    )
+    );
 
-    fetchSinglePlanet(id)
-      .then((planet) => {
-        const [transformedPlanet] = transformDataArray({
-          fetchedData: [planet],
-          mockedData,
-          typeOfData: 'ships'
-        })
-        setPlanet(transformedPlanet)
-        setIsLoading(false)
+    fetchItem({ id, typeOfData: TYPE_OF_DATA.PLANETS })
+      .then((item) => {
+        const [transformedPlanetData] = transformDataArray({
+          // fetched data must be an array for implementation requirements
+          fetchedData: [item],
+          typeOfData: TYPE_OF_DATA.PLANETS,
+        });
+        setPlanet(transformedPlanetData);
       })
       .catch(console.log)
-  }, [planetName])
+      .finally(() => setIsLoading(false));
+  }, [planetName]);
 
   return (
     <>
       {isLoading ? (
         <Spinner />
       ) : (
-        <main className="main text-secondary my-3">
+        <main className="main text-secondary">
           <div className="page-img-container">
             <img src={planet.imgUrl} alt={planet.name} />
           </div>
           <div className="page-description-container bg-dark p-2">
-            <h2 className="mb-2 pt-1 px-2">{planet.name}</h2>
+            {/* <div className="page-description-container p-2"> */}
+            <h1 className="mb-3 pt-1 px-2">{planet.name}</h1>
             <div className="px-2">
-              <Row className="py-1">
-                <Col>
-                  <h3>Climate:</h3>
-                  <span>{planet.climate}</span>
-                </Col>
-                <Col>
-                  <h3>Gravity:</h3>
-                  <span>{planet.gravity ? planet.gravity : 'Unknown'}</span>
-                </Col>
-              </Row>
+              {/* <Row className="py-1">
+								<Col>
+									<h3>Climate:</h3>
+									<span>{planet.climate}</span>
+								</Col>
+								<Col>
+									<h3>Gravity:</h3>
+									<span>{planet.gravity ? planet.gravity : 'Unknown'}</span>
+								</Col>
+							</Row> */}
               <Row className="py-1">
                 <Col>
                   <h3>Terrain:</h3>
@@ -98,7 +100,7 @@ const SinglePlanet = () => {
         </main>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SinglePlanet
+export default SinglePlanet;

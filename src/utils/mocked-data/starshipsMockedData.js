@@ -1,4 +1,4 @@
-export default [
+const starShipsMockedData = [
   {
     name: 'CR90 corvette',
     id: 2,
@@ -216,3 +216,5 @@ export default [
       'https://res.cloudinary.com/dn9mr6kwc/image/upload/q_auto:eco/v1665818090/Starwars%20miniproject/Starships/75_tr5tig.webp'
   }
 ]
+
+export default starShipsMockedData

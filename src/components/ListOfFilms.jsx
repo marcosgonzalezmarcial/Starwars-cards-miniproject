@@ -1,35 +1,32 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { fetchListOfDataFromUrlsArr } from '../services/fetchListOfDataFromUrlsArr'
-import { useNavigate } from 'react-router-dom'
-import { Spinner } from './Spinner/Spinner'
+import React, { useCallback, useEffect, useState } from "react";
+import { fetchListOfDataFromUrlsArr } from "../services/fetchListOfDataFromUrlsArr";
+import { useNavigate } from "react-router-dom";
+import { Spinner } from "./Spinner/Spinner";
 
 const ListOfFilms = ({ filmsUrls }) => {
-  const [films, setFilms] = useState([])
-  const [loading, setIsLoading] = useState(false)
-  let navigate = useNavigate()
+  const [films, setFilms] = useState([]);
+  const [loading, setIsLoading] = useState(false);
+  let navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     fetchListOfDataFromUrlsArr(filmsUrls)
       .then((films) => {
-        setFilms(films)
+        setFilms(films);
       })
       .catch(console.log)
       .finally(() => {
-        setIsLoading(false)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-  }, [filmsUrls])
+        setIsLoading(false);
+      });
+  }, [filmsUrls]);
 
   const selectFilm = useCallback(
     (e) => {
-      const selectFilm = e.target.textContent
-      navigate(`/films/${selectFilm.replaceAll(' ', '~')}`)
+      const selectFilm = e.target.textContent;
+      navigate(`/films/${selectFilm.replaceAll(" ", "~")}`);
     },
     [navigate]
-  )
+  );
 
   return (
     <>
@@ -37,13 +34,13 @@ const ListOfFilms = ({ filmsUrls }) => {
         <Spinner small />
       ) : (
         films?.map((film) => (
-          <span key={film?.title} onClick={selectFilm} className="list-element">
+          <p key={film?.title} onClick={selectFilm} className="list-element">
             {film.title}
-          </span>
+          </p>
         ))
       )}
     </>
-  )
-}
+  );
+};
 
-export default ListOfFilms
+export default ListOfFilms;

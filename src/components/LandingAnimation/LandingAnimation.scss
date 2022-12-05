@@ -1,4 +1,10 @@
 /* Animation properties */
+
+.animation-wrapper {
+	margin-inline: auto;
+	width: calc(min(90vw, 1100px));
+}
+
 .star {
 	animation: star 10s ease-out infinite;
 }
@@ -195,9 +201,6 @@
 		top: 70%;
 		height: 4rem;
 		width: 10rem;
-	}
-	h2 {
-		font-size: 0.6rem !important;
 	}
 	.byline {
 		top: 150%;

@@ -1,50 +1,57 @@
-import { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import mockedData from '../utils/mocked-data/filmsMappedData'
-import ListOfShips from './ListOfShips'
-import { urlStringify } from '../utils/urlStringify'
-import { fetchSingleFilm } from '../services/fetchSingleFilm'
-import { Spinner } from './Spinner/Spinner'
-import { transformDataArray } from '../utils/transformDataArray'
+import { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { filmsMockedData } from "../utils/mocked-data";
+import ListOfShips from "./ListOfShips";
+import { urlStringify } from "../utils/urlStringify";
+import { Spinner } from "./Spinner/Spinner";
+import { transformDataArray } from "../utils/transformDataArray";
+import { fetchItem } from "../services/fetchItem";
+import { TYPE_OF_DATA } from "../constants";
+import "./single-item-page-styles.scss";
 
 const SingleFilm = () => {
-  const [film, setFilm] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
+  const [film, setFilm] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  let { filmTitle } = useParams()
+  let { filmTitle } = useParams();
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
 
-    const filmTitleFromUrl = urlStringify(filmTitle)
+    const filmTitleFromUrl = urlStringify(filmTitle);
+    // console.log(filmTitleFromUrl);
 
-    const { id } = mockedData.find((film) => film.title === filmTitleFromUrl)
+    const { id } = filmsMockedData.find(
+      (film) => film.title === filmTitleFromUrl
+    );
 
-    fetchSingleFilm(id)
-      .then((film) => {
-        const [transformedFilm] = transformDataArray({
-          fetchedData: [film],
-          mockedData,
-          typeOfData: 'films'
-        })
-        setFilm(transformedFilm)
-        setIsLoading(false)
+    fetchItem({ id, typeOfData: TYPE_OF_DATA.FILMS })
+      .then((item) => {
+        const [transformedFilmData] = transformDataArray({
+          // fetched data must be an array for implementation requirements
+          fetchedData: [item],
+          typeOfData: TYPE_OF_DATA.FILMS,
+        });
+        // console.log(transformedFilmData);
+        setFilm(transformedFilmData);
       })
       .catch(console.log)
-  }, [filmTitle])
+      .finally(() => setIsLoading(false));
+  }, [filmTitle]);
 
   return (
     <>
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="main text-secondary my-3">
+        <main className="main text-secondary">
+          {/* <div className='page-wrapper'>		 */}
           <div className="page-img-container">
             <img src={film.imgUrl} alt={film.title} />
           </div>
           <div className="page-description-container bg-dark p-2">
-            <h1 className="mb-2 pt-1 px-2">{film.title}</h1>
+            <h1 className="mb-3 pt-1 px-2">{film.title}</h1>
             <div className="px-2">
               <Row className="py-1">
                 <Col>
@@ -78,10 +85,11 @@ const SingleFilm = () => {
               </Row>
             </div>
           </div>
-        </div>
+          {/* </div> */}
+        </main>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SingleFilm
+export default SingleFilm;
