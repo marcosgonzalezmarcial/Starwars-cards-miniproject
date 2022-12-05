@@ -12,7 +12,7 @@
 	flex-direction: column;
 	border-radius: 15px;
 	overflow: hidden;
-	height: 45vh;
+	max-height: calc(min(375px, 45vh));
 }
 
 .grid-card-hero {
@@ -26,9 +26,8 @@
 		&:hover {
 			transform: scale(1.05);
 		}
-		
-		&:where(img[src*="vignette"]) {
-			object-position: top;
+		&[src*="vignette"] {
+			object-position: (50% 30%);
 		}
 	}	
 }
@@ -40,8 +39,7 @@
 	background-size: 7px;
 	background-repeat: repeat-x;
 	h4 {
-		font-size: 1.15rem;
-		
+		font-size: 1.5rem;
 		color: #ddd;
 		transition: color 275ms cubic-bezier(0.075, 0.82, 0.165, 1);
 		&:hover {
@@ -50,7 +48,7 @@
 		}
 	}
 	p {
-		font-size: 0.8rem;
+		font-size: 1rem;
 	}
 }
 
@@ -78,7 +76,7 @@
 .list-element {
 	color: #9e4f60 ;
 	margin-block: 0.5rem;
-	font-size: 0.75rem;
+	font-size: 0.9rem;
 }
 .list-element:hover {
 	color: rgb(183, 104, 121);
