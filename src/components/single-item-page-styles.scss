@@ -4,9 +4,9 @@
 	margin-inline: auto;
 	border-radius: 15px;
 	overflow: hidden;
-    flex-direction: column;
-    margin-block-start: 1rem;
-	
+	flex-direction: column;
+	margin-block-start: 1rem;
+
 	.page-description-container {
 		background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
 		background-size: 8px;
@@ -16,96 +16,116 @@
 		border-left: 3px solid #9e4f60;
 		width: 50%;
 		flex-grow: 1;
+
 		h1 {
 			font-size: 1.50rem
 		}
+
 		h3 {
 			font-size: 1rem;
 		}
+
 		span {
 			font-size: 0.85rem;
 			display: block;
 			color: #999;
 		}
 	}
-	
+
 	.page-img-container {
 		display: grid;
 		width: 50%;
+
 		&:has(img[src*="Planets"]) {
-			place-content:center;
+			place-content: center;
 		}
 	}
+
 	img {
 		width: 100%;
 		max-height: calc(min(29vh, 600px));
 		min-height: 100%;
 		object-fit: cover;
 	}
+
 	img[src*="vignette"] {
 		object-position: 50% 30%;
 	}
+
 	img[src*="Films"] {
 		object-position: bottom;
 	}
+
 	img[src*="Planets"] {
 		clip-path: circle(45%);
 		max-height: calc(min(29vh, 400px));
 		object-fit: contain;
 	}
-	
+
 	@media (max-width: 575px) {
 		max-width: calc(min(94vw, 540px));
-    	min-height: 72vh;
+		min-height: 72vh;
 	}
+
 	@media (min-width: 576px) and (max-width: 768px) {
 		&:has(img[src*="vignette"], img[src*="Films"]) {
 			flex-direction: row;
+
 			.page-description-container {
-				border-left: 3px solid #9e4f60;          
+				border-left: 3px solid #9e4f60;
 				border-top: none;
 			}
 		}
 	}
+
 	@media (min-width: 576px) {
-        margin-block-start: 2rem;
+		// margin-block-start: 2rem;
 		max-width: calc(min(90vw, 758px));
 		min-height: calc(min(65vh, 600px));
 		max-height: max-content;
 	}
+
 	@media (max-width: 768px) {
-		.page-description-container  {
-			border-top: 3px solid #9e4f60;          
+		.page-description-container {
+			border-top: 3px solid #9e4f60;
 			border-left: none;
-            width: 100%;
+			width: 100%;
 		}
+
 		.page-img-container {
 			width: 100%;
 		}
+
 		img {
 			max-height: calc(min(29vh, 600px));
 			object-fit: cover;
 		}
+
 		img[src*="Planets"] {
 			object-fit: contain;
 			clip-path: circle(29vw);
 			margin-bottom: 1rem;
 		}
+
 		img[src*="Yavin4"] {
 			max-height: 35vh;
 			clip-path: circle(120px);
 		}
 	}
+
 	@media (min-width: 768px) {
-        flex-direction: row;
+		flex-direction: row;
+
 		h1 {
 			font-size: 1.75rem;
 			padding-inline-start: 0;
 		}
+
 		img[src*="Planets"] {
 			max-height: calc(max(29vh, 400px));
 		}
 	}
+
 	@media (min-width: 992px) {
 		img[src*="Films"] {
 			object-position: center;
@@ -117,9 +137,10 @@
 @media (min-width: 700px) and (orientation: portrait) {
 	.main {
 		flex-direction: row;
+
 		&:has(img[src*="Starships"], img[src*="Planets"]) {
 			.page-description-container {
-				border-left: 3px solid #9e4f60;          
+				border-left: 3px solid #9e4f60;
 				border-top: none;
 			}
 		}

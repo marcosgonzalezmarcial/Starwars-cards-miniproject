@@ -10,19 +10,23 @@
 	position: relative;
 }
 
+
 .nav-link,
 .login-nav-link {
-	font-size: 0.8em !important;
-	font-weight: 800 !important;
+	font-size: 0.8em;
+	font-weight: 800;
+	color: #999;
 }
 
 .navbar-toggle-btn.collapsed {
-	border-color: rgba(255, 255, 255, 0.3) !important;
+	border-color: rgba(255, 255, 255, 0.3);
 	background-color: transparent;
 }
 
 .navbar-toggle-btn {
 	background-color: #424649;
+	max-height: 40px;
+	max-width: 56px;
 }
 
 .navbar-toggle-btn:focus {
@@ -35,12 +39,6 @@
 	font-size: 15px;
 }
 
-.nav-link {
-	color: #999;
-	font-weight: 600;
-	font-size: 1rem;
-}
-
 .nav-link:hover {
 	color: white;
 	cursor: pointer;
@@ -51,17 +49,10 @@
 	color: white;
 }
 
-.login-nav-link {
-	color: #999 !important;
-	white-space: nowrap;
-}
 .login-nav-link:hover {
-	color: #ccc !important;
+	color: #ccc;
 }
 
-.login-nav-link-bars {
-	color: #999 !important;
-}
 .button-toggler {
 	background-color: #dee2e6;
 }
@@ -71,14 +62,17 @@
 	right: 0%;
 }
 
-.navbar-container-box {
-	width: calc(min(90vw, 1200px)) !important;
-	display: grid !important;
+.navbar-container {
+	display: grid;
+	width: calc(min(90vw, 1200px));
 	grid-template-columns: 1fr 2fr 1fr;
+	align-items: center;
+	margin: 0 auto;
 }
 
 .navbar-collapse-box {
 	line-height: 2.5rem;
+	white-space: nowrap;
 }
 
 /* Media queries */
@@ -87,17 +81,33 @@
 	.nav {
 		flex-wrap: nowrap;
 	}
+
 	.nav-wrapper {
 		width: 100%;
 	}
+
 	.logo-img {
 		width: 180px;
 	}
+
 	.navbar-toggle-btn {
 		padding: 0.1rem 0.4rem;
 	}
+
 	.nav-link {
 		padding-inline: 0.5rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.logo-img {
+		width: 200px;
+	}
+}
+
+@media (min-width: 768px) {
+	.logo-img {
+		width: 220px;
 	}
 }
 
@@ -117,6 +127,7 @@
 		grid-row: 1 / 2;
 		grid-column: 3 / 4;
 	}
+
 	.navbar-brand {
 		grid-column: 2 /3;
 	}
@@ -139,8 +150,8 @@
 	position: absolute;
 	bottom: 10%;
 	border-radius: 10px;
-	left: 44%;
-	width: 12%;
+	left: calc(50% - 16px);
+	width: 32px;
 	height: 2px;
 	box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
 		0 0 100px #03e9f4;
