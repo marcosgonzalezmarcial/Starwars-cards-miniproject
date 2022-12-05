@@ -33,8 +33,8 @@ const Header = ({ loggedIn, setLoggedIn }) => {
           <Navbar.Brand className="m-0 p-3 p-md-0">
             <Link className="navbar-link p-2" to="/home">
               <picture>
-                <source media="(max-width: 768px)" srcset={smallLogo} />
-                <source media="(min-width: 769px)" srcset={bigLogo} />
+                <source media="(max-width: 768px)" srcSet={smallLogo} />
+                <source media="(min-width: 769px)" srcSet={bigLogo} />
                 <img
                   // width="220px"
                   className="logo-img"

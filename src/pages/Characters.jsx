@@ -6,6 +6,7 @@ import { Spinner } from '../components/Spinner/Spinner'
 import '../styles.scss'
 import { TYPE_OF_DATA } from '../constants'
 import { getTransformedDataArray } from '../services/getTransformedDataArray'
+import { sortObjItems } from '../utils/sortItems'
 
 const Characters = () => {
 	const [page, setPage] = useState(1)
@@ -18,9 +19,7 @@ const Characters = () => {
 		getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PEOPLE })
 			.then(data => {
 				//checking data is not null
-				if (data) {
-					setCharacters(prev => [...prev, ...data])
-				}
+				data && setCharacters(prev => sortObjItems([...prev, ...data]))
 			})
 			.catch(error => {
 				console.log(error)
@@ -55,8 +54,8 @@ const Characters = () => {
 			) : (
 				<InfiniteScroll
 					dataLength={characters.length}
-					next={() => setPage(prev => characters.length < 82 && prev + 1)}
-					hasMore={characters.length < 82 && true}
+					next={() => setPage(prev => characters.length < 87 && prev + 1)}
+					hasMore={characters.length < 87 && true}
 					loader={<Spinner />}
 					className={`my-3 my-md-4 ${
 						characters.length > 0 ? 'grid-container' : ''
