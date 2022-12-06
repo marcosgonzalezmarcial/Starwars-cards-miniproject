@@ -57,19 +57,21 @@ const Characters = () => {
           }`}
         >
           {characters.map((character) => (
-            <Link key={character.name} to={character.name}>
-              <div className="grid-element-card">
-                <div className="grid-card-hero">
-                  <img
-                    className="grid-card-hero-img"
-                    src={character.image}
-                    alt={character.name}
-                  />
-                </div>
-                <div className="text-secondary p-3 grid-card-info bg-dark">
-                  <h4>{character.name}</h4>
-                  <p>{character.species}</p>
-                </div>
+            <Link
+              className="grid-element-card"
+              key={character.name}
+              to={character.name.replaceAll(" ", "~")}
+            >
+              <div className="grid-card-hero">
+                <img
+                  className="grid-card-hero-img"
+                  src={character.image}
+                  alt={character.name}
+                />
+              </div>
+              <div className="text-secondary p-3 grid-card-info bg-dark">
+                <h4>{character.name}</h4>
+                <p>{character.species}</p>
               </div>
             </Link>
           ))}

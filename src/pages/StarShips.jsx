@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSearch } from "../hooks/useSearch";
 import { Spinner } from "../components/Spinner/Spinner";
 import "../styles.scss";
@@ -12,8 +12,6 @@ const StarShips = () => {
   const [page, setPage] = useState(1);
   const [ships, setShips] = useState([]);
   const { searchItems } = useSearch();
-
-  let navigate = useNavigate();
 
   useEffect(() => {
     getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.STARSHIPS })
@@ -28,19 +26,14 @@ const StarShips = () => {
       });
   }, [page]);
 
-  const handleClick = (e) => {
-    const shipSelected = e.target.textContent;
-    navigate(`${shipSelected.replaceAll(" ", "~")}`);
-  };
-
   return (
     <>
       {searchItems.length > 0 ? (
         <div className="my-3 my-md-4 grid-container">
           {searchItems?.map((starship) => (
-            <div
-              key={`${starship.model}${starship.crew}`}
+            <Link
               className="grid-element-card"
+              to={`${starship.name.replaceAll(" ", "~")}`}
             >
               <div className="grid-card-hero">
                 <img
@@ -50,10 +43,10 @@ const StarShips = () => {
                 />
               </div>
               <div className="text-secondary bg-dark p-3 grid-card-info">
-                <h4 onClick={handleClick}>{starship.name}</h4>
+                <h4>{starship.name}</h4>
                 <p>{starship.model}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       ) : (
@@ -65,9 +58,10 @@ const StarShips = () => {
           className={`my-3 my-md-4 ${ships.length > 0 ? "grid-container" : ""}`}
         >
           {ships.map((ship) => (
-            <div
-              key={`${ship.model}${ship.crew}`}
+            <Link
               className="grid-element-card"
+              key={`${ship.model}${ship.crew}`}
+              to={`${ship.name.replaceAll(" ", "~")}`}
             >
               <div className="grid-card-hero">
                 <img
@@ -77,10 +71,10 @@ const StarShips = () => {
                 />
               </div>
               <div className="text-secondary bg-dark p-3 grid-card-info">
-                <h4 onClick={handleClick}>{ship.name}</h4>
+                <h4>{ship.name}</h4>
                 <p>{ship.model}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </InfiniteScroll>
       )}

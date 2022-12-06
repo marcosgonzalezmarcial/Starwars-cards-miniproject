@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSearch } from "../hooks/useSearch.js";
 import { Spinner } from "../components/Spinner/Spinner";
 import "../styles.scss";
@@ -12,8 +12,6 @@ const Planets = () => {
   const [page, setPage] = useState(1);
   const [planets, setPlanets] = useState([]);
   const { searchItems } = useSearch();
-
-  let navigate = useNavigate();
 
   useEffect(() => {
     getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PLANETS })
@@ -29,11 +27,6 @@ const Planets = () => {
       });
   }, [page]);
 
-  const handleClick = (e) => {
-    const planetSelected = e.target.textContent;
-    navigate(`${planetSelected.replaceAll(" ", "~")}`);
-  };
-
   return (
     <>
       {searchItems.length > 0 ? (
@@ -48,7 +41,7 @@ const Planets = () => {
                 />
               </div>
               <div className="text-secondary bg-dark p-3 grid-card-info">
-                <h4 onClick={handleClick}>{planet.name}</h4>
+                <h4>{planet.name}</h4>
                 <p>{planet.climate}</p>
               </div>
             </div>
@@ -65,7 +58,11 @@ const Planets = () => {
           }`}
         >
           {planets.map((planet) => (
-            <div key={planet.name} className="grid-element-card">
+            <Link
+              className="grid-element-card"
+              key={planet.name}
+              to={planet.name.replaceAll(" ", "~")}
+            >
               <div className="grid-card-hero">
                 <img
                   className="grid-card-hero-img"
@@ -74,10 +71,10 @@ const Planets = () => {
                 />
               </div>
               <div className="text-secondary bg-dark p-3 grid-card-info">
-                <h4 onClick={handleClick}>{planet.name}</h4>
+                <h4>{planet.name}</h4>
                 <p>{planet.climate}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </InfiniteScroll>
       )}
