@@ -16,11 +16,14 @@ const SingleFilm = () => {
 
   let { filmTitle } = useParams()
 
+  const expandBtnStyles = {
+    marginLeft: 'calc(var(--bs-gutter-x) * 0.5)'
+  }
+
   useEffect(() => {
     setIsLoading(true)
 
     const filmTitleFromUrl = urlStringify(filmTitle)
-    // console.log(filmTitleFromUrl);
 
     const { id } = filmsMockedData.find(
       (film) => film.title === filmTitleFromUrl
@@ -78,11 +81,26 @@ const SingleFilm = () => {
                   {film.starships?.length > 0 ? (
                     <ListOfShips shipsUrls={film.starships} />
                   ) : (
+                    <span>No ships for this character</span>
+                  )}
+                </Col>
+                <input
+                  style={expandBtnStyles}
+                  type="checkbox"
+                  className="expand-btn"
+                />
+              </Row>
+              {/* <Row className="py-1 flex-column">
+                <Col className="pt-1 cutoff-text">
+                  <h3 className="m-0 py-1">Ships</h3>
+                  {film.starships?.length > 0 ? (
+                    <ListOfShips shipsUrls={film.starships} />
+                  ) : (
                     <span>There aren't ships for this character</span>
                   )}
                 </Col>
                 <input type="checkbox" className="expand-btn" />
-              </Row>
+              </Row> */}
             </div>
           </div>
         </main>

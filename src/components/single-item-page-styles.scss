@@ -65,6 +65,10 @@
 	@media (max-width: 575px) {
 		max-width: calc(min(94vw, 540px));
 		min-height: 72vh;
+
+		.cutoff-text {
+			-webkit-line-clamp: 3;
+		}
 	}
 
 	@media (min-width: 576px) and (max-width: 768px) {
@@ -130,6 +134,10 @@
 		img[src*="Films"] {
 			object-position: center;
 		}
+		.expand-btn:hover {
+			background-color: #424649;
+			&::before {color: white;}
+		}
 	}
 }
 
@@ -148,18 +156,23 @@
 }
 
 .cutoff-text {
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 8;
+	--max-lines: 4;
+	--line-height: 1.5;
+	// display: -webkit-box;
+	// -webkit-box-orient: vertical;
+	// -webkit-line-clamp: var(--max-lines);
+	max-height: calc(var(--max-lines) * 1.9rem * var(--line-height) );
+	line-height: var(--line-height);
 	overflow: hidden;
-	
 	position: relative;
 }
+
+// padding-left: calc(var(--bs-gutter-x) * 0.5);
 
 .cutoff-text::before {
 	content: "";
 	position: absolute;
-	height: calc(14.4px * 1.5);
+	height: calc(1.9rem * var(--line-height) );
 	width: 100%;
 	bottom: 0;
 	pointer-events: none;
@@ -167,23 +180,18 @@
 }
 .expand-btn {
 	appearance: none;
-	border: 1.5px solid white;
+	border: 1.5px solid #999;
 	border-radius: 5px;
 	padding: 1rem 0.5rem;
 	cursor: pointer;
-	margin-top: 1.5rem;
-	max-width: 112.38px;
-	margin-left: 12px;
-	background-color: #424649;
+	margin-top: 1rem;
+	width: 112.38px;
 	position: relative;
 	font-size: 0.9rem;
 }
 
-.expand-btn:hover {
-	background-color: transparent;
-}
 .expand-btn::before {
-	color: white;
+	color: #999;
 	content: "View more";
 	white-space: pre;
 	position: absolute;
@@ -192,7 +200,7 @@
 }
 
 .expand-btn:checked::before { 
-	color: white;
+	color: #999;
 	content: "Collapse";
 	white-space: pre;
 	position: absolute;
@@ -200,8 +208,9 @@
 	left: 19.07%;
 }
 
-.cutoff-text:has(+ .expand-btn:checked) {
-	-webkit-line-clamp: 14;
+.cutoff-text:has( + .expand-btn:checked) {
+	// -webkit-line-clamp: 20;
+	max-height: none !important;
 	&::before {
 		height: 0;
 	}
@@ -209,3 +218,14 @@
 		margin-top: 0.75rem;
 	}
 }
+// .cutoff-text:has(+ .expand-btn:focus) {
+// 	// -webkit-line-clamp: 20;
+// 	max-height: none;
+// 	&::before {
+// 		height: 0;
+// 	}
+// 	& ~ .expand-btn{
+// 		margin-top: 0.75rem;
+// 	}
+// }
+
