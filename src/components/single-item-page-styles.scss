@@ -146,3 +146,66 @@
 		}
 	}
 }
+
+.cutoff-text {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 8;
+	overflow: hidden;
+	
+	position: relative;
+}
+
+.cutoff-text::before {
+	content: "";
+	position: absolute;
+	height: calc(14.4px * 1.5);
+	width: 100%;
+	bottom: 0;
+	pointer-events: none;
+	background: linear-gradient(to bottom, transparent, rgb(33,37,41));
+}
+.expand-btn {
+	appearance: none;
+	border: 1.5px solid white;
+	border-radius: 5px;
+	padding: 1rem 0.5rem;
+	cursor: pointer;
+	margin-top: 1.5rem;
+	max-width: 112.38px;
+	margin-left: 12px;
+	background-color: #424649;
+	position: relative;
+	font-size: 0.9rem;
+}
+
+.expand-btn:hover {
+	background-color: transparent;
+}
+.expand-btn::before {
+	color: white;
+	content: "View more";
+	white-space: pre;
+	position: absolute;
+	top: 15.5%;
+	right: 10.98%;
+}
+
+.expand-btn:checked::before { 
+	color: white;
+	content: "Collapse";
+	white-space: pre;
+	position: absolute;
+	top: 15.5%;
+	left: 19.07%;
+}
+
+.cutoff-text:has(+ .expand-btn:checked) {
+	-webkit-line-clamp: 14;
+	&::before {
+		height: 0;
+	}
+	& ~ .expand-btn{
+		margin-top: 0.75rem;
+	}
+}
