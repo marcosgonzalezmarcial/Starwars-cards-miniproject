@@ -5,7 +5,7 @@
 	border-radius: 15px;
 	overflow: hidden;
 	flex-direction: column;
-	margin-block-start: 1.5rem;
+	margin-block: 1.5rem;
 
 	.page-description-container {
 		background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
@@ -83,9 +83,8 @@
 	}
 
 	@media (min-width: 576px) {
-		// margin-block-start: 2rem;
 		max-width: calc(min(90vw, 758px));
-		min-height: calc(min(65vh, 600px));
+		min-height: calc(min(65vh, 500px));
 		max-height: max-content;
 	}
 
@@ -165,19 +164,30 @@
 	line-height: var(--line-height);
 	overflow: hidden;
 	position: relative;
+	
+	&::before {
+		--line-height: 1.5;
+		content: "";
+		position: absolute;
+		height: calc(1.9rem * var(--line-height) );
+		width: 100%;
+		bottom: 0;
+		pointer-events: none;
+		background: linear-gradient(to bottom, transparent, rgb(33,37,41));
+	}
 }
 
 // padding-left: calc(var(--bs-gutter-x) * 0.5);
 
-.cutoff-text::before {
-	content: "";
-	position: absolute;
-	height: calc(1.9rem * var(--line-height) );
-	width: 100%;
-	bottom: 0;
-	pointer-events: none;
-	background: linear-gradient(to bottom, transparent, rgb(33,37,41));
-}
+// .cutoff-text::before {
+// 	content: "";
+// 	position: absolute;
+// 	height: calc(1.9rem * var(--line-height) );
+// 	width: 100%;
+// 	bottom: 0;
+// 	pointer-events: none;
+// 	background: linear-gradient(to bottom, transparent, rgb(33,37,41));
+// }
 .expand-btn {
 	appearance: none;
 	border: 1.5px solid #999;

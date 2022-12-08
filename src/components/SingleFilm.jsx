@@ -1,47 +1,47 @@
-import { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import { filmsMockedData } from '../utils/mocked-data'
-import ListOfShips from './ListOfShips'
-import { urlStringify } from '../utils/urlStringify'
-import { Spinner } from './Spinner/Spinner'
-import { transformDataArray } from '../utils/transformDataArray'
-import { fetchItem } from '../services/fetchItem'
-import { TYPE_OF_DATA } from '../constants'
-import './single-item-page-styles.scss'
+import { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { filmsMockedData } from "../utils/mocked-data";
+import ListOfShips from "./ListOfShips";
+import { urlStringify } from "../utils/urlStringify";
+import { Spinner } from "./Spinner/Spinner";
+import { transformDataArray } from "../utils/transformDataArray";
+import { fetchItem } from "../services/fetchItem";
+import { TYPE_OF_DATA } from "../constants";
+import "./single-item-page-styles.scss";
 
 const SingleFilm = () => {
-  const [film, setFilm] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
+  const [film, setFilm] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  let { filmTitle } = useParams()
+  let { filmTitle } = useParams();
 
   const expandBtnStyles = {
-    marginLeft: 'calc(var(--bs-gutter-x) * 0.5)'
-  }
+    marginLeft: "calc(var(--bs-gutter-x) * 0.5)",
+  };
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
 
-    const filmTitleFromUrl = urlStringify(filmTitle)
+    const filmTitleFromUrl = urlStringify(filmTitle);
 
     const { id } = filmsMockedData.find(
       (film) => film.title === filmTitleFromUrl
-    )
+    );
 
     fetchItem({ id, typeOfData: TYPE_OF_DATA.FILMS })
       .then((item) => {
         const [transformedFilmData] = transformDataArray({
           // fetched data must be an array for implementation requirements
           fetchedData: [item],
-          typeOfData: TYPE_OF_DATA.FILMS
-        })
+          typeOfData: TYPE_OF_DATA.FILMS,
+        });
         // console.log(transformedFilmData);
-        setFilm(transformedFilmData)
+        setFilm(transformedFilmData);
       })
       .catch(console.log)
-      .finally(() => setIsLoading(false))
-  }, [filmTitle])
+      .finally(() => setIsLoading(false));
+  }, [filmTitle]);
 
   return (
     <>
@@ -75,9 +75,9 @@ const SingleFilm = () => {
                   <span>{film.release_date}</span>
                 </Col>
               </Row>
-              <Row className="py-1 flex-column">
-                <Col className="pt-1 cutoff-text">
-                  <h3 className="m-0 py-1">Ships</h3>
+              <Row className="flex-column">
+                <Col className="cutoff-text">
+                  <h3 className="my-2">Ships</h3>
                   {film.starships?.length > 0 ? (
                     <ListOfShips shipsUrls={film.starships} />
                   ) : (
@@ -106,7 +106,7 @@ const SingleFilm = () => {
         </main>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SingleFilm
+export default SingleFilm;

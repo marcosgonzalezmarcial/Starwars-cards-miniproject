@@ -1,44 +1,90 @@
-import { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
-import { useNavigate, useParams } from 'react-router-dom'
-import ListOfFilms from './ListOfFilms'
-import ListOfShips from './ListOfShips'
-import { urlStringify } from '../utils/urlStringify'
-import { Spinner } from './Spinner/Spinner'
-import { transformDataArray } from '../utils/transformDataArray'
-import { peopleMockedData } from '../utils/mocked-data'
-import { fetchItem } from '../services/fetchItem'
-import { TYPE_OF_DATA } from '../constants'
-import './single-item-page-styles.scss'
+import { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
+import ListOfFilms from "./ListOfFilms";
+import ListOfShips from "./ListOfShips";
+import { urlStringify } from "../utils/urlStringify";
+import { Spinner } from "./Spinner/Spinner";
+import { transformDataArray } from "../utils/transformDataArray";
+import { peopleMockedData } from "../utils/mocked-data";
+import { fetchItem } from "../services/fetchItem";
+import { TYPE_OF_DATA } from "../constants";
+import "./single-item-page-styles.scss";
 
 const SingleCharacter = () => {
-  const [character, setCharacter] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
-  let { characterName } = useParams()
-  let navigate = useNavigate()
+  const [character, setCharacter] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  let { characterName } = useParams();
+  let navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true)
-    const newPerson = urlStringify(characterName)
-    const { id } = peopleMockedData.find((person) => person.name === newPerson)
+    setIsLoading(true);
+    const newPerson = urlStringify(characterName);
+    const { id } = peopleMockedData.find((person) => person.name === newPerson);
 
     fetchItem({ id, typeOfData: TYPE_OF_DATA.PEOPLE })
       .then((item) => {
         const [transformedCharacterData] = transformDataArray({
           // fetched data must be an array for implementation requirements
           fetchedData: [item],
-          typeOfData: TYPE_OF_DATA.PEOPLE
-        })
-        setCharacter(transformedCharacterData)
+          typeOfData: TYPE_OF_DATA.PEOPLE,
+        });
+        setCharacter(transformedCharacterData);
       })
       .catch(console.log)
-      .finally(() => setIsLoading(false))
-  }, [characterName])
+      .finally(() => setIsLoading(false));
+  }, [characterName]);
 
   const handleClick = (e) => {
-    const planetSelected = e.target.textContent
-    navigate(`/planets/${planetSelected}`)
-  }
+    const planetSelected = e.target.textContent;
+    navigate(`/planets/${planetSelected}`);
+  };
+
+  const renderCharacterFilms =
+    character.films?.length > 0 && character.films?.length <= 3 ? (
+      <>
+        <div className="flex-column">
+          <h3 className="my-2">Appearances</h3>
+          <ListOfFilms filmsUrls={character.films} />
+        </div>
+      </>
+    ) : character.films?.length > 3 ? (
+      <>
+        <div className="flex-column cutoff-text">
+          <h3 className="my-2">Appearances</h3>
+          <ListOfFilms filmsUrls={character.films} />
+        </div>
+        <input type="checkbox" className="expand-btn" />
+      </>
+    ) : (
+      <>
+        <h3 className="my-2">Appearances</h3>
+        <span>No films registered for this planet</span>
+      </>
+    );
+
+  const renderCharacterShips =
+    character.starships?.length > 0 && character.starships?.length < 5 ? (
+      <>
+        <div className="flex-column">
+          <h3 className="my-2">Starships</h3>
+          <ListOfShips shipsUrls={character.starships} />
+        </div>
+      </>
+    ) : character.starships?.length >= 5 ? (
+      <>
+        <div className="flex-column cutoff-text">
+          <h3 className="my-2">Starships</h3>
+          <ListOfShips shipsUrls={character.starships} />
+        </div>
+        <input type="checkbox" className="expand-btn" />
+      </>
+    ) : (
+      <>
+        <h3 className="my-2">Starships</h3>
+        <span>No starships registered for this character</span>
+      </>
+    );
 
   return (
     <>
@@ -77,28 +123,15 @@ const SingleCharacter = () => {
                 </Col>
               </Row>
               <Row className="py-1">
-                <Col className="pt-1 ">
-                  <div className="pt-1 flex-column cutoff-text">
-                    <h3 className="m-0 py-1">Appearances</h3>
-                    <ListOfFilms filmsUrls={character.films} />
-                  </div>
-                  <input type="checkbox" className="expand-btn" />
-                </Col>
-                <Col className="pt-1">
-                  <h3 className="m-0 py-1">Ships</h3>
-                  {character.starships?.length > 0 ? (
-                    <ListOfShips shipsUrls={character.starships} />
-                  ) : (
-                    <span>There aren't ships for this character</span>
-                  )}
-                </Col>
+                <Col className="pt-1 ">{renderCharacterFilms}</Col>
+                <Col className="pt-1">{renderCharacterShips}</Col>
               </Row>
             </div>
           </div>
         </main>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SingleCharacter
+export default SingleCharacter;

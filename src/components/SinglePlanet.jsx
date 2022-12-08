@@ -38,6 +38,52 @@ const SinglePlanet = () => {
       .finally(() => setIsLoading(false));
   }, [planetName]);
 
+  const renderPlanetFilms =
+    planet.films?.length > 0 && planet.films?.length < 3 ? (
+      <>
+        <div className="flex-column">
+          <h3 className="my-2">Appearances</h3>
+          <ListOfFilms filmsUrls={planet.films} />
+        </div>
+      </>
+    ) : planet.films?.length >= 3 ? (
+      <>
+        <div className="flex-column cutoff-text">
+          <h3 className="my-2">Appearances</h3>
+          <ListOfFilms filmsUrls={planet.films} />
+        </div>
+        <input type="checkbox" className="expand-btn" />
+      </>
+    ) : (
+      <>
+        <h3 className="my-2">Appearances</h3>
+        <span>No films registered for this planet</span>
+      </>
+    );
+
+  const renderPlanetResidents =
+    planet.residents?.length > 0 && planet.residents?.length < 5 ? (
+      <>
+        <div className="flex-column">
+          <h3 className="my-2">Residents</h3>
+          <ListOfPilots pilotsUrls={planet.residents} />
+        </div>
+      </>
+    ) : planet.residents?.length >= 5 ? (
+      <>
+        <div className="flex-column cutoff-text">
+          <h3 className="my-2">Residents</h3>
+          <ListOfPilots pilotsUrls={planet.residents} />
+        </div>
+        <input type="checkbox" className="expand-btn" />
+      </>
+    ) : (
+      <>
+        <h3 className="my-2">Residents</h3>
+        <span>No residents registered for this planet</span>
+      </>
+    );
+
   return (
     <>
       {isLoading ? (
@@ -48,19 +94,8 @@ const SinglePlanet = () => {
             <img src={planet.imgUrl} alt={planet.name} />
           </div>
           <div className="page-description-container bg-dark p-2">
-            {/* <div className="page-description-container p-2"> */}
             <h1 className="mb-3 pt-1 px-2">{planet.name}</h1>
             <div className="px-2">
-              {/* <Row className="py-1">
-								<Col>
-									<h3>Climate:</h3>
-									<span>{planet.climate}</span>
-								</Col>
-								<Col>
-									<h3>Gravity:</h3>
-									<span>{planet.gravity ? planet.gravity : 'Unknown'}</span>
-								</Col>
-							</Row> */}
               <Row className="py-1">
                 <Col>
                   <h3>Terrain:</h3>
@@ -82,18 +117,8 @@ const SinglePlanet = () => {
                 </Col>
               </Row>
               <Row className="py-1">
-                <Col className="pt-1">
-                  <h3 className="m-0 py-1">Appearances</h3>
-                  <ListOfFilms filmsUrls={planet.films} />
-                </Col>
-                <Col className="pt-1">
-                  <h3 className="m-0 py-1">Residents</h3>
-                  {planet.residents?.length > 0 ? (
-                    <ListOfPilots pilotsUrls={planet.residents} />
-                  ) : (
-                    <span>No residents registered for this ship</span>
-                  )}
-                </Col>
+                <Col className="pt-1 ">{renderPlanetFilms}</Col>
+                <Col className="pt-1">{renderPlanetResidents}</Col>
               </Row>
             </div>
           </div>
