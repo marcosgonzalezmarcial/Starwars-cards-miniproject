@@ -5,7 +5,7 @@
 	border-radius: 15px;
 	overflow: hidden;
 	flex-direction: column;
-	margin-block-start: 1rem;
+	margin-block-start: 1.5rem;
 
 	.page-description-container {
 		background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
@@ -65,6 +65,10 @@
 	@media (max-width: 575px) {
 		max-width: calc(min(94vw, 540px));
 		min-height: 72vh;
+
+		.cutoff-text {
+			-webkit-line-clamp: 3;
+		}
 	}
 
 	@media (min-width: 576px) and (max-width: 768px) {
@@ -130,6 +134,10 @@
 		img[src*="Films"] {
 			object-position: center;
 		}
+		.expand-btn:hover {
+			background-color: #424649;
+			&::before {color: white;}
+		}
 	}
 }
 
@@ -146,3 +154,78 @@
 		}
 	}
 }
+
+.cutoff-text {
+	--max-lines: 4;
+	--line-height: 1.5;
+	// display: -webkit-box;
+	// -webkit-box-orient: vertical;
+	// -webkit-line-clamp: var(--max-lines);
+	max-height: calc(var(--max-lines) * 1.9rem * var(--line-height) );
+	line-height: var(--line-height);
+	overflow: hidden;
+	position: relative;
+}
+
+// padding-left: calc(var(--bs-gutter-x) * 0.5);
+
+.cutoff-text::before {
+	content: "";
+	position: absolute;
+	height: calc(1.9rem * var(--line-height) );
+	width: 100%;
+	bottom: 0;
+	pointer-events: none;
+	background: linear-gradient(to bottom, transparent, rgb(33,37,41));
+}
+.expand-btn {
+	appearance: none;
+	border: 1.5px solid #999;
+	border-radius: 5px;
+	padding: 1rem 0.5rem;
+	cursor: pointer;
+	margin-top: 1rem;
+	width: 112.38px;
+	position: relative;
+	font-size: 0.9rem;
+}
+
+.expand-btn::before {
+	color: #999;
+	content: "View more";
+	white-space: pre;
+	position: absolute;
+	top: 15.5%;
+	right: 10.98%;
+}
+
+.expand-btn:checked::before { 
+	color: #999;
+	content: "Collapse";
+	white-space: pre;
+	position: absolute;
+	top: 15.5%;
+	left: 19.07%;
+}
+
+.cutoff-text:has( + .expand-btn:checked) {
+	// -webkit-line-clamp: 20;
+	max-height: none !important;
+	&::before {
+		height: 0;
+	}
+	& ~ .expand-btn{
+		margin-top: 0.75rem;
+	}
+}
+// .cutoff-text:has(+ .expand-btn:focus) {
+// 	// -webkit-line-clamp: 20;
+// 	max-height: none;
+// 	&::before {
+// 		height: 0;
+// 	}
+// 	& ~ .expand-btn{
+// 		margin-top: 0.75rem;
+// 	}
+// }
+
