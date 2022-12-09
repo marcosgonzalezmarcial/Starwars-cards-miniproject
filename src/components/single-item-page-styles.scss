@@ -5,7 +5,7 @@
 	border-radius: 15px;
 	overflow: hidden;
 	flex-direction: column;
-	margin-block: 1.5rem;
+	margin-block: 1rem;
 
 	.page-description-container {
 		background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
@@ -18,15 +18,15 @@
 		flex-grow: 1;
 
 		h1 {
-			font-size: 1.50rem
+			font-size: 1.25rem
 		}
 
 		h3 {
-			font-size: 1rem;
+			font-size: 0.9rem;
 		}
 
 		span {
-			font-size: 0.85rem;
+			font-size: 0.75rem;
 			display: block;
 			color: #999;
 		}
@@ -65,10 +65,6 @@
 	@media (max-width: 575px) {
 		max-width: calc(min(94vw, 540px));
 		min-height: 72vh;
-
-		.cutoff-text {
-			-webkit-line-clamp: 3;
-		}
 	}
 
 	@media (min-width: 576px) and (max-width: 768px) {
@@ -155,7 +151,7 @@
 }
 
 .cutoff-text {
-	--max-lines: 4;
+	--max-lines: 6;
 	--line-height: 1.5;
 	// display: -webkit-box;
 	// -webkit-box-orient: vertical;
@@ -178,26 +174,16 @@
 }
 
 // padding-left: calc(var(--bs-gutter-x) * 0.5);
-
-// .cutoff-text::before {
-// 	content: "";
-// 	position: absolute;
-// 	height: calc(1.9rem * var(--line-height) );
-// 	width: 100%;
-// 	bottom: 0;
-// 	pointer-events: none;
-// 	background: linear-gradient(to bottom, transparent, rgb(33,37,41));
-// }
 .expand-btn {
 	appearance: none;
 	border: 1.5px solid #999;
 	border-radius: 5px;
 	padding: 1rem 0.5rem;
 	cursor: pointer;
-	margin-top: 1rem;
+	margin-top: 0.5rem;
 	width: 112.38px;
 	position: relative;
-	font-size: 0.9rem;
+	font-size: 0.75rem;
 }
 
 .expand-btn::before {
@@ -220,22 +206,33 @@
 
 .cutoff-text:has( + .expand-btn:checked) {
 	// -webkit-line-clamp: 20;
-	max-height: none !important;
+	max-height: none;
 	&::before {
 		height: 0;
 	}
-	& ~ .expand-btn{
-		margin-top: 0.75rem;
+	// & ~ .expand-btn{
+	// 	margin-top: 0.75rem;
+	// }
+}
+
+
+@media (min-width: 576px) {
+	.expand-btn {
+		margin-block-start: 1rem; 
+	}
+	.cutoff-text::before {
+		display: none;
 	}
 }
-// .cutoff-text:has(+ .expand-btn:focus) {
-// 	// -webkit-line-clamp: 20;
-// 	max-height: none;
-// 	&::before {
-// 		height: 0;
-// 	}
-// 	& ~ .expand-btn{
-// 		margin-top: 0.75rem;
-// 	}
-// }
+
+@media (max-width: 575px) {
+	.cutoff-text {
+    --max-lines: 3;
+	
+	}
+	// .cutoff-text {
+	// 	-webkit-line-clamp: 3;
+	// }
+}
+
 

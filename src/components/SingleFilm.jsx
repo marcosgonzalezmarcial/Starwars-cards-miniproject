@@ -53,7 +53,7 @@ const SingleFilm = () => {
             <img src={film.imgUrl} alt={film.title} />
           </div>
           <div className="page-description-container bg-dark p-2">
-            <h1 className="mb-3 pt-1 px-2">{film.title}</h1>
+            <h1 className="mb-1 mb-sm-3 pt-1 px-2">{film.title}</h1>
             <div className="px-2">
               <Row className="py-1">
                 <Col>
