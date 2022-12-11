@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { filmsMockedData } from "../utils/mocked-data";
@@ -13,12 +13,26 @@ import "./single-item-page-styles.scss";
 const SingleFilm = () => {
   const [film, setFilm] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [dynamicSize, setDynamicSize] = useState({});
 
   let { filmTitle } = useParams();
 
   const expandBtnStyles = {
     marginLeft: "calc(var(--bs-gutter-x) * 0.5)",
   };
+
+  const mainRef = useRef(null);
+
+  useEffect(() => {
+    if (!mainRef || isLoading) return; // wait for the elementRef to be available and loading finishes
+    const resizeObserver = new ResizeObserver((entries) => {
+      setDynamicSize({
+        mainWidth: entries[0].contentRect.width,
+      });
+    });
+    resizeObserver.observe(mainRef.current);
+    return () => resizeObserver.disconnect(); // clean up
+  }, [isLoading]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -48,7 +62,7 @@ const SingleFilm = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <main className="main text-secondary">
+        <main ref={mainRef} className="main text-secondary">
           <div className="page-img-container">
             <img src={film.imgUrl} alt={film.title} />
           </div>
@@ -76,31 +90,29 @@ const SingleFilm = () => {
                 </Col>
               </Row>
               <Row className="flex-column">
-                <Col className="cutoff-text">
+                <div className="cutoff-text">
                   <h3 className="my-2">Ships</h3>
                   {film.starships?.length > 0 ? (
                     <ListOfShips shipsUrls={film.starships} />
                   ) : (
                     <span>No ships for this character</span>
                   )}
-                </Col>
-                <input
-                  style={expandBtnStyles}
-                  type="checkbox"
-                  className="expand-btn"
-                />
+                </div>
+                {dynamicSize.mainWidth < 517 && film.starships?.length >= 3 && (
+                  <input
+                    style={expandBtnStyles}
+                    type="checkbox"
+                    className="expand-btn"
+                  />
+                )}
+                {dynamicSize.mainWidth > 517 && film.starships?.length > 6 && (
+                  <input
+                    style={expandBtnStyles}
+                    type="checkbox"
+                    className="expand-btn"
+                  />
+                )}
               </Row>
-              {/* <Row className="py-1 flex-column">
-                <Col className="pt-1 cutoff-text">
-                  <h3 className="m-0 py-1">Ships</h3>
-                  {film.starships?.length > 0 ? (
-                    <ListOfShips shipsUrls={film.starships} />
-                  ) : (
-                    <span>There aren't ships for this character</span>
-                  )}
-                </Col>
-                <input type="checkbox" className="expand-btn" />
-              </Row> */}
             </div>
           </div>
         </main>

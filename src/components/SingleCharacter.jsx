@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import ListOfFilms from "./ListOfFilms";
@@ -10,25 +10,25 @@ import { peopleMockedData } from "../utils/mocked-data";
 import { fetchItem } from "../services/fetchItem";
 import { TYPE_OF_DATA } from "../constants";
 import "./single-item-page-styles.scss";
-// import { useRefWidth } from "../hooks/useRefWidth";
 
 const SingleCharacter = () => {
   const [character, setCharacter] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [containerWidth, setContainerWidth] = useState();
+  const [dynamicSize, setDynamicSize] = useState({});
   let { characterName } = useParams();
   let navigate = useNavigate();
 
-  const mainCointanierRef = useRef(null);
+  const mainRef = useRef(null);
 
   useEffect(() => {
-    const mainRef = mainCointanierRef.current;
-    if (!mainCointanierRef.current || isLoading) return; // wait for the elementRef to be available and loading finishes
+    if (!mainRef || isLoading) return; // wait for the elementRef to be available and loading finishes
     const resizeObserver = new ResizeObserver((entries) => {
-      setContainerWidth(entries[0].contentRect.width);
+      setDynamicSize({
+        mainWidth: entries[0].contentRect.width,
+      });
     });
-    resizeObserver.observe(mainRef);
-    return () => resizeObserver.unobserve(mainRef); // clean up
+    resizeObserver.observe(mainRef.current);
+    return () => resizeObserver.disconnect(); // clean up
   }, [isLoading]);
 
   useEffect(() => {
@@ -54,66 +54,12 @@ const SingleCharacter = () => {
     navigate(`/planets/${planetSelected}`);
   };
 
-  const renderCharacterFilms =
-    character.films?.length > 0 && character.films?.length <= 3 ? (
-      <>
-        <div className="flex-column">
-          <h3 className="my-2">Appearances</h3>
-          <ListOfFilms filmsUrls={character.films} />
-        </div>
-      </>
-    ) : (character.films?.length > 3) & (window.innerWidth > 576) ? (
-      <>
-        <div className="flex-column cutoff-text">
-          <h3 className="my-2">Appearances</h3>
-          <ListOfFilms filmsUrls={character.films} />
-        </div>
-        {/* <input type="checkbox" className="expand-btn" /> */}
-      </>
-    ) : (character.films?.length > 3) & (window.innerWidth < 576) ? (
-      <>
-        <div className="flex-column cutoff-text">
-          <h3 className="my-2">Appearances</h3>
-          <ListOfFilms filmsUrls={character.films} />
-        </div>
-        <input type="checkbox" className="expand-btn" />
-      </>
-    ) : (
-      <>
-        <h3 className="my-2">Appearances</h3>
-        <span>No films registered for this planet</span>
-      </>
-    );
-
-  const renderCharacterShips =
-    (character.starships?.length > 0) & (character.starships?.length < 5) ? (
-      <>
-        <div className="flex-column">
-          <h3 className="my-2">Starships</h3>
-          <ListOfShips shipsUrls={character.starships} />
-        </div>
-      </>
-    ) : character.starships?.length >= 5 ? (
-      <>
-        <div className="flex-column cutoff-text">
-          <h3 className="my-2">Starships</h3>
-          <ListOfShips shipsUrls={character.starships} />
-        </div>
-        <input type="checkbox" className="expand-btn" />
-      </>
-    ) : (
-      <>
-        <h3 className="my-2">Starships</h3>
-        <span>No starships registered for this character</span>
-      </>
-    );
-
   return (
     <>
       {isLoading ? (
         <Spinner />
       ) : (
-        <main ref={mainCointanierRef} className="main text-secondary">
+        <main ref={mainRef} className="main text-secondary">
           <div className="page-img-container">
             <img src={character.image} alt={character.name} />
           </div>
@@ -144,27 +90,40 @@ const SingleCharacter = () => {
                 </Col>
               </Row>
               <Row>
-                <Col className="pt-1 ">
+                <Col /*ref={divRef}*/ className="pt-1">
                   <div className="flex-column cutoff-text">
                     <h3 className="my-2">Appearances</h3>
                     <ListOfFilms filmsUrls={character.films} />
                   </div>
-                  {containerWidth < 517 && (
-                    <input type="checkbox" className="expand-btn" />
-                  )}
+                  {dynamicSize.mainWidth < 517 &&
+                    character.films?.length >= 3 && (
+                      <input type="checkbox" className="expand-btn" />
+                    )}
+                  {dynamicSize.mainWidth > 517 &&
+                    character.films?.length > 6 && (
+                      <input type="checkbox" className="expand-btn" />
+                    )}
                 </Col>
                 <Col className="pt-1">
-                  {character.starships?.length > 0 ? (
-                    <div className="flex-column cutoff-text">
-                      <h3 className="my-2">Starships</h3>
-                      <ListOfShips shipsUrls={character.starships} />
-                    </div>
-                  ) : (
+                  {character.starships?.length === 0 ? (
                     <>
                       <h3 className="my-2">Starships</h3>
                       <span>No starships registered for this character</span>
                     </>
+                  ) : (
+                    <div className="flex-column cutoff-text">
+                      <h3 className="my-2">Starships</h3>
+                      <ListOfShips shipsUrls={character.starships} />
+                    </div>
                   )}
+                  {dynamicSize.mainWidth < 517 &&
+                    character.starships?.length >= 3 && (
+                      <input type="checkbox" className="expand-btn" />
+                    )}
+                  {dynamicSize.mainWidth > 517 &&
+                    character.starships?.length > 6 && (
+                      <input type="checkbox" className="expand-btn" />
+                    )}
                 </Col>
               </Row>
             </div>
@@ -176,3 +135,10 @@ const SingleCharacter = () => {
 };
 
 export default SingleCharacter;
+
+{
+  /* <>
+                      <h3 className="my-2">Starships</h3>
+                      <span>No starships registered for this character</span>
+                    </> */
+}

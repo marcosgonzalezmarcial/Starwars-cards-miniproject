@@ -178,10 +178,10 @@
 	appearance: none;
 	border: 1.5px solid #999;
 	border-radius: 5px;
-	padding: 1rem 0.5rem;
+	padding: 0.8rem 0.4rem;
 	cursor: pointer;
 	margin-top: 0.5rem;
-	width: 112.38px;
+	width: 100px;
 	position: relative;
 	font-size: 0.75rem;
 }
@@ -191,8 +191,8 @@
 	content: "View more";
 	white-space: pre;
 	position: absolute;
-	top: 15.5%;
-	right: 10.98%;
+	top: 13%;
+	right: 13%;
 }
 
 .expand-btn:checked::before { 
@@ -200,8 +200,8 @@
 	content: "Collapse";
 	white-space: pre;
 	position: absolute;
-	top: 15.5%;
-	left: 19.07%;
+	top: 12%;
+	left: 20%;
 }
 
 .cutoff-text:has( + .expand-btn:checked) {
@@ -210,9 +210,6 @@
 	&::before {
 		height: 0;
 	}
-	// & ~ .expand-btn{
-	// 	margin-top: 0.75rem;
-	// }
 }
 
 
