@@ -9,6 +9,7 @@ import { transformDataArray } from "../utils/transformDataArray";
 import { fetchItem } from "../services/fetchItem";
 import { TYPE_OF_DATA } from "../constants";
 import "./single-item-page-styles.scss";
+import "./view-more.scss";
 
 const SingleFilm = () => {
   const [film, setFilm] = useState({});
@@ -17,9 +18,10 @@ const SingleFilm = () => {
 
   let { filmTitle } = useParams();
 
-  const expandBtnStyles = {
-    marginLeft: "calc(var(--bs-gutter-x) * 0.5)",
-  };
+  // const expandBtnStyles = {
+  //   marginLeft: "calc(var(--bs-gutter-x) * 0.5)",
+  // };
+  console.log(film);
 
   const mainRef = useRef(null);
 
@@ -80,17 +82,27 @@ const SingleFilm = () => {
                 </Col>
               </Row>
               <Row className="py-1">
-                <Col>
-                  <h3>Producer:</h3>
-                  <span>{film.producer}</span>
+                <Col className="pt-1">
+                  <div className="flex-column cutoff-text">
+                    <h3 className="my-2">Appearances</h3>
+                    <ListOfShips shipsUrls={film.starships} />
+                  </div>
+                  {dynamicSize.mainWidth < 517 &&
+                    film.starships?.length >= 3 && (
+                      <input type="checkbox" className="expand-btn" />
+                    )}
+                  {dynamicSize.mainWidth > 517 &&
+                    film.starships?.length > 6 && (
+                      <input type="checkbox" className="expand-btn" />
+                    )}
                 </Col>
                 <Col>
-                  <h3>Release date</h3>
+                  <h3 className="my-2">Release date</h3>
                   <span>{film.release_date}</span>
                 </Col>
               </Row>
-              <Row className="flex-column">
-                <div className="cutoff-text">
+              {/* <Row className="flex-column"> */}
+              {/* <div className="cutoff-text">
                   <h3 className="my-2">Ships</h3>
                   {film.starships?.length > 0 ? (
                     <ListOfShips shipsUrls={film.starships} />
@@ -111,8 +123,22 @@ const SingleFilm = () => {
                     type="checkbox"
                     className="expand-btn"
                   />
-                )}
-              </Row>
+                )} */}
+              {/* <Col className="pt-1">
+                  <div className="flex-column cutoff-text">
+                    <h3 className="my-2">Appearances</h3>
+                    <ListOfShips shipsUrls={film.starships} />
+                  </div>
+                  {dynamicSize.mainWidth < 517 &&
+                    film.starships?.length >= 3 && (
+                      <input type="checkbox" className="expand-btn" />
+                    )}
+                  {dynamicSize.mainWidth > 517 &&
+                    film.starships?.length > 6 && (
+                      <input type="checkbox" className="expand-btn" />
+                    )}
+                </Col> */}
+              {/* </Row> */}
             </div>
           </div>
         </main>

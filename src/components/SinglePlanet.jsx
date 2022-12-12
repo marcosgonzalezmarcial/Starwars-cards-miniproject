@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import ListOfPilots from "./ListOfPilots";
@@ -10,12 +10,27 @@ import { planetsMockedData } from "../utils/mocked-data";
 import { TYPE_OF_DATA } from "../constants";
 import { fetchItem } from "../services/fetchItem";
 import "./single-item-page-styles.scss";
+import "./view-more.scss";
 
 const SinglePlanet = () => {
   const [planet, setPlanet] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [dynamicSize, setDynamicSize] = useState({});
 
   let { planetName } = useParams();
+  const mainRef = useRef(null);
+
+  //obvserving the size of the ListOfFilms container
+  useEffect(() => {
+    if (!mainRef || isLoading) return; // wait for the elementRef to be available and loading finishes
+    const resizeObserver = new ResizeObserver((entries) => {
+      setDynamicSize({
+        mainWidth: entries[0].contentRect.width,
+      });
+    });
+    resizeObserver.observe(mainRef.current);
+    return () => resizeObserver.disconnect(); // clean up
+  }, [isLoading]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -38,58 +53,34 @@ const SinglePlanet = () => {
       .finally(() => setIsLoading(false));
   }, [planetName]);
 
-  const renderPlanetFilms =
-    planet.films?.length > 0 && planet.films?.length < 3 ? (
-      <>
-        <div className="flex-column">
-          <h3 className="my-2">Appearances</h3>
-          <ListOfFilms filmsUrls={planet.films} />
-        </div>
-      </>
-    ) : planet.films?.length >= 3 ? (
-      <>
-        <div className="flex-column cutoff-text">
-          <h3 className="my-2">Appearances</h3>
-          <ListOfFilms filmsUrls={planet.films} />
-        </div>
-        <input type="checkbox" className="expand-btn" />
-      </>
-    ) : (
-      <>
-        <h3 className="my-2">Appearances</h3>
-        <span>No films registered for this planet</span>
-      </>
-    );
-
-  const renderPlanetResidents =
-    planet.residents?.length > 0 && planet.residents?.length < 5 ? (
-      <>
-        <div className="flex-column">
-          <h3 className="my-2">Residents</h3>
-          <ListOfPilots pilotsUrls={planet.residents} />
-        </div>
-      </>
-    ) : planet.residents?.length >= 5 ? (
-      <>
-        <div className="flex-column cutoff-text">
-          <h3 className="my-2">Residents</h3>
-          <ListOfPilots pilotsUrls={planet.residents} />
-        </div>
-        <input type="checkbox" className="expand-btn" />
-      </>
-    ) : (
-      <>
+  planet.residents?.length > 0 && planet.residents?.length < 5 ? (
+    <>
+      <div className="flex-column">
         <h3 className="my-2">Residents</h3>
-        <span>No residents registered for this planet</span>
-      </>
-    );
+        <ListOfPilots pilotsUrls={planet.residents} />
+      </div>
+    </>
+  ) : planet.residents?.length >= 5 ? (
+    <>
+      <div className="flex-column cutoff-text">
+        <h3 className="my-2">Residents</h3>
+        <ListOfPilots pilotsUrls={planet.residents} />
+      </div>
+      <input type="checkbox" className="expand-btn" />
+    </>
+  ) : (
+    <>
+      <h3 className="my-2">Residents</h3>
+      <span>No residents registered for this planet</span>
+    </>
+  );
 
   return (
     <>
       {isLoading ? (
         <Spinner />
       ) : (
-        <main className="main text-secondary">
+        <main ref={mainRef} className="main text-secondary">
           <div className="page-img-container">
             <img src={planet.imgUrl} alt={planet.name} />
           </div>
@@ -117,8 +108,41 @@ const SinglePlanet = () => {
                 </Col>
               </Row>
               <Row className="py-1">
-                <Col className="pt-1 ">{renderPlanetFilms}</Col>
-                <Col className="pt-1">{renderPlanetResidents}</Col>
+                {/* <Col className="pt-1 ">{renderPlanetFilms}</Col> */}
+                <Col className="pt-1">
+                  <div className="flex-column cutoff-text">
+                    <h3 className="my-2">Appearances</h3>
+                    <ListOfFilms filmsUrls={planet.films} />
+                  </div>
+                  {dynamicSize.mainWidth < 517 && planet.films?.length > 3 && (
+                    <input type="checkbox" className="expand-btn" />
+                  )}
+                  {dynamicSize.mainWidth > 517 && planet.films?.length > 6 && (
+                    <input type="checkbox" className="expand-btn" />
+                  )}
+                </Col>
+                {/* <Col className="pt-1">{renderPlanetResidents}</Col> */}
+                <Col className="pt-1">
+                  {planet.pilots?.length === 0 ? (
+                    <>
+                      <h3 className="my-2">Pilots</h3>
+                      <span>No pilots registered for this ship</span>
+                    </>
+                  ) : (
+                    <div className="flex-column cutoff-text">
+                      <h3 className="my-2">Residents</h3>
+                      <ListOfPilots pilotsUrls={planet.residents} />
+                    </div>
+                  )}
+                  {dynamicSize.mainWidth < 517 &&
+                    planet.residents?.length > 4 && (
+                      <input type="checkbox" className="expand-btn" />
+                    )}
+                  {dynamicSize.mainWidth > 517 &&
+                    planet.residents?.length > 10 && (
+                      <input type="checkbox" className="expand-btn" />
+                    )}
+                </Col>
               </Row>
             </div>
           </div>

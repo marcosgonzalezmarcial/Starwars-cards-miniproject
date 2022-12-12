@@ -10,16 +10,19 @@ import { peopleMockedData } from "../utils/mocked-data";
 import { fetchItem } from "../services/fetchItem";
 import { TYPE_OF_DATA } from "../constants";
 import "./single-item-page-styles.scss";
+import "./view-more.scss";
 
 const SingleCharacter = () => {
   const [character, setCharacter] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [dynamicSize, setDynamicSize] = useState({});
+
   let { characterName } = useParams();
   let navigate = useNavigate();
 
   const mainRef = useRef(null);
 
+  //obvserving the size of the ListOfFilms container
   useEffect(() => {
     if (!mainRef || isLoading) return; // wait for the elementRef to be available and loading finishes
     const resizeObserver = new ResizeObserver((entries) => {
@@ -31,6 +34,7 @@ const SingleCharacter = () => {
     return () => resizeObserver.disconnect(); // clean up
   }, [isLoading]);
 
+  // fetch character
   useEffect(() => {
     setIsLoading(true);
     const newPerson = urlStringify(characterName);
@@ -90,13 +94,13 @@ const SingleCharacter = () => {
                 </Col>
               </Row>
               <Row>
-                <Col /*ref={divRef}*/ className="pt-1">
+                <Col className="pt-1">
                   <div className="flex-column cutoff-text">
                     <h3 className="my-2">Appearances</h3>
                     <ListOfFilms filmsUrls={character.films} />
                   </div>
                   {dynamicSize.mainWidth < 517 &&
-                    character.films?.length >= 3 && (
+                    character.films?.length > 3 && (
                       <input type="checkbox" className="expand-btn" />
                     )}
                   {dynamicSize.mainWidth > 517 &&
@@ -117,7 +121,7 @@ const SingleCharacter = () => {
                     </div>
                   )}
                   {dynamicSize.mainWidth < 517 &&
-                    character.starships?.length >= 3 && (
+                    character.starships?.length > 3 && (
                       <input type="checkbox" className="expand-btn" />
                     )}
                   {dynamicSize.mainWidth > 517 &&
@@ -135,10 +139,3 @@ const SingleCharacter = () => {
 };
 
 export default SingleCharacter;
-
-{
-  /* <>
-                      <h3 className="my-2">Starships</h3>
-                      <span>No starships registered for this character</span>
-                    </> */
-}

@@ -1,0 +1,95 @@
+
+
+.cutoff-text {
+	--max-lines: 6;
+	--line-height: 1.5;
+	// display: -webkit-box;
+	// -webkit-box-orient: vertical;
+	// -webkit-line-clamp: var(--max-lines);
+	max-height: calc(var(--max-lines) * 1.9rem * var(--line-height) );
+	line-height: var(--line-height);
+	overflow: hidden;
+	position: relative;
+	&:has(+ .expand-btn) {
+		&::before {
+			--line-height: 1.5;
+			content: "";
+			position: absolute;
+			height: calc(1.9rem * var(--line-height) );
+			width: 100%;
+			bottom: 0;
+			pointer-events: none;
+			background: linear-gradient(to bottom, transparent, rgb(33,37,41));
+		}
+	}
+}
+
+// padding-left: calc(var(--bs-gutter-x) * 0.5);
+.expand-btn {
+	appearance: none;
+	border: 1.5px solid #999;
+	border-radius: 5px;
+	padding: 0.8rem 0.4rem;
+	cursor: pointer;
+	margin-top: 0.5rem;
+	width: 100px;
+	position: relative;
+	font-size: 0.75rem;
+}
+
+.expand-btn::before {
+	color: #999;
+	content: "View more";
+	white-space: pre;
+	position: absolute;
+	top: 13%;
+	right: 13%;
+}
+
+.expand-btn:checked::before { 
+	color: #999;
+	content: "Collapse";
+	white-space: pre;
+	position: absolute;
+	top: 12%;
+	left: 20%;
+}
+
+.cutoff-text:has( + .expand-btn:checked) {
+	// -webkit-line-clamp: 20;
+	max-height: none;
+	&::before {
+		height: 0;
+	}
+}
+
+
+
+
+@media (max-width: 575px) {
+	.cutoff-text {
+    --max-lines: 3;
+	
+	}
+	.main:has(img[src*="Films"]) {
+		.cutoff-text {
+		--max-lines: 4;
+		}
+	}
+	// .cutoff-text {
+	// 	-webkit-line-clamp: 3;
+	// }
+}
+@media (min-width: 576px) {
+	.main:has(img[src*="Planets"]) {
+		.cutoff-text {
+		--max-lines: 7;
+		}
+	}
+	.main:has(img[src*="Films"]) {
+		.cutoff-text {
+		--max-lines: 7;
+		}
+	}
+}
+

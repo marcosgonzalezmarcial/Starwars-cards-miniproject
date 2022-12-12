@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import ListOfPilots from "./ListOfPilots";
@@ -10,12 +10,26 @@ import { starshipsMockedData } from "../utils/mocked-data";
 import { fetchItem } from "../services/fetchItem";
 import { TYPE_OF_DATA } from "../constants";
 import "./single-item-page-styles.scss";
+import "./view-more.scss";
 
 const SingleShip = () => {
   const [ship, setShip] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
+  const [dynamicSize, setDynamicSize] = useState({});
   let { starshipName } = useParams();
+  const mainRef = useRef(null);
+
+  //obvserving the size of the main container
+  useEffect(() => {
+    if (!mainRef || isLoading) return; // wait for the elementRef to be available and loading finishes
+    const resizeObserver = new ResizeObserver((entries) => {
+      setDynamicSize({
+        mainWidth: entries[0].contentRect.width,
+      });
+    });
+    resizeObserver.observe(mainRef.current);
+    return () => resizeObserver.disconnect(); // clean up
+  }, [isLoading]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -44,7 +58,7 @@ const SingleShip = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <main className="main text-secondary">
+        <main ref={mainRef} className="main text-secondary">
           <div className="page-img-container">
             <img src={ship.imgUrl} alt={ship.name} />
           </div>
@@ -57,22 +71,11 @@ const SingleShip = () => {
                   <span>{ship.model}</span>
                 </Col>
                 <Col>
-                  <h3>Manufacturer:</h3>
-                  <span>
-                    {ship.manufacturer ? ship.manufacturer : "Unknown"}
-                  </span>
+                  <h3>Length:</h3>
+                  <span>{ship.length ? ship.length : "Unknown"}</span>
                 </Col>
               </Row>
-              <Row className="py-1">
-                {/* <Col>
-									<h3>Cost in credits:</h3>
-									<span>{ship.cost_in_credits}</span>
-								</Col> */}
-                {/* <Col>
-									<h3>Atmospheric speed:</h3>
-									<span>{ship.max_atmosphering_speed}</span>
-								</Col> */}
-              </Row>
+              <Row className="py-1"></Row>
               <Row className="py-1">
                 <Col>
                   <h3>Atmospheric speed:</h3>
@@ -85,15 +88,34 @@ const SingleShip = () => {
               </Row>
               <Row className="py-1">
                 <Col className="pt-1">
-                  <h3 className="m-0 py-1">Appearances</h3>
-                  <ListOfFilms filmsUrls={ship.films} />
+                  <div className="flex-column cutoff-text">
+                    <h3 className="my-2">Appearances</h3>
+                    <ListOfFilms filmsUrls={ship.films} />
+                  </div>
+                  {dynamicSize.mainWidth < 517 && ship.films?.length > 3 && (
+                    <input type="checkbox" className="expand-btn" />
+                  )}
+                  {dynamicSize.mainWidth > 517 && ship.films?.length > 6 && (
+                    <input type="checkbox" className="expand-btn" />
+                  )}
                 </Col>
                 <Col className="pt-1">
-                  <h3 className="m-0 py-1">Pilots</h3>
-                  {ship.pilots?.length > 0 ? (
-                    <ListOfPilots pilotsUrls={ship.pilots} />
+                  {ship.pilots?.length === 0 ? (
+                    <>
+                      <h3 className="my-2">Pilots</h3>
+                      <span>No pilots registered for this ship</span>
+                    </>
                   ) : (
-                    <span>No pilots registered for this ship</span>
+                    <div className="flex-column cutoff-text">
+                      <h3 className="my-2">Starships</h3>
+                      <ListOfPilots pilotsUrls={ship.pilots} />
+                    </div>
+                  )}
+                  {dynamicSize.mainWidth < 517 && ship.pilots?.length > 4 && (
+                    <input type="checkbox" className="expand-btn" />
+                  )}
+                  {dynamicSize.mainWidth > 517 && ship.pilots?.length > 6 && (
+                    <input type="checkbox" className="expand-btn" />
                   )}
                 </Col>
               </Row>
