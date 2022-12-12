@@ -91,5 +91,10 @@
 		--max-lines: 7;
 		}
 	}
+	.main:has(img[src*="vignette"]) {
+		.cutoff-text {
+		--max-lines: 7;
+		}
+	}
 }
 

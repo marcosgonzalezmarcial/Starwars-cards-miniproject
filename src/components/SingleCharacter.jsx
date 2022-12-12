@@ -94,19 +94,19 @@ const SingleCharacter = () => {
                 </Col>
               </Row>
               <Row>
-                <Col className="pt-1">
+                <Col className="py-1">
                   <div className="flex-column cutoff-text">
                     <h3 className="my-2">Appearances</h3>
                     <ListOfFilms filmsUrls={character.films} />
                   </div>
-                  {dynamicSize.mainWidth < 517 &&
+                  {dynamicSize.mainWidth < 518 &&
                     character.films?.length > 3 && (
                       <input type="checkbox" className="expand-btn" />
                     )}
-                  {dynamicSize.mainWidth > 517 &&
+                  {/* {dynamicSize.mainWidth > 517 &&
                     character.films?.length > 6 && (
                       <input type="checkbox" className="expand-btn" />
-                    )}
+                    )} */}
                 </Col>
                 <Col className="pt-1">
                   {character.starships?.length === 0 ? (
@@ -120,7 +120,7 @@ const SingleCharacter = () => {
                       <ListOfShips shipsUrls={character.starships} />
                     </div>
                   )}
-                  {dynamicSize.mainWidth < 517 &&
+                  {dynamicSize.mainWidth < 518 &&
                     character.starships?.length > 3 && (
                       <input type="checkbox" className="expand-btn" />
                     )}
