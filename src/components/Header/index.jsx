@@ -30,7 +30,7 @@ const Header = ({ loggedIn, setLoggedIn }) => {
           />
           <SearchModal show={modalShow} onHide={() => setModalShow(false)} />
 
-          <Navbar.Brand className="m-0 p-3 p-md-0">
+          <Navbar.Brand className="m-0 py-3 px-2 p-md-0">
             <Link className="navbar-link p-2" to="/home">
               <picture>
                 <source media="(max-width: 768px)" srcSet={smallLogo} />

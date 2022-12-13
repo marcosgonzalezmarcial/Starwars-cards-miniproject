@@ -78,6 +78,9 @@
 /* Media queries */
 
 @media (max-width: 576px) {
+	.navbar-container {
+		width: calc(min(94vw, 1200px));
+	}
 	.nav {
 		flex-wrap: nowrap;
 	}
