@@ -7,7 +7,7 @@ const LoginNav = ({ loggedIn, setLoggedIn }) => {
 			<span></span>
 			<Link
 				onClick={() => setLoggedIn(!loggedIn)}
-				to="/home"
+				to="/"
 				className="nav-link login-nav-link"
 			>
 				LOG OUT
