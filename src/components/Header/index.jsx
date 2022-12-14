@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Navbar } from "react-bootstrap";
 import smallLogo from "../../assets/sw_logo_mobile.png";
 import bigLogo from "../../assets/star-wars-logo.jpg";
@@ -8,18 +8,21 @@ import LoginNav from "./LoginNav";
 import SearchIcon from "../SearchIcon/SearchIcon";
 import SearchModal from "../SearchModal/SearchModal";
 import "./Header.scss";
+import { searchModalContext } from "../../contexts/searchModalContext";
 
 const Header = ({ loggedIn, setLoggedIn }) => {
-  const [modalShow, setModalShow] = useState(false);
+  const { showModal, openModal, closeModal } = useContext(searchModalContext);
+
   let navigate = useNavigate();
 
   const handleSearchClick = () => {
     if (loggedIn) {
-      setModalShow(true);
+      openModal();
     } else {
       navigate("/login");
     }
   };
+
   return (
     <header className="header">
       <Navbar variant="dark" className="py-1" expand="md">
@@ -28,21 +31,14 @@ const Header = ({ loggedIn, setLoggedIn }) => {
             className="navbar-toggle-btn me-auto"
             aria-controls="basic-navbar-nav"
           />
-          <SearchModal show={modalShow} onHide={() => setModalShow(false)} />
-
+          <SearchModal show={showModal} onHide={closeModal} />
           <Navbar.Brand className="m-0 py-3 px-2 p-md-0">
-            <Link className="navbar-link p-2" to="/home">
+            <Link className="navbar-link p-2" to="/">
               <picture>
                 <source media="(max-width: 768px)" srcSet={smallLogo} />
                 <source media="(min-width: 769px)" srcSet={bigLogo} />
-                <img
-                  // width="220px"
-                  className="logo-img"
-                  src={smallLogo}
-                  alt="logo"
-                />
+                <img className="logo-img" src={smallLogo} alt="logo" />
               </picture>
-              {/* <img width="220px" className="logo-img" src={logo} alt="logo" /> */}
             </Link>
           </Navbar.Brand>
 
@@ -50,7 +46,11 @@ const Header = ({ loggedIn, setLoggedIn }) => {
             className="search-icon-btn ms-auto me-md-auto ms-md-0"
             onClick={() => handleSearchClick()}
           >
-            <SearchIcon onClick={(prev) => setModalShow(!prev)} />
+            <SearchIcon
+              onClick={() => {
+                showModal ? closeModal() : openModal();
+              }}
+            />
           </button>
 
           <span></span>
