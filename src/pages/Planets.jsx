@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
 import { useSearch } from "../hooks/useSearch.js";
 import { Spinner } from "../components/Spinner/Spinner";
+import SearchResults from "../components/SearchResults";
 import "../styles.scss";
 import { getTransformedDataArray } from "../services/getTransformedDataArray";
 import { TYPE_OF_DATA } from "../constants";
@@ -11,7 +12,7 @@ import { TYPE_OF_DATA } from "../constants";
 const Planets = () => {
   const [page, setPage] = useState(1);
   const [planets, setPlanets] = useState([]);
-  const { searchItems } = useSearch();
+  const { searchResultsItems } = useSearch();
 
   useEffect(() => {
     getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PLANETS })
@@ -29,24 +30,8 @@ const Planets = () => {
 
   return (
     <>
-      {searchItems.length > 0 ? (
-        <div className="my-3 my-md-4 grid-container">
-          {searchItems.map((planet) => (
-            <div key={planet.name} className="grid-element-card">
-              <div className="grid-card-hero">
-                <img
-                  className="grid-card-hero-img"
-                  src={planet.imgUrl}
-                  alt={planet.name}
-                />
-              </div>
-              <div className="text-secondary bg-dark p-3 grid-card-info">
-                <h4>{planet.name}</h4>
-                <p>{planet.climate}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      {searchResultsItems.length > 0 ? (
+        <SearchResults searchResultsItems={searchResultsItems} />
       ) : (
         <InfiniteScroll
           dataLength={planets.length}

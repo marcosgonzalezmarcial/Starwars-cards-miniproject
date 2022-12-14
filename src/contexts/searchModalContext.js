@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 
-const searchModalContext = createContext(undefined);
+const searchModalContext = createContext();
 
 function SearchModalProvider({ children }) {
   const [showModal, setShowModal] = useState(false);

@@ -21,7 +21,6 @@ const SingleFilm = () => {
   // const expandBtnStyles = {
   //   marginLeft: "calc(var(--bs-gutter-x) * 0.5)",
   // };
-  console.log(film);
 
   const mainRef = useRef(null);
 
@@ -84,61 +83,20 @@ const SingleFilm = () => {
               <Row className="py-1">
                 <Col className="pt-1">
                   <div className="flex-column cutoff-text">
-                    <h3 className="my-2">Appearances</h3>
+                    <h3 className="my-2">Starships</h3>
                     <ListOfShips shipsUrls={film.starships} />
                   </div>
                   {dynamicSize.mainWidth < 517 &&
                     film.starships?.length >= 3 && (
                       <input type="checkbox" className="expand-btn" />
                     )}
-                  {dynamicSize.mainWidth > 517 &&
-                    film.starships?.length > 6 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
+                  {dynamicSize.mainWidth >= 517 && null}
                 </Col>
                 <Col>
                   <h3 className="my-2">Release date</h3>
                   <span>{film.release_date}</span>
                 </Col>
               </Row>
-              {/* <Row className="flex-column"> */}
-              {/* <div className="cutoff-text">
-                  <h3 className="my-2">Ships</h3>
-                  {film.starships?.length > 0 ? (
-                    <ListOfShips shipsUrls={film.starships} />
-                  ) : (
-                    <span>No ships for this character</span>
-                  )}
-                </div>
-                {dynamicSize.mainWidth < 517 && film.starships?.length >= 3 && (
-                  <input
-                    style={expandBtnStyles}
-                    type="checkbox"
-                    className="expand-btn"
-                  />
-                )}
-                {dynamicSize.mainWidth > 517 && film.starships?.length > 6 && (
-                  <input
-                    style={expandBtnStyles}
-                    type="checkbox"
-                    className="expand-btn"
-                  />
-                )} */}
-              {/* <Col className="pt-1">
-                  <div className="flex-column cutoff-text">
-                    <h3 className="my-2">Appearances</h3>
-                    <ListOfShips shipsUrls={film.starships} />
-                  </div>
-                  {dynamicSize.mainWidth < 517 &&
-                    film.starships?.length >= 3 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
-                  {dynamicSize.mainWidth > 517 &&
-                    film.starships?.length > 6 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
-                </Col> */}
-              {/* </Row> */}
             </div>
           </div>
         </main>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import ListOfFilms from "./ListOfFilms";
@@ -22,7 +22,7 @@ const SingleCharacter = () => {
 
   const mainRef = useRef(null);
 
-  //obvserving the size of the ListOfFilms container
+  //obvserving the size of the ListOfFilms container (main)
   useEffect(() => {
     if (!mainRef || isLoading) return; // wait for the elementRef to be available and loading finishes
     const resizeObserver = new ResizeObserver((entries) => {
@@ -53,10 +53,13 @@ const SingleCharacter = () => {
       .finally(() => setIsLoading(false));
   }, [characterName]);
 
-  const handleClick = (e) => {
-    const planetSelected = e.target.textContent;
-    navigate(`/planets/${planetSelected}`);
-  };
+  const handleClick = useCallback(
+    (e) => {
+      const planetSelected = e.target.textContent;
+      navigate(`/planets/${planetSelected}`);
+    },
+    [navigate]
+  );
 
   return (
     <>

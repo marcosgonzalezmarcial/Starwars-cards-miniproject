@@ -38,7 +38,6 @@
 	.page-img-container {
 		display: grid;
 		width: 50%;
-
 		&:has(img[src*="Planets"]) {
 			place-content: center;
 		}
@@ -132,6 +131,9 @@
 	}
 
 	@media (min-width: 992px) {
+		& {
+			margin-block-start: 1.5rem;
+		}
 		img[src*="Films"] {
 			object-position: center;
 		}
