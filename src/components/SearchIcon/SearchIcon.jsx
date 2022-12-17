@@ -1,8 +1,8 @@
-import './SearchIcon.scss'
-import SearchIconSvg from '../../assets/searchIcon.svg'
+import "./SearchIcon.scss";
+import searchIconSvg from "../../assets/icons/search-icon.svg";
 
 const SearchIcon = () => {
-  return <img src={SearchIconSvg} alt="" />
-}
+  return <img src={searchIconSvg} alt="" />;
+};
 
-export default SearchIcon
+export default SearchIcon;
