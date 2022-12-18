@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./form.scss";
-import swLogo from "../assets/logosw.svg";
+import yellowSwLogo from "../assets/yellow-sw-logo.svg";
 
 const initialUserDataState = { email: "", password: "" };
 
@@ -60,7 +60,7 @@ const Login = ({ setLoggedIn, users }) => {
           onMouseDown={handleFormInnerClick}
           className="form-inner p-3  position-relative d-flex flex-column align-items-center text-center"
         >
-          <img className="login-img my-4 p-2" src={swLogo} alt="logo" />
+          <img className="login-img my-4 p-2" src={yellowSwLogo} alt="logo" />
           <button
             className="form-close-btn position-absolute"
             onClick={handleClick}

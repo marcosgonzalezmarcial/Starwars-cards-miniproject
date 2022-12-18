@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./form.scss";
-import swLogo from "../assets/logosw.svg";
+import yellowSwLogo from "../assets/yellow-sw-logo.svg";
 
 const initialUserDetailsState = {
   firstName: "",
@@ -63,7 +63,7 @@ const SignUp = ({ setUsers }) => {
             width="200px"
             height="100px"
             className="login-img my-4 p-2"
-            src={swLogo}
+            src={yellowSwLogo}
             alt="logo"
           />
           <button
