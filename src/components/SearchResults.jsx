@@ -1,4 +1,3 @@
-// import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const SearchResults = ({ searchResultsItems }) => {
@@ -13,7 +12,7 @@ const SearchResults = ({ searchResultsItems }) => {
           <div className="grid-card-hero">
             <img
               className="grid-card-hero-img"
-              src={character.image}
+              src={character.imgUrl || character.image}
               alt={character.name}
             />
           </div>

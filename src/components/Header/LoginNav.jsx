@@ -1,36 +1,44 @@
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
-import "./ToggleMenuBtn/toggle-btn.scss";
+// import "./ToggleMenuBtn/toggle-btn.scss";
 
-const LoginNav = ({ loggedIn, setLoggedIn, toggleMenu }) => {
-  const dynamicStyles = () => {
-    if (window.innerWidth > 768) return "expanded";
-    if (toggleMenu) return "show collapsed";
-    return "hide collapsed";
-  };
+import { uiContext } from "../../contexts/uiContext";
 
-  return loggedIn ? (
+const LoginNav = ({ loggedIn, setLoggedIn }) => {
+  const { toggleMenu } = useContext(uiContext);
+  const dynamicStyles = useCallback(() => {
+    if (!loggedIn) {
+      if (window.innerWidth > 768) return "expanded";
+      if (toggleMenu) return "show collapsed";
+      return "hide collapsed";
+    }
+    if (window.innerWidth > 768) return "loggedin expanded";
+    if (toggleMenu) return "loggedin show collapsed";
+    return "loggedin hide collapsed";
+  }, [toggleMenu, loggedIn]);
+
+  return (
     <div className={`navbar-box ${dynamicStyles()}`}>
-      <span></span>
-      <Link
-        onClick={() => setLoggedIn(!loggedIn)}
-        to="/"
-        className="nav-link login-nav-link"
-      >
-        LOG OUT
-      </Link>
-      <span></span>
-    </div>
-  ) : (
-    <div className={`navbar-box ${dynamicStyles()}`}>
-      <Link className="login-nav-link navbar-link px-md-2" to="/login">
-        LOG IN
-      </Link>
-      <div className="login-nav-link">&#8725; &#8725;</div>
-      <Link className="login-nav-link navbar-link px-md-2" to="/signup">
-        SIGN UP
-      </Link>
+      {loggedIn ? (
+        <Link
+          onClick={() => setLoggedIn((prev) => !prev)}
+          to="/"
+          className="nav-link login-nav-link"
+        >
+          LOG OUT
+        </Link>
+      ) : (
+        <>
+          <Link className="login-nav-link navbar-link px-md-2" to="/login">
+            LOG IN
+          </Link>
+          <div className="login-nav-link">&#8725; &#8725;</div>
+          <Link className="login-nav-link navbar-link px-md-2" to="/signup">
+            SIGN UP
+          </Link>
+        </>
+      )}
     </div>
   );
 };
