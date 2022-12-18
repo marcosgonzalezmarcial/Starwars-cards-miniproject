@@ -77,23 +77,6 @@
 	white-space: nowrap;
 }
 
-/* navbar animation*/
-.navbar-box {
-	line-height: 2.5rem;
-	white-space: nowrap;
-    transition: max-height 350ms ease-in-out;
-	
-	
-	&.hide {
-		max-height: 0;
-		overflow: hidden;
-	}
-	&.show {
-		overflow: hidden;
-		max-height: 102px;
-	}
-}
-/* ---- */ 
 
 /* Media queries */
 

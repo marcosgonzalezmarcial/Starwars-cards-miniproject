@@ -1,4 +1,4 @@
-import burgerBtn from "../../assets/icons/hamburger-menu-btn.svg";
+import burgerBtn from "../../../assets/icons/hamburger-menu-btn.svg";
 import "./toggle-btn.scss";
 const ToggleMenuBtn = ({ setToggleMenu, toggleMenu }) => {
   const handleToggle = () => setToggleMenu(!toggleMenu);

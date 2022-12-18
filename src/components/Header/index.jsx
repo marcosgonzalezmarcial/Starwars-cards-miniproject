@@ -5,7 +5,7 @@ import bigLogo from "../../assets/star-wars-logo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import SectionNav from "./SectionNav";
 import LoginNav from "./LoginNav";
-import ToggleMenuBtn from "../ToggleMenuBtn";
+import ToggleMenuBtn from "./ToggleMenuBtn";
 import SearchIcon from "../SearchIcon/SearchIcon";
 import SearchModal from "../SearchModal/SearchModal";
 import "./Header.scss";
@@ -29,14 +29,14 @@ const Header = ({ loggedIn, setLoggedIn }) => {
     <header className="header">
       <Navbar variant="dark" className="py-1" expand="md">
         <div className="navbar-container text-center position-relative justify-content-end px-0">
-          <Navbar.Toggle
+          {/* <Navbar.Toggle
             className="navbar-toggle-btn me-auto"
             aria-controls="basic-navbar-nav"
-          />
-          {/* <ToggleMenuBtn
+          /> */}
+          <ToggleMenuBtn
             setToggleMenu={setToggleMenu}
             toggleMenu={toggleMenu}
-          /> */}
+          />
           <SearchModal show={showModal} onHide={closeModal} />
           <Navbar.Brand className="m-0 py-3 px-2 p-md-0">
             <Link className="navbar-link p-2" to="/">
@@ -60,18 +60,18 @@ const Header = ({ loggedIn, setLoggedIn }) => {
           </button>
 
           <span></span>
-          <Navbar.Collapse
+          {/* <Navbar.Collapse
             className="navbar-collapse-box"
             id="responsive-navbar-nav"
           >
             <LoginNav loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-          </Navbar.Collapse>
+          </Navbar.Collapse> */}
 
-          {/* <LoginNav
+          <LoginNav
             toggleMenu={toggleMenu}
             loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}
-          /> */}
+          />
 
           <span></span>
         </div>

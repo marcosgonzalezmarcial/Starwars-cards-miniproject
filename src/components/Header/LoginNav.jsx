@@ -1,19 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
-import "../ToggleMenuBtn/toggle-btn.scss";
+import "./ToggleMenuBtn/toggle-btn.scss";
 
 const LoginNav = ({ loggedIn, setLoggedIn, toggleMenu }) => {
-  const styles = () => {
-    if (toggleMenu || window.innerWidth < 768) {
-      return "show";
-    }
-    if (window.innerWidth > 768) {
-      return "show";
-    }
+  const dynamicStyles = () => {
+    if (window.innerWidth > 768) return "expanded";
+    if (toggleMenu) return "show collapsed";
+    return "hide collapsed";
   };
+
   return loggedIn ? (
-    <div className={`navbar-box ${styles()}`}>
+    <div className={`navbar-box ${dynamicStyles()}`}>
       <span></span>
       <Link
         onClick={() => setLoggedIn(!loggedIn)}
@@ -25,7 +23,7 @@ const LoginNav = ({ loggedIn, setLoggedIn, toggleMenu }) => {
       <span></span>
     </div>
   ) : (
-    <div className={`navbar-box ${styles()}`}>
+    <div className={`navbar-box ${dynamicStyles()}`}>
       <Link className="login-nav-link navbar-link px-md-2" to="/login">
         LOG IN
       </Link>
