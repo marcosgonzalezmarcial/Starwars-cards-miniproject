@@ -1,12 +1,11 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
-// import "./ToggleMenuBtn/toggle-btn.scss";
 
 import { uiContext } from "../../contexts/uiContext";
 
 const LoginNav = ({ loggedIn, setLoggedIn }) => {
-  const { toggleMenu } = useContext(uiContext);
+  const { toggleMenu, handleToggle } = useContext(uiContext);
   const dynamicStyles = useCallback(() => {
     if (!loggedIn) {
       if (window.innerWidth > 768) return "expanded";
@@ -30,11 +29,19 @@ const LoginNav = ({ loggedIn, setLoggedIn }) => {
         </Link>
       ) : (
         <>
-          <Link className="login-nav-link navbar-link px-md-2" to="/login">
+          <Link
+            onClick={handleToggle}
+            className="login-nav-link navbar-link px-md-2"
+            to="/login"
+          >
             LOG IN
           </Link>
           <div className="login-nav-link">&#8725; &#8725;</div>
-          <Link className="login-nav-link navbar-link px-md-2" to="/signup">
+          <Link
+            onClick={handleToggle}
+            className="login-nav-link navbar-link px-md-2"
+            to="/signup"
+          >
             SIGN UP
           </Link>
         </>

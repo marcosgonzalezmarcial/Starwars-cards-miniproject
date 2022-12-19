@@ -7,7 +7,7 @@ function UiContextProvider({ children }) {
   const handleToggle = () => setToggleMenu((prev) => !prev);
 
   return (
-    <uiContext.Provider value={{ toggleMenu, handleToggle }}>
+    <uiContext.Provider value={{ toggleMenu, handleToggle, setToggleMenu }}>
       {children}
     </uiContext.Provider>
   );

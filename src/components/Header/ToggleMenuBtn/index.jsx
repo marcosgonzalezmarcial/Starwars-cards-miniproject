@@ -6,7 +6,7 @@ import { uiContext } from "../../../contexts/uiContext";
 const ToggleMenuBtn = () => {
   const { handleToggle } = useContext(uiContext);
   return (
-    <button onClick={handleToggle} className="navbar-toggle-btn-NEW me-auto">
+    <button onClick={handleToggle} className="navbar-toggle-btn me-auto">
       <img src={burgerBtn} alt="burger button" />
     </button>
   );

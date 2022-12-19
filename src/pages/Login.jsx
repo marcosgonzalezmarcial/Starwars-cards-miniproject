@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./form.scss";
 import yellowSwLogo from "../assets/yellow-sw-logo.svg";
+import { uiContext } from "../contexts/uiContext";
 
 const initialUserDataState = { email: "", password: "" };
 
 const Login = ({ setLoggedIn, users }) => {
   const [userData, setUserData] = useState(initialUserDataState);
   const [error, setError] = useState(null);
+  const { setToggleMenu, toggleMenu, handleToggle } = useContext(uiContext);
+
+  // setToggleMenu(false);
+
+  // console.log(toggleMenu);
 
   let navigate = useNavigate();
 
@@ -41,6 +47,7 @@ const Login = ({ setLoggedIn, users }) => {
       if (checkUser) {
         setLoggedIn(true);
         console.log("El usuario se logueó correctamente");
+        handleToggle();
         navigate("/");
         setError(false);
       } else {

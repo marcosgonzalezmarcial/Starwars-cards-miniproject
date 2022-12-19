@@ -15,6 +15,7 @@ import SingleFilm from "./components/SingleFilm";
 import Planets from "./pages/Planets";
 import SinglePlanet from "./components/SinglePlanet";
 import { SearchModalProvider } from "./contexts/searchModalContext";
+import { uiContext, UiContextProvider } from "./contexts/uiContext";
 
 function App() {
   const [users, setUsers] = useState(
@@ -38,8 +39,13 @@ function App() {
           <Route index element={<Home loggedIn={loggedIn} />} />
           <Route
             path="login"
-            element={<Login users={users} setLoggedIn={setLoggedIn} />}
+            element={
+              <UiContextProvider>
+                <Login users={users} setLoggedIn={setLoggedIn} />{" "}
+              </UiContextProvider>
+            }
           />
+
           <Route path="signup" element={<SignUp setUsers={setUsers} />} />
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path="starships" element={<NestedRoutes />}>
