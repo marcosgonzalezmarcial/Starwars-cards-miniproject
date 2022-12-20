@@ -1,19 +1,13 @@
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./form.scss";
 import yellowSwLogo from "../assets/yellow-sw-logo.svg";
-import { uiContext } from "../contexts/uiContext";
 
 const initialUserDataState = { email: "", password: "" };
 
 const Login = ({ setLoggedIn, users }) => {
   const [userData, setUserData] = useState(initialUserDataState);
   const [error, setError] = useState(null);
-  const { setToggleMenu, toggleMenu, handleToggle } = useContext(uiContext);
-
-  // setToggleMenu(false);
-
-  // console.log(toggleMenu);
 
   let navigate = useNavigate();
 
@@ -47,7 +41,6 @@ const Login = ({ setLoggedIn, users }) => {
       if (checkUser) {
         setLoggedIn(true);
         console.log("El usuario se logueó correctamente");
-        handleToggle();
         navigate("/");
         setError(false);
       } else {
@@ -58,15 +51,10 @@ const Login = ({ setLoggedIn, users }) => {
     setUserData(initialUserDataState);
   };
 
-  const handleFormInnerClick = (e) => e.stopPropagation();
-
   return (
     <div className={`loginForm-container is-open`}>
       <form onSubmit={handleSubmit}>
-        <div
-          onMouseDown={handleFormInnerClick}
-          className="form-inner p-3  position-relative d-flex flex-column align-items-center text-center"
-        >
+        <div className="form-inner p-3  position-relative d-flex flex-column align-items-center text-center">
           <img className="login-img my-4 p-2" src={yellowSwLogo} alt="logo" />
           <button
             className="form-close-btn position-absolute"

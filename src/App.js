@@ -14,8 +14,7 @@ import NestedRoutes from "./pages/NestedRoutes";
 import SingleFilm from "./components/SingleFilm";
 import Planets from "./pages/Planets";
 import SinglePlanet from "./components/SinglePlanet";
-import { SearchModalProvider } from "./contexts/searchModalContext";
-import { uiContext, UiContextProvider } from "./contexts/uiContext";
+import { UiContextProvider } from "./contexts/uiContext";
 
 function App() {
   const [users, setUsers] = useState(
@@ -31,9 +30,9 @@ function App() {
 
   return (
     <>
-      <SearchModalProvider>
+      <UiContextProvider>
         <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-      </SearchModalProvider>
+      </UiContextProvider>
       <Routes>
         <Route path="/" element={<NestedRoutes />}>
           <Route index element={<Home loggedIn={loggedIn} />} />

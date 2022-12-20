@@ -6,14 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 import SectionNav from "./SectionNav";
 import LoginNav from "./LoginNav";
 import ToggleMenuBtn from "./ToggleMenuBtn";
-import SearchIcon from "../SearchIcon/SearchIcon";
+import SearchIcon from "./SearchIcon/SearchIcon";
 import SearchModal from "../SearchModal/SearchModal";
-import { searchModalContext } from "../../contexts/searchModalContext";
-import { UiContextProvider } from "../../contexts/uiContext";
+import { UiContextProvider, uiContext } from "../../contexts/uiContext";
 import "./Header.scss";
 
 const Header = ({ loggedIn, setLoggedIn }) => {
-  const { showModal, openModal, closeModal } = useContext(searchModalContext);
+  const { showModal, openModal, closeModal } = useContext(uiContext);
 
   let navigate = useNavigate();
 
