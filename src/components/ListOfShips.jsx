@@ -2,23 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchListOfDataFromUrlsArr } from "../services/fetchListOfDataFromUrlsArr";
 import { Spinner } from "./Spinner/Spinner";
+import { useLisOfData } from "../hooks/useListOfData";
 
-const ListOfShips = ({ shipsUrls }) => {
-  const [ships, setShips] = useState([]);
-  const [loading, setIsLoading] = useState(false);
+const ListOfShips = ({ listOfUrls }) => {
+  const { loading, data } = useLisOfData({ listOfUrls });
   let navigate = useNavigate();
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetchListOfDataFromUrlsArr(shipsUrls)
-      .then((ships) => {
-        setShips(ships);
-      })
-      .catch(console.log)
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [shipsUrls]);
 
   const selectShip = useCallback(
     (e) => {
@@ -34,7 +22,7 @@ const ListOfShips = ({ shipsUrls }) => {
       {loading ? (
         <Spinner small />
       ) : (
-        ships.map((ship) => (
+        data.map((ship) => (
           <p key={ship.model} onClick={selectShip} className="list-element">
             {ship.name}
           </p>

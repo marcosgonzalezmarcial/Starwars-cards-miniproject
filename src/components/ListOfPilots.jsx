@@ -2,23 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchListOfDataFromUrlsArr } from "../services/fetchListOfDataFromUrlsArr";
 import { Spinner } from "./Spinner/Spinner";
+import { useLisOfData } from "../hooks/useListOfData";
 
-const ListOfPilots = ({ pilotsUrls }) => {
-  const [pilots, setPilots] = useState([]);
-  const [loading, setIsLoading] = useState(false);
+const ListOfPilots = ({ listOfUrls }) => {
+  const { loading, data } = useLisOfData({ listOfUrls });
   let navigate = useNavigate();
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetchListOfDataFromUrlsArr(pilotsUrls)
-      .then((pilots) => {
-        setPilots(pilots);
-      })
-      .catch(console.log)
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [pilotsUrls]);
 
   const selectPilot = useCallback(
     (e) => {
@@ -34,7 +23,7 @@ const ListOfPilots = ({ pilotsUrls }) => {
       {loading ? (
         <Spinner small />
       ) : (
-        pilots.map((pilot) => (
+        data.map((pilot) => (
           <p key={pilot.name} onClick={selectPilot} className="list-element">
             {pilot.name}
           </p>

@@ -108,7 +108,7 @@ const SingleShip = () => {
                   ) : (
                     <div className="flex-column cutoff-text">
                       <h3 className="my-2">Starships</h3>
-                      <ListOfPilots pilotsUrls={ship.pilots} />
+                      <ListOfPilots listOfUrls={ship.pilots} />
                     </div>
                   )}
                   {dynamicSize.mainWidth < 517 && ship.pilots?.length > 4 && (

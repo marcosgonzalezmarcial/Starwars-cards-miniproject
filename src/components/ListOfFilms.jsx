@@ -7,7 +7,6 @@ const ListOfFilms = ({ listOfUrls }) => {
   const { loading, data } = useLisOfData({ listOfUrls });
   let navigate = useNavigate();
 
-
   const selectFilm = useCallback(
     (e) => {
       const selectFilm = e.target.textContent;

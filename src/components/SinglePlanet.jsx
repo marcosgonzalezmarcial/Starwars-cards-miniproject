@@ -57,14 +57,14 @@ const SinglePlanet = () => {
     <>
       <div className="flex-column">
         <h3 className="my-2">Residents</h3>
-        <ListOfPilots pilotsUrls={planet.residents} />
+        <ListOfPilots listOfUrls={planet.residents} />
       </div>
     </>
   ) : planet.residents?.length >= 5 ? (
     <>
       <div className="flex-column cutoff-text">
         <h3 className="my-2">Residents</h3>
-        <ListOfPilots pilotsUrls={planet.residents} />
+        <ListOfPilots listOfUrls={planet.residents} />
       </div>
       <input type="checkbox" className="expand-btn" />
     </>
@@ -131,7 +131,7 @@ const SinglePlanet = () => {
                   ) : (
                     <div className="flex-column cutoff-text">
                       <h3 className="my-2">Residents</h3>
-                      <ListOfPilots pilotsUrls={planet.residents} />
+                      <ListOfPilots listOfUrls={planet.residents} />
                     </div>
                   )}
                   {dynamicSize.mainWidth < 517 &&

@@ -120,7 +120,7 @@ const SingleCharacter = () => {
                   ) : (
                     <div className="flex-column cutoff-text">
                       <h3 className="my-2">Starships</h3>
-                      <ListOfShips shipsUrls={character.starships} />
+                      <ListOfShips listOfUrls={character.starships} />
                     </div>
                   )}
                   {dynamicSize.mainWidth < 518 &&
