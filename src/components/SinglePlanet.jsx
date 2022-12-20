@@ -112,7 +112,7 @@ const SinglePlanet = () => {
                 <Col className="pt-1">
                   <div className="flex-column cutoff-text">
                     <h3 className="my-2">Appearances</h3>
-                    <ListOfFilms filmsUrls={planet.films} />
+                    <ListOfFilms listOfUrls={planet.films} />
                   </div>
                   {dynamicSize.mainWidth < 517 && planet.films?.length > 3 && (
                     <input type="checkbox" className="expand-btn" />

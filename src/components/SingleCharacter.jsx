@@ -100,7 +100,7 @@ const SingleCharacter = () => {
                 <Col className="py-1">
                   <div className="flex-column cutoff-text">
                     <h3 className="my-2">Appearances</h3>
-                    <ListOfFilms filmsUrls={character.films} />
+                    <ListOfFilms listOfUrls={character.films} />
                   </div>
                   {dynamicSize.mainWidth < 518 &&
                     character.films?.length > 3 && (

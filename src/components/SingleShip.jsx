@@ -90,7 +90,7 @@ const SingleShip = () => {
                 <Col className="pt-1">
                   <div className="flex-column cutoff-text">
                     <h3 className="my-2">Appearances</h3>
-                    <ListOfFilms filmsUrls={ship.films} />
+                    <ListOfFilms listOfUrls={ship.films} />
                   </div>
                   {dynamicSize.mainWidth < 517 && ship.films?.length > 3 && (
                     <input type="checkbox" className="expand-btn" />
