@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import ListOfShips from "./ListOfShips";
@@ -7,31 +7,19 @@ import { TYPE_OF_DATA } from "../constants";
 import "./single-item-page-styles.scss";
 import "./view-more.scss";
 import { useSingleElementData } from "../hooks/useSingleElementData";
+import { useWidthObserver } from "../hooks/useWidthObserver";
 
 const SingleFilm = () => {
-  const [dynamicSize, setDynamicSize] = useState({});
-
   let { filmTitle } = useParams();
-  
+  const mainRef = useRef(null);
+
   const { isLoading, elementData } = useSingleElementData({
     paramFromUrl: filmTitle,
     typeOfData: TYPE_OF_DATA.FILMS,
   });
 
-  const mainRef = useRef(null);
-
   //obvserving the size of the ListOfFilms container (main)
-  useEffect(() => {
-    if (!mainRef || isLoading) return; // wait for the elementRef to be available and loading finishes
-    const resizeObserver = new ResizeObserver((entries) => {
-      setDynamicSize({
-        mainWidth: entries[0].contentRect.width,
-      });
-    });
-    resizeObserver.observe(mainRef.current);
-    return () => resizeObserver.disconnect(); // clean up
-  }, [isLoading]);
-
+  const { dynamicSize } = useWidthObserver({ isLoading, mainRef });
 
   return (
     <>
