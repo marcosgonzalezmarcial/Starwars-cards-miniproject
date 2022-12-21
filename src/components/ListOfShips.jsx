@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchListOfDataFromUrlsArr } from "../services/fetchListOfDataFromUrlsArr";
 import { Spinner } from "./Spinner/Spinner";
 import { useLisOfData } from "../hooks/useListOfData";
 
@@ -11,7 +10,6 @@ const ListOfShips = ({ listOfUrls }) => {
   const selectShip = useCallback(
     (e) => {
       const selectedValue = e.target.textContent;
-
       navigate(`/starships/${selectedValue.replaceAll(" ", "~")}`);
     },
     [navigate]

@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
+import  { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchListOfDataFromUrlsArr } from "../services/fetchListOfDataFromUrlsArr";
 import { Spinner } from "./Spinner/Spinner";
 import { useLisOfData } from "../hooks/useListOfData";
 
