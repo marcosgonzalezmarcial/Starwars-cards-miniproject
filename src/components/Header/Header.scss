@@ -1,4 +1,4 @@
-.header {
+.header, .nav-item {
 	position: relative;
 }
 
@@ -6,37 +6,11 @@
 	width: calc(min(90vw, 1100px));
 }
 
-.nav-item {
-	position: relative;
-}
-
-
 .nav-link,
 .login-nav-link {
 	font-size: 0.8em;
 	font-weight: 800;
 	color: #999;
-}
-
-.navbar-toggle-btn.collapsed {
-	border-color: rgba(255, 255, 255, 0.3);
-	background-color: transparent;
-}
-
-.navbar-toggle-btn {
-	background-color: #424649;
-	max-height: 40px;
-	max-width: 56px;
-}
-
-.navbar-toggle-btn:focus {
-	box-shadow: none;
-}
-
-.logIn-div {
-	color: #999;
-	font-weight: 600;
-	font-size: 15px;
 }
 
 .nav-link:hover {
@@ -53,15 +27,6 @@
 	color: #ccc;
 }
 
-.button-toggler {
-	background-color: #dee2e6;
-}
-
-.logIn-col {
-	color: #343434;
-	right: 0%;
-}
-
 .navbar-container {
 	display: grid;
 	width: calc(min(90vw, 1200px));
@@ -70,14 +35,12 @@
 	margin: 0 auto;
 }
 
-.navbar-collapse-box {
-	line-height: 2.5rem;
-	white-space: nowrap;
-}
-
 /* Media queries */
 
 @media (max-width: 576px) {
+	.navbar-container {
+		width: calc(min(94vw, 1200px));
+	}
 	.nav {
 		flex-wrap: nowrap;
 	}
@@ -90,10 +53,6 @@
 		width: 180px;
 	}
 
-	.navbar-toggle-btn {
-		padding: 0.1rem 0.4rem;
-	}
-
 	.nav-link {
 		padding-inline: 0.5rem;
 	}
@@ -104,11 +63,8 @@
 		width: 200px;
 	}
 }
-
-@media (min-width: 768px) {
-	.logo-img {
-		width: 220px;
-	}
+.logo-img {
+	width: 220px;
 }
 
 @media (max-width: 900px) {
@@ -122,12 +78,11 @@
 }
 
 @media (min-width: 768px) {
-	.navbar-collapse-box {
+	.navbar-box {
 		margin-inline-start: auto;
 		grid-row: 1 / 2;
 		grid-column: 3 / 4;
 	}
-
 	.navbar-brand {
 		grid-column: 2 /3;
 	}

@@ -1,68 +1,61 @@
-import React, { useState } from "react";
+import { useCallback, useContext } from "react";
 import { Navbar } from "react-bootstrap";
 import smallLogo from "../../assets/sw_logo_mobile.png";
 import bigLogo from "../../assets/star-wars-logo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import SectionNav from "./SectionNav";
 import LoginNav from "./LoginNav";
-import SearchIcon from "../SearchIcon/SearchIcon";
+import ToggleMenuBtn from "./ToggleMenuBtn";
+import SearchIcon from "./SearchIcon/SearchIcon";
 import SearchModal from "../SearchModal/SearchModal";
+import { UiContextProvider, uiContext } from "../../contexts/uiContext";
 import "./Header.scss";
 
 const Header = ({ loggedIn, setLoggedIn }) => {
-  const [modalShow, setModalShow] = useState(false);
+  const { showModal, openModal, closeModal } = useContext(uiContext);
+
   let navigate = useNavigate();
 
-  const handleSearchClick = () => {
+  const handleSearchClick = useCallback(() => {
     if (loggedIn) {
-      setModalShow(true);
+      openModal();
     } else {
       navigate("/login");
     }
-  };
+  }, [loggedIn, openModal, navigate]);
+
   return (
     <header className="header">
-      <Navbar variant="dark" className="py-1" expand="md">
-        <div className="navbar-container text-center position-relative justify-content-end px-0">
-          <Navbar.Toggle
-            className="navbar-toggle-btn me-auto"
-            aria-controls="basic-navbar-nav"
-          />
-          <SearchModal show={modalShow} onHide={() => setModalShow(false)} />
-
-          <Navbar.Brand className="m-0 p-3 p-md-0">
-            <Link className="navbar-link p-2" to="/home">
-              <picture>
-                <source media="(max-width: 768px)" srcSet={smallLogo} />
-                <source media="(min-width: 769px)" srcSet={bigLogo} />
-                <img
-                  // width="220px"
-                  className="logo-img"
-                  src={smallLogo}
-                  alt="logo"
-                />
-              </picture>
-              {/* <img width="220px" className="logo-img" src={logo} alt="logo" /> */}
-            </Link>
-          </Navbar.Brand>
-
-          <button
-            className="search-icon-btn ms-auto me-md-auto ms-md-0"
-            onClick={() => handleSearchClick()}
-          >
-            <SearchIcon onClick={(prev) => setModalShow(!prev)} />
-          </button>
-
-          <span></span>
-          <Navbar.Collapse
-            className="navbar-collapse-box"
-            id="responsive-navbar-nav"
-          >
+      <UiContextProvider>
+        <Navbar variant="dark" className="py-1">
+          <div className="navbar-container text-center position-relative justify-content-end px-0">
+            <ToggleMenuBtn />
+            <SearchModal show={showModal} onHide={closeModal} />
+            <Navbar.Brand className="m-0 py-3 px-2 p-md-0">
+              <Link className="navbar-link p-2" to="/">
+                <picture>
+                  <source media="(max-width: 767px)" srcSet={smallLogo} />
+                  <source media="(min-width: 768px)" srcSet={bigLogo} />
+                  <img className="logo-img" src={smallLogo} alt="logo" />
+                </picture>
+              </Link>
+            </Navbar.Brand>
+            <button
+              className="search-icon-btn ms-auto me-md-auto ms-md-0"
+              onClick={() => handleSearchClick()}
+            >
+              <SearchIcon
+                onClick={() => {
+                  showModal ? closeModal() : openModal();
+                }}
+              />
+            </button>
+            <span></span>
             <LoginNav loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-          </Navbar.Collapse>
-          <span></span>
-        </div>
-      </Navbar>
+            <span></span>
+          </div>
+        </Navbar>
+      </UiContextProvider>
       <SectionNav />
     </header>
   );

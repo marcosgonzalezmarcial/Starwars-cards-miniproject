@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
 import { useSearch } from "../hooks/useSearch";
 import { Spinner } from "../components/Spinner/Spinner";
+import SearchResults from "../components/SearchResults";
 import "../styles.scss";
 import { TYPE_OF_DATA } from "../constants";
 import { getTransformedDataArray } from "../services/getTransformedDataArray";
@@ -11,7 +12,7 @@ import { getTransformedDataArray } from "../services/getTransformedDataArray";
 const Characters = () => {
   const [page, setPage] = useState(1);
   const [characters, setCharacters] = useState([]);
-  const { searchItems } = useSearch();
+  const { searchResultsItems } = useSearch();
 
   useEffect(() => {
     getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PEOPLE })
@@ -28,24 +29,8 @@ const Characters = () => {
 
   return (
     <>
-      {searchItems.length > 0 ? (
-        <div className="my-3 my-md-4 grid-container">
-          {searchItems.map((character) => (
-            <div key={character.id} className="grid-element-card">
-              <div className="grid-card-hero">
-                <img
-                  className="grid-card-hero-img"
-                  src={character.image}
-                  alt={character.name}
-                />
-              </div>
-              <div className="text-secondary p-3 grid-card-info bg-dark">
-                <h4>{character.name}</h4>
-                <p>{character.species}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      {searchResultsItems.length > 0 ? (
+        <SearchResults searchResultsItems={searchResultsItems} />
       ) : (
         <InfiniteScroll
           dataLength={characters.length}

@@ -1,0 +1,45 @@
+.navbar-toggle-btn {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    img {
+        width: 43px;
+        height: 33px;
+    }  
+    
+    @media (min-width: 768px) {
+		& {
+            display: none;
+        }
+	}
+}
+
+.navbar-box {
+	line-height: 2.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: max-height 275ms ease-in-out;
+    
+    &:is(.expanded, .collapsed.hide,.collapsed.show) {
+        @media (min-width: 768px) {         
+            display: flex;
+        }
+    }
+	
+	@media (max-width: 767px) {
+        &:is(.expanded, .collapsed.hide) {
+            max-height: 0;
+        }
+		&.collapsed.show {
+			max-height: 102px;
+		}
+        &.collapsed.show.loggedin {
+			max-height: 22px;
+		}
+	}
+    
+}
+
+
+
+
