@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
-import { useSearch } from "../hooks/useSearch";
-import { Spinner } from "../components/Spinner/Spinner";
-import SearchResults from "../components/SearchResults";
+import { useSearch } from "hooks/useSearch";
+import { Spinner } from "components/Spinner";
+import SearchResults from "components/SearchResults";
 import "../styles.scss";
 import { TYPE_OF_DATA } from "../constants";
 import { getTransformedDataArray } from "../services/getTransformedDataArray";

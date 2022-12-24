@@ -1,14 +1,14 @@
 import { useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import ListOfPilots from "./ListOfPilots";
-import ListOfFilms from "./ListOfFilms";
-import { Spinner } from "./Spinner/Spinner";
+import ListOfPilots from "components/ListOfPilots";
+import ListOfFilms from "components/ListOfFilms";
+import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
-import "./single-item-page-styles.scss";
-import "./view-more.scss";
-import { useSingleElementData } from "../hooks/useSingleElementData";
-import { useWidthObserver } from "../hooks/useWidthObserver";
+// import "./single-item-page-styles.scss";
+// import "./view-more.scss";
+import { useSingleElementData } from "hooks/useSingleElementData";
+import { useWidthObserver } from "hooks/useWidthObserver";
 
 const SingleShip = () => {
   let { starshipName } = useParams();

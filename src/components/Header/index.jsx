@@ -1,14 +1,14 @@
 import { useCallback, useContext } from "react";
 import { Navbar } from "react-bootstrap";
-import smallLogo from "../../assets/sw_logo_mobile.png";
-import bigLogo from "../../assets/star-wars-logo.jpg";
+import smallLogo from "assets/sw_logo_mobile.png";
+import bigLogo from "assets/star-wars-logo.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import SectionNav from "./SectionNav";
-import LoginNav from "./LoginNav";
-import ToggleMenuBtn from "./ToggleMenuBtn";
-import SearchIcon from "./SearchIcon/SearchIcon";
-import SearchModal from "../SearchModal/SearchModal";
-import { UiContextProvider, uiContext } from "../../contexts/uiContext";
+import SectionNav from "components/Header/SectionNav";
+import LoginNav from "components/Header/LoginNav";
+import ToggleMenuBtn from "components/Header/ToggleMenuBtn";
+import SearchIcon from "components/Header/SearchIcon";
+import SearchModal from "components/SearchModal";
+import { UiContextProvider, uiContext } from "contexts/uiContext";
 import "./Header.scss";
 
 const Header = ({ loggedIn, setLoggedIn }) => {

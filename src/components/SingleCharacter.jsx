@@ -1,13 +1,11 @@
 import { useCallback, useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import ListOfFilms from "./ListOfFilms";
-import ListOfShips from "./ListOfShips";
-import { Spinner } from "./Spinner/Spinner";
+import ListOfFilms from "components/ListOfFilms";
+import ListOfShips from "components/ListOfShips";
+import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
-import "./single-item-page-styles.scss";
-import "./view-more.scss";
-import { useSingleElementData } from "../hooks/useSingleElementData";
+import { useSingleElementData } from "hooks/useSingleElementData";
 import { useWidthObserver } from "../hooks/useWidthObserver";
 
 const SingleCharacter = () => {

@@ -1,13 +1,13 @@
 import { useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import ListOfShips from "./ListOfShips";
-import { Spinner } from "./Spinner/Spinner";
+import ListOfShips from "components/ListOfShips";
+import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
-import "./single-item-page-styles.scss";
-import "./view-more.scss";
-import { useSingleElementData } from "../hooks/useSingleElementData";
-import { useWidthObserver } from "../hooks/useWidthObserver";
+// import "./single-item-page-styles.scss";
+// import "./view-more.scss";
+import { useSingleElementData } from "hooks/useSingleElementData";
+import { useWidthObserver } from "hooks/useWidthObserver";
 
 const SingleFilm = () => {
   let { filmTitle } = useParams();

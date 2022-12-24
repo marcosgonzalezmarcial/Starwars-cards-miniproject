@@ -1,12 +1,11 @@
-import  { useCallback } from "react";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Spinner } from "./Spinner/Spinner";
-import { useLisOfData } from "../hooks/useListOfData";
+import { Spinner } from "components/Spinner";
+import { useLisOfData } from "hooks/useListOfData";
 
 const ListOfPilots = ({ listOfUrls }) => {
   const { loading, data } = useLisOfData({ listOfUrls });
   let navigate = useNavigate();
-
 
   const selectPilot = useCallback(
     (e) => {
