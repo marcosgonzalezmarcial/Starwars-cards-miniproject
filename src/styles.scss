@@ -84,17 +84,27 @@
 	}
 }
 
+@media (min-width: 576px) {
+	.grid-element-card {
+		min-height: 45vh;
+	}
+}
+
 // ListOfItems components
 .list-element {
 	color: #9e4f60;
 	margin-block: 0.5rem;
 	font-size: 0.75rem;
-}
-
-.list-element:hover {
+	&:hover {
 	color: rgb(183, 104, 121);
 	cursor: pointer;
+	}
 }
+
+// .list-element:hover {
+// 	color: rgb(183, 104, 121);
+// 	cursor: pointer;
+// }
 
 @media (min-width: 768px) and (max-width: 992px) and (orientation: portrait) {
 	.grid-element-card {
