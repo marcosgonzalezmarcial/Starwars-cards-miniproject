@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./form.scss";
 import yellowSwLogo from "../assets/yellow-sw-logo.svg";
 
 const initialUserDataState = { email: "", password: "" };
