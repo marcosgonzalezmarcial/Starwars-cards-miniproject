@@ -1,11 +1,9 @@
 import { useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import ListOfShips from "components/ListOfShips";
+import ListOfItems from "components/ListOfItems";
 import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
-// import "./single-item-page-styles.scss";
-// import "./view-more.scss";
 import { useSingleElementData } from "hooks/useSingleElementData";
 import { useWidthObserver } from "hooks/useWidthObserver";
 
@@ -47,7 +45,10 @@ const SingleFilm = () => {
                 <Col className="pt-1">
                   <div className="flex-column cutoff-text">
                     <h3 className="my-2">Starships</h3>
-                    <ListOfShips listOfUrls={elementData.starships} />
+                    <ListOfItems
+                      itemType="starships"
+                      listOfUrls={elementData.starships}
+                    />
                   </div>
                   {dynamicSize.mainWidth < 517 &&
                     elementData.starships?.length >= 3 && (

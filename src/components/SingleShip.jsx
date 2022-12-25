@@ -1,12 +1,9 @@
 import { useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import ListOfPilots from "components/ListOfPilots";
-import ListOfFilms from "components/ListOfFilms";
+import ListOfItems from "components/ListOfItems";
 import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
-// import "./single-item-page-styles.scss";
-// import "./view-more.scss";
 import { useSingleElementData } from "hooks/useSingleElementData";
 import { useWidthObserver } from "hooks/useWidthObserver";
 
@@ -61,7 +58,10 @@ const SingleShip = () => {
                 <Col className="pt-1">
                   <div className="flex-column cutoff-text">
                     <h3 className="my-2">Appearances</h3>
-                    <ListOfFilms listOfUrls={elementData.films} />
+                    <ListOfItems
+                      itemType="films"
+                      listOfUrls={elementData.films}
+                    />
                   </div>
                   {dynamicSize.mainWidth < 517 &&
                     elementData.films?.length > 3 && (
@@ -80,8 +80,11 @@ const SingleShip = () => {
                     </>
                   ) : (
                     <div className="flex-column cutoff-text">
-                      <h3 className="my-2">Starships</h3>
-                      <ListOfPilots listOfUrls={elementData.pilots} />
+                      <h3 className="my-2">Pilots</h3>
+                      <ListOfItems
+                        itemType="characters"
+                        listOfUrls={elementData.pilots}
+                      />
                     </div>
                   )}
                   {dynamicSize.mainWidth < 517 &&

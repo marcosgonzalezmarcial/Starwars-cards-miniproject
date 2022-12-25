@@ -1,12 +1,11 @@
 import { useCallback, useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import ListOfFilms from "components/ListOfFilms";
-import ListOfShips from "components/ListOfShips";
+import ListOfItems from "components/ListOfItems";
 import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
 import { useSingleElementData } from "hooks/useSingleElementData";
-import { useWidthObserver } from "../hooks/useWidthObserver";
+import { useWidthObserver } from "hooks/useWidthObserver";
 
 const SingleCharacter = () => {
   let { characterName } = useParams();
@@ -69,7 +68,10 @@ const SingleCharacter = () => {
                 <Col className="py-1">
                   <div className="flex-column cutoff-text">
                     <h3 className="my-2">Appearances</h3>
-                    <ListOfFilms listOfUrls={elementData.films} />
+                    <ListOfItems
+                      itemType="films"
+                      listOfUrls={elementData.films}
+                    />
                   </div>
                   {dynamicSize.mainWidth < 518 &&
                     elementData.films?.length > 3 && (
@@ -85,7 +87,10 @@ const SingleCharacter = () => {
                   ) : (
                     <div className="flex-column cutoff-text">
                       <h3 className="my-2">Starships</h3>
-                      <ListOfShips listOfUrls={elementData.starships} />
+                      <ListOfItems
+                        itemType="starships"
+                        listOfUrls={elementData.starships}
+                      />
                     </div>
                   )}
                   {dynamicSize.mainWidth < 518 &&
