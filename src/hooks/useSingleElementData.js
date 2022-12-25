@@ -14,13 +14,10 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
   const [loading, setIsLoading] = useState(false);
   const [elementData, setElementData] = useState({});
 
-  // console.log({ paramFromUrl, typeOfData });
-
   useEffect(() => {
     setIsLoading(true);
 
     const elementNameFromUrl = urlStringify(paramFromUrl);
-    // console.log(elementNameFromUrl);
 
     let id;
 

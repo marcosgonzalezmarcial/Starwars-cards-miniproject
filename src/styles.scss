@@ -89,7 +89,7 @@
 	}
 }
 
-// ListOfItems components
+// ListOfItems component
 .list-element {
 	color: #9e4f60;
 	margin-block: 0.5rem;
@@ -100,19 +100,7 @@
 	}
 }
 
-@media (min-width: 768px) and (max-width: 992px) and (orientation: portrait) {
-	.grid-element-card {
-		height: 30vh;
-	}
-	.grid-card-info {
-		h4 {
-			font-size: 1.5rem;
-		}
-	}
-	.list-element {
-		font-size: 1rem;
-	}
-}
+
 
 //////// SingleItem page styles  /////////////////
 .main {
@@ -186,7 +174,6 @@
 	@media (min-width: 576px) and (max-width: 768px) {
 		&:has(img[src*="vignette"], img[src*="Films"]) {
 			flex-direction: row;
-
 			.page-description-container {
 				border-left: 3px solid #9e4f60;
 				border-top: none;
@@ -258,8 +245,40 @@
 	}
 }
 
-// Styles for tablets
-@media (min-width: 700px) and (orientation: portrait) {
+//////// end of SingleItem page styles  /////////////////
+
+////////////////// Styles for tablets ////////////////////
+
+@media (min-width: 768px) and (max-width: 992px) and (orientation: portrait) {
+	.grid-element-card {
+		min-height: 30vh;
+	}
+	.grid-card-info {
+		h4 {
+			font-size: 1.5rem;
+		}
+	}
+	.main {
+		.page-description-container {
+			h1 {
+				font-size: 1.50rem
+			}
+			h3 {
+				font-size: 1.25rem;
+			}
+			span {
+				font-size: 1rem;
+				display: block;
+				color: #999;
+			}
+		}
+	}
+		
+	.list-element, span {
+		font-size: 1rem;
+	}
+}
+@media (min-width: 700px) /*and (orientation: portrait)*/ {
 	.main {
 		flex-direction: row;
 
@@ -272,7 +291,9 @@
 	}
 }
 
-//////// end of SingleItem page styles  /////////////////
+////////////////// end of Styles for tablets ////////////////////
+
+
 
 //////// View more functionallity /////////////////
 
@@ -414,7 +435,7 @@
 			border: none;
 			border-radius: 5px;
 			font-weight: 500;
-			font-size: 14px;
+			font-size: 0.875rem;
 			background-color: #484848;
 			color: white;
 			transition: background-color 225ms;
