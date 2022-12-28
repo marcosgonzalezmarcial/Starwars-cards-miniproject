@@ -1,30 +1,24 @@
-import { useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import ListOfItems from "components/ListOfItems";
 import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
 import { useSingleElementData } from "hooks/useSingleElementData";
-import { useWidthObserver } from "hooks/useWidthObserver";
+import ListOfItemsWrapper from "./ListOfItemsWrapper";
 
 const SingleShip = () => {
   let { starshipName } = useParams();
-  const mainRef = useRef(null);
 
   const { isLoading, elementData } = useSingleElementData({
     paramFromUrl: starshipName,
     typeOfData: TYPE_OF_DATA.STARSHIPS,
   });
 
-  //obvserving the size of the ListOfFilms container (main)
-  const { dynamicSize } = useWidthObserver({ isLoading, mainRef });
-
   return (
     <>
       {isLoading ? (
         <Spinner />
       ) : (
-        <main ref={mainRef} className="main text-secondary">
+        <main className="main text-secondary">
           <div className="page-img-container">
             <img src={elementData.imgUrl} alt={elementData.name} />
           </div>
@@ -56,21 +50,17 @@ const SingleShip = () => {
               </Row>
               <Row className="py-1">
                 <Col className="pt-1">
-                  <div className="flex-column cutoff-text">
-                    <h3 className="my-2">Appearances</h3>
-                    <ListOfItems
+                  {elementData.films?.length === 0 ? (
+                    <>
+                      <h3 className="my-2">Appearances</h3>
+                      <span>No films registered for this character</span>
+                    </>
+                  ) : (
+                    <ListOfItemsWrapper
                       itemType="films"
-                      listOfUrls={elementData.films}
+                      elementData={elementData}
                     />
-                  </div>
-                  {dynamicSize.mainWidth < 517 &&
-                    elementData.films?.length > 3 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
-                  {dynamicSize.mainWidth > 517 &&
-                    elementData.films?.length > 6 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
+                  )}
                 </Col>
                 <Col className="pt-1">
                   {elementData.pilots?.length === 0 ? (
@@ -79,22 +69,12 @@ const SingleShip = () => {
                       <span>No pilots registered for this ship</span>
                     </>
                   ) : (
-                    <div className="flex-column cutoff-text">
-                      <h3 className="my-2">Pilots</h3>
-                      <ListOfItems
-                        itemType="characters"
-                        listOfUrls={elementData.pilots}
-                      />
-                    </div>
+                    <ListOfItemsWrapper
+                      itemType="characters"
+                      itemSubType="pilots"
+                      elementData={elementData}
+                    />
                   )}
-                  {dynamicSize.mainWidth < 517 &&
-                    elementData.pilots?.length > 4 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
-                  {dynamicSize.mainWidth > 517 &&
-                    elementData.pilots?.length > 6 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
                 </Col>
               </Row>
             </div>

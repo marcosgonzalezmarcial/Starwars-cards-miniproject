@@ -94,6 +94,7 @@
 	color: #9e4f60;
 	margin-block: 0.5rem;
 	font-size: 0.75rem;
+
 	&:hover {
 		color: rgb(183, 104, 121);
 		cursor: pointer;
@@ -140,6 +141,7 @@
 	.page-img-container {
 		display: grid;
 		width: 50%;
+
 		&:has(img[src*="Planets"]) {
 			place-content: center;
 		}
@@ -174,6 +176,7 @@
 	@media (min-width: 576px) and (max-width: 768px) {
 		&:has(img[src*="vignette"], img[src*="Films"]) {
 			flex-direction: row;
+
 			.page-description-container {
 				border-left: 3px solid #9e4f60;
 				border-top: none;
@@ -208,6 +211,7 @@
 			clip-path: circle(29vw);
 			margin-bottom: 1rem;
 		}
+
 		img[src*="Starships"] {
 			max-height: calc(min(23vh, 600px));
 		}
@@ -235,12 +239,17 @@
 		& {
 			margin-block-start: 1.5rem;
 		}
+
 		img[src*="Films"] {
 			object-position: center;
 		}
+
 		.expand-btn:hover {
 			background-color: #424649;
-			&::before {color: white;}
+
+			&::before {
+				color: white;
+			}
 		}
 	}
 }
@@ -253,19 +262,23 @@
 	.grid-element-card {
 		min-height: 30vh;
 	}
+
 	.grid-card-info {
 		h4 {
 			font-size: 1.5rem;
 		}
 	}
+
 	.main {
 		.page-description-container {
 			h1 {
 				font-size: 1.50rem
 			}
+
 			h3 {
 				font-size: 1.25rem;
 			}
+
 			span {
 				font-size: 1rem;
 				display: block;
@@ -273,12 +286,17 @@
 			}
 		}
 	}
-		
-	.list-element, span {
+
+	.list-element,
+	span {
 		font-size: 1rem;
 	}
 }
-@media (min-width: 700px) /*and (orientation: portrait)*/ {
+
+@media (min-width: 700px)
+
+/*and (orientation: portrait)*/
+	{
 	.main {
 		flex-direction: row;
 
@@ -303,10 +321,13 @@
 	// display: -webkit-box;
 	// -webkit-box-orient: vertical;
 	// -webkit-line-clamp: var(--max-lines);
-	max-height: calc(var(--max-lines) * 1.9rem * var(--line-height) );
+
+	// max-height: calc(var(--max-lines) * 1.9rem * var(--line-height) );
+	max-height: calc(var(--max-lines) * 1.9rem * var(--line-height));
 	line-height: var(--line-height);
 	overflow: hidden;
 	position: relative;
+
 	&:has(+ .expand-btn) {
 		&::before {
 			--line-height: 1.5;
@@ -316,7 +337,7 @@
 			width: 100%;
 			bottom: 0;
 			pointer-events: none;
-			background: linear-gradient(to bottom, transparent, rgb(33,37,41));
+			background: linear-gradient(to bottom, transparent, rgb(33, 37, 41));
 		}
 	}
 }
@@ -341,46 +362,58 @@
 	right: 13%;
 }
 
-.expand-btn:checked::before { 
+.expand-btn:checked::before {
 	content: "Collapse";
 	left: 20%;
 }
 
-.cutoff-text:has( + .expand-btn:checked) {
+.cutoff-text:has(+ .expand-btn:checked) {
 	// -webkit-line-clamp: 20;
 	max-height: none;
+
 	&::before {
 		height: 0;
 	}
 }
 
-@media (max-width: 575px) {
+@media (max-width: 576px) {
 	.cutoff-text {
-    --max-lines: 3;
+		--max-lines: 3;
 	}
+
 	.main:has(img[src*="Films"]) {
 		.cutoff-text {
-		--max-lines: 4;
+			--max-lines: 4;
 		}
 	}
+
+	.main:has(img[src*="vignette"]) {
+		.cutoff-text {
+			--max-lines: 3;
+		}
+	}
+
 	// .cutoff-text {
 	// 	-webkit-line-clamp: 3;
 	// }
 }
+
 @media (min-width: 576px) {
 	.main:has(img[src*="Planets"]) {
 		.cutoff-text {
-		--max-lines: 7;
+			--max-lines: 7;
 		}
 	}
+
 	.main:has(img[src*="Films"]) {
 		.cutoff-text {
-		--max-lines: 7;
+			--max-lines: 7;
 		}
 	}
+
 	.main:has(img[src*="vignette"]) {
 		.cutoff-text {
-		--max-lines: 7;
+			--max-lines: 7;
 		}
 	}
 }
@@ -395,7 +428,7 @@
 	top: 0;
 	bottom: 0;
 	left: 0;
-	right:0;
+	right: 0;
 	background-color: rgba(255, 255, 255, 0.7);
 	backdrop-filter: blur(2px);
 	display: none;
@@ -408,9 +441,11 @@
 		width: calc(min(540px, 85vw));
 		font-size: 14px;
 		color: #edd700;
+
 		.form-title {
 			font-size: 1.5rem;
 		}
+
 		input {
 			font-size: 13.5px;
 			letter-spacing: 0.06rem;
@@ -460,10 +495,12 @@
 			//avoid mobile keyword partially hiding the form
 			min-height: calc(max(700px, 100vh));
 		}
+
 		& form {
 			width: 100%;
 			height: 100%;
 		}
+
 		.form-inner {
 			width: 100%;
 			height: 100%;

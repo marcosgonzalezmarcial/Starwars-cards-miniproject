@@ -1,18 +1,20 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { Col, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./SectionNav.scss"
 
 const SectionNav = () => {
-  // const activeLink = useCallback(({ isActive }) => (<>
-  //                   <div className="py-1 position-realitive">
-  //                     <div
-  //                       className={isActive ? "active-link-light-saber" : ""}
-  //                     ></div>
-  //                     <span>CHARACTERS</span>
-  //                   </div>
-  //                 </>),[])
-                  
+
+  const sections = ['planets', 'starships', 'characters']
+  const activeLink = useCallback(({ isActive }) => (<>
+    <div className="py-1 position-realitive">
+      <div
+        className={isActive ? "active-link-light-saber" : ""}
+      ></div>
+      <span>CHARACTERS</span>
+    </div>
+  </>), [])
+
   return (
     <div className="border-wrapper">
       <div className="m-auto nav-wrapper">
@@ -21,13 +23,14 @@ const SectionNav = () => {
             <Nav.Item>
               <NavLink className="nav-link text-center py-1" to="planets">
                 {({ isActive }) => (<>
-                    <div className="py-1 position-realitive">
-                      <div
-                        className={isActive ? "active-link-light-saber" : ""}
-                      ></div>
-                      <span>PLANETS</span>
-                    </div>
-                  </>)}
+                  <div className="py-1 position-realitive">
+                    <div
+                      className={isActive ? "active-link-light-saber" : ""}
+                    ></div>
+                    <span>PLANETS</span>
+                  </div>
+                </>)}
+                {/* {activeLink} */}
               </NavLink>
             </Nav.Item>
           </Col>
@@ -35,13 +38,14 @@ const SectionNav = () => {
             <Nav.Item>
               <NavLink className="nav-link text-center py-1" to="starships">
                 {({ isActive }) => (<>
-                    <div className="py-1 position-realitive">
-                      <div
-                        className={isActive ? "active-link-light-saber" : ""}
-                      ></div>
-                      <span>STARSHIPS</span>
-                    </div>
-                  </>)}
+                  <div className="py-1 position-realitive">
+                    <div
+                      className={isActive ? "active-link-light-saber" : ""}
+                    ></div>
+                    <span>STARSHIPS</span>
+                  </div>
+                </>)}
+                {/* {activeLink} */}
               </NavLink>
             </Nav.Item>
           </Col>
@@ -49,13 +53,14 @@ const SectionNav = () => {
             <Nav.Item>
               <NavLink className="nav-link text-center py-1 " to="characters">
                 {({ isActive }) => (<>
-                    <div className="py-1 position-realitive">
-                      <div
-                        className={isActive ? "active-link-light-saber" : ""}
-                      ></div>
-                      <span>CHARACTERS</span>
-                    </div>
-                  </>)}
+                  <div className="py-1 position-realitive">
+                    <div
+                      className={isActive ? "active-link-light-saber" : ""}
+                    ></div>
+                    <span>CHARACTERS</span>
+                  </div>
+                </>)}
+                {/* {activeLink} */}
               </NavLink>
             </Nav.Item>
           </Col>
