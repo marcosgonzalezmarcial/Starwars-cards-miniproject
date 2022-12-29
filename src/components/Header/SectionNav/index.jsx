@@ -1,69 +1,39 @@
 import { useCallback } from "react";
 import { Col, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import "./SectionNav.scss"
+import "./SectionNav.scss";
 
 const SectionNav = () => {
 
-  const sections = ['planets', 'starships', 'characters']
-  const activeLink = useCallback(({ isActive }) => (<>
-    <div className="py-1 position-realitive">
-      <div
-        className={isActive ? "active-link-light-saber" : ""}
-      ></div>
-      <span>CHARACTERS</span>
-    </div>
-  </>), [])
+  const renderSections = useCallback(() =>
+    ["planets", "starships", "characters"].map(
+      (section) => (
+        <Col className="border-silver">
+          <Nav.Item>
+            <NavLink className="nav-link text-center py-1" to={section}>
+              {({ isActive }) => (
+                <>
+                  <div className="py-1 position-realitive">
+                    <div
+                      className={isActive ? "active-link-light-saber" : ""}
+                    ></div>
+                    <span>{section.toUpperCase()}</span>
+                  </div>
+                </>
+              )}
+            </NavLink>
+          </Nav.Item>
+        </Col>
+      ),
+      []
+    )
+  );
 
   return (
     <div className="border-wrapper">
       <div className="m-auto nav-wrapper">
         <Nav className="py-0 px-4 justify-content-center">
-          <Col className="border-silver">
-            <Nav.Item>
-              <NavLink className="nav-link text-center py-1" to="planets">
-                {({ isActive }) => (<>
-                  <div className="py-1 position-realitive">
-                    <div
-                      className={isActive ? "active-link-light-saber" : ""}
-                    ></div>
-                    <span>PLANETS</span>
-                  </div>
-                </>)}
-                {/* {activeLink} */}
-              </NavLink>
-            </Nav.Item>
-          </Col>
-          <Col className="border-silver">
-            <Nav.Item>
-              <NavLink className="nav-link text-center py-1" to="starships">
-                {({ isActive }) => (<>
-                  <div className="py-1 position-realitive">
-                    <div
-                      className={isActive ? "active-link-light-saber" : ""}
-                    ></div>
-                    <span>STARSHIPS</span>
-                  </div>
-                </>)}
-                {/* {activeLink} */}
-              </NavLink>
-            </Nav.Item>
-          </Col>
-          <Col className="border-silver">
-            <Nav.Item>
-              <NavLink className="nav-link text-center py-1 " to="characters">
-                {({ isActive }) => (<>
-                  <div className="py-1 position-realitive">
-                    <div
-                      className={isActive ? "active-link-light-saber" : ""}
-                    ></div>
-                    <span>CHARACTERS</span>
-                  </div>
-                </>)}
-                {/* {activeLink} */}
-              </NavLink>
-            </Nav.Item>
-          </Col>
+          {renderSections()}
         </Nav>
       </div>
     </div>
