@@ -13,6 +13,7 @@ import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
 import SingleFilm from "components/SingleFilm";
 import Planets from "pages/Planets";
+import PlanetsRefactor from "pages/PlanetsRefactor";
 import SinglePlanet from "components/SinglePlanet";
 import { UiContextProvider } from "contexts/uiContext";
 
@@ -53,6 +54,7 @@ function App() {
             </Route>
             <Route path="planets" element={<NestedRoutes />}>
               <Route index element={<Planets />} />
+              {/* <Route index element={<PlanetsRefactor />} /> */}
               <Route path=":planetName" element={<SinglePlanet />} />
             </Route>
             <Route path="characters" element={<NestedRoutes />}>

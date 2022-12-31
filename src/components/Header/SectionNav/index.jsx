@@ -5,11 +5,9 @@ import "./SectionNav.scss";
 
 const SectionNav = () => {
 
-
-
   const renderSections = useCallback(() => ["planets", "starships", "characters"].map(
     (section) => (
-      <Col className="border-silver">
+      <Col key={section} className="border-silver">
         <Nav.Item>
           <NavLink className="nav-link text-center py-1" to={section}>
             {({ isActive }) => (

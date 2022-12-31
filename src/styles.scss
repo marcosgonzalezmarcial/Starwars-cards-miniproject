@@ -6,6 +6,7 @@
 	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 	gap: 1.8rem;
 	padding: 0.5rem;
+	min-height: 100vh;
 }
 
 .grid-element-card {
