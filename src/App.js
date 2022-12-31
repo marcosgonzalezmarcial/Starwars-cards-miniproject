@@ -13,7 +13,6 @@ import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
 import SingleFilm from "components/SingleFilm";
 import Planets from "pages/Planets";
-import PlanetsRefactor from "pages/PlanetsRefactor";
 import SinglePlanet from "components/SinglePlanet";
 import { UiContextProvider } from "contexts/uiContext";
 

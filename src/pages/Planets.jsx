@@ -13,22 +13,22 @@ const Planets = () => {
   const [page, setPage] = useState(0);
   const [planets, setPlanets] = useState([]);
   const { searchResultsItems } = useSearch();
-  const [isLoading, setIsLoading] = useState(false)
-  console.log(planets.length)
+  const [isLoading, setIsLoading] = useState(false);
+  console.log(planets.length);
 
-  const { isNearScreen, fromRef } = useIsNearScreen({ once: false })
+  const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
 
   useEffect(() => {
-    if (isLoading) return
+    if (isLoading) return;
     if (isNearScreen) {
-      setPage((prev) => prev + 1)
+      setPage((prev) => prev + 1);
     }
-  }, [isNearScreen])
+  }, [isNearScreen, isLoading]);
 
   useEffect(() => {
-    if (page === 0) return
-    if (page >= 8) return
-    setIsLoading(true)
+    if (page === 0) return;
+    if (page >= 8) return;
+    setIsLoading(true);
 
     getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PLANETS })
       .then((data) => {
@@ -36,49 +36,45 @@ const Planets = () => {
         data && setPlanets((prev) => [...prev, ...data]);
         // sorting items may be applied in future iterations
         // data && setPlanets((prev) => sortObjItems([...prev, ...data]));
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [page]);
 
-
-
   return (
     <>
       {searchResultsItems.length > 0 ? (
         <SearchResults searchResultsItems={searchResultsItems} />
-      ) :
-        (
-          <div
-            className={`my-3 my-md-4 ${planets.length > 0 ? "grid-container" : ""
-              }`}
-          >
-            {planets.map((planet) => (
-              <Link
-                className="grid-element-card"
-                key={planet.name}
-                to={planet.name.replaceAll(" ", "~")}
-              >
-                <div className="grid-card-hero">
-                  <img
-                    className="grid-card-hero-img"
-                    src={planet.imgUrl}
-                    alt={planet.name}
-                  />
-                </div>
-                <div className="text-secondary bg-dark p-3 grid-card-info">
-                  <h4>{planet.name}</h4>
-                  <p>{planet.climate}</p>
-                </div>
-              </Link>
-            ))}
-            {isLoading && <Spinner />}
-          </div>
-        )
-
-      }
+      ) : (
+        <div
+          className={`my-3 my-md-4 ${
+            planets.length > 0 ? "grid-container" : ""
+          }`}
+        >
+          {planets.map((planet) => (
+            <Link
+              className="grid-element-card"
+              key={planet.name}
+              to={planet.name.replaceAll(" ", "~")}
+            >
+              <div className="grid-card-hero">
+                <img
+                  className="grid-card-hero-img"
+                  src={planet.imgUrl}
+                  alt={planet.name}
+                />
+              </div>
+              <div className="text-secondary bg-dark p-3 grid-card-info">
+                <h4>{planet.name}</h4>
+                <p>{planet.climate}</p>
+              </div>
+            </Link>
+          ))}
+          {isLoading && <Spinner />}
+        </div>
+      )}
       <div ref={fromRef}></div>
     </>
   );
