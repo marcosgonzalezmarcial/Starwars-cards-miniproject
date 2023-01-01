@@ -1,18 +1,12 @@
 import { useRef } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import ListOfPilots from "./ListOfPilots";
-import ListOfFilms from "./ListOfFilms";
-import { Spinner } from "./Spinner/Spinner";
+import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
-import "./single-item-page-styles.scss";
-import "./view-more.scss";
-import { useSingleElementData } from "../hooks/useSingleElementData";
-import { useWidthObserver } from "../hooks/useWidthObserver";
+import { useSingleElementData } from "hooks/useSingleElementData";
+import ListOfItemsWrapper from "./ListOfItemsWrapper";
 
 const SinglePlanet = () => {
-  // const [dynamicSize, setDynamicSize] = useState({});
-
   let { planetName } = useParams();
   const mainRef = useRef(null);
 
@@ -20,9 +14,6 @@ const SinglePlanet = () => {
     paramFromUrl: planetName,
     typeOfData: TYPE_OF_DATA.PLANETS,
   });
-
-  //obvserving the size of the ListOfFilms container (main)
-  const { dynamicSize } = useWidthObserver({ isLoading, mainRef });
 
   return (
     <>
@@ -58,40 +49,32 @@ const SinglePlanet = () => {
               </Row>
               <Row className="py-1">
                 <Col className="pt-1">
-                  <div className="flex-column cutoff-text">
-                    <h3 className="my-2">Appearances</h3>
-                    <ListOfFilms listOfUrls={elementData.films} />
-                  </div>
-                  {dynamicSize.mainWidth < 517 &&
-                    elementData.films?.length > 3 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
-                  {dynamicSize.mainWidth > 517 &&
-                    elementData.films?.length > 6 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
+                  {elementData.films?.length === 0 ? (
+                    <>
+                      <h3 className="my-2">Appearances</h3>
+                      <span>No films registered for this character</span>
+                    </>
+                  ) : (
+                    <ListOfItemsWrapper
+                      itemType="films"
+                      elementData={elementData}
+                    />
+                  )}
                 </Col>
 
                 <Col className="pt-1">
-                  {elementData.residents?.length === 0 ? (
+                  {elementData.films?.length === 0 ? (
                     <>
                       <h3 className="my-2">Residents</h3>
-                      <span>No residents registered for this ship</span>
+                      <span>No residents registered for this planet</span>
                     </>
                   ) : (
-                    <div className="flex-column cutoff-text">
-                      <h3 className="my-2">Residents</h3>
-                      <ListOfPilots listOfUrls={elementData.residents} />
-                    </div>
+                    <ListOfItemsWrapper
+                      itemType="characters"
+                      itemSubType="residents"
+                      elementData={elementData}
+                    />
                   )}
-                  {dynamicSize.mainWidth < 517 &&
-                    elementData.residents?.length > 4 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
-                  {dynamicSize.mainWidth > 517 &&
-                    elementData.residents?.length > 10 &&
-                    window.innerWidth > 768 &&
-                    null}
                 </Col>
               </Row>
             </div>

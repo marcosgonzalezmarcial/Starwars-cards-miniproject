@@ -6,6 +6,7 @@
 	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 	gap: 1.8rem;
 	padding: 0.5rem;
+	min-height: 100vh;
 }
 
 .grid-element-card {
@@ -15,7 +16,6 @@
 	overflow: hidden;
 	max-height: calc(min(375px, 45vh));
 	box-shadow: 0px 0px 8px 1px rgba(231, 203, 209, 0.45);
-	
 }
 
 .grid-card-hero {
@@ -90,25 +90,178 @@
 	}
 }
 
-// ListOfItems components
+// ListOfItems component
 .list-element {
 	color: #9e4f60;
 	margin-block: 0.5rem;
 	font-size: 0.75rem;
+
 	&:hover {
-	color: rgb(183, 104, 121);
-	cursor: pointer;
+		color: rgb(183, 104, 121);
+		cursor: pointer;
 	}
 }
 
-// .list-element:hover {
-// 	color: rgb(183, 104, 121);
-// 	cursor: pointer;
-// }
+
+
+//////// SingleItem page styles  /////////////////
+.main {
+	display: flex;
+	margin-inline: auto;
+	border-radius: 15px;
+	overflow: hidden;
+	flex-direction: column;
+	margin-block: 1rem;
+	box-shadow: 0px 0px 9px 2px rgba(231, 203, 209, 0.45);
+
+	.page-description-container {
+		background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
+		background-size: 8px;
+		background-repeat: repeat-x;
+		background-color: #282727;
+		color: #ddd;
+		border-left: 3px solid #9e4f60;
+		width: 50%;
+		flex-grow: 1;
+
+		h1 {
+			font-size: 1.25rem
+		}
+
+		h3 {
+			font-size: 0.9rem;
+		}
+
+		span {
+			font-size: 0.75rem;
+			display: block;
+			color: #999;
+		}
+	}
+
+	.page-img-container {
+		display: grid;
+		width: 50%;
+
+		&:has(img[src*="Planets"]) {
+			place-content: center;
+		}
+	}
+
+	img {
+		width: 100%;
+		max-height: calc(min(29vh, 600px));
+		min-height: 100%;
+		object-fit: cover;
+	}
+
+	img[src*="vignette"] {
+		object-position: 50% 30%;
+	}
+
+	img[src*="Films"] {
+		object-position: bottom;
+	}
+
+	img[src*="Planets"] {
+		clip-path: circle(45%);
+		max-height: calc(min(24.5vh, 400px));
+		object-fit: contain;
+	}
+
+	@media (max-width: 575px) {
+		max-width: calc(min(94vw, 540px));
+		min-height: 72vh;
+	}
+
+	@media (min-width: 576px) and (max-width: 768px) {
+		&:has(img[src*="vignette"], img[src*="Films"]) {
+			flex-direction: row;
+
+			.page-description-container {
+				border-left: 3px solid #9e4f60;
+				border-top: none;
+			}
+		}
+	}
+
+	@media (min-width: 576px) {
+		max-width: calc(min(90vw, 758px));
+		min-height: calc(min(65vh, 500px));
+		max-height: max-content;
+	}
+
+	@media (max-width: 768px) {
+		.page-description-container {
+			border-top: 3px solid #9e4f60;
+			border-left: none;
+			width: 100%;
+		}
+
+		.page-img-container {
+			width: 100%;
+		}
+
+		img {
+			max-height: calc(min(29vh, 600px));
+			object-fit: cover;
+		}
+
+		img[src*="Planets"] {
+			object-fit: contain;
+			clip-path: circle(29vw);
+			margin-bottom: 1rem;
+		}
+
+		img[src*="Starships"] {
+			max-height: calc(min(23vh, 600px));
+		}
+
+		img[src*="Yavin4"] {
+			max-height: 35vh;
+			clip-path: circle(120px);
+		}
+	}
+
+	@media (min-width: 768px) {
+		flex-direction: row;
+
+		h1 {
+			font-size: 1.75rem;
+			padding-inline-start: 0;
+		}
+
+		img[src*="Planets"] {
+			max-height: calc(max(29vh, 400px));
+		}
+	}
+
+	@media (min-width: 992px) {
+		& {
+			margin-block-start: 1.5rem;
+		}
+
+		img[src*="Films"] {
+			object-position: center;
+		}
+
+		.expand-btn:hover {
+			background-color: #424649;
+
+			&::before {
+				color: white;
+			}
+		}
+	}
+}
+
+//////// end of SingleItem page styles  /////////////////
+
+////////////////// Styles for tablets ////////////////////
 
 @media (min-width: 768px) and (max-width: 992px) and (orientation: portrait) {
 	.grid-element-card {
-		height: 30vh;
+		min-height: 30vh;
 	}
 
 	.grid-card-info {
@@ -117,7 +270,274 @@
 		}
 	}
 
-	.list-element {
+	.main {
+		.page-description-container {
+			h1 {
+				font-size: 1.50rem
+			}
+
+			h3 {
+				font-size: 1.25rem;
+			}
+
+			span {
+				font-size: 1rem;
+				display: block;
+				color: #999;
+			}
+		}
+	}
+
+	.list-element,
+	span {
 		font-size: 1rem;
 	}
 }
+
+@media (min-width: 700px)
+
+/*and (orientation: portrait)*/
+	{
+	.main {
+		flex-direction: row;
+
+		&:has(img[src*="Starships"], img[src*="Planets"]) {
+			.page-description-container {
+				border-left: 3px solid #9e4f60;
+				border-top: none;
+			}
+		}
+	}
+}
+
+////////////////// end of Styles for tablets ////////////////////
+
+
+
+//////// View more functionallity /////////////////
+
+.cutoff-text {
+	--max-lines: 6;
+	--line-height: 1.5;
+	// display: -webkit-box;
+	// -webkit-box-orient: vertical;
+	// -webkit-line-clamp: var(--max-lines);
+
+	// max-height: calc(var(--max-lines) * 1.9rem * var(--line-height) );
+	max-height: calc(var(--max-lines) * 1.9rem * var(--line-height));
+	line-height: var(--line-height);
+	overflow: hidden;
+	position: relative;
+
+	&:has(+ .expand-btn) {
+		&::before {
+			--line-height: 1.5;
+			content: "";
+			position: absolute;
+			height: calc(1.9rem * var(--line-height));
+			width: 100%;
+			bottom: 0;
+			pointer-events: none;
+			background: linear-gradient(to bottom, transparent, rgb(33, 37, 41));
+		}
+	}
+}
+
+.expand-btn {
+	appearance: none;
+	border: 1.5px solid rgb(111, 115, 128);
+	border-radius: 5px;
+	padding: 0.8rem 0.4rem;
+	cursor: pointer;
+	margin-top: 0.5rem;
+	width: 100px;
+	position: relative;
+	font-size: 0.75rem;
+}
+
+.expand-btn::before {
+	color: rgb(111, 115, 128);
+	content: "View more";
+	position: absolute;
+	top: 13%;
+	right: 13%;
+}
+
+.expand-btn:checked::before {
+	content: "Collapse";
+	left: 20%;
+}
+
+.cutoff-text:has(+ .expand-btn:checked) {
+	// -webkit-line-clamp: 20;
+	max-height: none;
+
+	&::before {
+		height: 0;
+	}
+}
+
+@media (max-width: 576px) {
+	.cutoff-text {
+		--max-lines: 3;
+	}
+
+	.main:has(img[src*="Films"]) {
+		.cutoff-text {
+			--max-lines: 4;
+		}
+	}
+
+	.main:has(img[src*="vignette"]) {
+		.cutoff-text {
+			--max-lines: 3;
+		}
+	}
+
+	// .cutoff-text {
+	// 	-webkit-line-clamp: 3;
+	// }
+}
+
+@media (min-width: 576px) {
+	.main:has(img[src*="Planets"]) {
+		.cutoff-text {
+			--max-lines: 7;
+		}
+	}
+
+	.main:has(img[src*="Films"]) {
+		.cutoff-text {
+			--max-lines: 7;
+		}
+	}
+
+	.main:has(img[src*="vignette"]) {
+		.cutoff-text {
+			--max-lines: 7;
+		}
+	}
+}
+
+
+//////// end of View more functionallity /////////////////
+
+//////// Forms styles /////////////////
+
+.loginForm-container {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(255, 255, 255, 0.7);
+	backdrop-filter: blur(2px);
+	display: none;
+	align-items: center;
+	justify-content: center;
+
+	.form-inner {
+		background-color: #181818;
+		letter-spacing: 0.06em;
+		width: calc(min(540px, 85vw));
+		font-size: 14px;
+		color: #edd700;
+
+		.form-title {
+			font-size: 1.5rem;
+		}
+
+		input {
+			font-size: 13.5px;
+			letter-spacing: 0.06rem;
+			width: 90%;
+			padding: 0.7rem;
+			border-radius: 5px;
+			border: none;
+			outline: none;
+
+			&:focus {
+				border: 2px solid #edd700;
+				background-color: #484848;
+				color: #edd700;
+			}
+		}
+
+		input[type='submit'] {
+			display: block;
+			width: 90%;
+			margin: 1.3rem auto;
+			padding: 0.6rem;
+			border: none;
+			border-radius: 5px;
+			font-weight: 500;
+			font-size: 0.875rem;
+			background-color: #484848;
+			color: white;
+			transition: background-color 225ms;
+
+			&:hover {
+				background-color: #3f6dac;
+			}
+		}
+
+		&:last-child {
+			a[href='/loginform']:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	@media (max-width: 576px) {
+		& {
+			width: 100%;
+			position: absolute;
+			top: 0;
+			//avoid mobile keyword partially hiding the form
+			min-height: calc(max(700px, 100vh));
+		}
+
+		& form {
+			width: 100%;
+			height: 100%;
+		}
+
+		.form-inner {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.loginForm-container.is-open {
+	display: flex;
+}
+
+.form-close-btn {
+	right: 1.5rem;
+	border: 0;
+	background-color: transparent;
+	font-size: 2rem;
+	color: white;
+	transition: color 225ms;
+
+	&:hover {
+		color: #3f6dac;
+	}
+}
+
+.sign-up-link {
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 1rem;
+	padding: 0.5rem;
+	border: 0;
+	border-radius: 5px;
+	transition: border 225ms;
+
+	&:hover {
+		border: solid 1px #edd700;
+	}
+}
+
+//////// end of Forms styles /////////////////

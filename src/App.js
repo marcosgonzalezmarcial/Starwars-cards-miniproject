@@ -1,20 +1,20 @@
 import { Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import SingleCharacter from "./components/SingleCharacter";
-import Characters from "./pages/Characters";
-import ErrorPage from "./pages/ErrorPage";
-import StarShips from "./pages/StarShips";
-import Header from "./components/Header";
-import SingleShip from "./components/SingleShip";
-import ProtectedRoute from "./pages/ProtectedRoute";
-import NestedRoutes from "./pages/NestedRoutes";
-import SingleFilm from "./components/SingleFilm";
-import Planets from "./pages/Planets";
-import SinglePlanet from "./components/SinglePlanet";
-import { UiContextProvider } from "./contexts/uiContext";
+import Home from "pages/Home";
+import Login from "pages/Login";
+import SignUp from "pages/SignUp";
+import SingleCharacter from "components/SingleCharacter";
+import Characters from "pages/Characters";
+import ErrorPage from "pages/ErrorPage";
+import StarShips from "pages/StarShips";
+import Header from "components/Header";
+import SingleShip from "components/SingleShip";
+import ProtectedRoute from "pages/ProtectedRoute";
+import NestedRoutes from "pages/NestedRoutes";
+import SingleFilm from "components/SingleFilm";
+import Planets from "pages/Planets";
+import SinglePlanet from "components/SinglePlanet";
+import { UiContextProvider } from "contexts/uiContext";
 
 function App() {
   const [users, setUsers] = useState(
@@ -53,6 +53,7 @@ function App() {
             </Route>
             <Route path="planets" element={<NestedRoutes />}>
               <Route index element={<Planets />} />
+              {/* <Route index element={<PlanetsRefactor />} /> */}
               <Route path=":planetName" element={<SinglePlanet />} />
             </Route>
             <Route path="characters" element={<NestedRoutes />}>

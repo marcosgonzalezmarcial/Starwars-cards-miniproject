@@ -1,26 +1,23 @@
 import { useEffect, useState } from "react";
-import { urlStringify } from "../utils/urlStringify";
 import { TYPE_OF_DATA } from "../constants";
 import {
   starshipsMockedData,
   planetsMockedData,
   filmsMockedData,
   peopleMockedData,
-} from "../utils/mocked-data";
-import { fetchItem } from "../services/fetchItem";
-import { transformDataArray } from "../utils/transformDataArray";
+} from "utils/mocked-data";
+import { urlStringify } from "utils/urlStringify";
+import { fetchItem } from "services/fetchItem";
+import { transformDataArray } from "utils/transformDataArray";
 
 export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
   const [loading, setIsLoading] = useState(false);
   const [elementData, setElementData] = useState({});
 
-  // console.log({ paramFromUrl, typeOfData });
-
   useEffect(() => {
     setIsLoading(true);
 
     const elementNameFromUrl = urlStringify(paramFromUrl);
-    // console.log(elementNameFromUrl);
 
     let id;
 

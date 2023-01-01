@@ -1,26 +1,19 @@
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import ListOfFilms from "./ListOfFilms";
-import ListOfShips from "./ListOfShips";
-import { Spinner } from "./Spinner/Spinner";
+import ListOfItemsWrapper from "components/ListOfItemsWrapper";
+import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
-import "./single-item-page-styles.scss";
-import "./view-more.scss";
-import { useSingleElementData } from "../hooks/useSingleElementData";
-import { useWidthObserver } from "../hooks/useWidthObserver";
+import { useSingleElementData } from "hooks/useSingleElementData";
 
-const SingleCharacter = () => {
+
+const SingleCharacterRefactor = () => {
   let { characterName } = useParams();
-
-  const mainRef = useRef(null);
 
   const { isLoading, elementData } = useSingleElementData({
     paramFromUrl: characterName,
     typeOfData: TYPE_OF_DATA.PEOPLE,
   });
-  //obvserving the size of the ListOfFilms container (main)
-  const { dynamicSize } = useWidthObserver({ isLoading, mainRef });
 
   let navigate = useNavigate();
 
@@ -37,7 +30,7 @@ const SingleCharacter = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <main ref={mainRef} className="main text-secondary">
+        <main className="main text-secondary">
           <div className="page-img-container">
             <img src={elementData.image} alt={elementData.name} />
           </div>
@@ -69,35 +62,30 @@ const SingleCharacter = () => {
               </Row>
               <Row>
                 <Col className="py-1">
-                  <div className="flex-column cutoff-text">
-                    <h3 className="my-2">Appearances</h3>
-                    <ListOfFilms listOfUrls={elementData.films} />
-                  </div>
-                  {dynamicSize.mainWidth < 518 &&
-                    elementData.films?.length > 3 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
+                  {elementData.films?.length === 0 ? (
+                    <>
+                      <h3 className="my-2">Appearances</h3>
+                      <span>No films registered for this character</span>
+                    </>
+                  ) : (
+                    <ListOfItemsWrapper
+                      itemType="films"
+                      elementData={elementData}
+                    />
+                  )}
                 </Col>
                 <Col className="pt-1">
                   {elementData.starships?.length === 0 ? (
                     <>
                       <h3 className="my-2">Starships</h3>
-                      <span>No starships registered for this elementData</span>
+                      <span>No starships registered for this character</span>
                     </>
                   ) : (
-                    <div className="flex-column cutoff-text">
-                      <h3 className="my-2">Starships</h3>
-                      <ListOfShips listOfUrls={elementData.starships} />
-                    </div>
+                    <ListOfItemsWrapper
+                      itemType="starships"
+                      elementData={elementData}
+                    />
                   )}
-                  {dynamicSize.mainWidth < 518 &&
-                    elementData.starships?.length > 3 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
-                  {dynamicSize.mainWidth > 517 &&
-                    elementData.starships?.length > 6 && (
-                      <input type="checkbox" className="expand-btn" />
-                    )}
                 </Col>
               </Row>
             </div>
@@ -108,4 +96,4 @@ const SingleCharacter = () => {
   );
 };
 
-export default SingleCharacter;
+export default SingleCharacterRefactor;
