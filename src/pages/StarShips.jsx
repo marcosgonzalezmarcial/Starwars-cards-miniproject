@@ -4,43 +4,28 @@ import { useSearch } from "hooks/useSearch.js";
 import useIsNearScreen from "hooks/useIsNearScreen.js";
 import { Spinner } from "components/Spinner";
 import SearchResults from "components/SearchResults";
-import "../styles.scss";
-import { getTransformedDataArray } from "services/getTransformedDataArray";
 import { TYPE_OF_DATA } from "../constants";
+import { useFetchData } from "hooks/useFetchData";
 // import { sortObjItems } from "../utils/sortItems.js";
+import "../styles.scss";
 
 const StarShips = () => {
-  const [page, setPage] = useState(0);
-  const [ships, setShips] = useState([]);
   const { searchResultsItems } = useSearch();
-  const [isLoading, setIsLoading] = useState(false);
+
+  const { isLoading, data, setPage } = useFetchData({
+    typeOfData: TYPE_OF_DATA.STARSHIPS,
+  });
 
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
+
+  console.log("starships");
 
   useEffect(() => {
     if (isLoading) return;
     if (isNearScreen) {
       setPage((prev) => prev + 1);
     }
-  }, [isNearScreen, isLoading]);
-
-  useEffect(() => {
-    if (page === 0) return;
-    if (page >= 5) return;
-    setIsLoading(true);
-
-    getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.STARSHIPS })
-      .then((data) => {
-        //checking data is not null
-        data && setShips((prev) => [...prev, ...data]);
-        // sorting items may be applied in future iterations
-        // data && setPlanets((prev) => sortObjItems([...prev, ...data]));
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [page]);
+  }, [isNearScreen, isLoading, setPage]);
 
   return (
     <>
@@ -48,9 +33,9 @@ const StarShips = () => {
         <SearchResults searchResultsItems={searchResultsItems} />
       ) : (
         <div
-          className={`my-3 my-md-4 ${ships.length > 0 ? "grid-container" : ""}`}
+          className={`my-3 my-md-4 ${data.length > 0 ? "grid-container" : ""}`}
         >
-          {ships.map((ship) => (
+          {data.map((ship) => (
             <Link
               className="grid-element-card"
               key={`${ship.model}${ship.crew}`}

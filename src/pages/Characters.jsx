@@ -5,15 +5,16 @@ import useIsNearScreen from "hooks/useIsNearScreen.js";
 import { Spinner } from "components/Spinner";
 import SearchResults from "components/SearchResults";
 import "../styles.scss";
-import { getTransformedDataArray } from "services/getTransformedDataArray";
 import { TYPE_OF_DATA } from "../constants";
+import { useFetchData } from "hooks/useFetchData";
 // import { sortObjItems } from "../utils/sortItems.js";
 
 const Characters = () => {
-  const [page, setPage] = useState(0);
-  const [characters, setCharacters] = useState([]);
   const { searchResultsItems } = useSearch();
-  const [isLoading, setIsLoading] = useState(false);
+
+  const { isLoading, data, setPage } = useFetchData({
+    typeOfData: TYPE_OF_DATA.PEOPLE,
+  });
 
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
 
@@ -22,25 +23,25 @@ const Characters = () => {
     if (isNearScreen) {
       setPage((prev) => prev + 1);
     }
-  }, [isNearScreen, isLoading]);
+  }, [isNearScreen, isLoading, setPage]);
 
-  useEffect(() => {
-    if (page === 0) return;
-    if (page >= 10) return;
-    setIsLoading(true);
+  // useEffect(() => {
+  //   if (page === 0) return;
+  //   if (page >= 10) return;
+  //   setIsLoading(true);
 
-    getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PEOPLE })
-      .then((data) => {
-        //checking data is not null
-        data && setCharacters((prev) => [...prev, ...data]);
-        // sorting items may be applied in future iterations
-        // data && setPlanets((prev) => sortObjItems([...prev, ...data]));
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [page]);
+  //   getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PEOPLE })
+  //     .then((data) => {
+  //       //checking data is not null
+  //       data && setCharacters((prev) => [...prev, ...data]);
+  //       // sorting items may be applied in future iterations
+  //       // data && setPlanets((prev) => sortObjItems([...prev, ...data]));
+  //       setIsLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, [page]);
 
   return (
     <>
@@ -48,11 +49,9 @@ const Characters = () => {
         <SearchResults searchResultsItems={searchResultsItems} />
       ) : (
         <div
-          className={`my-3 my-md-4 ${
-            characters.length > 0 ? "grid-container" : ""
-          }`}
+          className={`my-3 my-md-4 ${data.length > 0 ? "grid-container" : ""}`}
         >
-          {characters.map((character) => (
+          {data.map((character) => (
             <Link
               className="grid-element-card"
               key={character.name}
