@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { useSearch } from "hooks/useSearch.js";
 import useIsNearScreen from "hooks/useIsNearScreen.js";
 import { Spinner } from "components/Spinner";
@@ -7,16 +6,17 @@ import SearchResults from "components/SearchResults";
 import "../styles.scss";
 import { TYPE_OF_DATA } from "../constants";
 import { useFetchData } from "hooks/useFetchData";
+import GridItemLinkCard from "components/GridItemLinkCard";
 // import { sortObjItems } from "../utils/sortItems.js";
 
 const Characters = () => {
   const { searchResultsItems } = useSearch();
 
+  const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
+
   const { isLoading, data, setPage } = useFetchData({
     typeOfData: TYPE_OF_DATA.PEOPLE,
   });
-
-  const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
 
   useEffect(() => {
     if (isLoading) return;
@@ -24,24 +24,6 @@ const Characters = () => {
       setPage((prev) => prev + 1);
     }
   }, [isNearScreen, isLoading, setPage]);
-
-  // useEffect(() => {
-  //   if (page === 0) return;
-  //   if (page >= 10) return;
-  //   setIsLoading(true);
-
-  //   getTransformedDataArray({ page, typeOfData: TYPE_OF_DATA.PEOPLE })
-  //     .then((data) => {
-  //       //checking data is not null
-  //       data && setCharacters((prev) => [...prev, ...data]);
-  //       // sorting items may be applied in future iterations
-  //       // data && setPlanets((prev) => sortObjItems([...prev, ...data]));
-  //       setIsLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, [page]);
 
   return (
     <>
@@ -52,23 +34,7 @@ const Characters = () => {
           className={`my-3 my-md-4 ${data.length > 0 ? "grid-container" : ""}`}
         >
           {data.map((character) => (
-            <Link
-              className="grid-element-card"
-              key={character.name}
-              to={character.name.replaceAll(" ", "~")}
-            >
-              <div className="grid-card-hero">
-                <img
-                  className="grid-card-hero-img"
-                  src={character.image}
-                  alt={character.name}
-                />
-              </div>
-              <div className="text-secondary p-3 grid-card-info bg-dark">
-                <h4>{character.name}</h4>
-                <p>{character.species}</p>
-              </div>
-            </Link>
+            <GridItemLinkCard key={character.name} character={character} />
           ))}
           {isLoading && <Spinner />}
         </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTransformedDataArray } from "services/getTransformedDataArray";
+import useIsNearScreen from "./useIsNearScreen";
 
 export const useFetchData = ({ typeOfData }) => {
   const [page, setPage] = useState(0);
@@ -8,7 +9,10 @@ export const useFetchData = ({ typeOfData }) => {
 
   useEffect(() => {
     if (page === 0) return;
-    if (page >= 8) return;
+
+    if (typeOfData === "starships" && page >= 5) return;
+    if (typeOfData === "planets" && page >= 8) return;
+    if (typeOfData === "characters" && page >= 8) return;
     setIsLoading(true);
 
     getTransformedDataArray({ page, typeOfData })
@@ -27,8 +31,6 @@ export const useFetchData = ({ typeOfData }) => {
   return {
     isLoading,
     data,
-    page,
     setPage,
-    setIsLoading,
   };
 };

@@ -1,23 +1,26 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from "react";
 
-export default function useIsNearScreen({ distance = '100px', once = true } = {}) {
-  const [isNearScreen, setIsNearScreen] = useState(false)
-  const fromRef = useRef()
+export default function useIsNearScreen({
+  distance = "100px",
+  once = true,
+} = {}) {
+  const [isNearScreen, setIsNearScreen] = useState(false);
+  const fromRef = useRef();
 
   useEffect(() => {
-    let observer
+    let observer;
 
-    const element = fromRef.current
+    const element = fromRef.current;
 
     const onChange = (entries, observer) => {
-      const el = entries[0]
+      const el = entries[0];
       if (el.isIntersecting) {
-        setIsNearScreen(true)
-        once && observer.disconnect()
+        setIsNearScreen(true);
+        once && observer.disconnect();
       } else {
-        !once && setIsNearScreen(false)
+        !once && setIsNearScreen(false);
       }
-    }
+    };
 
     // Promise.resolve(
     //   typeof IntersectionObserver !== 'undefined'
@@ -28,16 +31,15 @@ export default function useIsNearScreen({ distance = '100px', once = true } = {}
     //     rootMargin: distance
     //   })})
     observer = new IntersectionObserver(onChange, {
-      rootMargin: distance
-    })
+      rootMargin: distance,
+    });
 
-    if (element) observer.observe(element)
+    if (element) observer.observe(element);
 
-    return () => observer && observer.disconnect()
-  }, [distance, once])
+    return () => observer && observer.disconnect();
+  }, [distance, once]);
 
-
-  return { isNearScreen, fromRef }
+  return { isNearScreen, fromRef };
 }
 
 // import { useEffect, useState } from "react";
@@ -68,5 +70,3 @@ export default function useIsNearScreen({ distance = '100px', once = true } = {}
 //     data,
 //   };
 // };
-
-

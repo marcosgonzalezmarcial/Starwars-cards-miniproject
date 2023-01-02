@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { useSearch } from "hooks/useSearch.js";
 import useIsNearScreen from "hooks/useIsNearScreen.js";
 import { Spinner } from "components/Spinner";
 import SearchResults from "components/SearchResults";
 import { TYPE_OF_DATA } from "../constants";
 import { useFetchData } from "hooks/useFetchData";
-// import { sortObjItems } from "../utils/sortItems.js";
+import GridItemLinkCard from "components/GridItemLinkCard";
 import "../styles.scss";
+// import { sortObjItems } from "../utils/sortItems.js";
 
 const StarShips = () => {
   const { searchResultsItems } = useSearch();
@@ -17,8 +17,6 @@ const StarShips = () => {
   });
 
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
-
-  console.log("starships");
 
   useEffect(() => {
     if (isLoading) return;
@@ -36,23 +34,7 @@ const StarShips = () => {
           className={`my-3 my-md-4 ${data.length > 0 ? "grid-container" : ""}`}
         >
           {data.map((ship) => (
-            <Link
-              className="grid-element-card"
-              key={`${ship.model}${ship.crew}`}
-              to={`${ship.name.replaceAll(" ", "~")}`}
-            >
-              <div className="grid-card-hero">
-                <img
-                  className="grid-card-hero-img"
-                  src={ship.imgUrl}
-                  alt={ship.name}
-                />
-              </div>
-              <div className="text-secondary bg-dark p-3 grid-card-info">
-                <h4>{ship.name}</h4>
-                <p>{ship.model}</p>
-              </div>
-            </Link>
+            <GridItemLinkCard key={ship.model} ship={ship} />
           ))}
           {isLoading && <Spinner />}
         </div>
