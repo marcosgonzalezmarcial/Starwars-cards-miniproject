@@ -8,14 +8,14 @@ import ListOfItemsWrapper from "components/ListOfItemsWrapper";
 const SingleFilm = () => {
   let { filmTitle } = useParams();
 
-  const { isLoading, elementData } = useSingleElementData({
+  const { loading, elementData } = useSingleElementData({
     paramFromUrl: filmTitle,
     typeOfData: TYPE_OF_DATA.FILMS,
   });
 
   return (
     <>
-      {isLoading ? (
+      {loading ? (
         <Spinner />
       ) : (
         <main className="main text-secondary">

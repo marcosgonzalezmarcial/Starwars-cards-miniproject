@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, memo } from "react";
 import { Form, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { TYPE_OF_DATA } from "../../constants";
@@ -104,4 +104,4 @@ const SearchModal = ({ show, onHide }) => {
   );
 };
 
-export default SearchModal;
+export default memo(SearchModal);

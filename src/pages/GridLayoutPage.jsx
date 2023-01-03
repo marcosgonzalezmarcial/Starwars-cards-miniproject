@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, Suspense } from "react";
+import { useEffect, useState, useRef, Suspense, useCallback } from "react";
 import { useSearch } from "hooks/useSearch.js";
 import { useIsNearScreen } from "hooks/useIsNearScreen.js";
 import { Spinner } from "components/Spinner";
@@ -12,20 +12,20 @@ import GridItemLinkCard from "components/GridItemLinkCard";
 const GridLayoutPage = (props) => {
   //   const { characters, planets, starships } = props;
 
-  const checkProp = (props) => {
-    // const { characters, planets, starships } = props;
-
-    if (props.characters !== undefined) return props.characters;
-    if (props.planets !== undefined) return props.planets;
-    if (props.starships !== undefined) return props.starships;
-  };
+  const checkProp = useCallback(
+    (props) => {
+      if (props.characters !== undefined) return props.characters;
+      if (props.planets !== undefined) return props.planets;
+      if (props.starships !== undefined) return props.starships;
+    },
+    [props]
+  );
   const { searchResultsItems } = useSearch();
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
   const { isLoading, data, setPage } = useFetchData({
     typeOfData: checkProp(props),
   });
 
-  console.log(data);
   useEffect(() => {
     // stops pagination when data is loading
     if (isLoading) return;

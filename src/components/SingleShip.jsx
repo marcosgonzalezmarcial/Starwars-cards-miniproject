@@ -8,14 +8,14 @@ import ListOfItemsWrapper from "./ListOfItemsWrapper";
 const SingleShip = () => {
   let { starshipName } = useParams();
 
-  const { isLoading, elementData } = useSingleElementData({
+  const { loading, elementData } = useSingleElementData({
     paramFromUrl: starshipName,
     typeOfData: TYPE_OF_DATA.STARSHIPS,
   });
 
   return (
     <>
-      {isLoading ? (
+      {loading ? (
         <Spinner />
       ) : (
         <main className="main text-secondary">

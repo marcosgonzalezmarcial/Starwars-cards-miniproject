@@ -8,7 +8,6 @@ import ListOfItemsWrapper from "./ListOfItemsWrapper";
 
 const SinglePlanet = () => {
   let { planetName } = useParams();
-  const mainRef = useRef(null);
 
   const { isLoading, elementData } = useSingleElementData({
     paramFromUrl: planetName,
@@ -20,7 +19,7 @@ const SinglePlanet = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <main ref={mainRef} className="main text-secondary">
+        <main className="main text-secondary">
           <div className="page-img-container">
             <img src={elementData.imgUrl} alt={elementData.name} />
           </div>

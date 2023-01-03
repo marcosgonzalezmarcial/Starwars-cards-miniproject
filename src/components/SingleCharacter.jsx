@@ -6,11 +6,10 @@ import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
 import { useSingleElementData } from "hooks/useSingleElementData";
 
-
 const SingleCharacterRefactor = () => {
   let { characterName } = useParams();
 
-  const { isLoading, elementData } = useSingleElementData({
+  const { loading, elementData } = useSingleElementData({
     paramFromUrl: characterName,
     typeOfData: TYPE_OF_DATA.PEOPLE,
   });
@@ -27,7 +26,7 @@ const SingleCharacterRefactor = () => {
 
   return (
     <>
-      {isLoading ? (
+      {loading ? (
         <Spinner />
       ) : (
         <main className="main text-secondary">

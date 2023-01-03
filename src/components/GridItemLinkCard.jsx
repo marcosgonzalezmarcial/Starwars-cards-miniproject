@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
 const GridItemLinkCard = (props) => {
@@ -32,4 +32,4 @@ const GridItemLinkCard = (props) => {
   );
 };
 
-export default React.memo(GridItemLinkCard);
+export default memo(GridItemLinkCard);
