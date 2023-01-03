@@ -13,6 +13,7 @@ import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
 import SingleFilm from "components/SingleFilm";
 import Planets from "pages/Planets";
+import GridLayoutPage from "pages/GridLayoutPage";
 import SinglePlanet from "components/SinglePlanet";
 import { UiContextProvider } from "contexts/uiContext";
 
@@ -49,14 +50,16 @@ function App() {
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path="starships" element={<NestedRoutes />}>
               <Route index element={<StarShips />} />
+              {/* <Route index element={<GridLayoutPage starships="starships" />} /> */}
               <Route path=":starshipName" element={<SingleShip />} />
             </Route>
             <Route path="planets" element={<NestedRoutes />}>
               <Route index element={<Planets />} />
-              {/* <Route index element={<PlanetsRefactor />} /> */}
+              {/* <Route index element={<GridLayoutPage planets="planets" />} /> */}
               <Route path=":planetName" element={<SinglePlanet />} />
             </Route>
             <Route path="characters" element={<NestedRoutes />}>
+              {/* <Route index element={<GridLayoutPage characters="people" />} /> */}
               <Route index element={<Characters />} />
               <Route path=":characterName" element={<SingleCharacter />} />
             </Route>
