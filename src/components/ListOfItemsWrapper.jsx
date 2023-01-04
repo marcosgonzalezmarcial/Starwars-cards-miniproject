@@ -24,11 +24,8 @@ const ListOfItemsWrapper = ({ itemType, elementData, itemSubType }) => {
         )}
         {itemType === "characters" && itemSubType === "pilots" && (
           <>
-            <h3 className="my-2">Starships</h3>
-            <ListOfItems
-              itemType={itemType}
-              listOfUrls={elementData.starships}
-            />
+            <h3 className="my-2">Pilots</h3>
+            <ListOfItems itemType={itemType} listOfUrls={elementData.pilots} />
           </>
         )}
         {itemType === "characters" && itemSubType === "residents" && (

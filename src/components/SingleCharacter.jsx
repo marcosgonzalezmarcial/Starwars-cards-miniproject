@@ -60,7 +60,7 @@ const SingleCharacterRefactor = () => {
                 </Col>
               </Row>
               <Row>
-                <Col className="py-1">
+                <Col className="py-1 w-50">
                   {elementData.films?.length === 0 ? (
                     <>
                       <h3 className="my-2">Appearances</h3>
@@ -73,7 +73,7 @@ const SingleCharacterRefactor = () => {
                     />
                   )}
                 </Col>
-                <Col className="pt-1">
+                <Col className="pt-1 w-50">
                   {elementData.starships?.length === 0 ? (
                     <>
                       <h3 className="my-2">Starships</h3>

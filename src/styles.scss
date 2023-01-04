@@ -214,7 +214,7 @@
 		}
 
 		img[src*="Starships"] {
-			max-height: calc(min(23vh, 600px));
+			height: calc(min(23vh, 600px));
 		}
 
 		img[src*="Yavin4"] {
@@ -317,6 +317,7 @@
 //////// View more functionallity /////////////////
 
 .cutoff-text {
+	// min-height: 120px;
 	--max-lines: 6;
 	--line-height: 1.5;
 	// display: -webkit-box;

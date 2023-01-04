@@ -36,7 +36,7 @@ const SingleFilm = () => {
                 </Col>
               </Row>
               <Row className="py-1">
-                <Col className="pt-1">
+                <Col className="pt-1 w-50">
                   {elementData.starships?.length === 0 ? (
                     <>
                       <h3 className="my-2">Starships</h3>
@@ -49,7 +49,7 @@ const SingleFilm = () => {
                     />
                   )}
                 </Col>
-                <Col>
+                <Col className="pt-1 w-50">
                   <h3 className="my-2">Release date</h3>
                   <span>{elementData.release_date}</span>
                 </Col>

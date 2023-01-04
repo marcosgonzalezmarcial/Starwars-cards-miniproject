@@ -47,7 +47,7 @@ const SinglePlanet = () => {
                 </Col>
               </Row>
               <Row className="py-1">
-                <Col className="pt-1">
+                <Col className="pt-1 w-50">
                   {elementData.films?.length === 0 ? (
                     <>
                       <h3 className="my-2">Appearances</h3>
@@ -60,9 +60,8 @@ const SinglePlanet = () => {
                     />
                   )}
                 </Col>
-
-                <Col className="pt-1">
-                  {elementData.films?.length === 0 ? (
+                <Col className="pt-1 w-50">
+                  {elementData?.residents?.length === 0 ? (
                     <>
                       <h3 className="my-2">Residents</h3>
                       <span>No residents registered for this planet</span>
