@@ -5,15 +5,17 @@
 
 .border-wrapper {
 	margin-inline: auto;
-	width: 100%;
 	border-bottom: 1px solid #333;
 	border-top: 1px solid #333;
-	padding: 0.1rem;
 }
 
 .border-silver {
 	border-right: 1px solid #333;
 	border-left: 1px solid #333;
+	// border: 1px solid #333;
+	border-collapse: collapse !important;
+	// border collapse div
+	margin: -1px 0 0 -1px;
 }
 
 .active-link-light-saber {
