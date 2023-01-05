@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import ListOfItemsWrapper from "components/ListOfItemsWrapper";
@@ -9,6 +9,32 @@ import Film from "components/Film";
 import { Spinner } from "components/Spinner";
 import { TYPE_OF_DATA } from "../constants";
 import { useSingleElementData } from "hooks/useSingleElementData";
+
+export const Element = ({ mainPath, elementData, handleItemClick }) => {
+  switch (mainPath) {
+    case "starships":
+      return (
+        <Starship elementData={elementData} handleItemClick={handleItemClick} />
+      );
+    case "people":
+      return (
+        <Character
+          elementData={elementData}
+          handleItemClick={handleItemClick}
+        />
+      );
+    case "planets":
+      return (
+        <Planet elementData={elementData} handleItemClick={handleItemClick} />
+      );
+    case "films":
+      return (
+        <Film elementData={elementData} handleItemClick={handleItemClick} />
+      );
+    default:
+      console.log(`Sorry, no element found`);
+  }
+};
 
 const ElementDetailPage = () => {
   let { itemName } = useParams();
@@ -33,46 +59,17 @@ const ElementDetailPage = () => {
     [navigate]
   );
 
-  const renderElement = () => {
-    switch (mainPath) {
-      case "starships":
-        return (
-          <Starship
-            elementData={elementData}
-            handleItemClick={handleItemClick}
-          />
-        );
-      case "people":
-        return (
-          <Character
-            elementData={elementData}
-            handleItemClick={handleItemClick}
-          />
-        );
-      case "planets":
-        return (
-          <Planet elementData={elementData} handleItemClick={handleItemClick} />
-        );
-      case "films":
-        return (
-          <Film elementData={elementData} handleItemClick={handleItemClick} />
-        );
-      default:
-        console.log(`Sorry, we are out of `);
-    }
-  };
-
   return (
     <>
       {loading ? (
         <Spinner />
       ) : (
         <main className="main text-secondary">
-          {/* <Character
+          <Element
+            mainPath={mainPath}
             elementData={elementData}
             handleItemClick={handleItemClick}
-          /> */}
-          {renderElement()}
+          />
         </main>
       )}
     </>
