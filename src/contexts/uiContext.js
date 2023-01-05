@@ -12,7 +12,6 @@ function UiContextProvider({ children }) {
     () => setToggleMenu((prev) => !prev),
     [setToggleMenu]
   );
-  console.log(toggleMenu);
 
   return (
     <uiContext.Provider

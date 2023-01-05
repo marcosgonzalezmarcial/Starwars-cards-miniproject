@@ -3,18 +3,17 @@ import React, { useState, useEffect } from "react";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import SignUp from "pages/SignUp";
-import SingleCharacter from "components/SingleCharacter";
-import Characters from "pages/Characters";
-import ErrorPage from "pages/ErrorPage";
-import StarShips from "pages/StarShips";
 import Header from "components/Header";
-import SingleShip from "components/SingleShip";
+import ElementDetailPage from "components/ElementDetailPage";
+import Character from "components/Character";
+import Characters from "pages/Characters";
+import StarShips from "pages/StarShips";
+import Planets from "pages/Planets";
+import ErrorPage from "pages/ErrorPage";
 import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
-import SingleFilm from "components/SingleFilm";
-import Planets from "pages/Planets";
 import GridLayoutPage from "pages/GridLayoutPage";
-import SinglePlanet from "components/SinglePlanet";
+
 import { UiContextProvider } from "contexts/uiContext";
 
 function App() {
@@ -45,26 +44,25 @@ function App() {
               </UiContextProvider>
             }
           />
-
           <Route path="signup" element={<SignUp setUsers={setUsers} />} />
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path="starships" element={<NestedRoutes />}>
               <Route index element={<StarShips />} />
-              {/* <Route index element={<GridLayoutPage starships="starships" />} /> */}
-              <Route path=":starshipName" element={<SingleShip />} />
+              <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
+
             <Route path="planets" element={<NestedRoutes />}>
               <Route index element={<Planets />} />
-              {/* <Route index element={<GridLayoutPage planets="planets" />} /> */}
-              <Route path=":planetName" element={<SinglePlanet />} />
+              <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
+
             <Route path="characters" element={<NestedRoutes />}>
-              {/* <Route index element={<GridLayoutPage characters="people" />} /> */}
               <Route index element={<Characters />} />
-              <Route path=":characterName" element={<SingleCharacter />} />
+              <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
+
             <Route path="films" element={<NestedRoutes />}>
-              <Route path=":filmTitle" element={<SingleFilm />} />
+              <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
           </Route>
           <Route path="*" element={<ErrorPage />} />
