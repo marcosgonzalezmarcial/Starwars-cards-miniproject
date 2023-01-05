@@ -12,8 +12,7 @@ function UiContextProvider({ children }) {
     () => setToggleMenu((prev) => !prev),
     [setToggleMenu]
   );
-  // const openModal = () => setShowModal(true);
-  // const handleToggle = () => setToggleMenu((prev) => !prev);
+  console.log(toggleMenu);
 
   return (
     <uiContext.Provider
