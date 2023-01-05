@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import ListOfItemsWrapper from "components/ListOfItemsWrapper";
 
-const Starship = ({ elementData, handleItemClick }) => {
+const Starship = ({ elementData }) => {
   return (
     <>
       <div className="page-img-container">

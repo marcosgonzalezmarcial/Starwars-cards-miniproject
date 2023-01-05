@@ -1,8 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import ListOfItemsWrapper from "components/ListOfItemsWrapper";
 
-const Film = ({ elementData, handleItemClick }) => {
-  // console.log(elementData);
+const Film = ({ elementData }) => {
   return (
     <>
       <div className="page-img-container">

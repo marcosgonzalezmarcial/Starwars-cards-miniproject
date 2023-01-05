@@ -1,8 +1,15 @@
+import { useCallback } from "react";
 import { Col, Row } from "react-bootstrap";
 import ListOfItemsWrapper from "components/ListOfItemsWrapper";
+import { useNavigate } from "react-router-dom";
 
-const Character = ({ elementData, handleItemClick }) => {
-  // console.log(elementData);
+const Character = ({ elementData }) => {
+  let navigate = useNavigate();
+  const handleItemClick = (e) => {
+    const planetSelected = e.target.textContent;
+    navigate(`/planets/${planetSelected}`);
+  };
+
   return (
     <>
       <div className="page-img-container">

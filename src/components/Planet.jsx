@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import ListOfItemsWrapper from "components/ListOfItemsWrapper";
 
-const Planet = ({ elementData, handleItemClick }) => {
+const Planet = ({ elementData }) => {
   return (
     <>
       <div className="page-img-container">
