@@ -5,7 +5,6 @@ import Login from "pages/Login";
 import SignUp from "pages/SignUp";
 import Header from "components/Header";
 import ElementDetailPage from "components/ElementDetailPage";
-import Character from "components/Character";
 import Characters from "pages/Characters";
 import StarShips from "pages/StarShips";
 import Planets from "pages/Planets";
@@ -40,7 +39,7 @@ function App() {
             path="login"
             element={
               <UiContextProvider>
-                <Login users={users} setLoggedIn={setLoggedIn} />{" "}
+                <Login users={users} setLoggedIn={setLoggedIn} />
               </UiContextProvider>
             }
           />
@@ -48,16 +47,19 @@ function App() {
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path="starships" element={<NestedRoutes />}>
               <Route index element={<StarShips />} />
+              {/* <Route index element={<GridLayoutPage />} /> */}
               <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
 
             <Route path="planets" element={<NestedRoutes />}>
               <Route index element={<Planets />} />
+              {/* <Route index element={<GridLayoutPage />} /> */}
               <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
 
             <Route path="characters" element={<NestedRoutes />}>
               <Route index element={<Characters />} />
+              {/* <Route index element={<GridLayoutPage />} /> */}
               <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
 

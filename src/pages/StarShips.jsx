@@ -3,7 +3,6 @@ import { useSearch } from "hooks/useSearch.js";
 import { useIsNearScreen } from "hooks/useIsNearScreen.js";
 import { Spinner } from "components/Spinner";
 import SearchResults from "components/SearchResults";
-import { TYPE_OF_DATA } from "../constants";
 import { useFetchData } from "hooks/useFetchData";
 import GridItemLinkCard from "components/GridItemLinkCard";
 import "../styles.scss";
@@ -12,9 +11,7 @@ import "../styles.scss";
 const StarShips = () => {
   const { searchResultsItems } = useSearch();
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
-  const { isLoading, data, setPage } = useFetchData({
-    typeOfData: TYPE_OF_DATA.STARSHIPS,
-  });
+  const { isLoading, data, setPage } = useFetchData();
   useEffect(() => {
     // stops pagination when data is loading
     if (isLoading) return;
@@ -32,8 +29,8 @@ const StarShips = () => {
       {/* show Spinner if no date loaded yet */}
       {data.length === 0 && <Spinner />}
       <div className="my-3 my-md-4 grid-container">
-        {data.map((ship) => (
-          <GridItemLinkCard key={ship.model} ship={ship} />
+        {data.map((item) => (
+          <GridItemLinkCard key={item.model} item={item} />
         ))}
         {isLoading && data.length > 0 && <Spinner />}
       </div>

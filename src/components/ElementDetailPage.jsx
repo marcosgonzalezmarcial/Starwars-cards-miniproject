@@ -5,28 +5,18 @@ import Planet from "components/Planet";
 import Film from "components/Film";
 import { Spinner } from "components/Spinner";
 import { useSingleElementData } from "hooks/useSingleElementData";
+// import { useShip } from "hooks/useShip";
 
-export const Element = ({ mainPath, elementData, handleItemClick }) => {
+export const Element = ({ mainPath, elementData }) => {
   switch (mainPath) {
     case "starships":
-      return (
-        <Starship elementData={elementData} handleItemClick={handleItemClick} />
-      );
+      return <Starship elementData={elementData} />;
     case "people":
-      return (
-        <Character
-          elementData={elementData}
-          handleItemClick={handleItemClick}
-        />
-      );
+      return <Character elementData={elementData} />;
     case "planets":
-      return (
-        <Planet elementData={elementData} handleItemClick={handleItemClick} />
-      );
+      return <Planet elementData={elementData} />;
     case "films":
-      return (
-        <Film elementData={elementData} handleItemClick={handleItemClick} />
-      );
+      return <Film elementData={elementData} />;
     default:
       console.log(`Sorry, no element found`);
   }
@@ -45,6 +35,8 @@ const ElementDetailPage = () => {
     paramFromUrl: itemName,
     typeOfData: mainPath,
   });
+
+  // const data = useShip({ mainPath, typeOfData: mainPath, paramFromUrl });
 
   return (
     <>

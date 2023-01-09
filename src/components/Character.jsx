@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { Col, Row } from "react-bootstrap";
 import ListOfItemsWrapper from "components/ListOfItemsWrapper";
 import { useNavigate } from "react-router-dom";
