@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, Suspense } from "react";
+import { useEffect } from "react";
 import { useSearch } from "hooks/useSearch.js";
 import { useIsNearScreen } from "hooks/useIsNearScreen.js";
 import { Spinner } from "components/Spinner";

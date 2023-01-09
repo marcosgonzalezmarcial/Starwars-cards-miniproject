@@ -9,8 +9,7 @@ export const useShips = ({ typeOfData }) => {
 
   useEffect(() => {
     if (typeOfData === "starships" && page >= 5) return;
-    if (typeOfData === "planets" && page >= 8) return;
-    if (typeOfData === "people" && page >= 10) return;
+
     setIsLoading(true);
 
     getTransformedDataArray({ page, typeOfData })
