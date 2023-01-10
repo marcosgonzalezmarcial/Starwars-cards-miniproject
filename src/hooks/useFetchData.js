@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { getTransformedDataArray } from "services/getTransformedDataArray";
-// import useIsNearScreen from "./useIsNearScreen";
 
-export const useFetchData = () => {
+export const useFetchData = ({ mainPath }) => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState({
     planets: [],
@@ -15,17 +13,11 @@ export const useFetchData = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  let location = useLocation();
-
-  let mainPath = location.pathname.slice(1).split("/")[0];
-  if (mainPath === "characters") {
-    mainPath = "people";
-  }
-
   useEffect(() => {
     setIsLoading(true);
 
     if (mainPath === "starships") {
+      // no items above pag 5
       if (data.starshipsPagination >= 5) {
         setIsLoading(false);
         return;
@@ -42,7 +34,7 @@ export const useFetchData = () => {
             setData((prev) => ({
               ...prev,
               //
-              // unique set of items with set
+              // array of unique set of items with set
               starships: [
                 ...new Set(
                   [...data.starships, ...newData].map((o) => JSON.stringify(o))
@@ -104,7 +96,6 @@ export const useFetchData = () => {
           newData &&
             setData((prev) => ({
               ...prev,
-              //
               // unique set of items with set
               characters: [
                 ...new Set(
@@ -120,14 +111,12 @@ export const useFetchData = () => {
           setIsLoading(false);
         });
     }
-    // return () => setData({});
   }, [
     mainPath,
     data.charactersPagination,
     data.planetsPagination,
     data.starshipsPagination,
   ]);
-  // console.log({ isLoading });
 
   return {
     isLoading,

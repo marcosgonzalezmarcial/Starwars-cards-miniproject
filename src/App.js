@@ -43,20 +43,17 @@ function App() {
           <Route path="signup" element={<SignUp setUsers={setUsers} />} />
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path="starships" element={<NestedRoutes />}>
-              {/* <Route index element={<StarShips />} /> */}
-              <Route index element={<GridLayoutPage starships="starships" />} />
+              <Route index element={<GridLayoutPage mainPath="starships" />} />
               <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
 
             <Route path="planets" element={<NestedRoutes />}>
-              {/* <Route index element={<Planets />} /> */}
-              <Route index element={<GridLayoutPage planets="planets" />} />
+              <Route index element={<GridLayoutPage mainPath="planets" />} />
               <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
 
             <Route path="characters" element={<NestedRoutes />}>
-              {/* <Route index element={<Characters />} /> */}
-              <Route index element={<GridLayoutPage />} />
+              <Route index element={<GridLayoutPage mainPath="people" />} />
               <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
 
