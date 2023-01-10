@@ -5,13 +5,10 @@ import Login from "pages/Login";
 import SignUp from "pages/SignUp";
 import Header from "components/Header";
 import ElementDetailPage from "components/ElementDetailPage";
-import Characters from "pages/Characters";
-import StarShips from "pages/StarShips";
-import Planets from "pages/Planets";
 import ErrorPage from "pages/ErrorPage";
 import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
-// import GridLayoutPage from "pages/GridLayoutPage";
+import GridLayoutPage from "pages/GridLayoutPage";
 
 import { UiContextProvider } from "contexts/uiContext";
 
@@ -46,20 +43,20 @@ function App() {
           <Route path="signup" element={<SignUp setUsers={setUsers} />} />
           <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route path="starships" element={<NestedRoutes />}>
-              <Route index element={<StarShips />} />
-              {/* <Route index element={<GridLayoutPage starships="starships" />} /> */}
+              {/* <Route index element={<StarShips />} /> */}
+              <Route index element={<GridLayoutPage starships="starships" />} />
               <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
 
             <Route path="planets" element={<NestedRoutes />}>
-              <Route index element={<Planets />} />
-              {/* <Route index element={<GridLayoutPage planets="planets" />} /> */}
+              {/* <Route index element={<Planets />} /> */}
+              <Route index element={<GridLayoutPage planets="planets" />} />
               <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
 
             <Route path="characters" element={<NestedRoutes />}>
-              <Route index element={<Characters />} />
-              {/* <Route index element={<GridLayoutPage />} /> */}
+              {/* <Route index element={<Characters />} /> */}
+              <Route index element={<GridLayoutPage />} />
               <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
 

@@ -5,7 +5,14 @@ import { getTransformedDataArray } from "services/getTransformedDataArray";
 
 export const useFetchData = () => {
   const [page, setPage] = useState(1);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    planets: [],
+    planetsPagination: 1,
+    starships: [],
+    starshipsPagination: 1,
+    characters: [],
+    charactersPagination: 1,
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   let location = useLocation();
@@ -16,27 +23,115 @@ export const useFetchData = () => {
   }
 
   useEffect(() => {
-    if (mainPath === "starships" && page >= 5) return;
-    if (mainPath === "planets" && page >= 8) return;
-    if (mainPath === "people" && page >= 10) return;
     setIsLoading(true);
 
-    getTransformedDataArray({ page, typeOfData: mainPath })
-      .then((data) => {
-        //checking data is not null
-        data && setData((prev) => [...prev, ...data]);
-        // sorting items may be applied in future iterations
-        // data && setPlanets((prev) => sortObjItems([...prev, ...data]));
+    if (mainPath === "starships") {
+      if (data.starshipsPagination >= 5) {
         setIsLoading(false);
+        return;
+      }
+      if (data.starshipsPagination === 1 && data.starships.length === 10)
+        return;
+      getTransformedDataArray({
+        page: data.starshipsPagination,
+        typeOfData: mainPath,
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [page, mainPath]);
+        .then((newData) => {
+          //checking data is not null
+          newData &&
+            setData((prev) => ({
+              ...prev,
+              //
+              // unique set of items with set
+              starships: [
+                ...new Set(
+                  [...data.starships, ...newData].map((o) => JSON.stringify(o))
+                ),
+              ].map((s) => JSON.parse(s)),
+            }));
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+    if (mainPath === "planets") {
+      if (data.planetsPagination === 1 && data.planets.length === 10) return;
+      if (data.planetsPagination >= 8) {
+        setIsLoading(false);
+        return;
+      }
+      getTransformedDataArray({
+        page: data.planetsPagination,
+        typeOfData: mainPath,
+      })
+        .then((newData) => {
+          //checking data is not null
+          newData &&
+            setData((prev) => ({
+              ...prev,
+              //
+              // unique set of items with set
+              planets: [
+                ...new Set(
+                  [...data.planets, ...newData].map((o) => JSON.stringify(o))
+                ),
+              ].map((s) => JSON.parse(s)),
+            }));
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+    if (mainPath === "people") {
+      if (data.charactersPagination === 1 && data.characters.length === 10)
+        return;
+      if (data.charactersPagination >= 10) {
+        setIsLoading(false);
+        return;
+      }
+      getTransformedDataArray({
+        page: data.charactersPagination,
+        typeOfData: mainPath,
+      })
+        .then((newData) => {
+          //checking data is not null
+          newData &&
+            setData((prev) => ({
+              ...prev,
+              //
+              // unique set of items with set
+              characters: [
+                ...new Set(
+                  [...data.characters, ...newData].map((o) => JSON.stringify(o))
+                ),
+              ].map((s) => JSON.parse(s)),
+            }));
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+    // return () => setData({});
+  }, [
+    mainPath,
+    data.charactersPagination,
+    data.planetsPagination,
+    data.starshipsPagination,
+  ]);
+  // console.log({ isLoading });
 
   return {
     isLoading,
     data,
-    setPage,
+    setData,
   };
 };
