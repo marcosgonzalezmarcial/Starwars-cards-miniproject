@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Spinner } from "components/Spinner";
 import GridItemLinkCard from "components/GridItemLinkCard";
-import { dataContext } from "contexts/dataContext";
+import { useData } from "hooks/useData";
 
 export const GridItems = ({ mainPath }) => {
-  const { data, isLoading } = useContext(dataContext);
+  const { data, isLoading } = useData();
   // const {
   //   data: { starships },
   // } = useContext(dataContext);

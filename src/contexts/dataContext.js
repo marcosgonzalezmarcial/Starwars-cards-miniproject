@@ -1,10 +1,10 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { getTransformedDataArray } from "services/getTransformedDataArray";
 
-const dataContext = createContext({});
+export const dataContext = createContext({});
 
-function DataContextProvider({ children }) {
+export const DataContextProvider = ({ children }) => {
   const [data, setData] = useState({
     planets: [],
     planetsPagination: 1,
@@ -128,6 +128,4 @@ function DataContextProvider({ children }) {
       {children}
     </dataContext.Provider>
   );
-}
-
-export { dataContext, DataContextProvider };
+};
