@@ -7,7 +7,7 @@ import {
   peopleMockedData,
 } from "utils/mocked-data";
 import { urlStringify } from "utils/urlStringify";
-import { fetchItemByType } from "services/fetchItemByType";
+import { fetchItemByTypeAndId } from "services/fetchItemByTypeAndId";
 import { transformDataArray } from "utils/transformDataArray";
 
 export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
@@ -26,7 +26,7 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
         id = starshipsMockedData.find(
           (ship) => ship.name === elementNameFromUrl
         );
-        fetchItemByType({ id: id.id, typeOfData: TYPE_OF_DATA.STARSHIPS })
+        fetchItemByTypeAndId({ id: id.id, typeOfData: TYPE_OF_DATA.STARSHIPS })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
@@ -43,7 +43,7 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
         id = planetsMockedData.find(
           (planet) => planet.name === elementNameFromUrl
         );
-        fetchItemByType({ id: id.id, typeOfData: TYPE_OF_DATA.PLANETS })
+        fetchItemByTypeAndId({ id: id.id, typeOfData: TYPE_OF_DATA.PLANETS })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
@@ -58,7 +58,7 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
 
       case TYPE_OF_DATA.FILMS:
         id = filmsMockedData.find((film) => film.title === elementNameFromUrl);
-        fetchItemByType({ id: id.id, typeOfData: TYPE_OF_DATA.FILMS })
+        fetchItemByTypeAndId({ id: id.id, typeOfData: TYPE_OF_DATA.FILMS })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
@@ -76,7 +76,7 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
           (character) => character.name === elementNameFromUrl
         );
 
-        fetchItemByType({ id: id.id, typeOfData: TYPE_OF_DATA.PEOPLE })
+        fetchItemByTypeAndId({ id: id.id, typeOfData: TYPE_OF_DATA.PEOPLE })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements

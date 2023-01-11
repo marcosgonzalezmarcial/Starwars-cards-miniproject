@@ -1,9 +1,9 @@
 import { transformDataArray } from "../utils/transformDataArray";
-import { fetchDataByType } from "./fetchDataByType";
+import { fetchDataByTypeAndPage } from "./fetchDataByTypeAndPage";
 
 export const getTransformedDataArray = async ({ page, typeOfData }) => {
   try {
-    const fetchedData = await fetchDataByType({ page, typeOfData });
+    const fetchedData = await fetchDataByTypeAndPage({ page, typeOfData });
     const modifiedDataArray = transformDataArray({ fetchedData, typeOfData });
     return modifiedDataArray;
   } catch (error) {
