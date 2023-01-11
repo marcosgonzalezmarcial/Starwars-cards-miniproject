@@ -5,7 +5,6 @@ import Planet from "components/Planet";
 import Film from "components/Film";
 import { Spinner } from "components/Spinner";
 import { useSingleElementData } from "hooks/useSingleElementData";
-// import { useShip } from "hooks/useShip";
 
 export const Element = ({ mainPath, elementData }) => {
   switch (mainPath) {
@@ -22,7 +21,7 @@ export const Element = ({ mainPath, elementData }) => {
   }
 };
 
-const ElementDetailPage = () => {
+const ElementDetailPage = ({ children }) => {
   let { itemName } = useParams();
   let location = useLocation();
 
@@ -36,8 +35,6 @@ const ElementDetailPage = () => {
     typeOfData: mainPath,
   });
 
-  // const data = useShip({ mainPath, typeOfData: mainPath, paramFromUrl });
-
   return (
     <>
       {loading ? (
@@ -45,6 +42,7 @@ const ElementDetailPage = () => {
       ) : (
         <main className="main text-secondary">
           <Element mainPath={mainPath} elementData={elementData} />
+          {children}
         </main>
       )}
     </>

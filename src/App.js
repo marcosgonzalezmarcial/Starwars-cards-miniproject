@@ -11,6 +11,7 @@ import NestedRoutes from "pages/NestedRoutes";
 import GridLayoutPage from "pages/GridLayoutPage";
 
 import { UiContextProvider } from "contexts/uiContext";
+import { DataContextProvider } from "contexts/dataContext";
 
 function App() {
   const [users, setUsers] = useState(
@@ -41,7 +42,13 @@ function App() {
             }
           />
           <Route path="signup" element={<SignUp setUsers={setUsers} />} />
-          <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+          <Route
+            element={
+              <DataContextProvider>
+                <ProtectedRoute loggedIn={loggedIn} />
+              </DataContextProvider>
+            }
+          >
             <Route path="starships" element={<NestedRoutes />}>
               <Route index element={<GridLayoutPage mainPath="starships" />} />
               <Route path=":itemName" element={<ElementDetailPage />} />

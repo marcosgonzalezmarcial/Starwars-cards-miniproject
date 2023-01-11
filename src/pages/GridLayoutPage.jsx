@@ -1,17 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useSearch } from "hooks/useSearch.js";
 import { useIsNearScreen } from "hooks/useIsNearScreen.js";
 import { Spinner } from "components/Spinner";
 import SearchResults from "components/SearchResults";
 import { GridItems } from "components/GridItems";
 import "../styles.scss";
-import { useFetchData } from "hooks/useFetchData";
 import GridItemLinkCard from "components/GridItemLinkCard";
+import { dataContext } from "contexts/dataContext";
 
 const GridLayoutPage = ({ mainPath }) => {
   const { searchResultsItems } = useSearch();
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
-  const { isLoading, data, setData } = useFetchData({ mainPath });
+  const { isLoading, data, setData } = useContext(dataContext);
 
   useEffect(() => {
     // stops pagination when data is loading
@@ -50,7 +50,7 @@ const GridLayoutPage = ({ mainPath }) => {
 
   return (
     <>
-      <GridItems data={data} mainPath={mainPath} isLoading={isLoading} />
+      <GridItems mainPath={mainPath} />
       <div ref={fromRef}></div>
     </>
   );

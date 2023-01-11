@@ -1,7 +1,15 @@
+import { useContext } from "react";
 import { Spinner } from "components/Spinner";
 import GridItemLinkCard from "components/GridItemLinkCard";
+import { dataContext } from "contexts/dataContext";
 
-export const GridItems = ({ data, mainPath, isLoading }) => {
+export const GridItems = ({ mainPath }) => {
+  const { data, isLoading } = useContext(dataContext);
+  // const {
+  //   data: { starships },
+  // } = useContext(dataContext);
+  // console.log(starships);
+
   return (
     <>
       {mainPath === "people" && (
