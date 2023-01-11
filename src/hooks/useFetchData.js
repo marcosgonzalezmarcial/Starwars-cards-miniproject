@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getTransformedDataArray } from "services/getTransformedDataArray";
 
 export const useFetchData = ({ mainPath }) => {
-  const [page, setPage] = useState(1);
   const [data, setData] = useState({
     planets: [],
     planetsPagination: 1,
@@ -22,8 +21,7 @@ export const useFetchData = ({ mainPath }) => {
         setIsLoading(false);
         return;
       }
-      if (data.starshipsPagination === 1 && data.starships.length === 10)
-        return;
+
       getTransformedDataArray({
         page: data.starshipsPagination,
         typeOfData: mainPath,
@@ -33,7 +31,6 @@ export const useFetchData = ({ mainPath }) => {
           newData &&
             setData((prev) => ({
               ...prev,
-              //
               // array of unique set of items with set
               starships: [
                 ...new Set(
@@ -50,7 +47,7 @@ export const useFetchData = ({ mainPath }) => {
         });
     }
     if (mainPath === "planets") {
-      if (data.planetsPagination === 1 && data.planets.length === 10) return;
+      // if (data.planetsPagination === 1 && data.planets.length === 10) return;
       if (data.planetsPagination >= 8) {
         setIsLoading(false);
         return;
@@ -81,8 +78,8 @@ export const useFetchData = ({ mainPath }) => {
         });
     }
     if (mainPath === "people") {
-      if (data.charactersPagination === 1 && data.characters.length === 10)
-        return;
+      // if (data.charactersPagination === 1 && data.characters.length === 10)
+      //   return;
       if (data.charactersPagination >= 10) {
         setIsLoading(false);
         return;

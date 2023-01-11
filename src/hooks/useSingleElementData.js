@@ -7,7 +7,7 @@ import {
   peopleMockedData,
 } from "utils/mocked-data";
 import { urlStringify } from "utils/urlStringify";
-import { fetchItem } from "services/fetchItem";
+import { fetchItemByType } from "services/fetchItemByType";
 import { transformDataArray } from "utils/transformDataArray";
 
 export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
@@ -26,7 +26,7 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
         id = starshipsMockedData.find(
           (ship) => ship.name === elementNameFromUrl
         );
-        fetchItem({ id: id.id, typeOfData: TYPE_OF_DATA.STARSHIPS })
+        fetchItemByType({ id: id.id, typeOfData: TYPE_OF_DATA.STARSHIPS })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
@@ -43,7 +43,7 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
         id = planetsMockedData.find(
           (planet) => planet.name === elementNameFromUrl
         );
-        fetchItem({ id: id.id, typeOfData: TYPE_OF_DATA.PLANETS })
+        fetchItemByType({ id: id.id, typeOfData: TYPE_OF_DATA.PLANETS })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
@@ -58,7 +58,7 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
 
       case TYPE_OF_DATA.FILMS:
         id = filmsMockedData.find((film) => film.title === elementNameFromUrl);
-        fetchItem({ id: id.id, typeOfData: TYPE_OF_DATA.FILMS })
+        fetchItemByType({ id: id.id, typeOfData: TYPE_OF_DATA.FILMS })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
@@ -76,7 +76,7 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
           (character) => character.name === elementNameFromUrl
         );
 
-        fetchItem({ id: id.id, typeOfData: TYPE_OF_DATA.PEOPLE })
+        fetchItemByType({ id: id.id, typeOfData: TYPE_OF_DATA.PEOPLE })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
