@@ -4,7 +4,7 @@ import Home from "pages/Home";
 import Login from "pages/Login";
 import SignUp from "pages/SignUp";
 import Header from "components/Header";
-import ElementDetailPage from "components/ElementDetailPage";
+import ElementDetailPage from "pages/ElementDetailPage";
 import ErrorPage from "pages/ErrorPage";
 import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
