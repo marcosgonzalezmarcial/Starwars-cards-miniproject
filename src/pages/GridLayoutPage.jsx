@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useSearch } from "hooks/useSearch.js";
 import { useIsNearScreen } from "hooks/useIsNearScreen.js";
 import { Spinner } from "components/Spinner";
@@ -11,39 +11,36 @@ import { useData } from "hooks/useData";
 const GridLayoutPage = ({ mainPath }) => {
   const { searchResultsItems } = useSearch();
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
-  const { isLoading, data, setData } = useData();
-  console.log("render");
+  const { data, setData } = useData();
+
+  const memoizedData = useMemo(
+    () => ({
+      next: null,
+      isLoading: false,
+      planets: { data: [], page: 1 },
+      starships: { data: [], page: 1 },
+      characters: { data: [], page: 1 },
+    }),
+    [isNearScreen]
+  );
 
   useEffect(() => {
     // stops pagination when data is loading
-    if (isLoading) return;
-
-    // check if isNearScreen and mainPath to update correct data
-    if (isNearScreen) {
-      switch (mainPath) {
-        case "planets":
-          setData((prev) => ({
-            ...prev,
-            planetsPagination: data.planetsPagination + 1,
-          }));
-          break;
-        case "starships":
-          setData((prev) => ({
-            ...prev,
-            starshipsPagination: data.starshipsPagination + 1,
-          }));
-          break;
-        case "people":
-          setData((prev) => ({
-            ...prev,
-            charactersPagination: data.charactersPagination + 1,
-          }));
-          break;
-        default:
-          console.log("no valid route found");
-      }
+    if (data.isLoading) return;
+    if (data.starships.page >= 5 || data.next === undefined) {
+      setData((prev) => ({ ...prev, isLoading: false }));
+      return;
     }
-  }, [isNearScreen, isLoading, setData]);
+    if (isNearScreen) {
+      setData((prev) => ({
+        ...prev,
+        [mainPath]: {
+          ...data[mainPath],
+          page: data[mainPath].page + 1,
+        },
+      }));
+    }
+  }, [memoizedData]);
 
   if (searchResultsItems.length > 0) {
     return <SearchResults searchResultsItems={searchResultsItems} />;

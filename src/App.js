@@ -58,7 +58,10 @@ function App() {
               </Route>
 
               <Route path="characters" element={<NestedRoutes />}>
-                <Route index element={<GridLayoutPage mainPath="people" />} />
+                <Route
+                  index
+                  element={<GridLayoutPage mainPath="characters" />}
+                />
                 <Route path=":itemName" element={<ElementDetailPage />} />
               </Route>
 

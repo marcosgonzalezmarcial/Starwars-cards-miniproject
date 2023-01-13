@@ -1,130 +1,119 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect, useContext, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { getTransformedDataArray } from "services/getTransformedDataArray";
+import { getPathname } from "utils/getPathname";
 
 export const dataContext = createContext({});
 
 export const DataContextProvider = ({ children }) => {
   const [data, setData] = useState({
-    planets: [],
-    planetsPagination: 1,
-    starships: [],
-    starshipsPagination: 1,
-    characters: [],
-    charactersPagination: 1,
+    next: null,
+    isLoading: false,
+    planets: { data: [], page: 1 },
+    starships: { data: [], page: 1 },
+    characters: { data: [], page: 1 },
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   let location = useLocation();
-  let mainPath = location.pathname.slice(1).split("/")[0];
-  if (mainPath === "characters") {
-    mainPath = "people";
-  }
+  let mainPath = location.pathname.slice(1);
+
+  console.log(data);
+
+  const memoizedData = useMemo(
+    () => ({
+      next: null,
+      isLoading: false,
+      planets: { data: [], page: 1 },
+      starships: { data: [], page: 1 },
+      characters: { data: [], page: 1 },
+    }),
+    [data[mainPath].page]
+  );
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
+    setData((prev) => ({ ...prev, isLoading: true }));
+    if (data.starships.page >= 5 || data.next === undefined) {
+      console.log(data.next);
+      // setIsLoading(false);
+      setData((prev) => ({ ...prev, isLoading: false }));
+      return;
+    }
 
-    if (mainPath === "starships") {
-      // no items above pag 5
-      if (data.starshipsPagination >= 5) {
-        setIsLoading(false);
-        return;
-      }
+    // if (mainPath === "starships") {
 
+    // no items above pag 5
+    // if (data.starshipsPagination >= 5) {
+    //   setIsLoading(false);
+    //   return;
+    // }
+    let newPath;
+    if (mainPath === "characters") {
+      newPath = "people";
       getTransformedDataArray({
-        page: data.starshipsPagination,
-        typeOfData: mainPath,
+        // page: data.starshipsPagination,
+        page: data[mainPath].page,
+        typeOfData: newPath,
       })
-        .then((newData) => {
+        .then(({ transformedDataArray: newData, next }) => {
           //checking data is not null
           newData &&
             setData((prev) => ({
               ...prev,
-              // array of unique set of items with set
-              starships: [
-                ...new Set(
-                  [...data.starships, ...newData].map((o) => JSON.stringify(o))
-                ),
-              ].map((s) => JSON.parse(s)),
+              next,
+              [mainPath]: {
+                ...data[mainPath],
+                data: [
+                  ...new Set(
+                    [...data[mainPath].data, ...newData].map((o) =>
+                      JSON.stringify(o)
+                    )
+                  ),
+                ].map((s) => JSON.parse(s)),
+              },
             }));
         })
         .catch((error) => {
           console.log(error);
         })
         .finally(() => {
-          setIsLoading(false);
+          setData((prev) => ({ ...prev, isLoading: false }));
         });
+      return;
     }
-    if (mainPath === "planets") {
-      // if (data.planetsPagination === 1 && data.planets.length === 10) return;
-      if (data.planetsPagination >= 8) {
-        setIsLoading(false);
-        return;
-      }
-      getTransformedDataArray({
-        page: data.planetsPagination,
-        typeOfData: mainPath,
-      })
-        .then((newData) => {
-          //checking data is not null
-          newData &&
-            setData((prev) => ({
-              ...prev,
-              //
-              // unique set of items with set
-              planets: [
+
+    getTransformedDataArray({
+      // page: data.starshipsPagination,
+      page: data[mainPath].page,
+      typeOfData: mainPath,
+    })
+      .then(({ transformedDataArray: newData, next }) => {
+        //checking data is not null
+        newData &&
+          setData((prev) => ({
+            ...prev,
+            next,
+            [mainPath]: {
+              ...data[mainPath],
+              data: [
                 ...new Set(
-                  [...data.planets, ...newData].map((o) => JSON.stringify(o))
+                  [...data[mainPath].data, ...newData].map((o) =>
+                    JSON.stringify(o)
+                  )
                 ),
               ].map((s) => JSON.parse(s)),
-            }));
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-    if (mainPath === "people") {
-      // if (data.charactersPagination === 1 && data.characters.length === 10)
-      //   return;
-      if (data.charactersPagination >= 10) {
-        setIsLoading(false);
-        return;
-      }
-      getTransformedDataArray({
-        page: data.charactersPagination,
-        typeOfData: mainPath,
+            },
+          }));
       })
-        .then((newData) => {
-          //checking data is not null
-          newData &&
-            setData((prev) => ({
-              ...prev,
-              // unique set of items with set
-              characters: [
-                ...new Set(
-                  [...data.characters, ...newData].map((o) => JSON.stringify(o))
-                ),
-              ].map((s) => JSON.parse(s)),
-            }));
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-  }, [
-    mainPath,
-    data.charactersPagination,
-    data.planetsPagination,
-    data.starshipsPagination,
-  ]);
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setData((prev) => ({ ...prev, isLoading: false }));
+      });
+  }, [mainPath, memoizedData]);
   return (
-    <dataContext.Provider value={{ isLoading, data, setData }}>
+    <dataContext.Provider value={{ data, setData }}>
       {children}
     </dataContext.Provider>
   );

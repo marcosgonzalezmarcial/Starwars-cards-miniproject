@@ -1,9 +1,11 @@
 import { API_URL } from "../constants";
+import { getPathname } from "utils/getPathname";
 
-export const fetchDataByTypeAndPage = async ({ page, typeOfData }) => {
+export const fetchDataByTypeAndPage = async ({ page }) => {
+  let typeOfData = getPathname();
   const apiUrl = `${API_URL}/${typeOfData}/?page=${page}`;
-  const { results } = await fetch(apiUrl)
+  const { results, next } = await fetch(apiUrl)
     .then((result) => result.json())
     .catch((error) => console.log(error));
-  return results;
+  return { results, next };
 };

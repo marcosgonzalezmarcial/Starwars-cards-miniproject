@@ -2,10 +2,16 @@ import { transformDataArray } from "../utils/transformDataArray";
 import { fetchDataByTypeAndPage } from "./fetchDataByTypeAndPage";
 
 export const getTransformedDataArray = async ({ page, typeOfData }) => {
+  // console.log("transform");
   try {
-    const fetchedData = await fetchDataByTypeAndPage({ page, typeOfData });
-    const modifiedDataArray = transformDataArray({ fetchedData, typeOfData });
-    return modifiedDataArray;
+    const { results: fetchedData, next } = await fetchDataByTypeAndPage({
+      page,
+    });
+    const transformedDataArray = transformDataArray({
+      fetchedData,
+      typeOfData,
+    });
+    return { transformedDataArray, next };
   } catch (error) {
     console.log(error);
     return null;
