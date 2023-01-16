@@ -12,12 +12,9 @@ export const DataContextProvider = ({ children }) => {
     starships: { data: [], page: 1 },
     characters: { data: [], page: 1 },
   });
-  // console.log(data.next);
 
   let location = useLocation();
   let mainPath = location.pathname.slice(1);
-
-  // const currentPath = data[mainPath].page;
 
   const memoizedData = useMemo(
     () => ({
@@ -27,7 +24,7 @@ export const DataContextProvider = ({ children }) => {
       starships: { data: [], page: 1 },
       characters: { data: [], page: 1 },
     }),
-    // [data[mainPath].page]
+    // eslint-disable-next-line
     [data.starships.page, data.planets.page, data.characters.page]
   );
 
@@ -36,7 +33,6 @@ export const DataContextProvider = ({ children }) => {
 
     getTransformedDataArray({
       page: data[mainPath].page,
-      typeOfData: mainPath,
     })
       .then(({ transformedDataArray: newData, next }) => {
         //checking data is not null
@@ -65,6 +61,7 @@ export const DataContextProvider = ({ children }) => {
         setData((prev) => ({ ...prev, isLoading: false }));
       });
     // return () => setData((prev) => ({ ...prev, next: null }));
+    // eslint-disable-next-line
   }, [mainPath, memoizedData, setData]);
   return (
     <dataContext.Provider value={{ data, setData }}>

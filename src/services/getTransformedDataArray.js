@@ -1,11 +1,9 @@
-import { transformDataArray } from "../utils/transformDataArray";
+import { transformDataArray } from "utils/transformDataArray";
 import { fetchDataByPage } from "./fetchDataByPage";
+import { getPathname } from "utils/getPathname";
 
-export const getTransformedDataArray = async ({ page, typeOfData }) => {
-  let newPath = typeOfData;
-  if (typeOfData === "characters") {
-    newPath = "people";
-  }
+export const getTransformedDataArray = async ({ page }) => {
+  const newPath = getPathname();
   try {
     const { results: fetchedData, next } = await fetchDataByPage({
       page,

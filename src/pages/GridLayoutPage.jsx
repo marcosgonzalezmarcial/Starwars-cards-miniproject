@@ -27,7 +27,6 @@ const GridLayoutPage = ({ mainPath }) => {
   useEffect(() => {
     // stops pagination when data is loading
     if (data.isLoading) return;
-
     // stops pagination if next fetch is not possible
     if (!data.next) return;
 
