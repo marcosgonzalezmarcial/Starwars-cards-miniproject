@@ -1,9 +1,12 @@
+import { memo } from "react";
 import { Spinner } from "components/Spinner";
 import GridItemLinkCard from "components/GridItemLinkCard";
 import { useData } from "hooks/useData";
+import { getPathname } from "utils/getPathname";
 
-export const GridItems = ({ mainPath }) => {
+const GridItems = () => {
   const { data } = useData();
+  let mainPath = getPathname();
 
   return (
     <>
@@ -19,3 +22,5 @@ export const GridItems = ({ mainPath }) => {
     </>
   );
 };
+
+export default memo(GridItems);

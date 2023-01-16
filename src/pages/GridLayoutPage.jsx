@@ -2,14 +2,17 @@ import { useEffect, useMemo } from "react";
 import { useSearch } from "hooks/useSearch.js";
 import { useIsNearScreen } from "hooks/useIsNearScreen.js";
 import SearchResults from "components/SearchResults";
-import { GridItems } from "components/GridItems";
-import "../styles.scss";
+import GridItems from "components/GridItems";
 import { useData } from "hooks/useData";
+import "../styles.scss";
 
 const GridLayoutPage = ({ mainPath }) => {
   const { searchResultsItems } = useSearch();
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
-  const { data, setData } = useData();
+  const {
+    data: { isLoading, next },
+    setData,
+  } = useData();
 
   const memoizedData = useMemo(
     () => ({
@@ -23,12 +26,12 @@ const GridLayoutPage = ({ mainPath }) => {
     [isNearScreen]
   );
 
-  // Only run the effect when memoized Object changes and that only changes when isNearScreen changes
+  // Only run the effect when memoized Object changes and that only changes when isNearScreen paginates
   useEffect(() => {
     // stops pagination when data is loading
-    if (data.isLoading) return;
+    if (isLoading) return;
     // stops pagination if next fetch is not possible
-    if (!data.next) return;
+    if (!next) return;
 
     if (isNearScreen) {
       setData((prev) => ({
@@ -39,15 +42,7 @@ const GridLayoutPage = ({ mainPath }) => {
         },
       }));
     }
-    // return () => setData((prev) => ({ ...prev, next: null }));
-  }, [
-    mainPath,
-    memoizedData,
-    data.isLoading,
-    data.next,
-    setData,
-    isNearScreen,
-  ]);
+  }, [mainPath, memoizedData, isLoading, next, setData, isNearScreen]);
 
   if (searchResultsItems.length > 0) {
     return <SearchResults searchResultsItems={searchResultsItems} />;
@@ -55,7 +50,7 @@ const GridLayoutPage = ({ mainPath }) => {
 
   return (
     <>
-      <GridItems mainPath={mainPath} />
+      <GridItems />
       <div ref={fromRef}></div>
     </>
   );
