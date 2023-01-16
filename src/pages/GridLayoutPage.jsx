@@ -1,11 +1,9 @@
 import { useEffect, useMemo } from "react";
 import { useSearch } from "hooks/useSearch.js";
 import { useIsNearScreen } from "hooks/useIsNearScreen.js";
-import { Spinner } from "components/Spinner";
 import SearchResults from "components/SearchResults";
 import { GridItems } from "components/GridItems";
 import "../styles.scss";
-import GridItemLinkCard from "components/GridItemLinkCard";
 import { useData } from "hooks/useData";
 
 const GridLayoutPage = ({ mainPath }) => {
@@ -21,26 +19,36 @@ const GridLayoutPage = ({ mainPath }) => {
       starships: { data: [], page: 1 },
       characters: { data: [], page: 1 },
     }),
+    // eslint-disable-next-line
     [isNearScreen]
   );
 
+  // Only run the effect when memoized Object changes and that only changes when isNearScreen changes
   useEffect(() => {
     // stops pagination when data is loading
     if (data.isLoading) return;
-    if (data.starships.page >= 5 || data.next === undefined) {
-      setData((prev) => ({ ...prev, isLoading: false }));
-      return;
-    }
+
+    // stops pagination if next fetch is not possible
+    if (!data.next) return;
+
     if (isNearScreen) {
       setData((prev) => ({
         ...prev,
         [mainPath]: {
-          ...data[mainPath],
-          page: data[mainPath].page + 1,
+          ...prev[mainPath],
+          page: prev[mainPath].page + 1,
         },
       }));
     }
-  }, [memoizedData]);
+    // return () => setData((prev) => ({ ...prev, next: null }));
+  }, [
+    mainPath,
+    memoizedData,
+    data.isLoading,
+    data.next,
+    setData,
+    isNearScreen,
+  ]);
 
   if (searchResultsItems.length > 0) {
     return <SearchResults searchResultsItems={searchResultsItems} />;

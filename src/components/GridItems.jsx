@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { Spinner } from "components/Spinner";
 import GridItemLinkCard from "components/GridItemLinkCard";
 import { useData } from "hooks/useData";

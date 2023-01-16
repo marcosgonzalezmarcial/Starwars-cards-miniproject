@@ -1,4 +1,4 @@
-import { useCallback, useContext, memo } from "react";
+import { useCallback, useContext } from "react";
 import { Navbar } from "react-bootstrap";
 import smallLogo from "assets/sw_logo_mobile.png";
 import bigLogo from "assets/star-wars-logo.jpg";
