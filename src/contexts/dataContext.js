@@ -33,7 +33,6 @@ export const DataContextProvider = ({ children }) => {
     setData((prev) => ({ ...prev, isLoading: true }));
 
     getTransformedDataArray({
-      // page: data[mainPath].page,
       page: currentPage,
     })
       .then(({ transformedDataArray: newData, next }) => {
