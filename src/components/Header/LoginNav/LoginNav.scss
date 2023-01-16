@@ -1,0 +1,54 @@
+.navbar-box {
+	line-height: 2.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: max-height 275ms ease-in-out;
+    
+    .login-nav-link {
+	    font-size: 0.8em;
+	    font-weight: 800;
+	    color: #999;
+		padding-block: 0.5rem;
+    }
+
+    .login-nav-link:hover {
+        color: #ccc;
+    }
+    
+    &:is(.expanded, .collapsed.hide,.collapsed.show) {
+        @media (min-width: 768px) {         
+            display: flex;
+        }
+    }
+	
+	@media (max-width: 767px) {
+        &:is(.expanded, .collapsed.hide) {
+            max-height: 0;
+        }
+		&.collapsed.show {
+			max-height: 112px;
+		}
+        &.collapsed.show.loggedin {
+			max-height: 38px;
+		}
+	} 
+}
+
+
+@media (max-width: 900px) {
+	.login-nav-link {
+		font-size: 0.875em;
+		text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+		font-weight: 700;
+		letter-spacing: 2px;
+		line-height: 1rem;
+	}
+}
+
+@media (min-width: 768px) {
+	.navbar-box {
+		margin-inline-start: auto;
+		grid-row: 1 / 2;
+		grid-column: 3 / 4;
+	}
+}

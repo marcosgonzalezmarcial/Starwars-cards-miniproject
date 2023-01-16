@@ -1,11 +1,11 @@
-import { LandingAnimation } from '../components/LandingAnimation/LandingAnimation'
+import { LandingAnimation } from "components/LandingAnimation";
 
 const Home = () => {
   return (
     <main className="animation-wrapper">
-        <LandingAnimation />
+      <LandingAnimation />
     </main>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

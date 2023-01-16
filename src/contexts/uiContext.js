@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useCallback } from "react";
 
 const uiContext = createContext({});
 
@@ -6,9 +6,12 @@ function UiContextProvider({ children }) {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const closeModal = () => setShowModal(false);
-  const openModal = () => setShowModal(true);
-  const handleToggle = () => setToggleMenu((prev) => !prev);
+  const closeModal = useCallback(() => setShowModal(false), [setShowModal]);
+  const openModal = useCallback(() => setShowModal(true), [setShowModal]);
+  const handleToggle = useCallback(
+    () => setToggleMenu((prev) => !prev),
+    [setToggleMenu]
+  );
 
   return (
     <uiContext.Provider

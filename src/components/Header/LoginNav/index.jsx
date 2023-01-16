@@ -1,11 +1,12 @@
 import React, { useCallback, useContext } from "react";
 import { Link } from "react-router-dom";
-import "./Header.scss";
-
-import { uiContext } from "../../contexts/uiContext";
+import { uiContext } from "contexts/uiContext";
+import "../Header.scss";
+import "./LoginNav.scss";
 
 const LoginNav = ({ loggedIn, setLoggedIn }) => {
   const { toggleMenu, handleToggle } = useContext(uiContext);
+  
   const dynamicStyles = useCallback(() => {
     if (!loggedIn) {
       if (window.innerWidth > 768) return "expanded";
