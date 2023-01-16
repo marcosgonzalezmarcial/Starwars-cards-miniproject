@@ -1,6 +1,8 @@
-import { fetchData } from './fetchData'
-
 export async function fetchListOfDataFromUrlsArr(filmsUrls = []) {
-  const filmsPromises = filmsUrls?.map((url) => fetchData(url))
-  return Promise.all(filmsPromises)
+  const filmsPromises = filmsUrls?.map((url) =>
+    fetch(url)
+      .then((result) => result.json())
+      .catch(console.log)
+  );
+  return Promise.all(filmsPromises);
 }

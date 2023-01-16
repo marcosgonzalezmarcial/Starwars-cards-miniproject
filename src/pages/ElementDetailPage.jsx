@@ -21,7 +21,7 @@ export const Element = ({ mainPath, elementData }) => {
   }
 };
 
-const ElementDetailPage = () => {
+const ElementDetailPage = ({ children }) => {
   let { itemName } = useParams();
   let location = useLocation();
 
@@ -35,8 +35,6 @@ const ElementDetailPage = () => {
     typeOfData: mainPath,
   });
 
-  // const data = useShip({ mainPath, typeOfData: mainPath, paramFromUrl });
-
   return (
     <>
       {loading ? (
@@ -44,6 +42,7 @@ const ElementDetailPage = () => {
       ) : (
         <main className="main text-secondary">
           <Element mainPath={mainPath} elementData={elementData} />
+          {children}
         </main>
       )}
     </>
