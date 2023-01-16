@@ -14,7 +14,9 @@ export const DataContextProvider = ({ children }) => {
   });
 
   let location = useLocation();
-  let mainPath = location.pathname.slice(1);
+  let mainPath = location.pathname.slice(1).split("/")[0];
+
+  console.log(mainPath);
 
   const memoizedData = useMemo(
     () => ({
@@ -60,7 +62,6 @@ export const DataContextProvider = ({ children }) => {
       .finally(() => {
         setData((prev) => ({ ...prev, isLoading: false }));
       });
-    // return () => setData((prev) => ({ ...prev, next: null }));
     // eslint-disable-next-line
   }, [mainPath, memoizedData, setData]);
   return (

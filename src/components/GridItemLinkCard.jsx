@@ -13,9 +13,9 @@ const GridItemLinkCard = ({ item }) => {
       </div>
       <div className="text-secondary bg-dark p-3 grid-card-info">
         <h4>{item?.name}</h4>
-        {<p>{item?.model}</p>}
+        {<p>{item.name ?? item.model}</p>}
         {<p>{item?.terrain}</p>}
-        {<p>{item?.species}</p>}
+        {/* {<p>{item?.species}</p>} */}
       </div>
     </Link>
   );

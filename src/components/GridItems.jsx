@@ -11,7 +11,7 @@ export const GridItems = ({ mainPath }) => {
       {data[mainPath]?.data?.length === 0 && <Spinner />}
       <div className="my-3 my-md-4 grid-container">
         {data[mainPath]?.data?.map((item) => (
-          <GridItemLinkCard key={item.model || item.name} item={item} />
+          <GridItemLinkCard key={item.model ?? item.name} item={item} />
         ))}
         {data.isLoading && data[mainPath]?.data.length > 0 && <Spinner />}
       </div>
