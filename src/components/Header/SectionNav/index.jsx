@@ -1,31 +1,37 @@
-import { useCallback, memo } from "react";
+import { useCallback, memo, useContext } from "react";
 import { Col, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./SectionNav.scss";
+import { uiContext } from "contexts/uiContext";
 
 const SectionNav = () => {
-  const renderSections = useCallback(
-    () =>
-      ["planets", "starships", "characters"].map((section) => (
-        <Col key={section} className="border-silver">
-          <Nav.Item>
-            <NavLink className="nav-link text-center py-1" to={section}>
-              {({ isActive }) => (
-                <>
-                  <div className="py-1 position-realitive">
-                    <div
-                      className={isActive ? "active-link-light-saber" : ""}
-                    ></div>
-                    <span>{section.toUpperCase()}</span>
-                  </div>
-                </>
-              )}
-            </NavLink>
-          </Nav.Item>
-        </Col>
-      )),
-    []
-  );
+  const { setToggleMenu } = useContext(uiContext);
+
+  const handleClick = () => setToggleMenu(false);
+
+  const renderSections = () =>
+    ["planets", "starships", "characters"].map((section) => (
+      <Col key={section} className="border-silver">
+        <Nav.Item>
+          <NavLink
+            onClick={handleClick}
+            className="nav-link text-center py-1"
+            to={section}
+          >
+            {({ isActive }) => (
+              <>
+                <div className="py-1 position-realitive">
+                  <div
+                    className={isActive ? "active-link-light-saber" : ""}
+                  ></div>
+                  <span>{section.toUpperCase()}</span>
+                </div>
+              </>
+            )}
+          </NavLink>
+        </Nav.Item>
+      </Col>
+    ));
 
   return (
     <div className="border-wrapper">
