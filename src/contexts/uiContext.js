@@ -1,25 +1,29 @@
-import { createContext, useState, useCallback, useEffect, useRef } from "react";
+import {
+  createContext,
+  useState,
+  useCallback /*useEffect, useRef*/,
+} from "react";
 
 // it might be a project-level reusable hook
-const useToggle = (initialState) => {
-  const [isToggled, setIsToggled] = useState(initialState);
-  const isToggledRef = useRef(isToggled);
+// const useToggle = (initialState) => {
+//   const [isToggled, setIsToggled] = useState(initialState);
+//   const isToggledRef = useRef(isToggled);
 
-  // put [isToggledRef, setIsToggled] into the useCallback's dependencies array
-  // these values never change so the calllback is not going to be ever re-created
-  const toggle = useCallback(
-    () => setIsToggled(!isToggledRef.current),
-    [isToggledRef, setIsToggled]
-  );
+//   // put [isToggledRef, setIsToggled] into the useCallback's dependencies array
+//   // these values never change so the calllback is not going to be ever re-created
+//   const toggle = useCallback(
+//     () => setIsToggled(!isToggledRef.current),
+//     [isToggledRef, setIsToggled]
+//   );
 
-  // keep the value in isToggledRef actual
-  // when isToggled changes, isToggledRef is updated accordingly
-  useEffect(() => {
-    isToggledRef.current = isToggled;
-  }, [isToggled]);
+//   // keep the value in isToggledRef actual
+//   // when isToggled changes, isToggledRef is updated accordingly
+//   useEffect(() => {
+//     isToggledRef.current = isToggled;
+//   }, [isToggled]);
 
-  return [isToggled, toggle];
-};
+//   return [isToggled, toggle];
+// };
 
 const uiContext = createContext({});
 

@@ -15,7 +15,7 @@
         color: #ccc;
     }
     
-    &:is(.expanded, .collapsed.hide,.collapsed.show) {
+    &:is(.expanded, .collapsed.hide, .collapsed.show) {
         @media (min-width: 768px) {         
             display: flex;
         }

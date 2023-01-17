@@ -7,14 +7,14 @@ import { uiContext } from "contexts/uiContext";
 const SectionNav = () => {
   const { setToggleMenu } = useContext(uiContext);
 
-  const handleClick = () => setToggleMenu(false);
+  const handleCloseClick = () => setToggleMenu(false);
 
   const renderSections = () =>
     ["planets", "starships", "characters"].map((section) => (
       <Col key={section} className="border-silver">
         <Nav.Item>
           <NavLink
-            onClick={handleClick}
+            onClick={handleCloseClick}
             className="nav-link text-center py-1"
             to={section}
           >

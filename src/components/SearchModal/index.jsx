@@ -1,11 +1,13 @@
-import { useRef, useState, memo } from "react";
+import { useRef, useState, memo, useContext } from "react";
 import { Form, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { TYPE_OF_DATA } from "../../constants";
 import "./SearchModal.scss";
+import { uiContext } from "contexts/uiContext";
 
-const SearchModal = ({ show, onHide }) => {
+const SearchModal = () => {
   const [searchCategory, setSearchCategory] = useState(null);
+  const { showModal, closeModal } = useContext(uiContext);
 
   let navigate = useNavigate();
 
@@ -14,7 +16,7 @@ const SearchModal = ({ show, onHide }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/${searchCategory}/?search=${inputRef.current.value}`);
-    onHide();
+    closeModal();
   };
 
   const handleSelection = (e) => {
@@ -27,9 +29,8 @@ const SearchModal = ({ show, onHide }) => {
 
   return (
     <Modal
-      show={show}
-      onHide={onHide}
-      // size="lg"
+      show={showModal}
+      onHide={closeModal}
       aria-labelledby="contained-modal-title-vcenter"
       centered
       dialogClassName="search-modal"

@@ -29,7 +29,7 @@ const Header = ({ loggedIn, setLoggedIn }) => {
       <Navbar variant="dark" className="py-1">
         <div className="navbar-container text-center position-relative justify-content-end px-0">
           <ToggleMenuBtn />
-          <SearchModal show={showModal} onHide={closeModal} />
+          <SearchModal />
           <Navbar.Brand className="m-0 py-3 px-2 p-md-0">
             <Link className="navbar-link p-2" to="/">
               <picture>
@@ -41,7 +41,7 @@ const Header = ({ loggedIn, setLoggedIn }) => {
           </Navbar.Brand>
           <button
             className="search-icon-btn ms-auto me-md-auto ms-md-0"
-            onClick={() => handleSearchClick()}
+            onClick={handleSearchClick}
           >
             <SearchIcon
               onClick={() => {
