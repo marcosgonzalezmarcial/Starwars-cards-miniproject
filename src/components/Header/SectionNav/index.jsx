@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, memo } from "react";
 import { Col, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./SectionNav.scss";
@@ -38,4 +38,4 @@ const SectionNav = () => {
   );
 };
 
-export default SectionNav;
+export default memo(SectionNav);
