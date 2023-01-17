@@ -2,11 +2,9 @@ import { memo } from "react";
 import { Spinner } from "components/Spinner";
 import GridItemLinkCard from "components/GridItemLinkCard";
 import { useData } from "hooks/useData";
-import { getPathname } from "utils/getPathname";
 
-const GridItems = () => {
+const GridItems = ({ mainPath }) => {
   const { data } = useData();
-  let mainPath = getPathname();
 
   return (
     <>
@@ -18,7 +16,6 @@ const GridItems = () => {
         ))}
         {data.isLoading && data[mainPath]?.data.length > 0 && <Spinner />}
       </div>
-      )}
     </>
   );
 };

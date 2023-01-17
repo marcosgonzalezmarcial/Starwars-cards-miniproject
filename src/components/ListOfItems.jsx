@@ -1,4 +1,4 @@
-import { useCallback, memo } from "react";
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "components/Spinner";
 import { useLisOfData } from "hooks/useListOfData";

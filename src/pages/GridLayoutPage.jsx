@@ -50,7 +50,7 @@ const GridLayoutPage = ({ mainPath }) => {
 
   return (
     <>
-      <GridItems />
+      <GridItems mainPath={mainPath} />
       <div ref={fromRef}></div>
     </>
   );

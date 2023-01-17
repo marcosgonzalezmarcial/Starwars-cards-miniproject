@@ -21,12 +21,11 @@ export const useSearch = () => {
           if (!results) {
             return <h1>No results found</h1>;
           } else {
-            console.log(category);
             const newArr = transformDataArray({
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.PLANETS,
             });
-            setSearchResultsItems(() => [...newArr]);
+            setSearchResultsItems((prev) => [...prev, ...newArr]);
           }
         });
     }
@@ -41,7 +40,7 @@ export const useSearch = () => {
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.PEOPLE,
             });
-            setSearchResultsItems(() => [...newArr]);
+            setSearchResultsItems((prev) => [...prev, ...newArr]);
           }
         });
     }
@@ -56,7 +55,7 @@ export const useSearch = () => {
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.STARSHIPS,
             });
-            setSearchResultsItems(() => [...newArr]);
+            setSearchResultsItems((prev) => [...prev, ...newArr]);
           }
         });
     }
