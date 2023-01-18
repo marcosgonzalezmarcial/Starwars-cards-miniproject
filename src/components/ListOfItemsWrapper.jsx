@@ -38,7 +38,7 @@ const ListOfItemsWrapper = ({ itemType, elementData, itemSubType }) => {
           </>
         )}
       </div>
-      {dynamicSize.height > 130 && window.innerWidth < 576 && (
+      {dynamicSize.height > 130 && window.innerWidth < 700 && (
         <input type="checkbox" className="expand-btn" />
       )}
     </>

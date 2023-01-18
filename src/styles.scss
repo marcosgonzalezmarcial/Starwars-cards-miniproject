@@ -161,7 +161,7 @@
 
 	img[src*="Films"] {
 		@media (max-width: 575px) {
-		object-position: top;
+		object-position: 50% 30%;
 		}
 	}
 
@@ -342,6 +342,9 @@
 			bottom: 0;
 			pointer-events: none;
 			background: linear-gradient(to bottom, transparent, rgb(33, 37, 41));
+			@media (min-width: 576px) and (max-width: 700px) {
+				height: 0;
+			}
 		}
 	}
 }
@@ -356,6 +359,9 @@
 	width: 100px;
 	position: relative;
 	font-size: 0.75rem;
+	@media (min-width: 576px) and (max-width: 700px) {
+		display: none;
+	}
 }
 
 .expand-btn::before {
@@ -403,15 +409,16 @@
 }
 
 @media (min-width: 576px) {
+	
 	.main:has(img[src*="Planets"]) {
 		.cutoff-text {
-			--max-lines: 7;
+			--max-lines: 3;
 		}
 	}
 
 	.main:has(img[src*="Films"]) {
 		.cutoff-text {
-			--max-lines: 8;
+			--max-lines: 7;
 		}
 	}
 
@@ -421,6 +428,22 @@
 		}
 	}
 }
+
+@media (min-width: 700px) {
+	.main:has(img[src*="Planets"]) {
+		.cutoff-text {
+			--max-lines: 7;
+		}
+	}
+	}
+@media (min-width: 700px) {
+	.main:has(img[src*="Films"]) {
+		.cutoff-text {
+			--max-lines: 10;
+		}
+	}
+	}
+
 
 
 //////// end of View more functionallity /////////////////
