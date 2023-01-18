@@ -160,7 +160,9 @@
 	}
 
 	img[src*="Films"] {
-		object-position: bottom;
+		@media (max-width: 575px) {
+		object-position: top;
+		}
 	}
 
 	img[src*="Planets"] {
@@ -409,7 +411,7 @@
 
 	.main:has(img[src*="Films"]) {
 		.cutoff-text {
-			--max-lines: 7;
+			--max-lines: 8;
 		}
 	}
 

@@ -5,7 +5,11 @@ const Film = ({ elementData }) => {
   return (
     <>
       <div className="page-img-container">
-        <img src={elementData.imgUrl} alt={elementData.title} />
+        <picture>
+          <source media="(max-width: 575px)" srcSet={elementData.image_small} />
+          <source media="(min-width: 576px)" srcSet={elementData.imgUrl} />
+          <img src={elementData.imgUrl} alt={elementData.title} />
+        </picture>
       </div>
       <div className="page-description-container bg-dark p-2">
         <h1 className="mb-1 mb-sm-3 pt-1 px-2">{elementData.title}</h1>

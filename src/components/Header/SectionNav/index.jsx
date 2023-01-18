@@ -1,4 +1,4 @@
-import { useCallback, memo, useContext } from "react";
+import { memo, useContext } from "react";
 import { Col, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./SectionNav.scss";

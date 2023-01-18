@@ -11,6 +11,7 @@ export const DataContextProvider = ({ children }) => {
     planets: { data: [], page: 1 },
     starships: { data: [], page: 1 },
     characters: { data: [], page: 1 },
+    films: { data: [], page: 1 },
   });
 
   let location = useLocation();
@@ -24,6 +25,7 @@ export const DataContextProvider = ({ children }) => {
       planets: { data: [], page: 1 },
       starships: { data: [], page: 1 },
       characters: { data: [], page: 1 },
+      films: { data: [], page: 1 },
     }),
     // eslint-disable-next-line
     [currentPage]
