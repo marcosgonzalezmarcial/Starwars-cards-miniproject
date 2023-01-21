@@ -25,7 +25,7 @@ import {
 //   return [isToggled, toggle];
 // };
 
-const uiContext = createContext({});
+const UiContext = createContext({});
 
 function UiContextProvider({ children }) {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -44,19 +44,18 @@ function UiContextProvider({ children }) {
   );
 
   return (
-    <uiContext.Provider
+    <UiContext.Provider
       value={{
         toggleMenu,
         handleToggle,
         openModal,
         closeModal,
         showModal,
-        setToggleMenu,
       }}
     >
       {children}
-    </uiContext.Provider>
+    </UiContext.Provider>
   );
 }
 
-export { uiContext, UiContextProvider };
+export { UiContext, UiContextProvider };

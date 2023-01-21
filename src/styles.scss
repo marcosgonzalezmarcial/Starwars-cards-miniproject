@@ -34,7 +34,9 @@
 
 		&[src*="vignette"] {
 			object-position: (50% 30%);
+			
 		}
+		
 	}
 }
 
@@ -157,6 +159,9 @@
 
 	img[src*="vignette"] {
 		object-position: 50% 30%;
+		@media (max-width: 576px) {
+			object-position: (50% 10%);
+		}
 	}
 
 	img[src*="Films"] {

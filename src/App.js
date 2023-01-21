@@ -10,7 +10,7 @@ import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
 import GridLayoutPage from "pages/GridLayoutPage";
 
-import { UiContextProvider } from "contexts/uiContext";
+import { UiContextProvider } from "contexts/UiContext";
 import { DataContextProvider } from "contexts/dataContext";
 
 function App() {

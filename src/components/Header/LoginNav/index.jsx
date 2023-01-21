@@ -1,12 +1,12 @@
 import React, { useCallback, useContext } from "react";
 import { Link } from "react-router-dom";
-import { uiContext } from "contexts/uiContext";
+import { UiContext } from "contexts/UiContext";
 import "../Header.scss";
 import "./LoginNav.scss";
 
 const LoginNav = ({ loggedIn, setLoggedIn }) => {
-  const { toggleMenu, handleToggle } = useContext(uiContext);
-  
+  const { toggleMenu, handleToggle } = useContext(UiContext);
+
   const dynamicStyles = useCallback(() => {
     if (!loggedIn) {
       if (window.innerWidth > 768) return "expanded";
@@ -18,11 +18,16 @@ const LoginNav = ({ loggedIn, setLoggedIn }) => {
     return "loggedin hide collapsed";
   }, [toggleMenu, loggedIn]);
 
+  const handleCLickLogin = useCallback(
+    () => setLoggedIn((prev) => !prev),
+    [setLoggedIn]
+  );
+
   return (
     <div className={`navbar-box ${dynamicStyles()}`}>
       {loggedIn ? (
         <Link
-          onClick={() => setLoggedIn((prev) => !prev)}
+          onClick={handleCLickLogin}
           to="/"
           className="nav-link login-nav-link"
         >

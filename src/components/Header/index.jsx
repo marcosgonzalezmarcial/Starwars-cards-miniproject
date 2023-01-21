@@ -8,11 +8,11 @@ import LoginNav from "components/Header/LoginNav";
 import ToggleMenuBtn from "components/Header/ToggleMenuBtn";
 import SearchIcon from "components/Header/SearchIcon";
 import SearchModal from "components/SearchModal";
-import { uiContext } from "contexts/uiContext";
+import { UiContext } from "contexts/UiContext";
 import "./Header.scss";
 
 const Header = ({ loggedIn, setLoggedIn }) => {
-  const { showModal, openModal, closeModal } = useContext(uiContext);
+  const { showModal, openModal, closeModal } = useContext(UiContext);
 
   let navigate = useNavigate();
 

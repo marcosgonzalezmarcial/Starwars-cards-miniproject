@@ -2,19 +2,17 @@ import { memo, useContext } from "react";
 import { Col, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./SectionNav.scss";
-import { uiContext } from "contexts/uiContext";
+import { UiContext } from "contexts/UiContext";
 
 const SectionNav = () => {
-  const { setToggleMenu } = useContext(uiContext);
-
-  const handleCloseClick = () => setToggleMenu(false);
+  const { handleToggle } = useContext(UiContext);
 
   const renderSections = () =>
-    ["planets", "starships", "characters"].map((section) => (
+    ["planets", "characters", "starships"].map((section) => (
       <Col key={section} className="border-silver">
         <Nav.Item>
           <NavLink
-            onClick={handleCloseClick}
+            onClick={handleToggle}
             className="nav-link text-center py-1"
             to={section}
           >
