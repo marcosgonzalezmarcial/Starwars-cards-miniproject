@@ -11,7 +11,7 @@ import NestedRoutes from "pages/NestedRoutes";
 import GridLayoutPage from "pages/GridLayoutPage";
 
 import { UiContextProvider } from "contexts/UiContext";
-import { DataContextProvider } from "contexts/dataContext";
+import { DataContextProvider } from "contexts/DataContext";
 
 function App() {
   const [users, setUsers] = useState(

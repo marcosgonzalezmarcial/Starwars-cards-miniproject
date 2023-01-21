@@ -2,7 +2,7 @@ import { createContext, useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { getTransformedDataArray } from "services/getTransformedDataArray";
 
-export const dataContext = createContext(null);
+export const DataContext = createContext(null);
 
 export const DataContextProvider = ({ children }) => {
   const [data, setData] = useState({
@@ -65,8 +65,8 @@ export const DataContextProvider = ({ children }) => {
       });
   }, [mainPath, memoizedData, setData, currentPage]);
   return (
-    <dataContext.Provider value={{ data, setData }}>
+    <DataContext.Provider value={{ data, setData }}>
       {children}
-    </dataContext.Provider>
+    </DataContext.Provider>
   );
 };
