@@ -1,10 +1,7 @@
-import {
-  createContext,
-  useState,
-  useCallback /*useEffect, useRef*/,
-} from "react";
+import { createContext, useState, useCallback, useMemo } from "react";
 
 // it might be a project-level reusable hook
+
 // const useToggle = (initialState) => {
 //   const [isToggled, setIsToggled] = useState(initialState);
 //   const isToggledRef = useRef(isToggled);
@@ -25,33 +22,65 @@ import {
 //   return [isToggled, toggle];
 // };
 
-const UiContext = createContext({});
+const UiContext = createContext(null);
 
 function UiContextProvider({ children }) {
-  const [toggleMenu, setToggleMenu] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  // const [toggleMenu, setToggleMenu] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   // const [isToggled, toggle] = useToggle(false);
 
-  const closeModal = useCallback(
-    () => setShowModal(() => false),
-    [setShowModal]
-  );
-  const openModal = useCallback(() => setShowModal(true), [setShowModal]);
+  const [uiState, setUiState] = useState({
+    toggleMenu: false,
+    showModal: false,
+  });
 
-  const handleToggle = useCallback(
-    () => setToggleMenu((prev) => !prev),
-    [setToggleMenu]
+  console.log("UiContextProvider render");
+
+  const handleToggleMenu = useCallback(
+    () =>
+      setUiState((uiPrevState) => ({
+        ...uiPrevState,
+        toggleMenu: !uiPrevState.toggleMenu,
+      })),
+    []
+  );
+  const handleToggleModal = useCallback(
+    () =>
+      setUiState((uiPrevState) => ({
+        ...uiPrevState,
+        showModal: !uiPrevState.showModal,
+      })),
+    []
+  );
+  // const handleToggleMenu = useCallback(
+  //   () => setToggleMenu((prev) => !prev),
+  //   []
+  // );
+  // const handleToggleModal = useCallback(
+  //   () => setShowModal((prev) => !prev),
+  //   []
+  // );
+
+  const value = useMemo(
+    () => ({
+      toggleMenu: uiState.toggleMenu,
+      handleToggleMenu,
+      showModal: uiState.showModal,
+      handleToggleModal,
+    }),
+    [uiState.toggleMenu, uiState.showModal]
   );
 
   return (
     <UiContext.Provider
-      value={{
-        toggleMenu,
-        handleToggle,
-        openModal,
-        closeModal,
-        showModal,
-      }}
+      value={value}
+      // value={{
+      //   toggleMenu,
+      //   handleToggle,
+      //   closeModal,
+      //   showModal,
+      //   handleToggleModal,
+      // }}
     >
       {children}
     </UiContext.Provider>

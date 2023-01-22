@@ -10,7 +10,6 @@ import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
 import GridLayoutPage from "pages/GridLayoutPage";
 
-import { UiContextProvider } from "contexts/UiContext";
 import { DataContextProvider } from "contexts/DataContext";
 
 function App() {
@@ -27,52 +26,45 @@ function App() {
 
   return (
     <>
-      <UiContextProvider>
-        <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-        <Routes>
-          <Route path="/" element={<NestedRoutes />}>
-            <Route index element={<Home loggedIn={loggedIn} />} />
-            <Route
-              path="login"
-              element={<Login users={users} setLoggedIn={setLoggedIn} />}
-            />
-            <Route path="signup" element={<SignUp setUsers={setUsers} />} />
-            <Route
-              element={
-                <DataContextProvider>
-                  <ProtectedRoute loggedIn={loggedIn} />
-                </DataContextProvider>
-              }
-            >
-              <Route path="starships" element={<NestedRoutes />}>
-                <Route
-                  index
-                  element={<GridLayoutPage mainPath="starships" />}
-                />
-                <Route path=":itemName" element={<ElementDetailPage />} />
-              </Route>
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 
-              <Route path="planets" element={<NestedRoutes />}>
-                <Route index element={<GridLayoutPage mainPath="planets" />} />
-                <Route path=":itemName" element={<ElementDetailPage />} />
-              </Route>
+      <Routes>
+        <Route path="/" element={<NestedRoutes />}>
+          <Route index element={<Home loggedIn={loggedIn} />} />
+          <Route
+            path="login"
+            element={<Login users={users} setLoggedIn={setLoggedIn} />}
+          />
+          <Route path="signup" element={<SignUp setUsers={setUsers} />} />
+          <Route
+            element={
+              <DataContextProvider>
+                <ProtectedRoute loggedIn={loggedIn} />
+              </DataContextProvider>
+            }
+          >
+            <Route path="starships" element={<NestedRoutes />}>
+              <Route index element={<GridLayoutPage mainPath="starships" />} />
+              <Route path=":itemName" element={<ElementDetailPage />} />
+            </Route>
 
-              <Route path="characters" element={<NestedRoutes />}>
-                <Route
-                  index
-                  element={<GridLayoutPage mainPath="characters" />}
-                />
-                <Route path=":itemName" element={<ElementDetailPage />} />
-              </Route>
+            <Route path="planets" element={<NestedRoutes />}>
+              <Route index element={<GridLayoutPage mainPath="planets" />} />
+              <Route path=":itemName" element={<ElementDetailPage />} />
+            </Route>
 
-              <Route path="films" element={<NestedRoutes />}>
-                <Route path=":itemName" element={<ElementDetailPage />} />
-              </Route>
+            <Route path="characters" element={<NestedRoutes />}>
+              <Route index element={<GridLayoutPage mainPath="characters" />} />
+              <Route path=":itemName" element={<ElementDetailPage />} />
+            </Route>
+
+            <Route path="films" element={<NestedRoutes />}>
+              <Route path=":itemName" element={<ElementDetailPage />} />
             </Route>
           </Route>
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </UiContextProvider>
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
     </>
   );
 }

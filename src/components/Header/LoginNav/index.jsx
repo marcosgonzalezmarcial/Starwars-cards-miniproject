@@ -7,6 +7,8 @@ import "./LoginNav.scss";
 const LoginNav = ({ loggedIn, setLoggedIn }) => {
   const { toggleMenu, handleToggle } = useContext(UiContext);
 
+  console.log("LoginNav render");
+
   const dynamicStyles = useCallback(() => {
     if (!loggedIn) {
       if (window.innerWidth > 768) return "expanded";
