@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import "./SectionNav.scss";
 
 const SectionNav = () => {
+  console.log("SectionNav render");
   const renderSections = () =>
     ["planets", "characters", "starships"].map((section) => (
       <Col key={section} className="border-silver">

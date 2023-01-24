@@ -3,11 +3,17 @@ import { Form, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { TYPE_OF_DATA } from "../../constants";
 import "./SearchModal.scss";
-import { UiContext } from "contexts/UiContext";
+import { useSearchModal } from "hooks/useSearchModal";
 
 const SearchModal = () => {
   const [searchCategory, setSearchCategory] = useState(null);
-  const { showModal, handleToggleModal } = useContext(UiContext);
+
+  const {
+    isToggledSearchModal: showModal,
+    toggleSearchModal: handleToggleModal,
+  } = useSearchModal();
+
+  console.log(showModal);
 
   let navigate = useNavigate();
 

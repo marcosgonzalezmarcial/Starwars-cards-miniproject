@@ -3,9 +3,10 @@ import "./SearchIcon.scss";
 import searchIconSvg from "assets/icons/search-icon.svg";
 import { UiContext } from "contexts/UiContext";
 // import { useNavigate } from "react-router-dom";
+import { useSearchModal } from "hooks/useSearchModal";
 
 const SearchButton = ({ loggedIn }) => {
-  const { handleToggleModal } = useContext(UiContext);
+  const { toggleSearchModal: handleToggleModal } = useSearchModal();
 
   // let navigate = useNavigate();
 
