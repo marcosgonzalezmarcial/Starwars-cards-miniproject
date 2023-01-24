@@ -1,6 +1,5 @@
 import React, { useCallback, useContext } from "react";
 import { Link } from "react-router-dom";
-import { UiContext } from "contexts/UiContext";
 import { useLoginMenuCtx } from "contexts/LoginMenuCtx";
 import "../Header.scss";
 import "./LoginNav.scss";

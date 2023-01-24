@@ -13,8 +13,6 @@ const SearchModal = () => {
     toggleSearchModal: handleToggleModal,
   } = useSearchModal();
 
-  console.log(showModal);
-
   let navigate = useNavigate();
 
   console.log("SearchModal renders because of useNavigate");

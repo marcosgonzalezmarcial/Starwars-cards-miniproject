@@ -8,10 +8,8 @@ import ToggleLoginMenuBtn from "components/Header/ToggleLoginMenuBtn";
 import SearchButton from "components/Header/SearchButton";
 import SearchModal from "components/SearchModal";
 import "./Header.scss";
-import { UiContextProvider } from "contexts/UiContext";
 import { SearchModalCtxProvider } from "contexts/SearchModalCtx";
 import { LoginMenuCtxProvider } from "contexts/LoginMenuCtx";
-import { useToggle } from "hooks/useToggle";
 
 const Header = ({ loggedIn, setLoggedIn }) => {
   return (
