@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useLoginMenuCtx } from "contexts/LoginMenuCtx";
 import "../Header.scss";

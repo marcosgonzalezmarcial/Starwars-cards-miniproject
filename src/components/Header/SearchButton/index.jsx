@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useCallback } from "react";
 import "./SearchIcon.scss";
 import searchIconSvg from "assets/icons/search-icon.svg";
 // import { useNavigate } from "react-router-dom";
@@ -15,7 +15,8 @@ const SearchButton = ({ loggedIn }) => {
     // if (!loggedIn) return navigate("/login");
     // if (!loggedIn) return alert("You must log in before searching");
     handleToggleModal();
-  }, [loggedIn /*navigate*/]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedIn, handleToggleModal /*navigate*/]);
 
   return (
     <button
