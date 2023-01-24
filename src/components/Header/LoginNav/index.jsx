@@ -1,11 +1,11 @@
 import React, { useCallback, useContext } from "react";
 import { Link } from "react-router-dom";
-import { UiContext } from "contexts/UiContext";
+import { useLoginMenuCtx } from "contexts/LoginMenuCtx";
 import "../Header.scss";
 import "./LoginNav.scss";
 
 const LoginNav = ({ loggedIn, setLoggedIn }) => {
-  const { toggleMenu, handleToggle } = useContext(UiContext);
+  const [toggleMenu, handleToggle] = useLoginMenuCtx();
 
   console.log("LoginNav render");
 

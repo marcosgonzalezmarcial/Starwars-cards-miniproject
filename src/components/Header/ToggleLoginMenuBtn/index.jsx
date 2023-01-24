@@ -1,10 +1,11 @@
 import { useContext, memo } from "react";
 import burgerBtn from "../../../assets/icons/hamburger-menu-btn.svg";
 import "./toggle-btn.scss";
-import { UiContext } from "contexts/UiContext";
+
+import { useLoginMenuCtx } from "contexts/LoginMenuCtx";
 
 const TogglLoginMenuBtn = () => {
-  const { handleToggleMenu } = useContext(UiContext);
+  const [, handleToggleMenu] = useLoginMenuCtx();
 
   console.log("ToggleMenuBtn render");
 
