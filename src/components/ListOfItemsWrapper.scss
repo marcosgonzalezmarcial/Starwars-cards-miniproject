@@ -1,20 +1,13 @@
-//////// View more functionallity /////////////////
-
-.cutoff-text {
-  // min-height: 120px;
+.list-of-items-wrapper {
   --max-lines: 6;
   --line-height: 1.5;
-  // display: -webkit-box;
-  // -webkit-box-orient: vertical;
-  // -webkit-line-clamp: var(--max-lines);
-
-  // max-height: calc(var(--max-lines) * 1.9rem * var(--line-height) );
   max-height: calc(var(--max-lines) * 1.9rem * var(--line-height));
   line-height: var(--line-height);
   overflow: hidden;
   position: relative;
 
-  &:has(+ .expand-btn) {
+  // blurred effect on last line
+  &:has(+ .view-more-btn) {
     &::before {
       --line-height: 1.5;
       content: "";
@@ -24,15 +17,12 @@
       bottom: 0;
       pointer-events: none;
       background: linear-gradient(to bottom, transparent, rgb(33, 37, 41));
-
-      @media (min-width: 576px) and (max-width: 700px) {
-        height: 0;
-      }
     }
   }
 }
 
-.expand-btn {
+// input (button)
+.view-more-btn {
   appearance: none;
   border: 1.5px solid rgb(111, 115, 128);
   border-radius: 5px;
@@ -43,12 +33,16 @@
   position: relative;
   font-size: 0.75rem;
 
-  @media (min-width: 576px) and (max-width: 700px) {
-    display: none;
+  &:hover {
+    background-color: #424649;
+
+    &::before {
+      color: white;
+    }
   }
 }
 
-.expand-btn::before {
+.view-more-btn::before {
   color: rgb(111, 115, 128);
   content: "View more";
   position: absolute;
@@ -56,13 +50,14 @@
   right: 13%;
 }
 
-.expand-btn:checked::before {
+// change text of input (btn) when checked
+.view-more-btn:checked::before {
   content: "Collapse";
   left: 20%;
 }
 
-.cutoff-text:has(+ .expand-btn:checked) {
-  // -webkit-line-clamp: 20;
+// expand list when input is checked (button clicked)
+.list-of-items-wrapper:has(+ .view-more-btn:checked) {
   max-height: none;
 
   &::before {
@@ -71,64 +66,61 @@
 }
 
 @media (max-width: 576px) {
-  .cutoff-text {
+  .list-of-items-wrapper {
     --max-lines: 3;
   }
 
-  .main:has(img[src*="Films"]) {
-    .cutoff-text {
+  .detail-page:has(img[src*="Films"]) {
+    .list-of-items-wrapper {
       --max-lines: 4;
     }
   }
 
-  .main:has(img[src*="vignette"]) {
-    .cutoff-text {
+  .detail-page:has(img[src*="vignette"]) {
+    .list-of-items-wrapper {
       --max-lines: 3;
     }
   }
-
-  // .cutoff-text {
-  // 	-webkit-line-clamp: 3;
-  // }
 }
 
 @media (min-width: 576px) {
-
-  .main:has(img[src*="Planets"]) {
-    .cutoff-text {
+  .detail-page:has(img[src*="Planets"]) {
+    .list-of-items-wrapper {
       --max-lines: 3;
     }
   }
 
-  .main:has(img[src*="Films"]) {
-    .cutoff-text {
-      --max-lines: 7;
+  .detail-page:has(img[src*="Films"]) {
+    .list-of-items-wrapper {
+      --max-lines: 9;
     }
   }
 
-  .main:has(img[src*="vignette"]) {
-    .cutoff-text {
-      --max-lines: 7;
-    }
-  }
-}
-
-@media (min-width: 700px) {
-  .main:has(img[src*="Planets"]) {
-    .cutoff-text {
+  .detail-page:has(img[src*="vignette"]) {
+    .list-of-items-wrapper {
       --max-lines: 7;
     }
   }
 }
 
+
+@media (min-width: 576px) and (max-width: 700px) {
+  .detail-page:has(img[src*="Films"], img[src*="vignette"]) {
+
+    .list-of-items-wrapper::before {
+      height: 0;
+    }
+
+    .view-more-btn {
+      display: none;
+    }
+  }
+}
+
 @media (min-width: 700px) {
-  .main:has(img[src*="Films"]) {
-    .cutoff-text {
+  .detail-page:has(img[src*="Planets"], img[src*="Films"]) {
+    .list-of-items-wrapper {
       --max-lines: 10;
     }
   }
 }
-
-
-
-//////// end of View more functionallity /////////////////

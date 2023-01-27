@@ -11,10 +11,10 @@ const Character = ({ elementData }) => {
 
   return (
     <>
-      <div className="page-img-container">
+      <div className="detail-page__img">
         <img src={elementData.image} alt={elementData.name} />
       </div>
-      <div className="page-description-container bg-dark p-2">
+      <div className="detail-page__info bg-dark p-2">
         <h1 className="mb-2 mb-sm-3 pt-1 px-2">{elementData.name}</h1>
         <div className="px-2">
           <Row className="py-1">
@@ -34,7 +34,7 @@ const Character = ({ elementData }) => {
             </Col>
             <Col>
               <h3>Homeworld</h3>
-              <p className="list-element" onClick={handleItemClick}>
+              <p className="list-of-items" onClick={handleItemClick}>
                 {elementData.homeworld?.toUpperCase().at(0)}
                 {elementData.homeworld?.substring(1)}
               </p>

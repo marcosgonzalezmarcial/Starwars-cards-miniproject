@@ -4,7 +4,6 @@ import { useIsNearScreen } from "hooks/useIsNearScreen.js";
 import SearchResults from "components/SearchResults";
 import GridItems from "components/GridItems";
 import { useData } from "hooks/useData";
-import "./GridLayoutPage.scss";
 
 const GridLayoutPage = ({ mainPath }) => {
   const { searchResultsItems } = useSearch();
@@ -51,6 +50,7 @@ const GridLayoutPage = ({ mainPath }) => {
   return (
     <>
       <GridItems mainPath={mainPath} />
+      {/* is near screen viewfinder */}
       <div ref={fromRef}></div>
     </>
   );

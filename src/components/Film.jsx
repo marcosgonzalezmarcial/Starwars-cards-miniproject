@@ -4,14 +4,14 @@ import ListOfItemsWrapper from "components/ListOfItemsWrapper";
 const Film = ({ elementData }) => {
   return (
     <>
-      <div className="page-img-container">
+      <div className="detail-page__img">
         <picture>
           <source media="(max-width: 575px)" srcSet={elementData.image_small} />
           <source media="(min-width: 576px)" srcSet={elementData.imgUrl} />
           <img src={elementData.imgUrl} alt={elementData.title} />
         </picture>
       </div>
-      <div className="page-description-container bg-dark p-2">
+      <div className="detail-page__info bg-dark p-2">
         <h1 className="mb-1 mb-sm-3 pt-1 px-2">{elementData.title}</h1>
         <div className="px-2">
           <Row className="py-1">

@@ -1,13 +1,30 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { useHeightObserver } from "hooks/useHeightObserver";
 import ListOfItems from "components/ListOfItems";
 import "./ListOfItemsWrapper.scss";
 
 const ListOfItemsWrapper = ({ itemType, elementData, itemSubType }) => {
+
   const { dynamicSize, fromRef } = useHeightObserver({ isLoading: false });
+
+  const showButton = useCallback(() => {
+    if (window.innerWidth < 700) {
+      if (dynamicSize.height > 130) {
+        if (dynamicSize.height < 140) {
+          if (itemSubType === "pilots") {
+            return null
+          }
+        }
+      }
+      if (dynamicSize.height > 130) {
+        return <input type="checkbox" className="view-more-btn" />
+      }
+    }
+  }, [dynamicSize.height, itemSubType])
+
   return (
     <>
-      <div ref={fromRef} className="flex-column cutoff-text">
+      <div ref={fromRef} className="list-of-items-wrapper">
         {itemType === "films" && (
           <>
             <h3 className="my-2">Appearances</h3>
@@ -39,9 +56,12 @@ const ListOfItemsWrapper = ({ itemType, elementData, itemSubType }) => {
           </>
         )}
       </div>
-      {dynamicSize.height > 130 && window.innerWidth < 700 && (
+      {/* {dynamicSize.height > 130 && window.innerWidth < 700 && (
         <input type="checkbox" className="expand-btn" />
-      )}
+      )} */}
+      {showButton()}
+
+
     </>
   );
 };

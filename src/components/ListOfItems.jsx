@@ -22,7 +22,7 @@ const ListOfItems = ({ itemType, listOfUrls }) => {
           <p
             key={item.name || item.title}
             onClick={selectItem}
-            className="list-element"
+            className="list-item"
           >
             {item.name || item.title}
           </p>

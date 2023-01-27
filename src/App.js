@@ -4,7 +4,7 @@ import Home from "pages/Home";
 import Login from "pages/Login";
 import SignUp from "pages/SignUp";
 import Header from "components/Header";
-import ElementDetailPage from "pages/ElementDetailPage";
+import DetailPage from "pages/DetailPage";
 import ErrorPage from "pages/ErrorPage";
 import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
@@ -45,21 +45,21 @@ function App() {
           >
             <Route path="starships" element={<NestedRoutes />}>
               <Route index element={<GridLayoutPage mainPath="starships" />} />
-              <Route path=":itemName" element={<ElementDetailPage />} />
+              <Route path=":itemName" element={<DetailPage />} />
             </Route>
 
             <Route path="planets" element={<NestedRoutes />}>
               <Route index element={<GridLayoutPage mainPath="planets" />} />
-              <Route path=":itemName" element={<ElementDetailPage />} />
+              <Route path=":itemName" element={<DetailPage />} />
             </Route>
 
             <Route path="characters" element={<NestedRoutes />}>
               <Route index element={<GridLayoutPage mainPath="characters" />} />
-              <Route path=":itemName" element={<ElementDetailPage />} />
+              <Route path=":itemName" element={<DetailPage />} />
             </Route>
 
             <Route path="films" element={<NestedRoutes />}>
-              <Route path=":itemName" element={<ElementDetailPage />} />
+              <Route path=":itemName" element={<DetailPage />} />
             </Route>
           </Route>
         </Route>
