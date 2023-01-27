@@ -1,5 +1,6 @@
 import { Col, Row } from "react-bootstrap";
 import ListOfItemsWrapper from "components/ListOfItemsWrapper";
+import "pages/ElementDetailPage.scss";
 
 const Starship = ({ elementData }) => {
   return (

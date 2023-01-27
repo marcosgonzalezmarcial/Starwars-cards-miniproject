@@ -1,0 +1,46 @@
+.list-element {
+  color: #9e4f60;
+  margin-block: 0.5rem;
+  font-size: 0.75rem;
+
+  &:hover {
+    color: rgb(183, 104, 121);
+    cursor: pointer;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 992px) and (orientation: portrait) {
+  .grid-element-card {
+    min-height: 30vh;
+  }
+
+  .grid-card-info {
+    h4 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .main {
+    .page-description-container {
+      h1 {
+        font-size: 1.50rem
+      }
+
+      h3 {
+        font-size: 1.25rem;
+      }
+
+      span {
+        font-size: 1rem;
+        display: block;
+        color: #999;
+      }
+    }
+  }
+
+  .list-element,
+  span {
+    font-size: 1rem;
+  }
+}

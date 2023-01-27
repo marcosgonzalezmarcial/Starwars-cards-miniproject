@@ -5,6 +5,8 @@ import Planet from "components/Planet";
 import Film from "components/Film";
 import { Spinner } from "components/Spinner";
 import { useSingleElementData } from "hooks/useSingleElementData";
+import "./ElementDetailPage.scss";
+
 
 export const Element = ({ mainPath, elementData }) => {
   switch (mainPath) {

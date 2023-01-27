@@ -1,0 +1,134 @@
+//////// View more functionallity /////////////////
+
+.cutoff-text {
+  // min-height: 120px;
+  --max-lines: 6;
+  --line-height: 1.5;
+  // display: -webkit-box;
+  // -webkit-box-orient: vertical;
+  // -webkit-line-clamp: var(--max-lines);
+
+  // max-height: calc(var(--max-lines) * 1.9rem * var(--line-height) );
+  max-height: calc(var(--max-lines) * 1.9rem * var(--line-height));
+  line-height: var(--line-height);
+  overflow: hidden;
+  position: relative;
+
+  &:has(+ .expand-btn) {
+    &::before {
+      --line-height: 1.5;
+      content: "";
+      position: absolute;
+      height: calc(1.9rem * var(--line-height));
+      width: 100%;
+      bottom: 0;
+      pointer-events: none;
+      background: linear-gradient(to bottom, transparent, rgb(33, 37, 41));
+
+      @media (min-width: 576px) and (max-width: 700px) {
+        height: 0;
+      }
+    }
+  }
+}
+
+.expand-btn {
+  appearance: none;
+  border: 1.5px solid rgb(111, 115, 128);
+  border-radius: 5px;
+  padding: 0.8rem 0.4rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  width: 100px;
+  position: relative;
+  font-size: 0.75rem;
+
+  @media (min-width: 576px) and (max-width: 700px) {
+    display: none;
+  }
+}
+
+.expand-btn::before {
+  color: rgb(111, 115, 128);
+  content: "View more";
+  position: absolute;
+  top: 13%;
+  right: 13%;
+}
+
+.expand-btn:checked::before {
+  content: "Collapse";
+  left: 20%;
+}
+
+.cutoff-text:has(+ .expand-btn:checked) {
+  // -webkit-line-clamp: 20;
+  max-height: none;
+
+  &::before {
+    height: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .cutoff-text {
+    --max-lines: 3;
+  }
+
+  .main:has(img[src*="Films"]) {
+    .cutoff-text {
+      --max-lines: 4;
+    }
+  }
+
+  .main:has(img[src*="vignette"]) {
+    .cutoff-text {
+      --max-lines: 3;
+    }
+  }
+
+  // .cutoff-text {
+  // 	-webkit-line-clamp: 3;
+  // }
+}
+
+@media (min-width: 576px) {
+
+  .main:has(img[src*="Planets"]) {
+    .cutoff-text {
+      --max-lines: 3;
+    }
+  }
+
+  .main:has(img[src*="Films"]) {
+    .cutoff-text {
+      --max-lines: 7;
+    }
+  }
+
+  .main:has(img[src*="vignette"]) {
+    .cutoff-text {
+      --max-lines: 7;
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .main:has(img[src*="Planets"]) {
+    .cutoff-text {
+      --max-lines: 7;
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .main:has(img[src*="Films"]) {
+    .cutoff-text {
+      --max-lines: 10;
+    }
+  }
+}
+
+
+
+//////// end of View more functionallity /////////////////

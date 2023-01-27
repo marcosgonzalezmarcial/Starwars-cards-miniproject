@@ -4,7 +4,7 @@ import { useIsNearScreen } from "hooks/useIsNearScreen.js";
 import SearchResults from "components/SearchResults";
 import GridItems from "components/GridItems";
 import { useData } from "hooks/useData";
-import "../styles.scss";
+import "./GridLayoutPage.scss";
 
 const GridLayoutPage = ({ mainPath }) => {
   const { searchResultsItems } = useSearch();

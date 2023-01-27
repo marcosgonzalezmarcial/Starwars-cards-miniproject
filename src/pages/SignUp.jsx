@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import yellowSwLogo from "../assets/yellow-sw-logo.svg";
+// import "./Login.scss"
 
 const initialUserDetailsState = {
   firstName: "",
@@ -50,8 +51,8 @@ const SignUp = ({ setUsers }) => {
     <div
       // onMouseDown={handleClick}
       className={`loginForm-container is-open`}
-      // onMouseDown={handleClick}
-      // className={`loginForm-container ${isOpen && "is-open"}`}
+    // onMouseDown={handleClick}
+    // className={`loginForm-container ${isOpen && "is-open"}`}
     >
       <form onSubmit={handleSubmit} action="">
         <div

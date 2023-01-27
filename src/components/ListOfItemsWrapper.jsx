@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { useHeightObserver } from "hooks/useHeightObserver";
 import ListOfItems from "components/ListOfItems";
+import "./ListOfItemsWrapper.scss";
 
 const ListOfItemsWrapper = ({ itemType, elementData, itemSubType }) => {
   const { dynamicSize, fromRef } = useHeightObserver({ isLoading: false });
