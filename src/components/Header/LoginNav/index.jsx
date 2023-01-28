@@ -26,35 +26,31 @@ const LoginNav = ({ loggedIn, setLoggedIn }) => {
   );
 
   return (
-    <div className={`navbar-box ${dynamicStyles()}`}>
+    <nav className={`login-nav ${dynamicStyles()}`}>
       {loggedIn ? (
-        <Link
-          onClick={handleCLickLogin}
-          to="/"
-          className="nav-link login-nav-link"
-        >
+        <Link onClick={handleCLickLogin} to="/" className="login-nav__link">
           LOG OUT
         </Link>
       ) : (
         <>
           <Link
             onClick={handleToggle}
-            className="login-nav-link navbar-link px-md-2"
+            className="login-nav__link  px-md-2"
             to="/login"
           >
             LOG IN
           </Link>
-          <div className="login-nav-link">&#8725; &#8725;</div>
+          <div className="login-nav__link">&#8725; &#8725;</div>
           <Link
             onClick={handleToggle}
-            className="login-nav-link navbar-link px-md-2"
+            className="login-nav__link px-md-2"
             to="/signup"
           >
             SIGN UP
           </Link>
         </>
       )}
-    </div>
+    </nav>
   );
 };
 export default LoginNav;

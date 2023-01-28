@@ -14,7 +14,7 @@ import { LoginMenuCtxProvider } from "contexts/LoginMenuCtx";
 const Header = ({ loggedIn, setLoggedIn }) => {
   return (
     <header className="header">
-      <Navbar variant="dark" className="py-1">
+      <Navbar variant="dark">
         <div className="navbar-container text-center position-relative justify-content-end px-0">
           <Navbar.Brand className="m-0 py-3 px-2 p-md-0">
             <Link className="navbar-link p-2" to="/">

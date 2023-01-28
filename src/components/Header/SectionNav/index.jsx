@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Col, Nav } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./SectionNav.scss";
 
@@ -7,32 +7,24 @@ const SectionNav = () => {
   console.log("SectionNav render");
   const renderSections = () =>
     ["planets", "characters", "starships"].map((section) => (
-      <Col key={section} className="border-silver">
-        <Nav.Item>
-          <NavLink className="nav-link text-center py-1" to={section}>
-            {({ isActive }) => (
-              <>
-                <div className="py-1 position-realitive">
-                  <div
-                    className={isActive ? "active-link-light-saber" : ""}
-                  ></div>
-                  <span>{section.toUpperCase()}</span>
-                </div>
-              </>
-            )}
-          </NavLink>
-        </Nav.Item>
-      </Col>
+      <NavLink
+        className="section-nav__link col py-0 section-nav__link--border-silver"
+        to={section}
+      >
+        {({ isActive }) => (
+          <div className="py-2">
+            <div
+              className={isActive ? "section-nav__link--light-saber" : null}
+            ></div>
+            <span>{section.toUpperCase()}</span>
+          </div>
+        )}
+      </NavLink>
     ));
-
   return (
-    <div className="border-wrapper">
-      <div className="m-auto nav-wrapper">
-        <Nav className="py-0 px-4 justify-content-center">
-          {renderSections()}
-        </Nav>
-      </div>
-    </div>
+    <nav className="border-wrapper">
+      <Nav className="px-4 section-nav">{renderSections()}</Nav>
+    </nav>
   );
 };
 
