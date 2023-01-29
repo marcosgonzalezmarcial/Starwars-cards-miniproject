@@ -1,5 +1,5 @@
 .search-icon-btn {
-  // padding: 6px 17px;
+  margin-inline-start: auto;
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   height: 35px;
@@ -8,17 +8,11 @@
   &:hover {
     background-color: #424649;
   }
-}
 
-// @media (max-width: 576px) {
-//   .search-icon-btn {
-//     padding: 4.6px 12.4px;
-//   }
-// }
-
-@media (min-width: 768px) {
-  .search-icon-btn {
-    grid-row: 1 / 2;
-    margin-right: auto;
+  @media (min-width: 768px) {
+    & {
+      margin-inline-start: initial;
+      grid-row: 1 / 2;
+    }
   }
 }

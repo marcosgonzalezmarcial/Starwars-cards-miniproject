@@ -31,7 +31,7 @@ function SearchModalCtxProvider({ children }) {
 
   const value = useMemo(
     () => ({ isToggledSearchModal, toggleSearchModal }),
-    [isToggledSearchModal]
+    [isToggledSearchModal, toggleSearchModal]
   );
 
   return (

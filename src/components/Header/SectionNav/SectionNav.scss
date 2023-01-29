@@ -1,13 +1,20 @@
 .section-nav {
-  width: calc(min(90vw, 1100px));
-  margin-inline: auto;
-  padding-block: 0;
-  justify-content: center;
-  text-align: center;
+  border-bottom: 1px solid #333;
+  border-top: 1px solid #333;
 
-  @media (max-width: 576px) {
-    & {
-      width: 100%;
+  &__container {
+    display: flex;
+    width: calc(min(90vw, 1100px));
+    margin-inline: auto;
+    padding-block: 0;
+    padding-inline: 0.5rem;
+    justify-content: center;
+    text-align: center;
+
+    @media (max-width: 576px) {
+      & {
+        width: 100%;
+      }
     }
   }
 
@@ -40,9 +47,4 @@
       margin: 0 auto;
     }
   }
-}
-
-.border-wrapper {
-  border-bottom: 1px solid #333;
-  border-top: 1px solid #333;
 }
