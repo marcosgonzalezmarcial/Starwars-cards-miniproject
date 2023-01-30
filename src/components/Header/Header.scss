@@ -21,14 +21,3 @@
     width: 200px;
   }
 }
-
-/* Media queries */
-@media (max-width: 576px) {
-  .nav {
-    flex-wrap: nowrap;
-  }
-
-  .logo-img {
-    width: 180px;
-  }
-}

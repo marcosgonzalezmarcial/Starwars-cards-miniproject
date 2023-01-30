@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./SectionNav.scss";
 
@@ -9,16 +8,16 @@ const SectionNav = () => {
     ["planets", "characters", "starships"].map((section) => (
       <NavLink
         key={section}
-        className="section-nav__link col py-0 section-nav__link--border-silver"
+        className="section-nav__link section-nav__link--border-silver"
         to={section}
       >
         {({ isActive }) => (
-          <div className="p-2">
+          <>
             <div
               className={isActive ? "section-nav__link--light-saber " : null}
             />
             <span>{section.toUpperCase()}</span>
-          </div>
+          </>
         )}
       </NavLink>
     ));

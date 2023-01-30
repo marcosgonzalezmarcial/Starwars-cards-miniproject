@@ -3,6 +3,7 @@ import ListOfItemsWrapper from "components/ListOfItemsWrapper";
 import { useNavigate } from "react-router-dom";
 
 const Character = ({ elementData }) => {
+  console.log("Character component");
   let navigate = useNavigate();
   const handleItemClick = (e) => {
     const planetSelected = e.target.textContent;
@@ -17,7 +18,7 @@ const Character = ({ elementData }) => {
       <div className="detail-page__info bg-dark p-2">
         <h1 className="mb-2 mb-sm-3 pt-1 px-2">{elementData.name}</h1>
         <div className="px-2">
-          <Row className="py-1">
+          <div className="py-1">
             <Col>
               <h3>Height:</h3>
               <span>{elementData.height}</span>
@@ -26,7 +27,7 @@ const Character = ({ elementData }) => {
               <h3>Birth Year</h3>
               <span>{elementData.birth_year}</span>
             </Col>
-          </Row>
+          </div>
           <Row className="pt-1">
             <Col>
               <h3>Species</h3>

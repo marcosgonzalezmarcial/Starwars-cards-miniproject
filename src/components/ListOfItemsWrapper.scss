@@ -103,10 +103,8 @@
   }
 }
 
-
 @media (min-width: 576px) and (max-width: 700px) {
   .detail-page:has(img[src*="Films"], img[src*="vignette"]) {
-
     .list-of-items-wrapper::before {
       height: 0;
     }

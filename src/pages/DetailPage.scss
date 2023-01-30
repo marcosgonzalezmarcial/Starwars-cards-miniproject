@@ -10,6 +10,8 @@
   .detail-page__img {
     display: grid;
     width: 50%;
+    // flex-grow: 1;
+    // flex-basis: 50%;
 
     &:has(img[src*="Planets"]) {
       place-content: center;
@@ -24,10 +26,11 @@
     color: #ddd;
     border-left: 3px solid #9e4f60;
     width: 50%;
-    flex-grow: 1;
+    // flex-grow: 1;
+    // flex-basis: 50%;
 
     h1 {
-      font-size: 1.25rem
+      font-size: 1.25rem;
     }
 
     h3 {
@@ -40,7 +43,6 @@
       color: #999;
     }
   }
-
 
   img {
     width: 100%;
@@ -140,8 +142,6 @@
     }
   }
 }
-
-
 
 @media (min-width: 700px) {
   .detail-page {
