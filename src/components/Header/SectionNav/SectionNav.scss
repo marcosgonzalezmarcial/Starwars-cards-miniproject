@@ -1,6 +1,6 @@
 .section-nav {
-  border-bottom: 1px solid #333;
-  border-top: 1px solid #333;
+  border-bottom: 1px solid var(--secondary-gray);
+  border-top: 1px solid var(--secondary-gray);
 
   &__container {
     display: flex;
@@ -22,17 +22,17 @@
     position: relative;
     font-size: 0.8em;
     font-weight: 800;
-    color: #999;
+    color: var(--primary-gray);
     flex: 1 0;
     padding-block: 0.5rem;
     &:hover {
-      color: white;
+      color: var(--primary-white);
       cursor: pointer;
     }
 
     &--border-silver {
-      border-right: 1px solid #333;
-      border-left: 1px solid #333;
+      border-right: 1px solid var(--secondary-gray);
+      border-left: 1px solid var(--secondary-gray);
       margin: -1px 0 0 -1px;
     }
     &--light-saber {
@@ -42,8 +42,8 @@
       left: calc(50% - 16px);
       width: 32px;
       height: 2px;
-      box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-        0 0 100px #03e9f4;
+      box-shadow: 0 0 5px var(--light-saber), 0 0 25px var(--light-saber),
+        0 0 50px var(--light-saber), 0 0 100px var(--light-saber);
       background: white;
       margin: 0 auto;
     }

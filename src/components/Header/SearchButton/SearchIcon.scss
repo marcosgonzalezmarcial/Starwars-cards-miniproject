@@ -1,13 +1,14 @@
 .search-icon-btn {
   margin-inline-start: auto;
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--gray-blue);
   height: 35px;
   width: 45px;
   border-radius: 0.375rem;
-  &:hover {
-    background-color: #424649;
-  }
+  // &:hover {
+  //   background-color: lighten(white, 90%);
+  //   // opacity: 50%;
+  // }
 
   @media (min-width: 768px) {
     & {

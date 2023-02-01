@@ -1,10 +1,10 @@
 .list-item {
-  color: #9e4f60;
+  color: var(--primary-pink);
   margin-block: 0.5rem;
   font-size: 0.75rem;
 
   &:hover {
-    color: rgb(183, 104, 121);
+    filter: brightness(150%);
     cursor: pointer;
   }
 }

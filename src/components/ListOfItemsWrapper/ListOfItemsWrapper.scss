@@ -12,19 +12,23 @@
       --line-height: 1.5;
       content: "";
       position: absolute;
-      height: calc(1.9rem * var(--line-height));
+      height: calc(1.7rem * var(--line-height));
       width: 100%;
       bottom: 0;
       pointer-events: none;
-      background: linear-gradient(to bottom, transparent, rgb(33, 37, 41));
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--bg-dark-gray) 100%
+      );
     }
   }
 }
 
-// input (button)
+// "input" (button)
 .view-more-btn {
   appearance: none;
-  border: 1.5px solid rgb(111, 115, 128);
+  border: 1.5px solid var(--gray-blue);
   border-radius: 5px;
   padding: 0.8rem 0.4rem;
   cursor: pointer;
@@ -34,20 +38,20 @@
   font-size: 0.75rem;
 
   &:hover {
-    background-color: #424649;
+    filter: brightness(150%);
 
     &::before {
-      color: white;
+      color: var(--primary-white);
     }
   }
 }
 
 .view-more-btn::before {
-  color: rgb(111, 115, 128);
+  color: var(--gray-blue);
   content: "View more";
   position: absolute;
   top: 13%;
-  right: 13%;
+  right: 13.8%;
 }
 
 // change text of input (btn) when checked

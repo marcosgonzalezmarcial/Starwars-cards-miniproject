@@ -10,7 +10,7 @@
     color: #999;
     padding-block: 0.5rem;
     &:hover {
-      color: #ccc;
+      color: var(--primary-white);
     }
     @media (max-width: 900px) {
       & {

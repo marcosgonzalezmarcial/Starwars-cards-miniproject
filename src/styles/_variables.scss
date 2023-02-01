@@ -1,0 +1,18 @@
+$primary-gray: #999;
+$secondary-gray: #444;
+$gray-blue: #6f7380;
+$primary-pink: rgb(158, 79, 96);
+$primary-white: #ffffff;
+$light-saber: #03e9f4;
+$bg-dark-gray: rgb(33, 37, 41);
+
+:root {
+  --primary-gray: #{$primary-gray};
+  --secondary-gray: #{$secondary-gray};
+  --gray-blue: #{$gray-blue};
+  --primary-pink: #{$primary-pink};
+  --primary-white: #{$primary-white};
+  --light-saber: #{$light-saber};
+  --box-shadow-pink: 231, 203, 209;
+  --bg-dark-gray: #{$bg-dark-gray};
+}

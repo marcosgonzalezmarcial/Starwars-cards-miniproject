@@ -19,12 +19,14 @@
   }
 
   .detail-page__info {
+    padding: 0.5rem;
     background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
     background-size: 8px;
     background-repeat: repeat-x;
-    background-color: #282727;
-    color: #ddd;
-    border-left: 3px solid #9e4f60;
+    background-color: var(--bg-dark-gray);
+    // color: var(--secondary-gray);
+    color: var(--primary-white);
+    border-left: 3px solid var(--primary-pink);
     width: 50%;
     // flex-grow: 1;
     // flex-basis: 50%;

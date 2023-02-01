@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Form, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { TYPE_OF_DATA } from "../../constants";
@@ -19,19 +19,22 @@ const SearchModal = () => {
 
   const inputRef = useRef(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate(`/${searchCategory}/?search=${inputRef.current.value}`);
-    handleToggleModal();
-  };
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      navigate(`/${searchCategory}/?search=${inputRef.current.value}`);
+      handleToggleModal();
+    },
+    [handleToggleModal, navigate, searchCategory]
+  );
 
-  const handleSelection = (e) => {
+  const handleSelection = useCallback((e) => {
     if (e.target.getAttribute("data-type") === TYPE_OF_DATA.PEOPLE) {
       setSearchCategory("characters");
     } else {
       setSearchCategory(e.target.getAttribute("data-type"));
     }
-  };
+  }, []);
 
   return (
     <Modal
@@ -41,14 +44,9 @@ const SearchModal = () => {
       centered
       dialogClassName="search-modal"
     >
-      <Form className="modal-form" onSubmit={handleSubmit}>
+      <Form className="search-modal__form" onSubmit={handleSubmit}>
         <Modal.Header closeVariant="white" closeButton>
-          <Modal.Title
-            className="custom-modal-title"
-            id="contained-modal-title-vcenter"
-          >
-            Search
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">Search</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group>
@@ -96,13 +94,13 @@ const SearchModal = () => {
               ref={inputRef}
               name="searchInput"
               type="text"
-              placeholder="Enter search term"
+              placeholder="Enter search term after selecting the type"
               required
             />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <button type="submit" className="modal-search-btn">
+          <button type="submit" className="search-modal__submit-btn">
             Search
           </button>
         </Modal.Footer>

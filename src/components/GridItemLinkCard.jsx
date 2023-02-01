@@ -11,7 +11,7 @@ const GridItemLinkCard = ({ item }) => {
           alt={item?.name}
         />
       </div>
-      <div className="text-secondary bg-dark p-3 grid-item__info">
+      <div className="grid-item__info">
         <h4>{item?.name}</h4>
         {<p>{item.name ?? item.model ?? item?.terrain}</p>}
       </div>

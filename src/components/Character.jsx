@@ -15,7 +15,7 @@ const Character = ({ elementData }) => {
       <div className="detail-page__img">
         <img src={elementData.image} alt={elementData.name} />
       </div>
-      <div className="detail-page__info bg-dark p-2">
+      <div className="detail-page__info">
         <h1 className="mb-2 mb-sm-3 pt-1 px-2">{elementData.name}</h1>
         <div className="px-2">
           <div className="py-1">
