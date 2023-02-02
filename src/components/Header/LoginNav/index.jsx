@@ -35,15 +35,15 @@ const LoginNav = ({ loggedIn, setLoggedIn }) => {
         <>
           <Link
             onClick={handleToggle}
-            className="login-nav__link  px-md-2"
+            className="login-nav__link"
             to="/login"
           >
             LOG IN
           </Link>
-          <div className="login-nav__link">&#8725; &#8725;</div>
+          <div className="login-nav__link--separator">&#8725; &#8725;</div>
           <Link
             onClick={handleToggle}
-            className="login-nav__link px-md-2"
+            className="login-nav__link"
             to="/signup"
           >
             SIGN UP
