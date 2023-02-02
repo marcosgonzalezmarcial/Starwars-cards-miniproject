@@ -1,10 +1,11 @@
-$primary-gray: #999;
-$secondary-gray: #444;
+$primary-gray: rgb(181, 183, 183);
+$secondary-gray: #48494a;
 $gray-blue: #6f7380;
-$primary-pink: rgb(158, 79, 96);
+$primary-pink: #9e4f60;
 $primary-white: #ffffff;
 $light-saber: #03e9f4;
-$bg-dark-gray: rgb(33, 37, 41);
+// $bg-dark-gray: #212529;
+$bg-dark-gray: #1d1e1f;
 
 :root {
   --primary-gray: #{$primary-gray};

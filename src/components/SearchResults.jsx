@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const SearchResults = ({ searchResultsItems }) => {
   console.log(searchResultsItems);
   return (
-    <div className="my-3 my-md-4 grid-items">
+    <div className="grid-items">
       {searchResultsItems.map((item) => (
         <Link
           className="grid-item"
@@ -17,7 +17,7 @@ const SearchResults = ({ searchResultsItems }) => {
               alt={item.name}
             />
           </div>
-          <div className="p-3 grid-item__info bg-dark">
+          <div className="grid-item__info">
             <h4>{item.name}</h4>
             <p>{item.model ?? item.species}</p>
           </div>

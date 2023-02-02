@@ -1,11 +1,12 @@
 .grid-items {
   max-width: calc(min(94vw, 1200px));
   margin-inline: auto;
+  margin-block: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
   grid-auto-rows: minmax(275px, 30vh);
   gap: 1.8rem;
-  padding: 0.5rem;
+  // padding: 0.5rem;
 }
 
 .grid-item {
@@ -60,12 +61,14 @@
     font-size: 0.9rem;
     color: var(--gray-blue);
   }
+
+
 }
 
 @media (max-width: 576px) {
   .grid-items {
     gap: 1rem;
-    grid-auto-rows: 20vh;
+    grid-auto-rows: 16vh;
   }
 
   .grid-item {

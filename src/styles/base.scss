@@ -17,9 +17,11 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
+
 a {
   text-decoration: none;
   color: inherit;
+
   &:hover {
     color: inherit;
   }
@@ -31,4 +33,8 @@ textarea,
 select {
   font-size: inherit;
   font: inherit;
+}
+
+img {
+  vertical-align: middle;
 }

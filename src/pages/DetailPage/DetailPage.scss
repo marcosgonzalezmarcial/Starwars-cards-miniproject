@@ -10,8 +10,6 @@
   .detail-page__img {
     display: grid;
     width: 50%;
-    // flex-grow: 1;
-    // flex-basis: 50%;
 
     &:has(img[src*="Planets"]) {
       place-content: center;
@@ -19,17 +17,30 @@
   }
 
   .detail-page__info {
-    padding: 0.5rem;
+    padding: 1rem;
     background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
     background-size: 8px;
     background-repeat: repeat-x;
     background-color: var(--bg-dark-gray);
-    // color: var(--secondary-gray);
     color: var(--primary-white);
     border-left: 3px solid var(--primary-pink);
     width: 50%;
-    // flex-grow: 1;
-    // flex-basis: 50%;
+    flex-grow: 1;
+
+    &--row {
+
+      display: flex;
+      flex-wrap: wrap;
+      margin-block: 0.5rem;
+      padding-top: 0.25rem;
+
+      &>* {
+        flex: 1 0;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
 
     h1 {
       font-size: 1.25rem;
@@ -42,7 +53,7 @@
     span {
       font-size: 0.75rem;
       display: block;
-      color: #999;
+      color: var(--primary-gray);
     }
   }
 
@@ -82,7 +93,7 @@
       flex-direction: row;
 
       .detail-page__info {
-        border-left: 3px solid #9e4f60;
+        border-left: 3px solid var(--primary-pink);
         border-top: none;
       }
     }
@@ -95,7 +106,7 @@
 
   @media (max-width: 768px) {
     .detail-page__info {
-      border-top: 3px solid #9e4f60;
+      border-top: 3px solid var(--primary-pink);
       border-left: none;
       width: 100%;
     }
@@ -151,7 +162,7 @@
 
     &:has(img[src*="Starships"], img[src*="Planets"]) {
       .detail-page__info {
-        border-left: 3px solid #9e4f60;
+        border-left: 3px solid var(--primary-pink);
         border-top: none;
       }
     }

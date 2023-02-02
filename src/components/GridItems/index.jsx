@@ -11,7 +11,7 @@ const GridItems = ({ mainPath }) => {
     <>
       {/* show Spinner if no data loaded yet */}
       {data[mainPath]?.data?.length === 0 && <Spinner />}
-      <main className="my-2 grid-items">
+      <main className="grid-items">
         {data[mainPath]?.data?.map((item) => (
           <GridItemLinkCard key={item.model ?? item.name} item={item} />
         ))}
