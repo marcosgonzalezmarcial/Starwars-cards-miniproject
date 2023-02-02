@@ -24,10 +24,10 @@ const Film = ({ elementData }) => {
           </div>
         </div>
         <div className="detail-page__info--row">
-          <div className="pt-1 w-50">
+          <div>
             {elementData.starships?.length === 0 ? (
               <>
-                <h3 className="my-2">Starships</h3>
+                <h3>Starships</h3>
                 <span>No starships registered for this character</span>
               </>
             ) : (

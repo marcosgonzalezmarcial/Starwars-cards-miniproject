@@ -28,13 +28,13 @@ const ListOfItemsWrapper = ({ itemType, elementData, itemSubType }) => {
       <div ref={fromRef} className="list-of-items-wrapper">
         {itemType === "films" && (
           <>
-            <h3 className="my-2">Appearances</h3>
+            <h3 >Appearances</h3>
             <ListOfItems itemType={itemType} listOfUrls={elementData.films} />
           </>
         )}
         {itemType === "starships" && (
           <>
-            <h3 className="my-2">Starships</h3>
+            <h3 >Starships</h3>
             <ListOfItems
               itemType={itemType}
               listOfUrls={elementData.starships}
@@ -43,13 +43,13 @@ const ListOfItemsWrapper = ({ itemType, elementData, itemSubType }) => {
         )}
         {itemType === "characters" && itemSubType === "pilots" && (
           <>
-            <h3 className="my-2">Pilots</h3>
+            <h3>Pilots</h3>
             <ListOfItems itemType={itemType} listOfUrls={elementData.pilots} />
           </>
         )}
         {itemType === "characters" && itemSubType === "residents" && (
           <>
-            <h3 className="my-2">Residents</h3>
+            <h3 >Residents</h3>
             <ListOfItems
               itemType={itemType}
               listOfUrls={elementData.residents}
@@ -57,9 +57,6 @@ const ListOfItemsWrapper = ({ itemType, elementData, itemSubType }) => {
           </>
         )}
       </div>
-      {/* {dynamicSize.height > 130 && window.innerWidth < 700 && (
-        <input type="checkbox" className="expand-btn" />
-      )} */}
       {showButton()}
 
 
