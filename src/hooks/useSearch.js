@@ -14,38 +14,39 @@ export const useSearch = () => {
   }
 
   useEffect(() => {
-    let isCancelled = false;
+
+    let myAbortController = new AbortController()
+    const signal = myAbortController.signal
+
     if (query && category === `/${TYPE_OF_DATA.PLANETS}/`) {
-      fetch(`${API_URL}/${category}/?search=${query}`)
+      fetch(`${API_URL}/${category}/?search=${query}`, { signal })
         .then((res) => res.json())
         .then(({ results }) => {
-          if (!isCancelled) {
-            if (!results) {
-              return <h1>No results found</h1>;
-            } else {
-              const newArr = transformDataArray({
-                fetchedData: results,
-                typeOfData: TYPE_OF_DATA.PLANETS,
-              });
-              setSearchResultsItems((prev) => [...prev, ...newArr]);
-            }
+
+          if (!results) {
+            return <h1>No results found</h1>;
+          } else {
+            const newArr = transformDataArray({
+              fetchedData: results,
+              typeOfData: TYPE_OF_DATA.PLANETS,
+            });
+            setSearchResultsItems((prev) => [...prev, ...newArr]);
           }
+
         });
     }
     if (query && category === "people") {
       fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
         .then(({ results }) => {
-          if (!isCancelled) {
-            if (!results) {
-              return <h1>No results found</h1>;
-            } else {
-              const newArr = transformDataArray({
-                fetchedData: results,
-                typeOfData: TYPE_OF_DATA.PEOPLE,
-              });
-              setSearchResultsItems((prev) => [...prev, ...newArr]);
-            }
+          if (!results) {
+            return <h1>No results found</h1>;
+          } else {
+            const newArr = transformDataArray({
+              fetchedData: results,
+              typeOfData: TYPE_OF_DATA.PEOPLE,
+            });
+            setSearchResultsItems((prev) => [...prev, ...newArr]);
           }
         });
     }
@@ -53,22 +54,23 @@ export const useSearch = () => {
       fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
         .then(({ results }) => {
-          if (!isCancelled) {
-            if (!results) {
-              return <h1>No results found</h1>;
-            } else {
-              const newArr = transformDataArray({
-                fetchedData: results,
-                typeOfData: TYPE_OF_DATA.STARSHIPS,
-              });
-              setSearchResultsItems((prev) => [...prev, ...newArr]);
-            }
+
+          if (!results) {
+            return <h1>No results found</h1>;
+          } else {
+            const newArr = transformDataArray({
+              fetchedData: results,
+              typeOfData: TYPE_OF_DATA.STARSHIPS,
+            });
+            setSearchResultsItems((prev) => [...prev, ...newArr]);
           }
+          // }
         });
     }
     return () => {
+      myAbortController.abort()
+      // delete previous serched items
       setSearchResultsItems([]);
-      isCancelled = true;
     };
   }, [query, category]);
 

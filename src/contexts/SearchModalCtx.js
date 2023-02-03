@@ -4,8 +4,6 @@ import {
   useMemo,
 } from "react";
 
-
-
 const SearchModalCtx = createContext(null);
 
 function SearchModalCtxProvider({ children }) {

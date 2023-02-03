@@ -13,19 +13,6 @@ const GridLayoutPage = ({ mainPath }) => {
     setData,
   } = useData();
 
-  const memoizedData = useMemo(
-    () => ({
-      next: null,
-      isLoading: false,
-      planets: { data: [], page: 1 },
-      starships: { data: [], page: 1 },
-      characters: { data: [], page: 1 },
-    }),
-    // eslint-disable-next-line
-    [isNearScreen]
-  );
-
-  // Only run the effect when memoized Object changes and that only changes when isNearScreen paginates
   useEffect(() => {
     // stops pagination when data is loading
     if (isLoading) return;
@@ -41,7 +28,8 @@ const GridLayoutPage = ({ mainPath }) => {
         },
       }));
     }
-  }, [mainPath, memoizedData, isLoading, next, setData, isNearScreen]);
+  }, [isNearScreen]);
+
 
   if (searchResultsItems.length > 0) {
     return <SearchResults searchResultsItems={searchResultsItems} />;
