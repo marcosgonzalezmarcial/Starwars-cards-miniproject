@@ -6,15 +6,23 @@ export const useLisOfData = ({ listOfUrls }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    let isCancelled = false;
     setIsLoading(true);
     fetchListOfDataFromUrlsArr(listOfUrls)
       .then((newData) => {
-        setData(newData);
+        if (!isCancelled) {
+          setData(newData);
+        }
       })
       .catch(console.log)
       .finally(() => {
-        setIsLoading(false);
+        if (!isCancelled) {
+          setIsLoading(false);
+        }
       });
+    return () => {
+      isCancelled = true;
+    }
   }, [listOfUrls]);
 
   return {

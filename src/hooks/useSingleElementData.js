@@ -15,7 +15,9 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
   const [elementData, setElementData] = useState({});
 
   useEffect(() => {
+    let isCancelled = false;
     setIsLoading(true);
+
 
     const elementNameFromUrl = urlStringify(paramFromUrl);
 
@@ -31,12 +33,14 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
           typeOfData: TYPE_OF_DATA.STARSHIPS,
         })
           .then((item) => {
-            const [transformedElementData] = transformDataArray({
-              // fetched data must be an array for implementation requirements
-              fetchedData: [item],
-              typeOfData: TYPE_OF_DATA.STARSHIPS,
-            });
-            setElementData((el) => ({ ...el, ...transformedElementData }));
+            if (!isCancelled) {
+              const [transformedElementData] = transformDataArray({
+                // fetched data must be an array for implementation requirements
+                fetchedData: [item],
+                typeOfData: TYPE_OF_DATA.STARSHIPS,
+              });
+              setElementData((el) => ({ ...el, ...transformedElementData }));
+            }
           })
           .catch(console.log)
           .finally(() => setIsLoading(false));
@@ -48,12 +52,14 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
         );
         fetchItemByTypeAndId({ id: item.id, typeOfData: TYPE_OF_DATA.PLANETS })
           .then((item) => {
-            const [transformedElementData] = transformDataArray({
-              // fetched data must be an array for implementation requirements
-              fetchedData: [item],
-              typeOfData: TYPE_OF_DATA.PLANETS,
-            });
-            setElementData((el) => ({ ...el, ...transformedElementData }));
+            if (!isCancelled) {
+              const [transformedElementData] = transformDataArray({
+                // fetched data must be an array for implementation requirements
+                fetchedData: [item],
+                typeOfData: TYPE_OF_DATA.PLANETS,
+              });
+              setElementData((el) => ({ ...el, ...transformedElementData }));
+            }
           })
           .catch(console.log)
           .finally(() => setIsLoading(false));
@@ -65,12 +71,14 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
         );
         fetchItemByTypeAndId({ id: item.id, typeOfData: TYPE_OF_DATA.FILMS })
           .then((item) => {
-            const [transformedElementData] = transformDataArray({
-              // fetched data must be an array for implementation requirements
-              fetchedData: [item],
-              typeOfData: TYPE_OF_DATA.FILMS,
-            });
-            setElementData((el) => ({ ...el, ...transformedElementData }));
+            if (!isCancelled) {
+              const [transformedElementData] = transformDataArray({
+                // fetched data must be an array for implementation requirements
+                fetchedData: [item],
+                typeOfData: TYPE_OF_DATA.FILMS,
+              });
+              setElementData((el) => ({ ...el, ...transformedElementData }));
+            }
           })
           .catch(console.log)
           .finally(() => setIsLoading(false));
@@ -83,19 +91,31 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
 
         fetchItemByTypeAndId({ id: item.id, typeOfData: TYPE_OF_DATA.PEOPLE })
           .then((item) => {
-            const [transformedElementData] = transformDataArray({
-              // fetched data must be an array for implementation requirements
-              fetchedData: [item],
-              typeOfData: TYPE_OF_DATA.PEOPLE,
-            });
-            setElementData((el) => ({ ...el, ...transformedElementData }));
+            if (!isCancelled) {
+              const [transformedElementData] = transformDataArray({
+                // fetched data must be an array for implementation requirements
+                fetchedData: [item],
+                typeOfData: TYPE_OF_DATA.PEOPLE,
+              });
+              setElementData((el) => ({ ...el, ...transformedElementData }));
+            }
           })
           .catch(console.log)
-          .finally(() => setIsLoading(false));
+          .finally(() => {
+            if (!isCancelled) {
+              setIsLoading(false)
+            }
+          }
+          );
         break;
 
       default:
         item = null;
+    }
+
+    return () => {
+      isCancelled = true
+      console.log("unmount single element data")
     }
   }, [paramFromUrl, typeOfData]);
 

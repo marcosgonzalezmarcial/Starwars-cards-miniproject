@@ -1,11 +1,7 @@
 import {
   createContext,
-  useState,
-  useCallback,
-  useMemo,
-  useRef,
-  useEffect,
   useContext,
+  useMemo
 } from "react";
 import { useToggle } from "hooks/useToggle";
 
@@ -14,8 +10,13 @@ const LoginMenuCtx = createContext(null);
 function LoginMenuCtxProvider({ children }) {
   const [isToggled, toggle] = useToggle(false);
 
+  const value = useMemo(
+    () => ([isToggled, toggle]),
+    [isToggled, toggle]
+  );
+
   return (
-    <LoginMenuCtx.Provider value={[isToggled, toggle]}>
+    <LoginMenuCtx.Provider value={value}>
       {children}
     </LoginMenuCtx.Provider>
   );

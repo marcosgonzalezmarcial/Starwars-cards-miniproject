@@ -32,37 +32,48 @@ export const DataContextProvider = ({ children }) => {
   );
 
   useEffect(() => {
+    let isCancelled = false;
     setData((prev) => ({ ...prev, isLoading: true }));
 
     getTransformedDataArray({
       page: currentPage,
     })
       .then(({ transformedDataArray: newData, next }) => {
-        //checking data is not null
-        newData &&
-          setData((prev) => {
-            return {
-              ...prev,
-              next,
-              [mainPath]: {
-                ...prev[mainPath],
-                data: [
-                  ...new Set(
-                    [...prev[mainPath].data, ...newData].map((o) =>
-                      JSON.stringify(o)
-                    )
-                  ),
-                ].map((s) => JSON.parse(s)),
-              },
-            };
-          });
+        if (!isCancelled) {
+          //checking data is not null
+          newData &&
+            setData((prev) => {
+              return {
+                ...prev,
+                next,
+                [mainPath]: {
+                  ...prev[mainPath],
+                  data: [
+                    ...new Set(
+                      [...prev[mainPath].data, ...newData].map((o) =>
+                        JSON.stringify(o)
+                      )
+                    ),
+                  ].map((s) => JSON.parse(s)),
+                },
+              };
+            });
+        }
+
       })
       .catch((error) => {
         console.log(error);
       })
       .finally(() => {
-        setData((prev) => ({ ...prev, isLoading: false }));
+        if (!isCancelled) {
+          setData((prev) => ({ ...prev, isLoading: false }));
+        }
       });
+
+    return () => {
+      isCancelled = true
+      console.log("unmount Data Context")
+    }
   }, [mainPath, memoizedData, setData, currentPage]);
   return (
     <DataContext.Provider value={{ data, setData }}>

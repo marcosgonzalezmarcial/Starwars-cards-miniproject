@@ -14,18 +14,21 @@ export const useSearch = () => {
   }
 
   useEffect(() => {
+    let isCancelled = false;
     if (query && category === `/${TYPE_OF_DATA.PLANETS}/`) {
       fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
         .then(({ results }) => {
-          if (!results) {
-            return <h1>No results found</h1>;
-          } else {
-            const newArr = transformDataArray({
-              fetchedData: results,
-              typeOfData: TYPE_OF_DATA.PLANETS,
-            });
-            setSearchResultsItems((prev) => [...prev, ...newArr]);
+          if (!isCancelled) {
+            if (!results) {
+              return <h1>No results found</h1>;
+            } else {
+              const newArr = transformDataArray({
+                fetchedData: results,
+                typeOfData: TYPE_OF_DATA.PLANETS,
+              });
+              setSearchResultsItems((prev) => [...prev, ...newArr]);
+            }
           }
         });
     }
@@ -33,14 +36,16 @@ export const useSearch = () => {
       fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
         .then(({ results }) => {
-          if (!results) {
-            return <h1>No results found</h1>;
-          } else {
-            const newArr = transformDataArray({
-              fetchedData: results,
-              typeOfData: TYPE_OF_DATA.PEOPLE,
-            });
-            setSearchResultsItems((prev) => [...prev, ...newArr]);
+          if (!isCancelled) {
+            if (!results) {
+              return <h1>No results found</h1>;
+            } else {
+              const newArr = transformDataArray({
+                fetchedData: results,
+                typeOfData: TYPE_OF_DATA.PEOPLE,
+              });
+              setSearchResultsItems((prev) => [...prev, ...newArr]);
+            }
           }
         });
     }
@@ -48,18 +53,23 @@ export const useSearch = () => {
       fetch(`${API_URL}/${category}/?search=${query}`)
         .then((res) => res.json())
         .then(({ results }) => {
-          if (!results) {
-            return <h1>No results found</h1>;
-          } else {
-            const newArr = transformDataArray({
-              fetchedData: results,
-              typeOfData: TYPE_OF_DATA.STARSHIPS,
-            });
-            setSearchResultsItems((prev) => [...prev, ...newArr]);
+          if (!isCancelled) {
+            if (!results) {
+              return <h1>No results found</h1>;
+            } else {
+              const newArr = transformDataArray({
+                fetchedData: results,
+                typeOfData: TYPE_OF_DATA.STARSHIPS,
+              });
+              setSearchResultsItems((prev) => [...prev, ...newArr]);
+            }
           }
         });
     }
-    return () => setSearchResultsItems([]);
+    return () => {
+      setSearchResultsItems([]);
+      isCancelled = true;
+    };
   }, [query, category]);
 
   return {
