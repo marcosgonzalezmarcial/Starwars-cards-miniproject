@@ -6,23 +6,19 @@ export const useLisOfData = ({ listOfUrls }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    let isCancelled = false;
+    let myAbortController = new AbortController();
+    const signal = myAbortController.signal;
+
     setIsLoading(true);
-    fetchListOfDataFromUrlsArr(listOfUrls)
+    fetchListOfDataFromUrlsArr({ listOfUrls, signal })
       .then((newData) => {
-        if (!isCancelled) {
-          setData(newData);
-        }
+        setData(newData);
       })
       .catch(console.log)
       .finally(() => {
-        if (!isCancelled) {
-          setIsLoading(false);
-        }
+        setIsLoading(false);
       });
-    return () => {
-      isCancelled = true;
-    }
+    return () => myAbortController.abort();
   }, [listOfUrls]);
 
   return {
