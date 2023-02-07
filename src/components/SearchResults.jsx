@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const SearchResults = ({ searchResultsItems }) => {
-  console.log(searchResultsItems);
+  // console.log(searchResultsItems);
   return (
     <div className="grid-items">
       {searchResultsItems.map((item) => (

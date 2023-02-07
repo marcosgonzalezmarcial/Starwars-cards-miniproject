@@ -19,13 +19,14 @@ export const DataContextProvider = ({ children }) => {
   let currentPage = data[mainPath].page;
 
   useEffect(() => {
-    let myAbortController = new AbortController()
-    const signal = myAbortController.signal
+    let myAbortController = new AbortController();
+    const signal = myAbortController.signal;
 
     setData((prev) => ({ ...prev, isLoading: true }));
 
     getTransformedDataArray({
-      page: currentPage, signal
+      page: currentPage,
+      signal,
     })
       .then(({ transformedDataArray: newData, next }) => {
         newData &&
@@ -51,7 +52,7 @@ export const DataContextProvider = ({ children }) => {
       })
       .finally(() => setData((prev) => ({ ...prev, isLoading: false })));
 
-    return () => myAbortController.abort()
+    return () => myAbortController.abort();
     // fetch data if the user navigates or if paginates scrolling down
   }, [mainPath, currentPage]);
 

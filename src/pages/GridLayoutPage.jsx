@@ -1,23 +1,24 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useSearch } from "hooks/useSearch.js";
 import { useIsNearScreen } from "hooks/useIsNearScreen.js";
 import SearchResults from "components/SearchResults";
 import GridItems from "components/GridItems";
 import { useData } from "hooks/useData";
+import { useLocation } from "react-router-dom";
+import { getTransformedDataArray } from "services/getTransformedDataArray";
 
 const GridLayoutPage = ({ mainPath }) => {
   const { searchResultsItems } = useSearch();
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false });
-  const {
-    data: { isLoading, next },
-    setData,
-  } = useData();
+  const { data, setData } = useData();
 
+  let location = useLocation();
+  // fetch data when scrolling down
   useEffect(() => {
     // stops pagination when data is loading
-    if (isLoading) return;
+    if (data.isLoading) return;
     // stops pagination if next fetch is not possible
-    if (!next) return;
+    if (!data.next) return;
 
     if (isNearScreen) {
       setData((prev) => ({
@@ -30,6 +31,30 @@ const GridLayoutPage = ({ mainPath }) => {
     }
   }, [isNearScreen]);
 
+  // refetch data after searching
+  useEffect(() => {
+    getTransformedDataArray({
+      page: 1,
+    }).then(({ transformedDataArray: newData, next }) => {
+      newData &&
+        setData((prev) => {
+          return {
+            ...prev,
+            next,
+            [mainPath]: {
+              ...prev[mainPath],
+              data: [
+                ...new Set(
+                  [...prev[mainPath].data, ...newData].map((o) =>
+                    JSON.stringify(o)
+                  )
+                ),
+              ].map((s) => JSON.parse(s)),
+            },
+          };
+        });
+    });
+  }, [location.search, setData]);
 
   if (searchResultsItems.length > 0) {
     return <SearchResults searchResultsItems={searchResultsItems} />;
@@ -37,7 +62,7 @@ const GridLayoutPage = ({ mainPath }) => {
 
   return (
     <>
-      <GridItems mainPath={mainPath} />
+      <GridItems data={data} mainPath={mainPath} />
       {/* is near screen viewfinder */}
       <div ref={fromRef}></div>
     </>

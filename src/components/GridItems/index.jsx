@@ -1,12 +1,9 @@
 import { memo } from "react";
 import { Spinner } from "components/Spinner";
 import GridItemLinkCard from "components/GridItemLinkCard";
-import { useData } from "hooks/useData";
 import "./GridItems.scss";
 
-const GridItems = ({ mainPath }) => {
-  const { data } = useData();
-
+const GridItems = ({ mainPath, data }) => {
   return (
     <>
       {/* show Spinner if no data loaded yet */}

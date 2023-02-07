@@ -6,7 +6,8 @@ export const getTransformedDataArray = async ({ page, signal }) => {
   const newPath = getPathname();
   try {
     const { results: fetchedData, next } = await fetchDataByPage({
-      page, signal
+      page,
+      signal,
     });
     const transformedDataArray = transformDataArray({
       fetchedData,

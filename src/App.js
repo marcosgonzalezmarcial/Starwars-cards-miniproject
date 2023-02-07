@@ -9,7 +9,6 @@ import ErrorPage from "pages/ErrorPage";
 import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
 import GridLayoutPage from "pages/GridLayoutPage";
-
 import { DataContextProvider } from "contexts/DataContext";
 
 function App() {
