@@ -1,13 +1,12 @@
-import ListOfItemsWrapper from "components/ListOfItemsWrapper";
-import { useNavigate } from "react-router-dom";
+import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
+import { useNavigate } from 'react-router-dom'
 
 const Character = ({ elementData }) => {
-  console.log("Character component");
-  let navigate = useNavigate();
+  let navigate = useNavigate()
   const handleItemClick = (e) => {
-    const planetSelected = e.target.textContent;
-    navigate(`/planets/${planetSelected}`);
-  };
+    const planetSelected = e.target.textContent
+    navigate(`/planets/${planetSelected}`)
+  }
 
   return (
     <>
@@ -33,27 +32,24 @@ const Character = ({ elementData }) => {
           </div>
           <div>
             <h3>Homeworld</h3>
-            <p className="list-of-items" onClick={handleItemClick}>
+            <span className="list-of-items" onClick={handleItemClick}>
               {elementData.homeworld?.toUpperCase().at(0)}
               {elementData.homeworld?.substring(1)}
-            </p>
+            </span>
           </div>
         </div>
         <div className="detail-page__info--row">
-          <div >
+          <div>
             {elementData.films?.length === 0 ? (
               <>
                 <h3>Appearances</h3>
                 <span>No films registered for this character</span>
               </>
             ) : (
-              <ListOfItemsWrapper
-                itemType="films"
-                elementData={elementData}
-              />
+              <ListOfItemsWrapper itemType="films" elementData={elementData} />
             )}
           </div>
-          <div >
+          <div>
             {elementData.starships?.length === 0 ? (
               <>
                 <h3>Starships</h3>
@@ -69,7 +65,7 @@ const Character = ({ elementData }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Character;
+export default Character

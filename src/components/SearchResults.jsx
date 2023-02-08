@@ -1,14 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 const SearchResults = ({ searchResultsItems }) => {
-  // console.log(searchResultsItems);
   return (
     <div className="grid-items">
       {searchResultsItems.map((item) => (
         <Link
           className="grid-item"
           key={item.model ?? item.name}
-          to={item.name.replaceAll(" ", "~")}
+          to={item.name.replaceAll(' ', '~')}
         >
           <div className="grid-item__hero">
             <img
@@ -24,7 +23,7 @@ const SearchResults = ({ searchResultsItems }) => {
         </Link>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default SearchResults;
+export default SearchResults

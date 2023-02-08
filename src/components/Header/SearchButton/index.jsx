@@ -6,7 +6,6 @@ import { useSearchModal } from "hooks/useSearchModal";
 
 const SearchButton = ({ loggedIn }) => {
   const { toggleSearchModal } = useSearchModal();
-  console.log("SearchButton renders because useNavigate");
 
   let navigate = useNavigate();
 

@@ -15,6 +15,7 @@ function App() {
   const [users, setUsers] = useState(
     JSON.parse(localStorage.getItem("users")) || []
   );
+
   const [loggedIn, setLoggedIn] = useState(
     JSON.parse(localStorage.getItem("loggedIn")) || false
   );

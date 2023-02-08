@@ -28,7 +28,6 @@
     flex-grow: 1;
 
     &--row {
-
       display: flex;
       flex-wrap: wrap;
       margin-block: 0.5rem;
@@ -42,6 +41,11 @@
         flex: 1 0;
         width: 100%;
         max-width: 100%;
+      }
+
+      @media (max-width: 575px) {
+        padding: 0;
+        margin: 0;
       }
     }
 
@@ -59,21 +63,25 @@
       display: block;
       color: var(--primary-gray);
     }
+
+    .loadingio-spinner-eclipse-3z3n0w49pdf { 
+      width: 120px;
+      height: 120px;
+    }
+    @media (max-width: 575px) {
+      padding-block: 0.6rem;
+    }
   }
 
   img {
     width: 100%;
-    max-height: calc(min(29vh, 600px));
+    max-height: calc(min(24.5vh, 600px));
     min-height: 100%;
     object-fit: cover;
   }
 
   img[src*="vignette"] {
     object-position: 50% 30%;
-
-    @media (max-width: 576px) {
-      object-position: (50% 10%);
-    }
   }
 
   img[src*="Films"] {
@@ -82,11 +90,9 @@
     }
   }
 
-  img[src*="Planets"] {
-    clip-path: circle(45%);
-    max-height: calc(min(24.5vh, 400px));
-    object-fit: contain;
-  }
+  // img[src*="Planets"] {
+  //   max-height: calc(min(22vh, 400px));
+  // }
 
   @media (max-width: 575px) {
     max-width: calc(min(94vw, 540px));
@@ -117,26 +123,25 @@
 
     .detail-page__img {
       width: 100%;
+      &:has(img[src*=Planets]) {
+        margin-block: 0.5rem;
+      }
     }
 
-    img {
-      max-height: calc(min(29vh, 600px));
-      object-fit: cover;
+    :is(img[src*="Yavin4"], img[src*="Bestine"], img[src*="Dantooine"]){
+      clip-path: circle(88px);
     }
-
+    img[src*="Mygeeto"] {
+      max-height: 30vh;
+      clip-path: circle(90px);
+    }
+    img[src*="Saleucami"] {
+      clip-path: circle(73px);
+    }
+  }
+  @media (min-width: 700px) {
     img[src*="Planets"] {
-      object-fit: contain;
-      clip-path: circle(29vw);
-      margin-bottom: 1rem;
-    }
-
-    img[src*="Starships"] {
-      height: calc(min(23vh, 600px));
-    }
-
-    img[src*="Yavin4"] {
-      max-height: 35vh;
-      clip-path: circle(120px);
+      max-height: calc(max(25vh, 300px));
     }
   }
 
@@ -146,10 +151,6 @@
     h1 {
       font-size: 1.75rem;
       padding-inline-start: 0;
-    }
-
-    img[src*="Planets"] {
-      max-height: calc(max(29vh, 400px));
     }
   }
 

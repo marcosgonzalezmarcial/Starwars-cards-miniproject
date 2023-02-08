@@ -25,6 +25,12 @@
   h3 {
     margin-block: 0.5rem;
   }
+
+  @media (max-width: 575px) {
+   & {
+     margin-inline-end: 0.5rem;
+    } 
+  }
 }
 
 // "input" (button)
@@ -39,13 +45,17 @@
   position: relative;
   font-size: 0.75rem;
 
-  &:hover {
-    filter: brightness(150%);
-
-    &::before {
-      color: var(--primary-white);
-    }
+  @media (max-width: 575px) {
+    margin-top: 0;
   }
+
+  // &:hover {
+  //   filter: brightness(150%);
+
+  //   &::before {
+  //     color: var(--primary-white);
+  //   }
+  // }
 }
 
 .view-more-btn::before {
@@ -73,20 +83,20 @@
 
 @media (max-width: 576px) {
   .list-of-items-wrapper {
-    --max-lines: 3;
+    --max-lines: 5;
   }
 
-  .detail-page:has(img[src*="Films"]) {
+  .detail-page:has(img[src*="Planets"]) {
     .list-of-items-wrapper {
-      --max-lines: 4;
+      --max-lines: 4.5;
     }
   }
 
-  .detail-page:has(img[src*="vignette"]) {
-    .list-of-items-wrapper {
-      --max-lines: 3;
-    }
-  }
+  // .detail-page:has(img[src*="vignette"]) {
+  //   .list-of-items-wrapper {
+  //     --max-lines: 3;
+  //   }
+  // }
 }
 
 @media (min-width: 576px) {

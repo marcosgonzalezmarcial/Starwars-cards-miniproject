@@ -7,8 +7,6 @@ import "./LoginNav.scss";
 const LoginNav = ({ loggedIn, setLoggedIn }) => {
   const [toggleMenu, handleToggle] = useLoginMenuCtx();
 
-  console.log("LoginNav render");
-
   const dynamicStyles = useCallback(() => {
     if (!loggedIn) {
       if (window.innerWidth > 768) return "expanded";
@@ -20,10 +18,9 @@ const LoginNav = ({ loggedIn, setLoggedIn }) => {
     return "loggedin hide collapsed";
   }, [toggleMenu, loggedIn]);
 
-  const handleCLickLogin = useCallback(
-    () => setLoggedIn((prev) => !prev),
-    [setLoggedIn]
-  );
+  const handleCLickLogin = useCallback(() => setLoggedIn((prev) => !prev), [
+    setLoggedIn
+  ]);
 
   return (
     <nav className={`login-nav ${dynamicStyles()}`}>
