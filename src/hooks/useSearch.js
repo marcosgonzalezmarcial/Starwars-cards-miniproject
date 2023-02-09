@@ -66,6 +66,7 @@ export const useSearch = () => {
     }
     return () => {
       myAbortController.abort()
+      console.log("test return useSearch")
       // delete previous serched items
       setSearchResultsItems([])
       // remove items from DataContext to avoid showing previous stored GridItems data when searching

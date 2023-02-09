@@ -1,22 +1,25 @@
 .main-header {
   &__container {
     display: grid;
-    width: calc(min(90vw, 1200px));
+    width: calc(min(92vw, 1200px));
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     margin: 0 auto;
     text-align: center;
     padding-block: 1rem;
+
     @media (max-width: 576px) {
       width: initial;
       padding-inline: 0.5rem;
     }
+
     @media (min-width: 768px) {
       & {
         padding-block: 0.25rem;
       }
     }
   }
+
   &__logo {
     width: 200px;
   }
