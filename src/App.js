@@ -1,28 +1,28 @@
-import { Routes, Route } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import Home from "pages/Home";
-import Login from "pages/Login";
-import SignUp from "pages/SignUp";
-import Header from "components/Header";
-import DetailPage from "pages/DetailPage";
-import ErrorPage from "pages/ErrorPage";
-import ProtectedRoute from "pages/ProtectedRoute";
-import NestedRoutes from "pages/NestedRoutes";
-import GridLayoutPage from "pages/GridLayoutPage";
-import { DataContextProvider } from "contexts/DataContext";
+import { Routes, Route } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import Home from 'pages/Home'
+import Login from 'pages/Login'
+import SignIn from 'pages/SignIn'
+import Header from 'components/Header'
+import DetailPage from 'pages/DetailPage'
+import ErrorPage from 'pages/ErrorPage'
+import ProtectedRoute from 'pages/ProtectedRoute'
+import NestedRoutes from 'pages/NestedRoutes'
+import GridLayoutPage from 'pages/GridLayoutPage'
+import { DataContextProvider } from 'contexts/DataContext'
 
 function App() {
   const [users, setUsers] = useState(
-    JSON.parse(localStorage.getItem("users")) || []
-  );
+    JSON.parse(localStorage.getItem('users')) || []
+  )
 
   const [loggedIn, setLoggedIn] = useState(
-    JSON.parse(localStorage.getItem("loggedIn")) || false
-  );
+    JSON.parse(localStorage.getItem('loggedIn')) || false
+  )
   useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(users));
-    localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
-  }, [users, loggedIn]);
+    localStorage.setItem('users', JSON.stringify(users))
+    localStorage.setItem('loggedIn', JSON.stringify(loggedIn))
+  }, [users, loggedIn])
 
   return (
     <>
@@ -35,7 +35,7 @@ function App() {
             path="login"
             element={<Login users={users} setLoggedIn={setLoggedIn} />}
           />
-          <Route path="signup" element={<SignUp setUsers={setUsers} />} />
+          <Route path="signin" element={<SignIn setUsers={setUsers} />} />
           <Route
             element={
               <DataContextProvider>
@@ -66,7 +66,7 @@ function App() {
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

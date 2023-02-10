@@ -1,6 +1,4 @@
-//////// Forms styles /////////////////
-
-.loginForm-container {
+.register-form {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -12,16 +10,47 @@
   align-items: center;
   justify-content: center;
 
-  .form-inner {
+  &.is-open {
+    display: flex;
+  }
+
+  &__close-btn {
+    position: absolute;
+    right: 1.5rem;
+    border: 0;
+    background-color: transparent;
+    font-size: 2rem;
+    color: white;
+    transition: color 225ms;
+  
+    &:hover {
+      color: #3f6dac;
+    }
+  }
+
+  &__img {
+    margin-block: 1.5rem;
+    padding: 0.5rem;
+  }
+  
+  &__title {
+    font-size: 1.4rem;
+  }
+
+  &__inner-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 1rem;
     background-color: #181818;
     letter-spacing: 0.06em;
     width: calc(min(540px, 85vw));
     font-size: 14px;
     color: #edd700;
 
-    .form-title {
-      font-size: 1.5rem;
-    }
+    
 
     input {
       font-size: 13.5px;
@@ -78,27 +107,10 @@
       height: 100%;
     }
 
-    .form-inner {
+    .login-form__inner-wrapper {
       width: 100%;
       height: 100%;
     }
-  }
-}
-
-.loginForm-container.is-open {
-  display: flex;
-}
-
-.form-close-btn {
-  right: 1.5rem;
-  border: 0;
-  background-color: transparent;
-  font-size: 2rem;
-  color: white;
-  transition: color 225ms;
-
-  &:hover {
-    color: #3f6dac;
   }
 }
 
@@ -115,5 +127,3 @@
     border: solid 1px #edd700;
   }
 }
-
-//////// end of Forms styles /////////////////
