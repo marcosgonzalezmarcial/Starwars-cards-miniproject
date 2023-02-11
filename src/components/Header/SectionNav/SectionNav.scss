@@ -1,6 +1,6 @@
 .section-nav {
-  border-bottom: 1px solid var(--secondary-gray);
-  border-top: 1px solid var(--secondary-gray);
+  border-bottom: 1px solid var(--gray-blue);
+  border-top: 1px solid var(--gray-blue);
 
   &__container {
     display: flex;
@@ -20,7 +20,7 @@
 
   &__link {
     position: relative;
-    font-size: var(--step--1);
+    font-size: var(--step--2);
     font-weight: 700;
     color: var(--primary-gray);
     flex: 1 0;
@@ -31,8 +31,8 @@
     }
 
     &--border-silver {
-      border-right: 1px solid var(--secondary-gray);
-      border-left: 1px solid var(--secondary-gray);
+      border-right: 1px solid var(--gray-blue);
+      border-left: 1px solid var(--gray-blue);
       margin: -1px 0 0 -1px;
     }
     &--light-saber {
@@ -46,6 +46,11 @@
         0 0 50px var(--light-saber), 0 0 100px var(--light-saber);
       background: white;
       margin: 0 auto;
+    }
+    @media (min-width: 576px) {
+      & {
+        font-size: var(--step--1);
+      }
     }
   }
 }
