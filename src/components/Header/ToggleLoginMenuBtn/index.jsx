@@ -1,16 +1,13 @@
-import { useContext, memo } from "react";
 import burgerBtn from "../../../assets/icons/hamburger-menu-btn.svg";
-import "./toggle-btn.scss";
+import "./ToggleLoginMenuBtn.scss";
 
 import { useLoginMenuCtx } from "contexts/LoginMenuCtx";
 
 const TogglLoginMenuBtn = () => {
   const [, handleToggleMenu] = useLoginMenuCtx();
 
-  console.log("ToggleMenuBtn render");
-
   return (
-    <button onClick={handleToggleMenu} className="navbar-toggle-btn me-auto">
+    <button onClick={handleToggleMenu} className="toggle-login-menu-btn">
       <img src={burgerBtn} alt="burger button" />
     </button>
   );

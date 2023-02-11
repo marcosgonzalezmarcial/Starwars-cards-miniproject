@@ -3,9 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const NestedRoutes = () => {
   return (
-    <>
-      <Outlet />
-    </>
+    <Outlet />
   );
 };
 

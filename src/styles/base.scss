@@ -1,0 +1,48 @@
+@import "./variables";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("https://res.cloudinary.com/dn9mr6kwc/image/upload/v1666519655/Starwars%20miniproject/star-wars-background-img_cpqurg.jpg");
+  // font-family: "Orbitron", sans-serif;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  letter-spacing: 1.20px;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.35;
+  
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+input,
+button,
+textarea,
+select {
+  font-size: inherit;
+  font: inherit;
+}
+
+img {
+  vertical-align: middle;
+}
+
+// overrides bootstrap default margins
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}

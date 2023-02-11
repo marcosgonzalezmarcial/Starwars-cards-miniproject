@@ -1,57 +1,56 @@
+.section-nav {
+  border-bottom: 1px solid var(--gray-blue);
+  border-top: 1px solid var(--gray-blue);
 
-.nav-wrapper {
-	width: calc(min(90vw, 1100px));
-}
+  &__container {
+    display: flex;
+    width: calc(min(90vw, 1100px));
+    margin-inline: auto;
+    padding-block: 0;
+    padding-inline: 0.5rem;
+    justify-content: center;
+    text-align: center;
 
-.border-wrapper {
-	margin-inline: auto;
-	border-bottom: 1px solid #333;
-	border-top: 1px solid #333;
-}
+    @media (max-width: 576px) {
+      & {
+        width: 100%;
+      }
+    }
+  }
 
-.border-silver {
-	border-right: 1px solid #333;
-	border-left: 1px solid #333;
-	border-collapse: collapse !important;
-	margin: -1px 0 0 -1px;
-}
+  &__link {
+    position: relative;
+    font-size: var(--step--2);
+    font-weight: 700;
+    color: var(--primary-gray);
+    flex: 1 0;
+    padding: 0.5rem;
+    &:hover {
+      color: var(--primary-white);
+      cursor: pointer;
+    }
 
-.active-link-light-saber {
-	position: absolute;
-	bottom: 10%;
-	border-radius: 10px;
-	left: calc(50% - 16px);
-	width: 32px;
-	height: 2px;
-	box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-		0 0 100px #03e9f4;
-	background: white;
-	margin: 0 auto;
-}
-
-.nav-link {
-	position: relative;
-	font-size: 0.8em;
-	font-weight: 800;
-	color: #999;
-}
-
-.nav-link:hover {
-	color: white;
-	cursor: pointer;
-}
-
-.nav-link:focus {
-	outline: none;
-	color: white;
-}
-
-
-@media (max-width: 576px) {
-	.nav-wrapper {
-		width: 100%;
-	}
-    .nav-link {
-	padding-inline: 0.5rem;
-	}
+    &--border-silver {
+      border-right: 1px solid var(--gray-blue);
+      border-left: 1px solid var(--gray-blue);
+      margin: -1px 0 0 -1px;
+    }
+    &--light-saber {
+      position: absolute;
+      bottom: 10%;
+      border-radius: 10px;
+      left: calc(50% - 16px);
+      width: 32px;
+      height: 2px;
+      box-shadow: 0 0 5px var(--light-saber), 0 0 25px var(--light-saber),
+        0 0 50px var(--light-saber), 0 0 100px var(--light-saber);
+      background: white;
+      margin: 0 auto;
+    }
+    @media (min-width: 576px) {
+      & {
+        font-size: var(--step--1);
+      }
+    }
+  }
 }

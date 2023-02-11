@@ -5,6 +5,8 @@ import Planet from "components/Planet";
 import Film from "components/Film";
 import { Spinner } from "components/Spinner";
 import { useSingleElementData } from "hooks/useSingleElementData";
+import "./DetailPage.scss";
+
 
 export const Element = ({ mainPath, elementData }) => {
   switch (mainPath) {
@@ -21,7 +23,7 @@ export const Element = ({ mainPath, elementData }) => {
   }
 };
 
-const ElementDetailPage = ({ children }) => {
+const DetailPage = ({ children }) => {
   let { itemName } = useParams();
   let location = useLocation();
 
@@ -40,7 +42,7 @@ const ElementDetailPage = ({ children }) => {
       {loading ? (
         <Spinner />
       ) : (
-        <main className="main text-secondary">
+        <main className="detail-page">
           <Element mainPath={mainPath} elementData={elementData} />
           {children}
         </main>
@@ -49,4 +51,4 @@ const ElementDetailPage = ({ children }) => {
   );
 };
 
-export default ElementDetailPage;
+export default DetailPage;

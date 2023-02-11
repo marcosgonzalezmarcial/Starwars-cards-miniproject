@@ -1,0 +1,17 @@
+.toggle-login-menu-btn {
+  margin-inline-end: auto;
+  background-color: transparent;
+  border: 1px solid var(--gray-blue);
+  border-radius: 5px;
+  order: -1;
+  img {
+    width: 43px;
+    height: 33px;
+  }
+
+  @media (min-width: 768px) {
+    & {
+      display: none;
+    }
+  }
+}

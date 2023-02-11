@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useMemo } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { getTransformedDataArray } from "services/getTransformedDataArray";
 
@@ -18,27 +18,17 @@ export const DataContextProvider = ({ children }) => {
   let mainPath = location.pathname.slice(1).split("/")[0];
   let currentPage = data[mainPath].page;
 
-  const memoizedData = useMemo(
-    () => ({
-      next: null,
-      isLoading: false,
-      planets: { data: [], page: 1 },
-      starships: { data: [], page: 1 },
-      characters: { data: [], page: 1 },
-      films: { data: [], page: 1 },
-    }),
-    // eslint-disable-next-line
-    [currentPage]
-  );
-
   useEffect(() => {
+    let myAbortController = new AbortController();
+    const signal = myAbortController.signal;
+
     setData((prev) => ({ ...prev, isLoading: true }));
 
     getTransformedDataArray({
       page: currentPage,
+      signal,
     })
       .then(({ transformedDataArray: newData, next }) => {
-        //checking data is not null
         newData &&
           setData((prev) => {
             return {
@@ -60,10 +50,12 @@ export const DataContextProvider = ({ children }) => {
       .catch((error) => {
         console.log(error);
       })
-      .finally(() => {
-        setData((prev) => ({ ...prev, isLoading: false }));
-      });
-  }, [mainPath, memoizedData, setData, currentPage]);
+      .finally(() => setData((prev) => ({ ...prev, isLoading: false })));
+
+    return () => myAbortController.abort();
+    // fetch data if the user navigates or if paginates scrolling down
+  }, [mainPath, currentPage]);
+
   return (
     <DataContext.Provider value={{ data, setData }}>
       {children}
