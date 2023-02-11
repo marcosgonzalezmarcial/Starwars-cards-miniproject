@@ -132,12 +132,16 @@
       min-height: calc(max(700px, 100vh));
     }
 
-    & form {
+    & {
       width: 100%;
       height: 100%;
+
+      &__signin-link {
+        font-size: 12px;
+      }
     }
 
-    .login-form__inner-wrapper {
+    .register-form__inner-wrapper {
       width: 100%;
       height: 100%;
     }

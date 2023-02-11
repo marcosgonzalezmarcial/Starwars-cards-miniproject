@@ -1,4 +1,4 @@
-import ListOfItemsWrapper from "components/ListOfItemsWrapper";
+import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
 
 const Planet = ({ elementData }) => {
   return (
@@ -29,17 +29,14 @@ const Planet = ({ elementData }) => {
           </div>
         </div>
         <div className="detail-page__info--row">
-          <div >
+          <div className="detail-page__info--row--left">
             {elementData.films?.length === 0 ? (
               <>
                 <h3>Appearances</h3>
-                <span>No films registered for this character</span>
+                <span>No films registered for this planet</span>
               </>
             ) : (
-              <ListOfItemsWrapper
-                itemType="films"
-                elementData={elementData}
-              />
+              <ListOfItemsWrapper itemType="films" elementData={elementData} />
             )}
           </div>
           <div>
@@ -57,10 +54,9 @@ const Planet = ({ elementData }) => {
             )}
           </div>
         </div>
-
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Planet;
+export default Planet
