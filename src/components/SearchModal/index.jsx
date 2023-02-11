@@ -1,47 +1,50 @@
-import { useRef, useState, memo } from "react";
-import { Form, Modal } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { TYPE_OF_DATA } from "../../constants";
-import "./SearchModal.scss";
+import { useCallback, useRef, useState } from 'react'
+import { Form, Modal } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { TYPE_OF_DATA } from '../../constants'
+import './SearchModal.scss'
+import { useSearchModal } from 'hooks/useSearchModal'
 
-const SearchModal = ({ show, onHide }) => {
-  const [searchCategory, setSearchCategory] = useState(null);
+const SearchModal = () => {
+  const [searchCategory, setSearchCategory] = useState(null)
 
-  let navigate = useNavigate();
+  const {
+    isToggledSearchModal: showModal,
+    toggleSearchModal: handleToggleModal
+  } = useSearchModal()
 
-  const inputRef = useRef(null);
+  let navigate = useNavigate()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate(`/${searchCategory}/?search=${inputRef.current.value}`);
-    onHide();
-  };
+  const inputRef = useRef(null)
 
-  const handleSelection = (e) => {
-    if (e.target.getAttribute("data-type") === TYPE_OF_DATA.PEOPLE) {
-      setSearchCategory("characters");
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault()
+      navigate(`/${searchCategory}/?search=${inputRef.current.value}`)
+      handleToggleModal()
+    },
+    [handleToggleModal, navigate, searchCategory]
+  )
+
+  const handleSelection = useCallback((e) => {
+    if (e.target.getAttribute('data-type') === TYPE_OF_DATA.PEOPLE) {
+      setSearchCategory('characters')
     } else {
-      setSearchCategory(e.target.getAttribute("data-type"));
+      setSearchCategory(e.target.getAttribute('data-type'))
     }
-  };
+  }, [])
 
   return (
     <Modal
-      show={show}
-      onHide={onHide}
-      // size="lg"
+      show={showModal}
+      onHide={handleToggleModal}
       aria-labelledby="contained-modal-title-vcenter"
       centered
       dialogClassName="search-modal"
     >
-      <Form className="modal-form" onSubmit={handleSubmit}>
+      <Form className="search-modal__form" onSubmit={handleSubmit}>
         <Modal.Header closeVariant="white" closeButton>
-          <Modal.Title
-            className="custom-modal-title"
-            id="contained-modal-title-vcenter"
-          >
-            Search
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">Search</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group>
@@ -89,19 +92,19 @@ const SearchModal = ({ show, onHide }) => {
               ref={inputRef}
               name="searchInput"
               type="text"
-              placeholder="Enter search term"
+              placeholder="Enter search term after selecting the type"
               required
             />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <button type="submit" className="modal-search-btn">
+          <button type="submit" className="search-modal__submit-btn">
             Search
           </button>
         </Modal.Footer>
       </Form>
     </Modal>
-  );
-};
+  )
+}
 
-export default memo(SearchModal);
+export default SearchModal

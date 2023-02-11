@@ -15,83 +15,99 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
   const [elementData, setElementData] = useState({});
 
   useEffect(() => {
+
+    let myAbortController = new AbortController()
+    const signal = myAbortController.signal
+
     setIsLoading(true);
+
 
     const elementNameFromUrl = urlStringify(paramFromUrl);
 
-    let id;
+    let item;
 
     switch (typeOfData) {
       case TYPE_OF_DATA.STARSHIPS:
-        id = starshipsMockedData.find(
+        item = starshipsMockedData.find(
           (ship) => ship.name === elementNameFromUrl
         );
-        fetchItemByTypeAndId({ id: id.id, typeOfData: TYPE_OF_DATA.STARSHIPS })
+        fetchItemByTypeAndId({
+          id: item.id,
+          typeOfData: TYPE_OF_DATA.STARSHIPS,
+          signal
+        })
           .then((item) => {
+
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
               typeOfData: TYPE_OF_DATA.STARSHIPS,
             });
-            setElementData(transformedElementData);
+            setElementData((el) => ({ ...el, ...transformedElementData }));
+
           })
           .catch(console.log)
           .finally(() => setIsLoading(false));
         break;
 
       case TYPE_OF_DATA.PLANETS:
-        id = planetsMockedData.find(
+        item = planetsMockedData.find(
           (planet) => planet.name === elementNameFromUrl
         );
-        fetchItemByTypeAndId({ id: id.id, typeOfData: TYPE_OF_DATA.PLANETS })
+        fetchItemByTypeAndId({ id: item.id, typeOfData: TYPE_OF_DATA.PLANETS, signal })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
               typeOfData: TYPE_OF_DATA.PLANETS,
             });
-            setElementData(transformedElementData);
+            setElementData((el) => ({ ...el, ...transformedElementData }));
           })
           .catch(console.log)
           .finally(() => setIsLoading(false));
         break;
 
       case TYPE_OF_DATA.FILMS:
-        id = filmsMockedData.find((film) => film.title === elementNameFromUrl);
-        fetchItemByTypeAndId({ id: id.id, typeOfData: TYPE_OF_DATA.FILMS })
+        item = filmsMockedData.find(
+          (film) => film.title === elementNameFromUrl
+        );
+        fetchItemByTypeAndId({ id: item.id, typeOfData: TYPE_OF_DATA.FILMS, signal })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
               typeOfData: TYPE_OF_DATA.FILMS,
             });
-            setElementData(transformedElementData);
+            setElementData((el) => ({ ...el, ...transformedElementData }));
           })
           .catch(console.log)
           .finally(() => setIsLoading(false));
         break;
 
       case TYPE_OF_DATA.PEOPLE:
-        id = peopleMockedData.find(
+        item = peopleMockedData.find(
           (character) => character.name === elementNameFromUrl
         );
 
-        fetchItemByTypeAndId({ id: id.id, typeOfData: TYPE_OF_DATA.PEOPLE })
+        fetchItemByTypeAndId({ id: item.id, typeOfData: TYPE_OF_DATA.PEOPLE, signal })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
               typeOfData: TYPE_OF_DATA.PEOPLE,
             });
-            setElementData(transformedElementData);
+            setElementData((el) => ({ ...el, ...transformedElementData }));
           })
           .catch(console.log)
           .finally(() => setIsLoading(false));
         break;
 
       default:
-        id = null;
+        item = null;
     }
+
+    return () => myAbortController.abort()
+
   }, [paramFromUrl, typeOfData]);
 
   return {

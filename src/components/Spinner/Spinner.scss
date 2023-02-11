@@ -3,6 +3,12 @@
   display: grid;
   place-items: center;
   padding-block: 2rem;
+
+  @media (max-width: 575px) {
+    & {
+      padding-block: 0;
+    }
+  }
 }
 /* .spinner-wrapper.small {
   width: 40%;

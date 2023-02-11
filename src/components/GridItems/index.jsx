@@ -1,24 +1,20 @@
 import { memo } from "react";
 import { Spinner } from "components/Spinner";
 import GridItemLinkCard from "components/GridItemLinkCard";
-import { useData } from "hooks/useData";
-import { getPathname } from "utils/getPathname";
+import "./GridItems.scss";
 
-const GridItems = () => {
-  const { data } = useData();
-  let mainPath = getPathname();
-
+const GridItems = ({ mainPath, data }) => {
   return (
     <>
       {/* show Spinner if no data loaded yet */}
       {data[mainPath]?.data?.length === 0 && <Spinner />}
-      <div className="my-3 my-md-4 grid-container">
+      <main className="grid-items">
         {data[mainPath]?.data?.map((item) => (
           <GridItemLinkCard key={item.model ?? item.name} item={item} />
         ))}
+        {/* show small Spinner when loading more items  */}
         {data.isLoading && data[mainPath]?.data.length > 0 && <Spinner />}
-      </div>
-      )}
+      </main>
     </>
   );
 };

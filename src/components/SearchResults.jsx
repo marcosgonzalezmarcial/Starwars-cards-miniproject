@@ -1,29 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 const SearchResults = ({ searchResultsItems }) => {
   return (
-    <div className="my-3 my-md-4 grid-container">
-      {searchResultsItems.map((character) => (
+    <div className="grid-items">
+      {searchResultsItems.map((item) => (
         <Link
-          className="grid-element-card"
-          key={character.name}
-          to={character.name.replaceAll(" ", "~")}
+          className="grid-item"
+          key={item.model ?? item.name}
+          to={item.name.replaceAll(' ', '~')}
         >
-          <div className="grid-card-hero">
+          <div className="grid-item__hero">
             <img
-              className="grid-card-hero-img"
-              src={character.imgUrl || character.image}
-              alt={character.name}
+              className="grid-item__img"
+              src={item.imgUrl || item.image}
+              alt={item.name}
             />
           </div>
-          <div className="text-secondary p-3 grid-card-info bg-dark">
-            <h4>{character.name}</h4>
-            <p>{character.species}</p>
+          <div className="grid-item__info">
+            <h4>{item.name}</h4>
+            <p>{item.model ?? item.species}</p>
           </div>
         </Link>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default SearchResults;
+export default SearchResults
