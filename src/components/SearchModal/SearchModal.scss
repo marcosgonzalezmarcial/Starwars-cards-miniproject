@@ -1,7 +1,9 @@
+@import "../../styles/variables";
+
 .search-modal {
   &__form {
     background-color: var(--bg-dark-gray);
-    color: #edd700;
+    color: var(--primary-yellow);
   }
   &__submit-btn {
     display: block;
@@ -11,17 +13,17 @@
     border: none;
     border-radius: 5px;
     font-size: var(--step--1);
-    background-color: #484848;
-    color: white;
-    transition: background-color 125ms ease-in-out;
+    background-color: var(--secondary-gray);
+    color: var(--primary-white);
+    transition: background-color 75ms ease-in-out;
     &:hover {
-      background-color: #3f6dac;
+      background-color: var(--primary-blue);
     }
   }
 }
 
 .modal-backdrop.show {
-  --bs-backdrop-bg: rgba(255, 255, 255, 0.7);
+  --bs-backdrop-bg: var(--bg-form-overlay);
   --bs-backdrop-opacity: 1;
   position: fixed;
   top: 0;
@@ -32,23 +34,24 @@
 }
 
 input[name="searchInput"] {
-  font-size: 12px;
+  font-size: var(--step--2);
   padding: 0.7rem;
   border-radius: 5px;
   border: none;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
 }
 
 input[name="searchInput"]:is(:focus, :focus-visible) {
-  outline: 2px solid #edd700;
-  background-color: #484848;
-  color: #edd700;
+  outline: 2px solid var(--primary-yellow);
+  background-color: var(--secondary-gray);
+  color: var(--primary-yellow);
   border: none;
   box-shadow: none;
 }
 
 .modal-body label {
   font-size: 0.8rem;
+  font-size: var(--step--2);
 }
 
 .form-check-inline {
