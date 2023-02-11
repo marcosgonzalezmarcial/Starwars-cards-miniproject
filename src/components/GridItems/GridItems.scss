@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .grid-items {
   max-width: calc(min(92vw, 1200px));
   margin-inline: auto;
@@ -46,18 +48,18 @@
   background-repeat: repeat-x;
 
   h4 {
-    font-size: 1.25rem;
+    font-size: var(--step-1);
     color: var(--primary-white);
-    transition: color 275ms cubic-bezier(0.075, 0.82, 0.165, 1);
-
+    transition: color 175ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    
     &:hover {
       cursor: pointer;
       color: var(--primary-pink);
     }
   }
-
+  
   p {
-    font-size: 0.9rem;
+    font-size: var(--step-0);
     color: var(--gray-blue);
   }
 

@@ -1,6 +1,6 @@
 .search-modal {
   &__form {
-    background-color: #282a2b;
+    background-color: var(--bg-dark-gray);
     color: #edd700;
   }
   &__submit-btn {
@@ -10,9 +10,7 @@
     padding: 0.6rem;
     border: none;
     border-radius: 5px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    font-size: 14px;
+    font-size: var(--step--1);
     background-color: #484848;
     color: white;
     transition: background-color 125ms ease-in-out;

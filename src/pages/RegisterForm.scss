@@ -1,4 +1,4 @@
-@import "../styles/variables.scss";
+// @import "../styles/variables.scss";
 
 .register-form {
   position: fixed;
@@ -6,7 +6,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--bg-form-overlay);
   backdrop-filter: blur(2px);
   display: none;
   align-items: center;
@@ -21,12 +21,12 @@
     right: 1.5rem;
     border: 0;
     background-color: transparent;
-    font-size: 2rem;
-    color: white;
-    transition: color 175ms;
+    font-size: var(--step-2);
+    color: var(--primary-white);
+    // transition: color 175ms ease-in-out;
   
     &:hover {
-      color: #3f6dac;
+      color: var(--primary-blue);
     }
   }
 
@@ -37,7 +37,7 @@
   
   &__title {
     margin-block-end: 1rem;
-    font-size: 1.4rem;
+    font-size: var(--step-1);
   }
 
   &__inner-wrapper {
@@ -47,14 +47,13 @@
     text-align: center;
     position: relative;
     padding: 1rem;
-    background-color: #181818;
+    background-color: var(--bg-dark-gray);
     letter-spacing: 0.06em;
     width: calc(min(540px, 85vw));
-    font-size: 14px;
+    font-size: var(--step--1);
     color: #edd700;
 
     input {
-      font-size: 13.5px;
       letter-spacing: 0.06rem;
       width: 90%;
       padding: 0.7rem;

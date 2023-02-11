@@ -20,8 +20,8 @@
 
   &__link {
     position: relative;
-    font-size: 0.8em;
-    font-weight: 800;
+    font-size: var(--step--1);
+    font-weight: 700;
     color: var(--primary-gray);
     flex: 1 0;
     padding: 0.5rem;

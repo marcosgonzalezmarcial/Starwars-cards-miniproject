@@ -43,19 +43,12 @@
   margin-top: 0.5rem;
   width: 100px;
   position: relative;
-  font-size: 0.75rem;
+  font-size: var(--step--2);
 
   @media (max-width: 575px) {
     margin-top: 0;
   }
 
-  // &:hover {
-  //   filter: brightness(150%);
-
-  //   &::before {
-  //     color: var(--primary-white);
-  //   }
-  // }
 }
 
 .view-more-btn::before {
