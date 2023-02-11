@@ -48,55 +48,51 @@ const SignIn = ({ setUsers }) => {
     <form className={`register-form is-open`} onSubmit={handleSubmit} action="">
       <div className="register-form__inner-wrapper">
         <img className="register-form__img" src={yellowSwLogo} alt="logo" />
-        <button
-          className="register-form__close-btn position-absolute"
-          onClick={handleClick}
-        >
+        <button className="register-form__close-btn" onClick={handleClick}>
           X
         </button>
         <h1 className="register-form__title">CREATE YOUR ACCOUNT</h1>
-        <div className="form-group w-100 my-3">
-          <input
-            onChange={handleChangeFirstName}
-            placeholder="First Name"
-            type="text"
-            value={userDetails.firstName}
-            required
-          />
-        </div>
-        <div className="form-group w-100 my-3">
-          <input
-            onChange={handleChangeLastName}
-            placeholder="Last Name"
-            type="text"
-            value={userDetails.lastName}
-            required
-          />
-        </div>
-        <div className="form-group w-100 my-3">
-          <input
-            onChange={handleChangeEmail}
-            placeholder="Email Adress"
-            type="email"
-            value={userDetails.email}
-            required
-          />
-        </div>
-        <div className="form-group w-100 my-3">
-          <input
-            onChange={handleChangePassword}
-            placeholder="Password"
-            type="password"
-            value={userDetails.password}
-            required
-          />
-        </div>
+
+        <input
+          className="register-form__input-field"
+          onChange={handleChangeFirstName}
+          placeholder="First Name"
+          type="text"
+          value={userDetails.firstName}
+          required
+        />
+
+        <input
+          className="register-form__input-field"
+          onChange={handleChangeLastName}
+          placeholder="Last Name"
+          type="text"
+          value={userDetails.lastName}
+          required
+        />
+
+        <input
+          className="register-form__input-field"
+          onChange={handleChangeEmail}
+          placeholder="Email Adress"
+          type="email"
+          value={userDetails.email}
+          required
+        />
+
+        <input
+          className="register-form__input-field"
+          onChange={handleChangePassword}
+          placeholder="Password"
+          type="password"
+          value={userDetails.password}
+          required
+        />
+
         <input type="submit" value="Create Account" />
-        <div className="signup-link-group">
-          <p className="text-secondary d-inline-block">
-            Already have an account?
-          </p>
-          <span className="m-3">
+        <div className="register-form__signin-link">
+          <p>Already have an account?</p>
+          <span>
             <Link to="/login">Sign In</Link>
           </span>
         </div>

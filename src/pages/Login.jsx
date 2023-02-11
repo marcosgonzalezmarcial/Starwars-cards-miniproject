@@ -59,34 +59,30 @@ const Login = ({ setLoggedIn, users }) => {
           X
         </button>
         <h1 className="register-form__title">SIGN IN</h1>
-        <div className="form-group w-100 my-3">
-          <input
-            onChange={handleChangeEmail}
-            placeholder="Email Address"
-            type="email"
-            value={userData.email}
-            required
-          />
-        </div>
-
-        <div className="form-group w-100 my-3">
-          <input
-            onChange={handleChangePassword}
-            placeholder="Password"
-            type="password"
-            value={userData.password}
-            required
-          />
-        </div>
-
+        <input
+          className="register-form__input-field"
+          onChange={handleChangeEmail}
+          placeholder="Email Address"
+          type="email"
+          value={userData.email}
+          required
+        />
+        <input
+          className="register-form__input-field"
+          onChange={handleChangePassword}
+          placeholder="Password"
+          type="password"
+          value={userData.password}
+          required
+        />
         <input type="submit" value="Sign In"></input>
-        {error && (
+        {/* {error && (
           <>
             <p className="text-danger">El usuario introducido no existe</p>
             <p className="text-info">Inténtalo nuevamente</p>
           </>
-        )}
-        <div className="sign-up-link">
+        )} */}
+        <div className="register-form__signup-link">
           <Link to="/signin">Create an account</Link>
         </div>
       </div>
