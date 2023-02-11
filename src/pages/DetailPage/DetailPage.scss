@@ -57,15 +57,15 @@
 
 
     h1 {
-      font-size: 1.25rem;
+      font-size: var(--step-1);
     }
 
     h3 {
-      font-size: 0.9rem;
+      font-size: var(--step--1);
     }
 
     span {
-      font-size: 0.75rem;
+      font-size: var(--step--2);
       display: block;
       color: var(--primary-gray);
     }
@@ -95,10 +95,6 @@
       object-position: 50% 30%;
     }
   }
-
-  // img[src*="Planets"] {
-  //   max-height: calc(min(22vh, 400px));
-  // }
 
   @media (max-width: 575px) {
     max-width: calc(min(94vw, 540px));
@@ -155,7 +151,7 @@
     flex-direction: row;
 
     h1 {
-      font-size: 1.75rem;
+      font-size: var(--step-3);
       padding-inline-start: 0;
     }
   }

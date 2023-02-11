@@ -1,38 +1,38 @@
-import { useCallback, useRef, useState } from "react";
-import { Form, Modal } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { TYPE_OF_DATA } from "../../constants";
-import "./SearchModal.scss";
-import { useSearchModal } from "hooks/useSearchModal";
+import { useCallback, useRef, useState } from 'react'
+import { Form, Modal } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { TYPE_OF_DATA } from '../../constants'
+import './SearchModal.scss'
+import { useSearchModal } from 'hooks/useSearchModal'
 
 const SearchModal = () => {
-  const [searchCategory, setSearchCategory] = useState(null);
+  const [searchCategory, setSearchCategory] = useState(null)
 
   const {
     isToggledSearchModal: showModal,
     toggleSearchModal: handleToggleModal
-  } = useSearchModal();
+  } = useSearchModal()
 
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
-  const inputRef = useRef(null);
+  const inputRef = useRef(null)
 
   const handleSubmit = useCallback(
     (e) => {
-      e.preventDefault();
-      navigate(`/${searchCategory}/?search=${inputRef.current.value}`);
-      handleToggleModal();
+      e.preventDefault()
+      navigate(`/${searchCategory}/?search=${inputRef.current.value}`)
+      handleToggleModal()
     },
     [handleToggleModal, navigate, searchCategory]
-  );
+  )
 
   const handleSelection = useCallback((e) => {
-    if (e.target.getAttribute("data-type") === TYPE_OF_DATA.PEOPLE) {
-      setSearchCategory("characters");
+    if (e.target.getAttribute('data-type') === TYPE_OF_DATA.PEOPLE) {
+      setSearchCategory('characters')
     } else {
-      setSearchCategory(e.target.getAttribute("data-type"));
+      setSearchCategory(e.target.getAttribute('data-type'))
     }
-  }, []);
+  }, [])
 
   return (
     <Modal
@@ -104,7 +104,7 @@ const SearchModal = () => {
         </Modal.Footer>
       </Form>
     </Modal>
-  );
-};
+  )
+}
 
-export default SearchModal;
+export default SearchModal
