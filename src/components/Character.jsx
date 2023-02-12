@@ -41,7 +41,9 @@ const Character = ({ elementData }) => {
                 ? `${elementData.homeworld[0]
                     .toUpperCase()
                     .at(0)}${elementData.homeworld[0].substring(1)}`
-                : null}
+                : `${elementData.homeworld
+                    .toUpperCase()
+                    .at(0)}${elementData.homeworld.substring(1)}`}
             </span>
           </div>
         </div>
