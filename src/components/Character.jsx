@@ -11,7 +11,11 @@ const Character = ({ elementData }) => {
   return (
     <>
       <div className="detail-page__img">
-        <img src={elementData.image} alt={elementData.name} />
+        <picture>
+          <source media="(max-width: 576px)" srcSet={elementData.img_small} />
+          <source media="(min-width: 577px)" srcSet={elementData.image} />
+          <img src={elementData.image} alt={elementData.name} />
+        </picture>
       </div>
       <div className="detail-page__info">
         <h1>{elementData.name}</h1>
