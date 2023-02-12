@@ -37,8 +37,11 @@ const Character = ({ elementData }) => {
           <div>
             <h3>Homeworld</h3>
             <span className="list-of-items" onClick={handleItemClick}>
-              {elementData.homeworld?.toUpperCase().at(0)}
-              {elementData.homeworld?.substring(1)}
+              {Array.isArray(elementData.homeworld)
+                ? `${elementData.homeworld[0]
+                    .toUpperCase()
+                    .at(0)}${elementData.homeworld[0].substring(1)}`
+                : null}
             </span>
           </div>
         </div>

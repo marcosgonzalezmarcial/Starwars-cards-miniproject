@@ -87,5 +87,9 @@
     border-left: 2px solid var(--primary-pink);
     border-top: none;
     width: 65%;
+    padding-block: 0.5rem;
+    p {
+      margin-block-end: 0;
+    }
   }
 }
