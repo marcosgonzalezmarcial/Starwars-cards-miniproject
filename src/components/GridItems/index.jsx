@@ -11,7 +11,6 @@ const GridItems = ({ mainPath, data }) => {
       <main className="grid-items">
         {data[mainPath]?.data?.map((item) => {
           if ((item.name !== 'unknown') & (item.name !== 'Jakku')) {
-            console.log(item)
             return (
               <GridItemLinkCard key={item.model ?? item.name} item={item} />
             )

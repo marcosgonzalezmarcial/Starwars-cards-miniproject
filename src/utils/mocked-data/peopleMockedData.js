@@ -1346,7 +1346,7 @@ const peopleMockedData = [
     homeworld: 'tund',
     wiki: 'http://starwars.wikia.com/wiki/Ben_Quadinaros',
     image:
-      'https://vignette.wikia.nocookie.net/starwars/images/7/7f/Cropped_Quadinaros.png',
+      'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_379/v1676271714/Starwars%20miniproject/Characters/Ben-Quadinaros_big_xcpni9.webp',
     img_small:
       'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_500/v1676196345/Starwars%20miniproject/Characters/Ben-Quadinaros-50_tkywoe.webp',
     species: 'toong',
@@ -1473,7 +1473,7 @@ const peopleMockedData = [
     homeworld: 'coruscant',
     wiki: 'http://starwars.wikia.com/wiki/Adi_Gallia',
     image:
-      'https://vignette.wikia.nocookie.net/starwars/images/b/ba/AdiGallia.jpg',
+      'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_379/v1676271714/Starwars%20miniproject/Characters/Adi-Gallia_big_jdlckv.webp',
     img_small:
       'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_500/v1676196345/Starwars%20miniproject/Characters/Adi-Gallia-55_fxpo6l.webp',
     died: -20,
@@ -1740,7 +1740,7 @@ const peopleMockedData = [
     homeworld: 'naboo',
     wiki: 'http://starwars.wikia.com/wiki/Dorm%C3%A9',
     image:
-      'https://vignette.wikia.nocookie.net/starwars/images/1/18/Dormesenate.jpg',
+      'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_379/v1676271714/Starwars%20miniproject/Characters/Dorme_big_d2hrfg.webp',
     img_small:
       'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_500/v1676196345/Starwars%20miniproject/Characters/Dorme-66_kqhfqu.webp',
     species: 'human',
@@ -1762,6 +1762,8 @@ const peopleMockedData = [
     gender: 'male',
     homeworld: 'serenno',
     wiki: 'http://starwars.wikia.com/wiki/Dooku',
+    image:
+      'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_379/v1676271714/Starwars%20miniproject/Characters/Dooku-67_clppay.webp',
     img_small:
       'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_500/v1676196345/Starwars%20miniproject/Characters/Dooku-67_clppay.webp',
     born: -102,
@@ -2052,7 +2054,7 @@ const peopleMockedData = [
     homeworld: 'kalee',
     wiki: 'http://starwars.wikia.com/wiki/Grievous',
     image:
-      'https://vignette.wikia.nocookie.net/starwars/images/d/de/Grievoushead.jpg',
+      'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_379/v1676271714/Starwars%20miniproject/Characters/Grievous_big_byw1cf.webp',
     img_small:
       'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_500/v1676196345/Starwars%20miniproject/Characters/Grievous-79_nasleu.webp',
     died: -19,
@@ -2144,7 +2146,7 @@ const peopleMockedData = [
     homeworld: 'utapau',
     wiki: 'http://starwars.wikia.com/wiki/Tion_Medon',
     image:
-      'https://vignette.wikia.nocookie.net/starwars/images/4/43/Tion_Medon.jpg',
+      'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_379/v1676271714/Starwars%20miniproject/Characters/Tion-Medon_big_cu8ix3.webp',
     img_small:
       'https://res.cloudinary.com/dn9mr6kwc/image/upload/c_scale,f_auto,q_auto,w_500/v1676196345/Starwars%20miniproject/Characters/Tion-Medon-83_co2wup.webp',
     species: "pau'an",
