@@ -1,6 +1,7 @@
 import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
 
 const Planet = ({ elementData }) => {
+  console.log(elementData)
   return (
     <>
       <div className="detail-page__img">

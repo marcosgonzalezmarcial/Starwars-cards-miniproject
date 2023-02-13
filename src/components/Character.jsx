@@ -11,7 +11,11 @@ const Character = ({ elementData }) => {
   return (
     <>
       <div className="detail-page__img">
-        <img src={elementData.image} alt={elementData.name} />
+        <picture>
+          <source media="(max-width: 576px)" srcSet={elementData.img_small} />
+          <source media="(min-width: 577px)" srcSet={elementData.image} />
+          <img src={elementData.image} alt={elementData.name} />
+        </picture>
       </div>
       <div className="detail-page__info">
         <h1>{elementData.name}</h1>
@@ -33,8 +37,13 @@ const Character = ({ elementData }) => {
           <div>
             <h3>Homeworld</h3>
             <span className="list-of-items" onClick={handleItemClick}>
-              {elementData.homeworld?.toUpperCase().at(0)}
-              {elementData.homeworld?.substring(1)}
+              {Array.isArray(elementData.homeworld)
+                ? `${elementData?.homeworld[0]
+                    .toUpperCase()
+                    .at(0)}${elementData?.homeworld[0].substring(1)}`
+                : `${elementData?.homeworld
+                    ?.toUpperCase()
+                    .at(0)}${elementData?.homeworld?.substring(1)}`}
             </span>
           </div>
         </div>
