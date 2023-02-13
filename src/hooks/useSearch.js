@@ -20,8 +20,10 @@ export const useSearch = () => {
       fetch(`${API_URL}${category}?search=${query}`, { signal })
         .then((res) => res.json())
         .then(({ results }) => {
-          if (!results) {
-            return <h1>No results found</h1>
+          console.log(results)
+          if (results.length === 0) {
+            let res = setSearchResultsItems(['No results found'])
+            return res
           } else {
             const newArr = transformDataArray({
               fetchedData: results,
@@ -34,9 +36,10 @@ export const useSearch = () => {
     if (query && category === '/characters/') {
       let newCategory = TYPE_OF_DATA.PEOPLE
 
-      fetch(`${API_URL}/${newCategory}/?search=${query}`)
+      fetch(`${API_URL}/${newCategory}?search=${query}`)
         .then((res) => res.json())
         .then(({ results }) => {
+          console.log(results)
           if (!results) {
             return <h1>No results found</h1>
           } else {
@@ -49,9 +52,10 @@ export const useSearch = () => {
         })
     }
     if (query && category === `/${TYPE_OF_DATA.STARSHIPS}/`) {
-      fetch(`${API_URL}/${category}/?search=${query}`)
+      fetch(`${API_URL}/${category}?search=${query}`)
         .then((res) => res.json())
         .then(({ results }) => {
+          console.log(results)
           if (!results) {
             return <h1>No results found</h1>
           } else {
