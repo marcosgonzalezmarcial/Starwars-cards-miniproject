@@ -4,8 +4,6 @@ import { useIsNearScreen } from 'hooks/useIsNearScreen.js'
 import SearchResults from 'components/SearchResults'
 import GridItems from 'components/GridItems'
 import { useData } from 'hooks/useData'
-// import { useLocation } from 'react-router-dom'
-// import { getTransformedDataArray } from 'services/getTransformedDataArray'
 
 const GridLayoutPage = ({ mainPath }) => {
   const { searchResultsItems } = useSearch()
@@ -31,7 +29,13 @@ const GridLayoutPage = ({ mainPath }) => {
       typeof searchResultsItems[0] === 'string'
     ) {
       return (
-        <div style={{ marginTop: '5vh', textAlign: 'center', color: 'white' }}>
+        <div
+          style={{
+            marginTop: '5vh',
+            textAlign: 'center',
+            color: 'var(--primary-white)'
+          }}
+        >
           <h1>No results found</h1>
         </div>
       )

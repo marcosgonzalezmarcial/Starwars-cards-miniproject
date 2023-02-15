@@ -1,15 +1,15 @@
+// TODO: dont show GridItems when searching
+
 import { useEffect, useState } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { API_URL } from '../constants'
 import { transformDataArray } from '../utils/transformDataArray'
 import { TYPE_OF_DATA } from '../constants'
-// import { useData } from 'hooks/useData'
 
 export const useSearch = () => {
   const [searchResultsItems, setSearchResultsItems] = useState([])
   const [searchParams] = useSearchParams()
   const query = searchParams.get('search')
-  // const { setData } = useData()
   let { pathname: category } = useLocation()
 
   useEffect(() => {
@@ -20,7 +20,6 @@ export const useSearch = () => {
       fetch(`${API_URL}/${category}/?search=${query}`, { signal })
         .then((res) => res.json())
         .then(({ results }) => {
-          // console.log(results)
           if (results.length === 0) {
             let res = setSearchResultsItems(['No results found'])
             return res
@@ -38,7 +37,6 @@ export const useSearch = () => {
       fetch(`${API_URL}/${newCategory}/?search=${query}`)
         .then((res) => res.json())
         .then(({ results }) => {
-          // console.log(results)
           if (results.length === 0) {
             let res = setSearchResultsItems(['No results found'])
             return res
@@ -73,12 +71,6 @@ export const useSearch = () => {
       myAbortController.abort()
       // delete previous serched items
       setSearchResultsItems([])
-      // remove items from DataContext to avoid showing previous stored GridItems data when searching
-      // let myCategory = category.slice(1).split('/')[0]
-      // setData((prev) => ({
-      //   ...prev,
-      //   [myCategory]: { data: [], page: 1 }
-      // }))
     }
   }, [query, category])
 

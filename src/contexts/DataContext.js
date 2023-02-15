@@ -68,7 +68,6 @@ export const DataContextProvider = ({ children }) => {
       signal
     })
       .then(({ transformedDataArray: newData, next }) => {
-        // if (data.next === null) return
         newData &&
           dispatch({
             type: 'SET_STATE_BY_PATH',
@@ -81,7 +80,7 @@ export const DataContextProvider = ({ children }) => {
       .finally(() => dispatch({ type: 'FINISH_LOADING' }))
 
     return () => myAbortController.abort()
-  }, [mainPath, currentPage, data.next])
+  }, [mainPath, currentPage])
 
   return (
     <DataContext.Provider value={{ data, dispatch }}>
