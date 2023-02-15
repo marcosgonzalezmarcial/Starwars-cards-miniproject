@@ -1,64 +1,91 @@
-import { createContext, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { getTransformedDataArray } from "services/getTransformedDataArray";
+import { createContext, useEffect, useReducer } from 'react'
+import { useLocation } from 'react-router-dom'
+import { getTransformedDataArray } from 'services/getTransformedDataArray'
 
-export const DataContext = createContext(null);
+const initialData = {
+  next: null,
+  isLoading: false,
+  planets: { data: [], page: 1 },
+  starships: { data: [], page: 1 },
+  characters: { data: [], page: 1 },
+  films: { data: [], page: 1 }
+}
+
+function dataReducer(state, { type, payload }) {
+  switch (type) {
+    case 'START_LOADING':
+      return { ...state, isLoading: true }
+    case 'FINISH_LOADING':
+      return { ...state, isLoading: false }
+    case 'SET_STATE_BY_PATH':
+      return {
+        ...state,
+        next: payload.next,
+        [payload.mainPath]: {
+          ...state[payload.mainPath],
+          data: [
+            ...new Set(
+              [
+                ...state[payload.mainPath].data,
+                ...payload.newData
+              ].map((item) => JSON.stringify(item))
+            )
+          ].map((item) => JSON.parse(item))
+        }
+      }
+    case 'NEXT_PAGE':
+      return {
+        ...state,
+        [payload.mainPath]: {
+          ...state[payload.mainPath],
+          page: state[payload.mainPath].page + 1
+        }
+      }
+
+    default:
+      return state
+  }
+}
+
+export const DataContext = createContext(null)
 
 export const DataContextProvider = ({ children }) => {
-  const [data, setData] = useState({
-    next: null,
-    isLoading: false,
-    planets: { data: [], page: 1 },
-    starships: { data: [], page: 1 },
-    characters: { data: [], page: 1 },
-    films: { data: [], page: 1 },
-  });
+  const [data, dispatch] = useReducer(dataReducer, initialData)
 
-  let location = useLocation();
-  let mainPath = location.pathname.slice(1).split("/")[0];
-  let currentPage = data[mainPath].page;
+  let location = useLocation()
+  let mainPath = location.pathname.slice(1).split('/')[0]
+  let currentPage = data[mainPath].page
 
+  // fetch data if the user navigates or if paginates scrolling down
   useEffect(() => {
-    let myAbortController = new AbortController();
-    const signal = myAbortController.signal;
+    let myAbortController = new AbortController()
+    const signal = myAbortController.signal
 
-    setData((prev) => ({ ...prev, isLoading: true }));
+    dispatch({ type: 'START_LOADING' })
 
     getTransformedDataArray({
       page: currentPage,
-      signal,
+      signal
     })
       .then(({ transformedDataArray: newData, next }) => {
+        // if (data.next === null) return
         newData &&
-          setData((prev) => {
-            return {
-              ...prev,
-              next,
-              [mainPath]: {
-                ...prev[mainPath],
-                data: [
-                  ...new Set(
-                    [...prev[mainPath].data, ...newData].map((o) =>
-                      JSON.stringify(o)
-                    )
-                  ),
-                ].map((s) => JSON.parse(s)),
-              },
-            };
-          });
+          dispatch({
+            type: 'SET_STATE_BY_PATH',
+            payload: { newData, next, mainPath }
+          })
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
       })
-      .finally(() => setData((prev) => ({ ...prev, isLoading: false })));
+      .finally(() => dispatch({ type: 'FINISH_LOADING' }))
 
-    return () => myAbortController.abort();
-    // fetch data if the user navigates or if paginates scrolling down
-  }, [mainPath, currentPage]);
+    return () => myAbortController.abort()
+  }, [mainPath, currentPage, data.next])
 
   return (
-    <DataContext.Provider value={{ data, setData }}>
+    <DataContext.Provider value={{ data, dispatch }}>
       {children}
     </DataContext.Provider>
-  );
-};
+  )
+}

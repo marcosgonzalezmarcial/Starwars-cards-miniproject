@@ -4,57 +4,26 @@ import { useIsNearScreen } from 'hooks/useIsNearScreen.js'
 import SearchResults from 'components/SearchResults'
 import GridItems from 'components/GridItems'
 import { useData } from 'hooks/useData'
-import { useLocation } from 'react-router-dom'
-import { getTransformedDataArray } from 'services/getTransformedDataArray'
+// import { useLocation } from 'react-router-dom'
+// import { getTransformedDataArray } from 'services/getTransformedDataArray'
 
 const GridLayoutPage = ({ mainPath }) => {
   const { searchResultsItems } = useSearch()
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false })
-  const { data, setData } = useData()
+  const { data, dispatch } = useData()
 
-  let location = useLocation()
   // fetch data when scrolling down
+  // scrolldown pagination
   useEffect(() => {
     // stops pagination when data is loading
     if (data.isLoading) return
-    // stops pagination if next fetch is not possible
-    if (!data.next) return
+    // stops pagination if there is no more elementes because data.next is null
+    if (data.next === null) return
 
     if (isNearScreen) {
-      setData((prev) => ({
-        ...prev,
-        [mainPath]: {
-          ...prev[mainPath],
-          page: prev[mainPath].page + 1
-        }
-      }))
+      dispatch({ type: 'NEXT_PAGE', payload: { mainPath } })
     }
-  }, [isNearScreen])
-
-  // refetch data after searching
-  useEffect(() => {
-    getTransformedDataArray({
-      page: 1
-    }).then(({ transformedDataArray: newData, next }) => {
-      newData &&
-        setData((prev) => {
-          return {
-            ...prev,
-            next,
-            [mainPath]: {
-              ...prev[mainPath],
-              data: [
-                ...new Set(
-                  [...prev[mainPath].data, ...newData].map((o) =>
-                    JSON.stringify(o)
-                  )
-                )
-              ].map((s) => JSON.parse(s))
-            }
-          }
-        })
-    })
-  }, [location.search, setData])
+  }, [isNearScreen, dispatch, mainPath, data.isLoading, data.next])
 
   if (searchResultsItems.length > 0) {
     if (
