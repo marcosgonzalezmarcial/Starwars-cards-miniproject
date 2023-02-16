@@ -4,6 +4,7 @@ import { useIsNearScreen } from 'hooks/useIsNearScreen.js'
 import SearchResults from 'components/SearchResults'
 import GridItems from 'components/GridItems'
 import { useData } from 'hooks/useData'
+import { BackToTopBtn } from 'components/BackToTopBtn'
 
 const GridLayoutPage = ({ mainPath }) => {
   const { searchResultsItems } = useSearch()
@@ -48,6 +49,7 @@ const GridLayoutPage = ({ mainPath }) => {
       <GridItems data={data} mainPath={mainPath} />
       {/* is near screen viewfinder */}
       <div ref={fromRef}></div>
+      <BackToTopBtn />
     </>
   )
 }
