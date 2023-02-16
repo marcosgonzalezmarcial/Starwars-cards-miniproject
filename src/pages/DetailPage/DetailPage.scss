@@ -10,10 +10,13 @@
   .detail-page__img {
     display: grid;
     width: 50%;
+    // stop initial layout shift
+    min-height: 185px;
 
     &:has(img[src*="Planets"]) {
       place-content: center;
     }
+   
   }
 
   .detail-page__info {
