@@ -1,16 +1,15 @@
 import { useEffect, useRef } from 'react'
 import './BackToTopBtn.scss'
+import upChevronBtn from 'assets/icons/up-chevron-btn.svg'
 const BackToTopBtn = () => {
   const BackToTopBtnRef = useRef(null)
 
   useEffect(() => {
     const backToTop = () => {
-      if (BackToTopBtnRef.current) {
-        if (window.scrollY > 300) {
-          BackToTopBtnRef.current.classList.add('show')
-        } else {
-          BackToTopBtnRef.current.classList.remove('show')
-        }
+      if (window.scrollY > 300) {
+        BackToTopBtnRef.current.classList.add('show')
+      } else {
+        BackToTopBtnRef.current.classList.remove('show')
       }
     }
     if (BackToTopBtnRef.current) {
@@ -29,7 +28,13 @@ const BackToTopBtn = () => {
       }
       ref={BackToTopBtnRef}
       className="back-to-top-btn"
-    ></button>
+    >
+      <img
+        className="back-to-top-btn__img"
+        src={upChevronBtn}
+        alt="search icon"
+      />
+    </button>
   )
 }
 
