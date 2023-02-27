@@ -5,9 +5,7 @@ import SectionNav from "components/Header/SectionNav";
 import LoginNav from "components/Header/LoginNav";
 import ToggleLoginMenuBtn from "components/Header/ToggleLoginMenuBtn";
 import SearchButton from "components/Header/SearchButton";
-import SearchModal from "components/SearchModal";
 import "./Header.scss";
-import { SearchModalCtxProvider } from "contexts/SearchModalCtx";
 import { LoginMenuCtxProvider } from "contexts/LoginMenuCtx";
 
 const Header = ({ loggedIn, setLoggedIn }) => {
@@ -21,10 +19,7 @@ const Header = ({ loggedIn, setLoggedIn }) => {
             <img className="main-header__logo" src={smallLogo} alt="logo" />
           </picture>
         </Link>
-        <SearchModalCtxProvider>
-          <SearchButton loggedIn={loggedIn} />
-          <SearchModal />
-        </SearchModalCtxProvider>
+        <SearchButton loggedIn={loggedIn} />
         <span></span>
         <LoginMenuCtxProvider>
           <ToggleLoginMenuBtn />

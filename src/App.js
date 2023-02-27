@@ -9,6 +9,7 @@ import ErrorPage from 'pages/ErrorPage'
 import ProtectedRoute from 'pages/ProtectedRoute'
 import NestedRoutes from 'pages/NestedRoutes'
 import GridLayoutPage from 'pages/GridLayoutPage'
+import LoginModal from 'components/LoginModal'
 import { DataContextProvider } from 'contexts/DataContext'
 
 function App() {
@@ -33,9 +34,20 @@ function App() {
           <Route index element={<Home loggedIn={loggedIn} />} />
           <Route
             path="login"
-            element={<Login users={users} setLoggedIn={setLoggedIn} />}
+            element={
+              <LoginModal>
+                <Login users={users} setLoggedIn={setLoggedIn} />
+              </LoginModal>
+            }
           />
-          <Route path="signin" element={<SignIn setUsers={setUsers} />} />
+          <Route
+            path="signin"
+            element={
+              <LoginModal>
+                <SignIn setUsers={setUsers} />
+              </LoginModal>
+            }
+          />
           <Route
             element={
               <DataContextProvider>

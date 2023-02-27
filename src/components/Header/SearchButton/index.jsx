@@ -1,23 +1,35 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import "./SearchIcon.scss";
 import searchIconSvg from "assets/icons/search-icon.svg";
 import { useNavigate } from "react-router-dom";
-import { useSearchModal } from "hooks/useSearchModal";
+import Modal from "components/Modal";
+import SearchForm from "components/SearchForm";
 
 const SearchButton = ({ loggedIn }) => {
-  const { toggleSearchModal } = useSearchModal();
+  const [showModal, setShowModal] = useState(false);
 
   let navigate = useNavigate();
 
-  const handleSearchClick = useCallback(() => {
+  function handleSearchClick() {
     if (!loggedIn) return navigate("/login");
-    toggleSearchModal();
-  }, [loggedIn, toggleSearchModal, navigate]);
+    setShowModal(true);
+  }
+
+  const handleClose = useCallback(() => {
+    setShowModal(false);
+  }, []);
 
   return (
-    <button className="search-icon-btn" onClick={handleSearchClick}>
-      <img src={searchIconSvg} alt="search icon" />
-    </button>
+    <>
+      <button className="search-icon-btn" onClick={handleSearchClick}>
+        <img src={searchIconSvg} alt="search icon" />
+      </button>
+      {showModal && (
+        <Modal handleClose={handleClose}>
+          <SearchForm handleClose={handleClose} />
+        </Modal>
+      )}
+    </>
   );
 };
 

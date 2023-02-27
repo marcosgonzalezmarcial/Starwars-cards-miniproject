@@ -7,7 +7,6 @@ const initialUserDataState = { email: '', password: '' }
 
 const Login = ({ setLoggedIn, users }) => {
   const [userData, setUserData] = useState(initialUserDataState)
-  const [error, setError] = useState(null)
 
   let navigate = useNavigate()
 
@@ -42,10 +41,10 @@ const Login = ({ setLoggedIn, users }) => {
         setLoggedIn(true)
         console.log('El usuario se logueó correctamente')
         navigate('/')
-        setError(false)
+        // setError(false)
       } else {
         console.log('El usuario introducido no existe')
-        setError(true)
+        // setError(true)
       }
     }
     setUserData(initialUserDataState)
@@ -75,13 +74,7 @@ const Login = ({ setLoggedIn, users }) => {
           value={userData.password}
           required
         />
-        <input type="submit" value="Sign In"></input>
-        {/* {error && (
-          <>
-            <p className="text-danger">El usuario introducido no existe</p>
-            <p className="text-info">Inténtalo nuevamente</p>
-          </>
-        )} */}
+        <input type="submit" value="Sign In" />
         <div className="register-form__signup-link">
           <Link to="/signin">Create an account</Link>
         </div>
