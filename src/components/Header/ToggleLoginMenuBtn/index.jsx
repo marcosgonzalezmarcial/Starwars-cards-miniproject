@@ -1,6 +1,5 @@
 import burgerBtn from '../../../assets/icons/hamburger-menu-btn.svg'
 import './ToggleLoginMenuBtn.scss'
-
 import { useLoginMenuCtx } from 'contexts/LoginMenuCtx'
 
 const ToggleLoginMenuBtn = () => {

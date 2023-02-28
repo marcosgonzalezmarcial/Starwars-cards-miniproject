@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from 'react'
+import { createContext, useEffect, useMemo, useReducer } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getTransformedDataArray } from 'services/getTransformedDataArray'
 
@@ -82,9 +82,8 @@ export const DataContextProvider = ({ children }) => {
     return () => myAbortController.abort()
   }, [mainPath, currentPage])
 
-  return (
-    <DataContext.Provider value={{ data, dispatch }}>
-      {children}
-    </DataContext.Provider>
-  )
+  // momoized value to avoid re renders
+  const value = useMemo(() => ({ data, dispatch }), [data, dispatch])
+
+  return <DataContext.Provider value={value}>{children}</DataContext.Provider>
 }
