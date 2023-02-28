@@ -2,7 +2,6 @@ import { useCallback, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TYPE_OF_DATA } from 'constants.js'
 import './SearchForm.scss'
-import '../pages/RegisterForm.scss'
 
 const SearchForm = ({ handleClose }) => {
   const [searchCategory, setSearchCategory] = useState(null)
