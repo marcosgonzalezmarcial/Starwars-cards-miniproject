@@ -55,7 +55,7 @@ const SearchForm = ({ handleClose }) => {
                   name="radio-stacked"
                   role="switch"
                   aria-checked="false"
-                  required="true"
+                  required={true}
                   data-type="people"
                   type="radio"
                   onChange={handleSelection}
@@ -71,7 +71,7 @@ const SearchForm = ({ handleClose }) => {
                   name="radio-stacked"
                   role="switch"
                   aria-checked="false"
-                  required="true"
+                  required={true}
                   data-type="starships"
                   type="radio"
                   className="search-form__check-input"

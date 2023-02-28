@@ -14,6 +14,9 @@
   &-content {
     width: calc(min(500px, 85vw));
     position: relative;
+    @media (max-width: 596px) {
+      min-width: calc(100vw - 0.25rem);
+    }
   }
   &__close-btn {
     position: absolute;
