@@ -1,30 +1,25 @@
-import {
-  createContext,
-  useContext,
-  useMemo
-} from "react";
-import { useToggle } from "hooks/useToggle";
+import { createContext, useContext, useMemo } from 'react'
+import { useToggle } from 'hooks/useToggle'
 
-const LoginMenuCtx = createContext(null);
+const LoginMenuCtx = createContext(null)
 
 function LoginMenuCtxProvider({ children }) {
-  const [isToggled, toggle] = useToggle(false);
+  const [isToggled, toggle] = useToggle(false)
 
+  // momoized value to avoid re renders
   const value = useMemo(
-    () => ([isToggled, toggle]),
+    () => ({
+      isToggled,
+      toggle
+    }),
     [isToggled, toggle]
-  );
+  )
 
-  return (
-    <LoginMenuCtx.Provider value={value}>
-      {children}
-    </LoginMenuCtx.Provider>
-  );
+  return <LoginMenuCtx.Provider value={value}>{children}</LoginMenuCtx.Provider>
 }
 
 const useLoginMenuCtx = () => {
-  const data = useContext(LoginMenuCtx);
-  return data;
-};
+  return useContext(LoginMenuCtx)
+}
 
-export { LoginMenuCtx, LoginMenuCtxProvider, useLoginMenuCtx };
+export { LoginMenuCtxProvider, useLoginMenuCtx }

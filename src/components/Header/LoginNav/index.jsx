@@ -5,7 +5,7 @@ import '../Header.scss'
 import './LoginNav.scss'
 
 const LoginNav = ({ loggedIn, setLoggedIn }) => {
-  const [toggleMenu, handleToggle] = useLoginMenuCtx()
+  const { isToggled: toggleMenu, toggle: handleToggle } = useLoginMenuCtx()
 
   const dynamicStyles = useCallback(() => {
     if (!loggedIn) {
