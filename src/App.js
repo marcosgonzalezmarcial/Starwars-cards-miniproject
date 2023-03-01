@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import Home from 'pages/Home'
-import Login from 'pages/Login'
-import SignIn from 'pages/SignIn'
+import LoginForm from 'pages/LoginForm'
+import SignUpForm from 'pages/SignUpForm'
 import Header from 'components/Header'
 import DetailPage from 'pages/DetailPage'
 import ErrorPage from 'pages/ErrorPage'
@@ -36,15 +36,15 @@ function App() {
             path="login"
             element={
               <LoginModal>
-                <Login users={users} setLoggedIn={setLoggedIn} />
+                <LoginForm users={users} setLoggedIn={setLoggedIn} />
               </LoginModal>
             }
           />
           <Route
-            path="signin"
+            path="signup"
             element={
               <LoginModal>
-                <SignIn setUsers={setUsers} />
+                <SignUpForm setUsers={setUsers} />
               </LoginModal>
             }
           />

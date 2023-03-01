@@ -9,10 +9,10 @@
   display: none;
   align-items: center;
   justify-content: center;
+  // &.is-open {
+  // }
+  display: flex;
 
-  &.is-open {
-    display: flex;
-  }
 
   &__close-btn {
     position: absolute;
@@ -21,10 +21,11 @@
     background-color: transparent;
     font-size: var(--step-2);
     color: var(--primary-white);
-    // transition: color 175ms ease-in-out;
+    transition: color 175ms ease-in-out;
   
     &:hover {
       color: var(--primary-blue);
+      cursor: pointer;
     }
   }
 

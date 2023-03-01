@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import yellowSwLogo from '../assets/yellow-sw-logo.svg'
+import yellowSwLogo from 'assets/yellow-sw-logo.svg'
 import './RegisterForm.scss'
 
 const initialUserDataState = { email: '', password: '' }
 
-const Login = ({ setLoggedIn, users }) => {
+const LoginForm = ({ setLoggedIn, users }) => {
   const [userData, setUserData] = useState(initialUserDataState)
 
   let navigate = useNavigate()
@@ -64,7 +64,7 @@ const Login = ({ setLoggedIn, users }) => {
           placeholder="Email Address"
           type="email"
           value={userData.email}
-          required
+          required={true}
         />
         <input
           className="register-form__input-field"
@@ -72,7 +72,7 @@ const Login = ({ setLoggedIn, users }) => {
           placeholder="Password"
           type="password"
           value={userData.password}
-          required
+          required={true}
         />
         <input type="submit" value="Sign In" />
         <div className="register-form__signup-link">
@@ -83,4 +83,4 @@ const Login = ({ setLoggedIn, users }) => {
   )
 }
 
-export default Login
+export default LoginForm

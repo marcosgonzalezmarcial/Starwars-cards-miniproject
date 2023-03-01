@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import yellowSwLogo from '../assets/yellow-sw-logo.svg'
+import yellowSwLogo from 'assets/yellow-sw-logo.svg'
 import './RegisterForm.scss'
 
 const initialUserDetailsState = {
@@ -10,7 +10,7 @@ const initialUserDetailsState = {
   password: ''
 }
 
-const SignIn = ({ setUsers }) => {
+const SignUpForm = ({ setUsers }) => {
   const [userDetails, setUserDetails] = useState(initialUserDetailsState)
   let navigate = useNavigate()
 
@@ -45,7 +45,11 @@ const SignIn = ({ setUsers }) => {
   }
 
   return (
-    <form className={`register-form is-open`} onSubmit={handleSubmit} action="">
+    <form
+      className={`register-form ` /*is-open*/}
+      onSubmit={handleSubmit}
+      action=""
+    >
       <div className="register-form__inner-wrapper">
         <img className="register-form__img" src={yellowSwLogo} alt="logo" />
         <button className="register-form__close-btn" onClick={handleClick}>
@@ -59,7 +63,7 @@ const SignIn = ({ setUsers }) => {
           placeholder="First Name"
           type="text"
           value={userDetails.firstName}
-          required
+          required={true}
         />
 
         <input
@@ -68,7 +72,7 @@ const SignIn = ({ setUsers }) => {
           placeholder="Last Name"
           type="text"
           value={userDetails.lastName}
-          required
+          required={true}
         />
 
         <input
@@ -77,7 +81,7 @@ const SignIn = ({ setUsers }) => {
           placeholder="Email Adress"
           type="email"
           value={userDetails.email}
-          required
+          required={true}
         />
 
         <input
@@ -86,7 +90,7 @@ const SignIn = ({ setUsers }) => {
           placeholder="Password"
           type="password"
           value={userDetails.password}
-          required
+          required={true}
         />
 
         <input type="submit" value="Create Account" />
@@ -101,4 +105,4 @@ const SignIn = ({ setUsers }) => {
   )
 }
 
-export default SignIn
+export default SignUpForm
