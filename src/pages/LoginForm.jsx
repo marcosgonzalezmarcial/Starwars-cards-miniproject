@@ -76,7 +76,7 @@ const LoginForm = ({ setLoggedIn, users }) => {
         />
         <input type="submit" value="Sign In" />
         <div className="register-form__signup-link">
-          <Link to="/signin">Create an account</Link>
+          <Link to="/signup">Create an account</Link>
         </div>
       </div>
     </form>

@@ -16,6 +16,7 @@
   visibility: hidden;
   z-index: 1000;
   border: none;
+  box-shadow: var(--primary-card-shadow);
 }
 
 .back-to-top-btn:hover {
@@ -39,10 +40,10 @@
 
 
 .back-to-top-btn__img {
-  width: 52px;
-  height: 52px;
+  width: 53px;
+  height: 53px;
   position: relative;
   top:50%;
   right: 50%;
-  transform: translate(47%, -50%);
+  transform: translate(46%, -50%);
 }

@@ -23,6 +23,12 @@
       font-weight: 700;
       color: var(--primary-gray);
       line-height: initial;
+      @media (min-width:768px) {
+        display: flex;
+        align-self: center;
+        padding-inline: 0.5rem;
+        user-select: none; 
+      }
     }
   }
 
