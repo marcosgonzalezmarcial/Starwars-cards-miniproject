@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import yellowSwLogo from 'assets/yellow-sw-logo.svg'
 import './RegisterForm.scss'
@@ -8,11 +8,13 @@ const initialUserDataState = { email: '', password: '' }
 const LoginForm = ({ setLoggedIn, users }) => {
   const [userData, setUserData] = useState(initialUserDataState)
 
+  const formRef = useRef()
+
   let navigate = useNavigate()
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     navigate('/')
-  }
+  }, [navigate])
 
   const handleChangeEmail = (e) => {
     const user = e.target.value
@@ -50,9 +52,25 @@ const LoginForm = ({ setLoggedIn, users }) => {
     setUserData(initialUserDataState)
   }
 
+  // close form clicking ouside
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (formRef.current && !formRef.current.contains(e.target)) {
+        handleClick()
+      }
+    }
+
+    document.addEventListener('mousedown', checkIfClickedOutside)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside)
+    }
+  }, [formRef, handleClick])
+
   return (
-    <form className={`register-form is-open`} onSubmit={handleSubmit}>
-      <div className="register-form__inner-wrapper">
+    <form className={`register-form ` /*is-open*/} onSubmit={handleSubmit}>
+      <div ref={formRef} className="register-form__inner-wrapper">
         <img className="register-form__img" src={yellowSwLogo} alt="logo" />
         <button className="register-form__close-btn" onClick={handleClick}>
           X
