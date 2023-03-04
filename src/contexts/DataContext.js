@@ -11,13 +11,20 @@ const initialData = {
   films: { data: [], page: 1 }
 }
 
+const DATA_ACTIONS = {
+  START_LOADING: 'START_LOADING',
+  FINISH_LOADING: 'FINISH_LOADING',
+  GET_DATA_BY_PATH: 'GET_DATA_BY_PATH',
+  NEXT_PAGE: 'NEXT_PAGE'
+}
+
 function dataReducer(state, { type, payload }) {
   switch (type) {
-    case 'START_LOADING':
+    case DATA_ACTIONS.START_LOADING:
       return { ...state, isLoading: true }
-    case 'FINISH_LOADING':
+    case DATA_ACTIONS.FINISH_LOADING:
       return { ...state, isLoading: false }
-    case 'SET_STATE_BY_PATH':
+    case DATA_ACTIONS.GET_DATA_BY_PATH:
       return {
         ...state,
         next: payload.next,
@@ -33,7 +40,7 @@ function dataReducer(state, { type, payload }) {
           ].map((item) => JSON.parse(item))
         }
       }
-    case 'NEXT_PAGE':
+    case DATA_ACTIONS.NEXT_PAGE:
       return {
         ...state,
         [payload.mainPath]: {
@@ -61,7 +68,7 @@ export const DataContextProvider = ({ children }) => {
     let myAbortController = new AbortController()
     const signal = myAbortController.signal
 
-    dispatch({ type: 'START_LOADING' })
+    dispatch({ type: DATA_ACTIONS.START_LOADING })
 
     getTransformedDataArray({
       page: currentPage,
@@ -70,14 +77,14 @@ export const DataContextProvider = ({ children }) => {
       .then(({ transformedDataArray: newData, next }) => {
         newData &&
           dispatch({
-            type: 'SET_STATE_BY_PATH',
+            type: DATA_ACTIONS.GET_DATA_BY_PATH,
             payload: { newData, next, mainPath }
           })
       })
       .catch((error) => {
         console.log(error)
       })
-      .finally(() => dispatch({ type: 'FINISH_LOADING' }))
+      .finally(() => dispatch({ type: DATA_ACTIONS.FINISH_LOADING }))
 
     return () => myAbortController.abort()
   }, [mainPath, currentPage])
