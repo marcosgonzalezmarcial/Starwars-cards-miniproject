@@ -24,7 +24,6 @@ export const useClickOutside = (elementRef) => {
 
     return () => {
       // Cleanup the event listener
-      console.log('remover')
       document.removeEventListener('mousedown', checkIfClickedOutside)
     }
   }, [elementRef, isToggled, toggle])
