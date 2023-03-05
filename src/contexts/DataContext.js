@@ -1,13 +1,19 @@
-import { createContext, useEffect, useMemo, useReducer } from 'react'
+import {
+  createContext,
+  useEffect,
+  useMemo,
+  useReducer /*, useRef*/
+} from 'react'
 import { useLocation } from 'react-router-dom'
 import { getTransformedDataArray } from 'services/getTransformedDataArray'
+// import { deepEqual } from 'utils/deepEqual'
 
 const initialData = {
   next: null,
   isLoading: false,
-  planets: { data: [], page: 1 },
-  starships: { data: [], page: 1 },
-  characters: { data: [], page: 1 },
+  planets: { data: [], page: 1, next: '' },
+  starships: { data: [], page: 1, next: '' },
+  characters: { data: [], page: 1, next: '' },
   films: { data: [], page: 1 }
 }
 
@@ -18,24 +24,49 @@ const DATA_ACTIONS = {
   NEXT_PAGE: 'NEXT_PAGE'
 }
 
-function dataReducer(state, { type, payload }) {
+let cache = {}
+
+function dataReducer(state, action) {
+  const { type, payload } = action
   switch (type) {
     case DATA_ACTIONS.START_LOADING:
       return { ...state, isLoading: true }
     case DATA_ACTIONS.FINISH_LOADING:
       return { ...state, isLoading: false }
     case DATA_ACTIONS.GET_DATA_BY_PATH:
-      return {
+      const { next, mainPath, newData } = payload
+      // caching data
+      cache = {
         ...state,
-        next: payload.next,
-        [payload.mainPath]: {
-          ...state[payload.mainPath],
+        next,
+        // overwrite specific type of data property on state (starshios, planets or characters)
+        [mainPath]: {
+          // keep all its properties
+          ...state[mainPath],
+          // overwrite its data with newData & avoiding duplicate data
           data: [
             ...new Set(
-              [
-                ...state[payload.mainPath].data,
-                ...payload.newData
-              ].map((item) => JSON.stringify(item))
+              [...state[mainPath].data, ...newData].map((item) =>
+                JSON.stringify(item)
+              )
+            )
+          ].map((item) => JSON.parse(item))
+        }
+      }
+      return {
+        ...state,
+        next,
+        // overwrite specific type of data property on state (starshios, planets or characters)
+        [mainPath]: {
+          // keep all its properties
+          ...state[mainPath],
+          // overwrite its data with newData & avoiding duplicate data
+          next,
+          data: [
+            ...new Set(
+              [...state[mainPath].data, ...newData].map((item) =>
+                JSON.stringify(item)
+              )
             )
           ].map((item) => JSON.parse(item))
         }
@@ -68,10 +99,29 @@ export const DataContextProvider = ({ children }) => {
     let myAbortController = new AbortController()
     const signal = myAbortController.signal
 
-    dispatch({ type: DATA_ACTIONS.START_LOADING })
+    if (cache[mainPath]?.data?.length > 0) {
+      if (cache[mainPath]?.data?.length === data[mainPath]?.data?.length) {
+        if (cache[mainPath]?.page === data[mainPath]?.page) {
+          if (mainPath === 'starships') {
+            if (cache[mainPath]?.page === 4) return
+          }
+          if (mainPath === 'planets') {
+            if (cache[mainPath]?.page === 7) return
+          }
+          if (mainPath === 'characters') {
+            if (cache[mainPath]?.page === 9) return
+          }
+          if (cache[mainPath]?.next) {
+            return
+          }
+        }
+      }
+    }
 
+    dispatch({ type: DATA_ACTIONS.START_LOADING })
     getTransformedDataArray({
       page: currentPage,
+      mainPath,
       signal
     })
       .then(({ transformedDataArray: newData, next }) => {

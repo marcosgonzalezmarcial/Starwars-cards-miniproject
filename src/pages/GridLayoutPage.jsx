@@ -17,7 +17,8 @@ const GridLayoutPage = ({ mainPath }) => {
     // stops pagination when data is loading
     if (data.isLoading) return
     // stops pagination if there is no more elementes because data.next is null
-    if (data.next === null) return
+    // if (data.next === null) return
+    if (data[mainPath].next === null) return
 
     if (isNearScreen) {
       dispatch({ type: 'NEXT_PAGE', payload: { mainPath } })
