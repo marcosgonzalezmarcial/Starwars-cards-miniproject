@@ -1,7 +1,6 @@
 import { createContext, useEffect, useMemo, useReducer, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getTransformedDataArray } from 'services/getTransformedDataArray'
-// import { deepEqual } from 'utils/deepEqual'
 
 const initialData = {
   // next: null,
@@ -19,8 +18,6 @@ const DATA_ACTIONS = {
   NEXT_PAGE: 'NEXT_PAGE'
 }
 
-let cachedData = {}
-
 function dataReducer(state, action) {
   const { type, payload } = action
   switch (type) {
@@ -30,24 +27,6 @@ function dataReducer(state, action) {
       return { ...state, isLoading: false }
     case DATA_ACTIONS.GET_DATA_BY_PATH:
       const { next, mainPath, newData } = payload
-      // caching data, not page change so it can be compared to avoid re renders
-      cachedData = {
-        ...state,
-        // overwrite specific type of data property on state (starshios, planets or characters)
-        [mainPath]: {
-          // keep all its properties
-          ...state[mainPath],
-          next,
-          // overwrite its data with newData & avoiding duplicate data
-          data: [
-            ...new Set(
-              [...state[mainPath].data, ...newData].map((item) =>
-                JSON.stringify(item)
-              )
-            )
-          ].map((item) => JSON.parse(item))
-        }
-      }
       return {
         ...state,
         // overwrite specific type of data property on state (starshios, planets or characters)
