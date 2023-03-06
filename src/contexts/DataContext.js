@@ -3,11 +3,10 @@ import { useLocation } from 'react-router-dom'
 import { getTransformedDataArray } from 'services/getTransformedDataArray'
 
 const initialData = {
-  // next: null,
   isLoading: false,
-  planets: { data: [], page: 1, next: '' },
-  starships: { data: [], page: 1, next: '' },
-  characters: { data: [], page: 1, next: '' },
+  planets: { data: [], page: 1, next: null },
+  starships: { data: [], page: 1, next: null },
+  characters: { data: [], page: 1, next: null },
   films: { data: [], page: 1 }
 }
 
@@ -29,19 +28,14 @@ function dataReducer(state, action) {
       const { next, mainPath, newData } = payload
       return {
         ...state,
-        // overwrite specific type of data property on state (starshios, planets or characters)
+        // overwrite specific type of data property on state (starships, planets or characters)
         [mainPath]: {
           // keep all its properties
           ...state[mainPath],
           // overwrite its data with newData & avoiding duplicate data
           next,
-          data: [
-            ...new Set(
-              [...state[mainPath].data, ...newData].map((item) =>
-                JSON.stringify(item)
-              )
-            )
-          ].map((item) => JSON.parse(item))
+          // saves only unic data avoids duplications
+          data: [...new Set([...state[mainPath].data, ...newData])]
         }
       }
     case DATA_ACTIONS.NEXT_PAGE:
@@ -53,7 +47,6 @@ function dataReducer(state, action) {
           page: state[path].page + 1
         }
       }
-
     default:
       return state
   }
@@ -73,7 +66,7 @@ export const DataContextProvider = ({ children }) => {
   // // NEW WORKING VERSION
   useEffect(() => {
     let cachedData = cachedRefData.current
-    // Caching data in a use ref but keep the previous page count to compare and avoid re fetchings
+    // Caching data in a ref but keep the previous page count to compare and avoid re fetchings
     cachedRefData.current = {
       ...data,
       [mainPath]: {
@@ -85,18 +78,12 @@ export const DataContextProvider = ({ children }) => {
   // fetch data if the user navigates or if paginates scrolling down
   useEffect(() => {
     let cachedData = cachedRefData.current
-    // NEW WORKING VERSION
-    // check if is any cached data
+    // check if is any cached data in cachedData ref
     if (cachedData[mainPath]?.data?.length > 0) {
-      // console.log('cachedData mainPath length > 0')
-      // check if cached data type page = current data type page
+      // avoids re fetchings comparing current page and previus page
       if (cachedData[mainPath]?.page === currentPage) {
-        // console.log('cachedData page = data page ')
-        if (!cachedData[mainPath]?.next) {
-          // console.log(cachedData[mainPath])
-          // console.log('cachedData next')
-          return
-        }
+        // checks if next property in cached ref is truethy to keep fetching data
+        if (Boolean(cachedData[mainPath]?.next)) return
         return
       }
     }
