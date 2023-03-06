@@ -1,13 +1,13 @@
-import { memo } from "react";
-import { Link } from "react-router-dom";
+import { memo } from 'react'
+import { Link } from 'react-router-dom'
 
 const GridItemLinkCard = ({ item }) => {
   return (
-    <Link className="grid-item" to={item?.name.replaceAll(" ", "~")}>
+    <Link className="grid-item" to={item?.name.replaceAll(' ', '~')}>
       <div className="grid-item__hero">
         <img
           className="grid-item__img"
-          src={item?.imgUrl || item?.image}
+          src={item?.img_small || item?.imgUrl}
           alt={item?.name}
         />
       </div>
@@ -16,7 +16,7 @@ const GridItemLinkCard = ({ item }) => {
         {<p>{item.name ?? item.model ?? item?.terrain}</p>}
       </div>
     </Link>
-  );
-};
+  )
+}
 
-export default memo(GridItemLinkCard);
+export default memo(GridItemLinkCard)

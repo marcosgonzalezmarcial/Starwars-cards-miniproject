@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import yellowSwLogo from '../assets/yellow-sw-logo.svg'
+import yellowSwLogo from 'assets/yellow-sw-logo.svg'
 import './RegisterForm.scss'
 
 const initialUserDetailsState = {
@@ -10,9 +10,11 @@ const initialUserDetailsState = {
   password: ''
 }
 
-const SignIn = ({ setUsers }) => {
+const SignUpForm = ({ setUsers }) => {
   const [userDetails, setUserDetails] = useState(initialUserDetailsState)
   let navigate = useNavigate()
+
+  const formRef = useRef()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -22,10 +24,9 @@ const SignIn = ({ setUsers }) => {
     navigate('/login')
   }
 
-  const handleClick = () => {
-    // setIsOpen(false);
+  const handleClick = useCallback(() => {
     navigate('/')
-  }
+  }, [])
 
   const handleChangeFirstName = (e) => {
     const inputFirstName = e.target.value
@@ -44,9 +45,29 @@ const SignIn = ({ setUsers }) => {
     setUserDetails({ ...userDetails, password: inputPassword })
   }
 
+  // close form clicking ouside
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (formRef.current && !formRef.current.contains(e.target)) {
+        handleClick()
+      }
+    }
+
+    document.addEventListener('mousedown', checkIfClickedOutside)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside)
+    }
+  }, [formRef, handleClick])
+
   return (
-    <form className={`register-form is-open`} onSubmit={handleSubmit} action="">
-      <div className="register-form__inner-wrapper">
+    <form
+      className={`register-form ` /*is-open*/}
+      onSubmit={handleSubmit}
+      action=""
+    >
+      <div ref={formRef} className="register-form__inner-wrapper">
         <img className="register-form__img" src={yellowSwLogo} alt="logo" />
         <button className="register-form__close-btn" onClick={handleClick}>
           X
@@ -59,7 +80,7 @@ const SignIn = ({ setUsers }) => {
           placeholder="First Name"
           type="text"
           value={userDetails.firstName}
-          required
+          required={true}
         />
 
         <input
@@ -68,7 +89,7 @@ const SignIn = ({ setUsers }) => {
           placeholder="Last Name"
           type="text"
           value={userDetails.lastName}
-          required
+          required={true}
         />
 
         <input
@@ -77,7 +98,7 @@ const SignIn = ({ setUsers }) => {
           placeholder="Email Adress"
           type="email"
           value={userDetails.email}
-          required
+          required={true}
         />
 
         <input
@@ -86,7 +107,7 @@ const SignIn = ({ setUsers }) => {
           placeholder="Password"
           type="password"
           value={userDetails.password}
-          required
+          required={true}
         />
 
         <input type="submit" value="Create Account" />
@@ -101,4 +122,4 @@ const SignIn = ({ setUsers }) => {
   )
 }
 
-export default SignIn
+export default SignUpForm

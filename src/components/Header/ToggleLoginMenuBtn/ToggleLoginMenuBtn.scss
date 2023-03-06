@@ -4,9 +4,13 @@
   border: 1px solid var(--gray-blue);
   border-radius: 5px;
   order: -1;
+  &:hover {
+    cursor: pointer;
+  }
   img {
     width: 43px;
     height: 33px;
+    pointer-events: none;
   }
 
   @media (min-width: 768px) {

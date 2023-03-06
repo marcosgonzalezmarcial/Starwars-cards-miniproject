@@ -1,19 +1,20 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import yellowSwLogo from '../assets/yellow-sw-logo.svg'
+import yellowSwLogo from 'assets/yellow-sw-logo.svg'
 import './RegisterForm.scss'
 
 const initialUserDataState = { email: '', password: '' }
 
-const Login = ({ setLoggedIn, users }) => {
+const LoginForm = ({ setLoggedIn, users }) => {
   const [userData, setUserData] = useState(initialUserDataState)
-  const [error, setError] = useState(null)
+
+  const formRef = useRef()
 
   let navigate = useNavigate()
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     navigate('/')
-  }
+  }, [navigate])
 
   const handleChangeEmail = (e) => {
     const user = e.target.value
@@ -42,18 +43,34 @@ const Login = ({ setLoggedIn, users }) => {
         setLoggedIn(true)
         console.log('El usuario se logueó correctamente')
         navigate('/')
-        setError(false)
+        // setError(false)
       } else {
         console.log('El usuario introducido no existe')
-        setError(true)
+        // setError(true)
       }
     }
     setUserData(initialUserDataState)
   }
 
+  // close form clicking ouside
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (formRef.current && !formRef.current.contains(e.target)) {
+        handleClick()
+      }
+    }
+
+    document.addEventListener('mousedown', checkIfClickedOutside)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside)
+    }
+  }, [formRef, handleClick])
+
   return (
-    <form className={`register-form is-open`} onSubmit={handleSubmit}>
-      <div className="register-form__inner-wrapper">
+    <form className={`register-form ` /*is-open*/} onSubmit={handleSubmit}>
+      <div ref={formRef} className="register-form__inner-wrapper">
         <img className="register-form__img" src={yellowSwLogo} alt="logo" />
         <button className="register-form__close-btn" onClick={handleClick}>
           X
@@ -65,7 +82,7 @@ const Login = ({ setLoggedIn, users }) => {
           placeholder="Email Address"
           type="email"
           value={userData.email}
-          required
+          required={true}
         />
         <input
           className="register-form__input-field"
@@ -73,21 +90,15 @@ const Login = ({ setLoggedIn, users }) => {
           placeholder="Password"
           type="password"
           value={userData.password}
-          required
+          required={true}
         />
-        <input type="submit" value="Sign In"></input>
-        {/* {error && (
-          <>
-            <p className="text-danger">El usuario introducido no existe</p>
-            <p className="text-info">Inténtalo nuevamente</p>
-          </>
-        )} */}
+        <input type="submit" value="Sign In" />
         <div className="register-form__signup-link">
-          <Link to="/signin">Create an account</Link>
+          <Link to="/signup">Create an account</Link>
         </div>
       </div>
     </form>
   )
 }
 
-export default Login
+export default LoginForm

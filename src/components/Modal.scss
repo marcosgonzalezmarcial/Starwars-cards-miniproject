@@ -1,0 +1,40 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-form-overlay);
+  backdrop-filter: blur(2px);
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  place-content: center;
+ 
+  &-content {
+    width: calc(min(500px, 85vw));
+    position: relative;
+    @media (max-width: 596px) {
+      min-width: calc(100vw - 0.25rem);
+    }
+  }
+  &__close-btn {
+    position: absolute;
+    right:0.75rem;
+    top: 0.5rem;
+    border: 0;
+    background-color: transparent;
+    font-size: var(--step-1);
+    color: var(--primary-white);
+    z-index: 10;
+    padding: 0.5rem;
+    // transition: color 175ms ease-in-out;
+  
+    &:hover {
+      color: var(--primary-blue);
+      cursor: pointer;
+    }
+  }
+
+  
+}

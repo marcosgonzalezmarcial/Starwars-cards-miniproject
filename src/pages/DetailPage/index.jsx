@@ -1,41 +1,35 @@
-import { useParams, useLocation } from "react-router-dom";
-import Character from "components/Character";
-import Starship from "components/Starship";
-import Planet from "components/Planet";
-import Film from "components/Film";
-import { Spinner } from "components/Spinner";
-import { useSingleElementData } from "hooks/useSingleElementData";
-import "./DetailPage.scss";
+import { useParams, useLocation } from 'react-router-dom'
+import Character from 'components/Character'
+import Starship from 'components/Starship'
+import Planet from 'components/Planet'
+import Film from 'components/Film'
+import { Spinner } from 'components/Spinner'
+import { useSingleElementData } from 'hooks/useSingleElementData'
+import './DetailPage.scss'
 
+const lookUp = {
+  starships: Starship,
+  people: Character,
+  planets: Planet,
+  films: Film
+}
 
-export const Element = ({ mainPath, elementData }) => {
-  switch (mainPath) {
-    case "starships":
-      return <Starship elementData={elementData} />;
-    case "people":
-      return <Character elementData={elementData} />;
-    case "planets":
-      return <Planet elementData={elementData} />;
-    case "films":
-      return <Film elementData={elementData} />;
-    default:
-      console.log(`Sorry, no element found`);
-  }
-};
+const DetailPage = () => {
+  let { itemName } = useParams()
+  let location = useLocation()
 
-const DetailPage = ({ children }) => {
-  let { itemName } = useParams();
-  let location = useLocation();
-
-  let mainPath = location.pathname.slice(1).split("/")[0];
-  if (mainPath === "characters") {
-    mainPath = "people";
+  let mainPath = location.pathname.slice(1).split('/')[0]
+  if (mainPath === 'characters') {
+    mainPath = 'people'
   }
 
   const { loading, elementData } = useSingleElementData({
     paramFromUrl: itemName,
-    typeOfData: mainPath,
-  });
+    typeOfData: mainPath
+  })
+
+  // conditionally render component according to path
+  const Component = lookUp[mainPath]
 
   return (
     <>
@@ -43,12 +37,11 @@ const DetailPage = ({ children }) => {
         <Spinner />
       ) : (
         <main className="detail-page">
-          <Element mainPath={mainPath} elementData={elementData} />
-          {children}
+          <Component elementData={elementData} />
         </main>
       )}
     </>
-  );
-};
+  )
+}
 
-export default DetailPage;
+export default DetailPage

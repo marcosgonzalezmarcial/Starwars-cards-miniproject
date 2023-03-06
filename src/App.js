@@ -1,14 +1,15 @@
 import { Routes, Route } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import Home from 'pages/Home'
-import Login from 'pages/Login'
-import SignIn from 'pages/SignIn'
+import SignUpForm from 'pages/SignUpForm'
 import Header from 'components/Header'
 import DetailPage from 'pages/DetailPage'
 import ErrorPage from 'pages/ErrorPage'
 import ProtectedRoute from 'pages/ProtectedRoute'
 import NestedRoutes from 'pages/NestedRoutes'
 import GridLayoutPage from 'pages/GridLayoutPage'
+import LoginForm from 'pages/LoginForm'
+import LoginModal from 'components/LoginModal'
 import { DataContextProvider } from 'contexts/DataContext'
 
 function App() {
@@ -33,9 +34,20 @@ function App() {
           <Route index element={<Home loggedIn={loggedIn} />} />
           <Route
             path="login"
-            element={<Login users={users} setLoggedIn={setLoggedIn} />}
+            element={
+              <LoginModal>
+                <LoginForm users={users} setLoggedIn={setLoggedIn} />
+              </LoginModal>
+            }
           />
-          <Route path="signin" element={<SignIn setUsers={setUsers} />} />
+          <Route
+            path="signup"
+            element={
+              <LoginModal>
+                <SignUpForm setUsers={setUsers} />
+              </LoginModal>
+            }
+          />
           <Route
             element={
               <DataContextProvider>

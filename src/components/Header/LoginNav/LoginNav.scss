@@ -4,7 +4,9 @@
   line-height: 2.5rem;
   overflow: hidden;
   white-space: nowrap;
-  transition: max-height 250ms ease-in;
+  transition-property: max-height, padding;
+  transition-duration: 250ms;
+  transition-timing-function: ease-in;
 
   &__link {
     font-size: var(--step--1);
@@ -17,10 +19,16 @@
     }
 
     &--separator {
-      font-size: var(--step--1);
+      font-size: var(--step--2);
       font-weight: 700;
       color: var(--primary-gray);
-      padding: 0.5rem;
+      line-height: initial;
+      @media (min-width:768px) {
+        display: flex;
+        align-self: center;
+        padding-inline: 0.5rem;
+        user-select: none; 
+      }
     }
   }
 
@@ -36,11 +44,12 @@
     }
 
     &.collapsed.show {
-      max-height: 122px;
+      max-height: 108px;
+      padding-block-start: 0.75rem;
     }
 
     &.collapsed.show.loggedin {
-      max-height: 33px;
+      max-height: 45px;
     }
   }
 
