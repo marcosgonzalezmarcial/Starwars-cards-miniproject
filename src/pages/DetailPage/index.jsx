@@ -1,4 +1,4 @@
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Character from 'components/Character'
 import Starship from 'components/Starship'
 import Planet from 'components/Planet'
@@ -14,22 +14,20 @@ const lookUp = {
   films: Film
 }
 
-const DetailPage = () => {
+const DetailPage = ({ currentPath }) => {
   let { itemName } = useParams()
-  let location = useLocation()
 
-  let mainPath = location.pathname.slice(1).split('/')[0]
-  if (mainPath === 'characters') {
-    mainPath = 'people'
+  if (currentPath === 'characters') {
+    currentPath = 'people'
   }
 
   const { loading, elementData } = useSingleElementData({
     paramFromUrl: itemName,
-    typeOfData: mainPath
+    typeOfData: currentPath
   })
 
-  // conditionally render component according to path
-  const Component = lookUp[mainPath]
+  // conditionally render component according to current path
+  const Component = lookUp[currentPath]
 
   return (
     <>

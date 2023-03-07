@@ -1,10 +1,14 @@
 import { transformDataArray } from 'utils/transformDataArray'
 import { fetchDataByPage } from './fetchDataByPage'
 
-export const getTransformedDataArray = async ({ page, signal, mainPath }) => {
+export const getTransformedDataArray = async ({
+  page,
+  signal,
+  currentPath
+}) => {
   // change query string because of apis's contract
-  if (mainPath === 'characters') {
-    mainPath = 'people'
+  if (currentPath === 'characters') {
+    currentPath = 'people'
   }
 
   try {
@@ -14,7 +18,7 @@ export const getTransformedDataArray = async ({ page, signal, mainPath }) => {
     })
     const transformedDataArray = transformDataArray({
       fetchedData,
-      typeOfData: mainPath
+      typeOfData: currentPath
     })
     return { transformedDataArray, next }
   } catch (error) {

@@ -13,21 +13,21 @@ export function dataReducer(state, action) {
     case DATA_ACTIONS.FINISH_LOADING:
       return { ...state, isLoading: false }
     case DATA_ACTIONS.GET_DATA_BY_PATH:
-      const { next, mainPath, newData } = payload
+      const { next, currentPath, newData } = payload
       return {
         ...state,
         // overwrite specific type of data property on state (starships, planets or characters)
-        [mainPath]: {
+        [currentPath]: {
           // keep all its properties
-          ...state[mainPath],
+          ...state[currentPath],
           // overwrite its data with newData & avoiding duplicate data
           next,
           // saves only unic data avoids duplications
-          data: [...new Set([...state[mainPath].data, ...newData])]
+          data: [...new Set([...state[currentPath].data, ...newData])]
         }
       }
     case DATA_ACTIONS.NEXT_PAGE:
-      const { mainPath: path } = payload
+      const { currentPath: path } = payload
       return {
         ...state,
         [path]: {

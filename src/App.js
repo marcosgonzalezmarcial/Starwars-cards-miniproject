@@ -56,22 +56,40 @@ function App() {
             }
           >
             <Route path="starships" element={<NestedRoutes />}>
-              <Route index element={<GridLayoutPage mainPath="starships" />} />
-              <Route path=":itemName" element={<DetailPage />} />
+              <Route
+                index
+                element={<GridLayoutPage currentPath="starships" />}
+              />
+              <Route
+                path=":itemName"
+                element={<DetailPage currentPath="starships" />}
+              />
             </Route>
 
             <Route path="planets" element={<NestedRoutes />}>
-              <Route index element={<GridLayoutPage mainPath="planets" />} />
-              <Route path=":itemName" element={<DetailPage />} />
+              <Route index element={<GridLayoutPage currentPath="planets" />} />
+              <Route
+                path=":itemName"
+                element={<DetailPage currentPath="planets" />}
+              />
             </Route>
 
             <Route path="characters" element={<NestedRoutes />}>
-              <Route index element={<GridLayoutPage mainPath="characters" />} />
-              <Route path=":itemName" element={<DetailPage />} />
+              <Route
+                index
+                element={<GridLayoutPage currentPath="characters" />}
+              />
+              <Route
+                path=":itemName"
+                element={<DetailPage currentPath="characters" />}
+              />
             </Route>
 
             <Route path="films" element={<NestedRoutes />}>
-              <Route path=":itemName" element={<DetailPage />} />
+              <Route
+                path=":itemName"
+                element={<DetailPage currentPath="films" />}
+              />
             </Route>
           </Route>
         </Route>

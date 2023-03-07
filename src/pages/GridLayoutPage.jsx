@@ -6,7 +6,7 @@ import GridItems from 'components/GridItems'
 import { useData } from 'hooks/useData'
 import { BackToTopBtn } from 'components/BackToTopBtn'
 
-const GridLayoutPage = ({ mainPath }) => {
+const GridLayoutPage = ({ currentPath }) => {
   const { searchResultsItems } = useSearch()
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false })
   const {
@@ -15,7 +15,7 @@ const GridLayoutPage = ({ mainPath }) => {
     dispatch
   } = useData()
 
-  const next = data[mainPath].next
+  const next = data[currentPath].next
   const isLoading = data.isLoading
   // scrolldown pagination
   useEffect(() => {
@@ -25,9 +25,9 @@ const GridLayoutPage = ({ mainPath }) => {
     if (next === null) return
 
     if (isNearScreen) {
-      dispatch({ type: 'NEXT_PAGE', payload: { mainPath } })
+      dispatch({ type: 'NEXT_PAGE', payload: { currentPath } })
     }
-  }, [isNearScreen, dispatch, mainPath, isLoading, next])
+  }, [isNearScreen, dispatch, currentPath, isLoading, next])
 
   if (searchResultsItems.length > 0) {
     if (
@@ -51,7 +51,7 @@ const GridLayoutPage = ({ mainPath }) => {
 
   return (
     <>
-      <GridItems itemData={data[mainPath].data} isLoading={isLoading} />
+      <GridItems itemData={data[currentPath].data} isLoading={isLoading} />
       {/* is near screen viewfinder */}
       <div ref={fromRef}></div>
       <BackToTopBtn />

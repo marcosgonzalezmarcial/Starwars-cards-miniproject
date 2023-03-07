@@ -17,8 +17,8 @@ export const DataContextProvider = ({ children }) => {
   const [data, dispatch] = useReducer(dataReducer, initialData)
 
   const location = useLocation()
-  const mainPath = location.pathname.slice(1).split('/')[0]
-  const currentPage = data[mainPath].page
+  const currentPath = location.pathname.slice(1).split('/')[0]
+  const currentPage = data[currentPath].page
 
   const cachedRefData = useRef(data)
 
@@ -28,32 +28,30 @@ export const DataContextProvider = ({ children }) => {
     // Caching data in a ref but keep the previous page count to compare and avoid re fetchings
     cachedRefData.current = {
       ...data,
-      [mainPath]: {
-        ...data[mainPath],
-        page: cachedData[mainPath].page
+      [currentPath]: {
+        ...data[currentPath],
+        page: cachedData[currentPath].page
       }
     }
-  }, [data, mainPath])
+  }, [data, currentPath])
   // fetch data if the user navigates or if paginates scrolling down
   useEffect(() => {
     let cachedData = cachedRefData.current
     // check if is any cached data in cachedData ref
-    if (cachedData[mainPath]?.data?.length > 0) {
+    if (cachedData[currentPath]?.data?.length > 0) {
       // avoids re fetchings comparing current page and previus page
-      if (cachedData[mainPath]?.page === currentPage) {
-        // checks if next property in cached ref is truethy to keep fetching data
-        if (Boolean(cachedData[mainPath]?.next)) return
-        return
-      }
+      if (cachedData[currentPath]?.page === currentPage) return
     }
-    // Fetch data  after cheking cahced data
+
+    /* Fetch data  after cheking cahced data */
+    //create abort controller to stop requests when component unmounts
     let myAbortController = new AbortController()
     const signal = myAbortController.signal
 
     dispatch({ type: DATA_ACTIONS.START_LOADING })
     getTransformedDataArray({
       page: currentPage,
-      mainPath,
+      currentPath,
       signal
     })
       .then(
@@ -61,7 +59,7 @@ export const DataContextProvider = ({ children }) => {
           newData &&
           dispatch({
             type: DATA_ACTIONS.GET_DATA_BY_PATH,
-            payload: { newData, next, mainPath }
+            payload: { newData, next, currentPath }
           })
       )
       .catch((error) => {
@@ -72,7 +70,7 @@ export const DataContextProvider = ({ children }) => {
     return () => {
       myAbortController.abort()
     }
-  }, [mainPath, currentPage])
+  }, [currentPath, currentPage])
 
   // momoized value to avoid re renders
   const value = useMemo(() => ({ data, dispatch }), [data, dispatch])
