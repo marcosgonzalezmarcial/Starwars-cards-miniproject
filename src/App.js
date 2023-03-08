@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
 import Home from 'pages/Home'
 import SignUpForm from 'pages/SignUpForm'
 import Header from 'components/Header'
@@ -11,32 +10,21 @@ import GridLayoutPage from 'pages/GridLayoutPage'
 import LoginForm from 'pages/LoginForm'
 import LoginModal from 'components/LoginModal'
 import { DataContextProvider } from 'contexts/DataContext'
+import { UsersContextProvider } from 'contexts/UsersContext'
 
-function App() {
-  const [users, setUsers] = useState(
-    JSON.parse(localStorage.getItem('users')) || []
-  )
-
-  const [loggedIn, setLoggedIn] = useState(
-    JSON.parse(localStorage.getItem('loggedIn')) || false
-  )
-  useEffect(() => {
-    localStorage.setItem('users', JSON.stringify(users))
-    localStorage.setItem('loggedIn', JSON.stringify(loggedIn))
-  }, [users, loggedIn])
-
+export default function App() {
   return (
-    <>
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+    <UsersContextProvider>
+      <Header />
 
       <Routes>
         <Route path="/" element={<NestedRoutes />}>
-          <Route index element={<Home loggedIn={loggedIn} />} />
+          <Route index element={<Home />} />
           <Route
             path="login"
             element={
               <LoginModal>
-                <LoginForm users={users} setLoggedIn={setLoggedIn} />
+                <LoginForm />
               </LoginModal>
             }
           />
@@ -44,14 +32,14 @@ function App() {
             path="signup"
             element={
               <LoginModal>
-                <SignUpForm setUsers={setUsers} />
+                <SignUpForm />
               </LoginModal>
             }
           />
           <Route
             element={
               <DataContextProvider>
-                <ProtectedRoute loggedIn={loggedIn} />
+                <ProtectedRoute />
               </DataContextProvider>
             }
           >
@@ -95,8 +83,6 @@ function App() {
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-    </>
+    </UsersContextProvider>
   )
 }
-
-export default App

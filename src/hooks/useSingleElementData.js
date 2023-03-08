@@ -24,24 +24,21 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
 
     let item
 
-    console.log({ elementNameFromUrl })
-
     switch (typeOfData) {
       case TYPE_OF_DATA.STARSHIPS:
         item = starshipsMockedData.find(
           (ship) => ship.name === elementNameFromUrl
         )
-        console.log({ item })
         fetchItemByTypeAndId({
           id: item.id,
-          typeOfData: TYPE_OF_DATA.STARSHIPS,
+          typeOfData,
           signal
         })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
-              typeOfData: TYPE_OF_DATA.STARSHIPS
+              typeOfData
             })
             setElementData((el) => ({ ...el, ...transformedElementData }))
           })
@@ -55,14 +52,14 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
         )
         fetchItemByTypeAndId({
           id: item.id,
-          typeOfData: TYPE_OF_DATA.PLANETS,
+          typeOfData,
           signal
         })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
-              typeOfData: TYPE_OF_DATA.PLANETS
+              typeOfData
             })
             setElementData((el) => ({ ...el, ...transformedElementData }))
           })
@@ -74,14 +71,14 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
         item = filmsMockedData.find((film) => film.title === elementNameFromUrl)
         fetchItemByTypeAndId({
           id: item.id,
-          typeOfData: TYPE_OF_DATA.FILMS,
+          typeOfData,
           signal
         })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
-              typeOfData: TYPE_OF_DATA.FILMS
+              typeOfData
             })
             setElementData((el) => ({ ...el, ...transformedElementData }))
           })
@@ -96,14 +93,14 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
 
         fetchItemByTypeAndId({
           id: item.id,
-          typeOfData: TYPE_OF_DATA.PEOPLE,
+          typeOfData,
           signal
         })
           .then((item) => {
             const [transformedElementData] = transformDataArray({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
-              typeOfData: TYPE_OF_DATA.PEOPLE
+              typeOfData
             })
             setElementData((el) => ({ ...el, ...transformedElementData }))
           })
@@ -114,7 +111,7 @@ export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
       default:
         item = null
     }
-
+    // Abort fetching when component unmounts
     return () => myAbortController.abort()
   }, [paramFromUrl, typeOfData])
 

@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useUsers } from 'hooks/useUsers'
 import yellowSwLogo from 'assets/yellow-sw-logo.svg'
 import './RegisterForm.scss'
 
 const initialUserDataState = { email: '', password: '' }
 
-const LoginForm = ({ setLoggedIn, users }) => {
+const LoginForm = () => {
   const [userData, setUserData] = useState(initialUserDataState)
+  const { users, setLoggedIn } = useUsers()
 
   const formRef = useRef()
 

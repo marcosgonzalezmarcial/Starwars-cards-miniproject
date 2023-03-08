@@ -23,6 +23,5 @@ export const getTransformedDataArray = async ({
     return { transformedDataArray, next }
   } catch (error) {
     console.log(error)
-    return null
   }
 }

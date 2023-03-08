@@ -4,9 +4,11 @@ import searchIconSvg from 'assets/icons/search-icon.svg'
 import { useNavigate } from 'react-router-dom'
 import Modal from 'components/Modal'
 import SearchForm from 'components/SearchForm'
+import { useUsers } from 'hooks/useUsers'
 
-const SearchButton = ({ loggedIn }) => {
+const SearchButton = (/*{ loggedIn }*/) => {
   const [showModal, setShowModal] = useState(false)
+  const { loggedIn } = useUsers()
 
   let navigate = useNavigate()
 

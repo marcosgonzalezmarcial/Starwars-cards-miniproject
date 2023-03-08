@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useUsers } from 'hooks/useUsers'
 import yellowSwLogo from 'assets/yellow-sw-logo.svg'
 import './RegisterForm.scss'
 
@@ -10,8 +11,9 @@ const initialUserDetailsState = {
   password: ''
 }
 
-const SignUpForm = ({ setUsers }) => {
+const SignUpForm = () => {
   const [userDetails, setUserDetails] = useState(initialUserDetailsState)
+  const { setUsers } = useUsers()
   let navigate = useNavigate()
 
   const formRef = useRef()

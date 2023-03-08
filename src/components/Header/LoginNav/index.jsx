@@ -2,11 +2,14 @@ import { useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useLoginMenuCtx } from 'contexts/LoginMenuCtx'
 import { useClickOutside } from 'hooks/useClickOutside'
+import { useUsers } from 'hooks/useUsers'
 import '../Header.scss'
 import './LoginNav.scss'
 
-const LoginNav = ({ loggedIn, setLoggedIn }) => {
+const LoginNav = (/*{ loggedIn, setLoggedIn }*/) => {
+  const { loggedIn, setLoggedIn } = useUsers()
   const loginNavRef = useRef()
+
   const { isToggled: toggleMenu, toggle: handleToggle } = useLoginMenuCtx()
   useClickOutside(loginNavRef)
   // console.log({ isElementOpen })

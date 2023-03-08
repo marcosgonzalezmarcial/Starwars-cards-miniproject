@@ -2,14 +2,11 @@ import {
   filmsMockedData,
   planetsMockedData,
   peopleMockedData,
-  starshipsMockedData,
-} from './mocked-data';
+  starshipsMockedData
+} from './mocked-data'
 
-
-export const transformDataArray = ({
-  fetchedData = [],
-  typeOfData = ''
-}) => {
+export const transformDataArray = ({ fetchedData = [], typeOfData = '' }) => {
+  console.log({ fetchedData })
   // films have title instead of name
   if (typeOfData === 'films') {
     const transformedArray = fetchedData.map((itemFetched) => {
@@ -20,7 +17,7 @@ export const transformDataArray = ({
     })
     return transformedArray
   }
-  
+
   if (typeOfData === 'people') {
     const transformedArray = fetchedData.map((itemFetched) => {
       const [filteredItemFromMockedData] = peopleMockedData.filter(
