@@ -6,7 +6,7 @@ import './RegisterForm.scss'
 
 const initialUserDataState = { email: '', password: '' }
 
-const LoginForm = () => {
+export default function SignInForm() {
   const [userData, setUserData] = useState(initialUserDataState)
   const { users, setLoggedIn } = useUsers()
 
@@ -100,5 +100,3 @@ const LoginForm = () => {
     </form>
   )
 }
-
-export default LoginForm

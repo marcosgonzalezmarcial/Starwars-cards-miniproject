@@ -3,9 +3,8 @@ import { API_URL } from '../constants'
 import { transformDataArray } from '../utils/transformDataArray'
 import { TYPE_OF_DATA } from '../constants'
 
-export const useSearch = ({ searchCategory, searchTerm }) => {
+export function useSearch({ searchCategory, searchTerm }) {
   const [searchResultsItems, setSearchResultsItems] = useState([])
-  // const [category, setCategory] = useState()
 
   useEffect(() => {
     let myAbortController = new AbortController()
@@ -15,51 +14,46 @@ export const useSearch = ({ searchCategory, searchTerm }) => {
       fetch(`${API_URL}/${searchCategory}/?search=${searchTerm}`, { signal })
         .then((res) => res.json())
         .then(({ results }) => {
-          if (results.length === 0) {
-            let res = setSearchResultsItems(['No results found'])
-            return res
-          } else {
+          if (results.length > 0) {
             const newArr = transformDataArray({
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.PLANETS
             })
             setSearchResultsItems((prev) => [...prev, ...newArr])
+          } else {
+            setSearchResultsItems(null)
           }
         })
     }
     if (searchTerm && searchCategory === 'characters') {
       let newCategory = TYPE_OF_DATA.PEOPLE
-      fetch(`${API_URL}/${newCategory}/?search=${searchTerm}`)
+      fetch(`${API_URL}/${newCategory}/?search=${searchTerm}`, { signal })
         .then((res) => res.json())
         .then(({ results }) => {
-          if (results.length === 0) {
-            let res = setSearchResultsItems(['No results found'])
-            return res
-          } else {
+          if (results.length > 0) {
             const newArr = transformDataArray({
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.PEOPLE
             })
             setSearchResultsItems((prev) => [...prev, ...newArr])
+          } else {
+            setSearchResultsItems(null)
           }
         })
     }
     if (searchTerm && searchCategory === TYPE_OF_DATA.STARSHIPS) {
-      fetch(`${API_URL}/${searchCategory}/?search=${searchTerm}`)
+      fetch(`${API_URL}/${searchCategory}/?search=${searchTerm}`, { signal })
         .then((res) => res.json())
         .then(({ results }) => {
-          // console.log(results)
-          if (results.length === 0) {
-            let res = setSearchResultsItems(['No results found'])
-            return res
-          } else {
+          if (results.length > 0) {
             const newArr = transformDataArray({
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.STARSHIPS
             })
             setSearchResultsItems((prev) => [...prev, ...newArr])
+          } else {
+            setSearchResultsItems(null)
           }
-          // }
         })
     }
     return () => {

@@ -1,6 +1,6 @@
-import ListOfItemsWrapper from "components/ListOfItemsWrapper";
+import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
 
-const Starship = ({ elementData }) => {
+export default function Starship({ elementData }) {
   return (
     <>
       <div className="detail-page__img">
@@ -15,7 +15,7 @@ const Starship = ({ elementData }) => {
           </div>
           <div>
             <h3>Length:</h3>
-            <span>{elementData.length ? elementData.length : "Unknown"}</span>
+            <span>{elementData.length ? elementData.length : 'Unknown'}</span>
           </div>
         </div>
         <div className="detail-page__info--row">
@@ -29,17 +29,14 @@ const Starship = ({ elementData }) => {
           </div>
         </div>
         <div className="detail-page__info--row">
-          <div >
+          <div>
             {elementData?.films?.length === 0 ? (
               <>
                 <h3>Appearances</h3>
                 <span>No films registered for this character</span>
               </>
             ) : (
-              <ListOfItemsWrapper
-                itemType="films"
-                elementData={elementData}
-              />
+              <ListOfItemsWrapper itemType="films" elementData={elementData} />
             )}
           </div>
           <div>
@@ -59,7 +56,5 @@ const Starship = ({ elementData }) => {
         </div>
       </div>
     </>
-  );
-};
-
-export default Starship;
+  )
+}

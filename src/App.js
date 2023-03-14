@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from 'pages/Home'
 import SignUpForm from 'pages/SignUpForm'
-import LoginForm from 'pages/LoginForm'
+import SignInForm from 'pages/SignInForm'
 import Header from 'components/Header'
 import SearchResults from 'components/SearchResults'
 import DetailPage from 'pages/DetailPage'
@@ -24,7 +24,7 @@ export default function App() {
             path="login"
             element={
               <Modal>
-                <LoginForm />
+                <SignInForm />
               </Modal>
             }
           />

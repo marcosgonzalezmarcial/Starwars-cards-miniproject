@@ -7,10 +7,8 @@ import 'styles/base.scss'
 const container = document.getElementById('app')
 const root = createRoot(container)
 root.render(
-  <>
-    <BrowserRouter>
-      <ScrollToTop />
-      <App tab="home" />
-    </BrowserRouter>
-  </>
+  <BrowserRouter>
+    <ScrollToTop />
+    <App tab="home" />
+  </BrowserRouter>
 )
