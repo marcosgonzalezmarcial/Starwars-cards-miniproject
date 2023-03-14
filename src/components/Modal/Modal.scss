@@ -13,6 +13,10 @@
   @media (max-width: 596px) {
     display: initial;
   }
+  &:has(.search-form) {
+    display: grid;
+    place-items: center;
+  }
  
   &-content {
     position: relative;
