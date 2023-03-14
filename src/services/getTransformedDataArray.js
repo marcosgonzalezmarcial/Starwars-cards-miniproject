@@ -6,7 +6,7 @@ export const getTransformedDataArray = async ({
   signal,
   currentPath
 }) => {
-  // change query string because of apis's contract
+  // change query string to apply api's contract
   if (currentPath === 'characters') {
     currentPath = 'people'
   }
@@ -14,7 +14,8 @@ export const getTransformedDataArray = async ({
   try {
     const { results: fetchedData, next } = await fetchDataByPage({
       page,
-      signal
+      signal,
+      typeOfData: currentPath
     })
     const transformedDataArray = transformDataArray({
       fetchedData,

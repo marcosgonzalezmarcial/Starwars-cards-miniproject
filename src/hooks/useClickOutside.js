@@ -1,10 +1,8 @@
 import { useLoginMenuCtx } from 'contexts/LoginMenuCtx'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
-export const useClickOutside = (elementRef) => {
+export function useClickOutside(elementRef) {
   const { isToggled, toggle } = useLoginMenuCtx()
-
-  const [isElementOpen, setIsElementOpen] = useState(true)
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -14,7 +12,6 @@ export const useClickOutside = (elementRef) => {
           !elementRef.current.contains(e.target) &&
           document.querySelector('.toggle-login-menu-btn') !== e.target
         ) {
-          setIsElementOpen((prev) => !prev)
           toggle((prev) => !prev)
         }
       }
@@ -27,6 +24,4 @@ export const useClickOutside = (elementRef) => {
       document.removeEventListener('mousedown', checkIfClickedOutside)
     }
   }, [elementRef, isToggled, toggle])
-
-  return { isElementOpen, setIsElementOpen }
 }

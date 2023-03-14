@@ -1,8 +1,6 @@
 import { API_URL } from '../constants'
-import { getPathname } from 'utils/getPathname'
 
-export const fetchDataByPage = async ({ page, signal }) => {
-  let typeOfData = getPathname()
+export const fetchDataByPage = async ({ page, signal, typeOfData }) => {
   const compoundUrl = `${API_URL}/${typeOfData}/?page=${page}`
   const { results, next } = await fetch(compoundUrl, { signal })
     .then((result) => result.json())

@@ -14,7 +14,7 @@ const lookUp = {
   films: Film
 }
 
-const DetailPage = ({ currentPath }) => {
+export default function DetailPage({ currentPath }) {
   let { itemName } = useParams()
 
   if (currentPath === 'characters') {
@@ -41,5 +41,3 @@ const DetailPage = ({ currentPath }) => {
     </>
   )
 }
-
-export default DetailPage
