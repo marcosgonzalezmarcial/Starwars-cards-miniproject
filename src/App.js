@@ -1,14 +1,15 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from 'pages/Home'
 import SignUpForm from 'pages/SignUpForm'
+import LoginForm from 'pages/LoginForm'
 import Header from 'components/Header'
+import SearchResults from 'components/SearchResults'
 import DetailPage from 'pages/DetailPage'
 import ErrorPage from 'pages/ErrorPage'
 import ProtectedRoute from 'pages/ProtectedRoute'
 import NestedRoutes from 'pages/NestedRoutes'
 import GridLayoutPage from 'pages/GridLayoutPage'
-import LoginForm from 'pages/LoginForm'
-import LoginModal from 'components/LoginModal'
+import Modal from 'components/Modal'
 import { DataContextProvider } from 'contexts/DataContext'
 import { UsersContextProvider } from 'contexts/UsersContext'
 
@@ -16,24 +17,23 @@ export default function App() {
   return (
     <UsersContextProvider>
       <Header />
-
       <Routes>
         <Route path="/" element={<NestedRoutes />}>
           <Route index element={<Home />} />
           <Route
             path="login"
             element={
-              <LoginModal>
+              <Modal>
                 <LoginForm />
-              </LoginModal>
+              </Modal>
             }
           />
           <Route
             path="signup"
             element={
-              <LoginModal>
+              <Modal>
                 <SignUpForm />
-              </LoginModal>
+              </Modal>
             }
           />
           <Route
@@ -79,6 +79,7 @@ export default function App() {
                 element={<DetailPage currentPath="films" />}
               />
             </Route>
+            <Route path="search" element={<SearchResults />} />
           </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />

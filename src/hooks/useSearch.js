@@ -1,23 +1,18 @@
-// TODO: dont show GridItems when searching
-
 import { useEffect, useState } from 'react'
-import { useLocation, useSearchParams } from 'react-router-dom'
 import { API_URL } from '../constants'
 import { transformDataArray } from '../utils/transformDataArray'
 import { TYPE_OF_DATA } from '../constants'
 
-export const useSearch = () => {
+export const useSearch = ({ searchCategory, searchTerm }) => {
   const [searchResultsItems, setSearchResultsItems] = useState([])
-  const [searchParams] = useSearchParams()
-  const query = searchParams.get('search')
-  let { pathname: category } = useLocation()
+  // const [category, setCategory] = useState()
 
   useEffect(() => {
     let myAbortController = new AbortController()
     const signal = myAbortController.signal
 
-    if (query && category === `/${TYPE_OF_DATA.PLANETS}/`) {
-      fetch(`${API_URL}/${category}/?search=${query}`, { signal })
+    if (searchTerm && searchCategory === TYPE_OF_DATA.PLANETS) {
+      fetch(`${API_URL}/${searchCategory}/?search=${searchTerm}`, { signal })
         .then((res) => res.json())
         .then(({ results }) => {
           if (results.length === 0) {
@@ -32,9 +27,9 @@ export const useSearch = () => {
           }
         })
     }
-    if (query && category === '/characters/') {
+    if (searchTerm && searchCategory === 'characters') {
       let newCategory = TYPE_OF_DATA.PEOPLE
-      fetch(`${API_URL}/${newCategory}/?search=${query}`)
+      fetch(`${API_URL}/${newCategory}/?search=${searchTerm}`)
         .then((res) => res.json())
         .then(({ results }) => {
           if (results.length === 0) {
@@ -49,8 +44,8 @@ export const useSearch = () => {
           }
         })
     }
-    if (query && category === `/${TYPE_OF_DATA.STARSHIPS}/`) {
-      fetch(`${API_URL}/${category}/?search=${query}`)
+    if (searchTerm && searchCategory === TYPE_OF_DATA.STARSHIPS) {
+      fetch(`${API_URL}/${searchCategory}/?search=${searchTerm}`)
         .then((res) => res.json())
         .then(({ results }) => {
           // console.log(results)
@@ -72,7 +67,7 @@ export const useSearch = () => {
       // delete previous serched items
       setSearchResultsItems([])
     }
-  }, [query, category])
+  }, [searchTerm, searchCategory])
 
   return {
     searchResultsItems

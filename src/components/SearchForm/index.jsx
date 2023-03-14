@@ -1,31 +1,28 @@
-import { useCallback, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { TYPE_OF_DATA } from 'constants.js'
+import { useRef } from 'react'
+import { createSearchParams, useNavigate } from 'react-router-dom'
 import './SearchForm.scss'
 
-const SearchForm = ({ handleClose }) => {
-  const [searchCategory, setSearchCategory] = useState(null)
-
+export default function SearchForm({ handleClose }) {
   let navigate = useNavigate()
 
   const inputRef = useRef(null)
+  const inputRadioRef = useRef(null)
 
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault()
-      navigate(`/${searchCategory}/?search=${inputRef.current.value}`)
-      handleClose()
-    },
-    [navigate, handleClose, searchCategory]
-  )
+  const handleSelection = (e) => {
+    inputRadioRef.current = e.target.getAttribute('data-type')
+  }
 
-  const handleSelection = useCallback((e) => {
-    if (e.target.getAttribute('data-type') === TYPE_OF_DATA.PEOPLE) {
-      setSearchCategory('characters')
-    } else {
-      setSearchCategory(e.target.getAttribute('data-type'))
-    }
-  }, [])
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    handleClose()
+    navigate({
+      pathname: 'search',
+      search: `?${createSearchParams([
+        ['category', inputRadioRef.current],
+        ['searchTerm', inputRef.current.value]
+      ])}`
+    })
+  }
 
   return (
     <form onSubmit={handleSubmit} className="search-form">
@@ -39,9 +36,10 @@ const SearchForm = ({ handleClose }) => {
                   name="radio-stacked"
                   role="switch"
                   aria-checked="false"
-                  required="true"
+                  required
                   data-type="planets"
                   type="radio"
+                  ref={inputRadioRef}
                   className="search-form__check-input"
                   onChange={handleSelection}
                 />
@@ -54,9 +52,10 @@ const SearchForm = ({ handleClose }) => {
                   name="radio-stacked"
                   role="switch"
                   aria-checked="false"
-                  required={true}
-                  data-type="people"
+                  required
+                  data-type="characters"
                   type="radio"
+                  ref={inputRadioRef}
                   onChange={handleSelection}
                   className="search-form__check-input"
                 />
@@ -70,9 +69,10 @@ const SearchForm = ({ handleClose }) => {
                   name="radio-stacked"
                   role="switch"
                   aria-checked="false"
-                  required={true}
+                  required
                   data-type="starships"
                   type="radio"
+                  ref={inputRadioRef}
                   className="search-form__check-input"
                 />
               </div>
@@ -84,7 +84,7 @@ const SearchForm = ({ handleClose }) => {
         <input
           name="searchInput"
           placeholder="Enter search term after selecting the type"
-          required="true"
+          required
           type="text"
           id="form.Name"
           className="search-form__input-field"
@@ -99,5 +99,3 @@ const SearchForm = ({ handleClose }) => {
     </form>
   )
 }
-
-export default SearchForm

@@ -1,7 +1,6 @@
 import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
 
-const Planet = ({ elementData }) => {
-  // console.log(elementData)
+export default function Planet({ elementData }) {
   return (
     <>
       <div className="detail-page__img">
@@ -59,5 +58,3 @@ const Planet = ({ elementData }) => {
     </>
   )
 }
-
-export default Planet

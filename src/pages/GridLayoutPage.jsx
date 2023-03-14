@@ -1,19 +1,12 @@
 import { useEffect } from 'react'
-import { useSearch } from 'hooks/useSearch.js'
 import { useIsNearScreen } from 'hooks/useIsNearScreen.js'
-import SearchResults from 'components/SearchResults'
 import GridItems from 'components/GridItems'
 import { useData } from 'hooks/useData'
 import { BackToTopBtn } from 'components/BackToTopBtn'
 
 const GridLayoutPage = ({ currentPath }) => {
-  const { searchResultsItems } = useSearch()
   const { isNearScreen, fromRef } = useIsNearScreen({ once: false })
-  const {
-    data,
-
-    dispatch
-  } = useData()
+  const { data, dispatch } = useData()
 
   const next = data[currentPath].next
   const isLoading = data.isLoading
@@ -28,26 +21,6 @@ const GridLayoutPage = ({ currentPath }) => {
       dispatch({ type: 'NEXT_PAGE', payload: { currentPath } })
     }
   }, [isNearScreen, dispatch, currentPath, isLoading, next])
-
-  if (searchResultsItems.length > 0) {
-    if (
-      searchResultsItems.length === 1 &&
-      typeof searchResultsItems[0] === 'string'
-    ) {
-      return (
-        <div
-          style={{
-            marginTop: '5vh',
-            textAlign: 'center',
-            color: 'var(--primary-white)'
-          }}
-        >
-          <h1>No results found</h1>
-        </div>
-      )
-    }
-    return <SearchResults searchResultsItems={searchResultsItems} />
-  }
 
   return (
     <>

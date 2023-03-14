@@ -64,16 +64,10 @@ const SignUpForm = () => {
   }, [formRef, handleClick])
 
   return (
-    <form
-      className={`register-form ` /*is-open*/}
-      onSubmit={handleSubmit}
-      action=""
-    >
+    <form className={`register-form `} onSubmit={handleSubmit} action="">
       <div ref={formRef} className="register-form__inner-wrapper">
         <img className="register-form__img" src={yellowSwLogo} alt="logo" />
-        <button className="register-form__close-btn" onClick={handleClick}>
-          X
-        </button>
+
         <h1 className="register-form__title">CREATE YOUR ACCOUNT</h1>
 
         <input

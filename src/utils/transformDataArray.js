@@ -6,7 +6,6 @@ import {
 } from './mocked-data'
 
 export const transformDataArray = ({ fetchedData = [], typeOfData = '' }) => {
-  console.log({ fetchedData })
   // films have title instead of name
   if (typeOfData === 'films') {
     const transformedArray = fetchedData.map((itemFetched) => {

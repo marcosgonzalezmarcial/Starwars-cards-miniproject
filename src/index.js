@@ -1,12 +1,11 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import "styles/base.scss";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import ScrollToTop from "components/ScrollToTop";
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
+import ScrollToTop from 'components/ScrollToTop'
+import 'styles/base.scss'
 
-const container = document.getElementById("app");
-const root = createRoot(container);
+const container = document.getElementById('app')
+const root = createRoot(container)
 root.render(
   <>
     <BrowserRouter>
@@ -14,4 +13,4 @@ root.render(
       <App tab="home" />
     </BrowserRouter>
   </>
-);
+)

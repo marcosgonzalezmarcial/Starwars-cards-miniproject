@@ -18,12 +18,13 @@ export const DataContextProvider = ({ children }) => {
 
   const location = useLocation()
   const currentPath = location.pathname.slice(1).split('/')[0]
-  const currentPage = data[currentPath].page
+  const currentPage = data[currentPath]?.page
 
   const cachedRefData = useRef(data)
 
   // // NEW WORKING VERSION
   useEffect(() => {
+    if (currentPath === 'search') return
     let cachedData = cachedRefData.current
     // Caching data in a ref but keep the previous page count to compare and avoid re fetchings
     cachedRefData.current = {
@@ -36,6 +37,7 @@ export const DataContextProvider = ({ children }) => {
   }, [data, currentPath])
   // fetch data if the user navigates or if paginates scrolling down
   useEffect(() => {
+    if (currentPath === 'search') return
     let cachedData = cachedRefData.current
     // check if is any cached data in cachedData ref
     if (cachedData[currentPath]?.data?.length > 0) {

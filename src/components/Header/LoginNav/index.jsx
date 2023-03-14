@@ -6,13 +6,11 @@ import { useUsers } from 'hooks/useUsers'
 import '../Header.scss'
 import './LoginNav.scss'
 
-const LoginNav = (/*{ loggedIn, setLoggedIn }*/) => {
+export default function LoginNav() {
   const { loggedIn, setLoggedIn } = useUsers()
   const loginNavRef = useRef()
-
   const { isToggled: toggleMenu, toggle: handleToggle } = useLoginMenuCtx()
   useClickOutside(loginNavRef)
-  // console.log({ isElementOpen })
 
   const dynamicStyles = useCallback(() => {
     if (!loggedIn) {
@@ -50,4 +48,3 @@ const LoginNav = (/*{ loggedIn, setLoggedIn }*/) => {
     </nav>
   )
 }
-export default LoginNav
