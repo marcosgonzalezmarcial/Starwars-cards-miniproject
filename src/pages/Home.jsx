@@ -1,11 +1,9 @@
-import { LandingAnimation } from "components/LandingAnimation";
+import { LandingAnimation } from 'components/LandingAnimation'
 
-const Home = () => {
+export default function Home() {
   return (
     <main className="animation-wrapper">
       <LandingAnimation />
     </main>
-  );
-};
-
-export default Home;
+  )
+}

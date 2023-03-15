@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
 import './BackToTopBtn.scss'
 import upChevronBtn from 'assets/icons/up-chevron-btn.svg'
-const BackToTopBtn = () => {
+
+export function BackToTopBtn() {
   const BackToTopBtnRef = useRef(null)
 
   useEffect(() => {
@@ -37,5 +38,3 @@ const BackToTopBtn = () => {
     </button>
   )
 }
-
-export { BackToTopBtn }

@@ -11,7 +11,7 @@ const initialUserDetailsState = {
   password: ''
 }
 
-const SignUpForm = () => {
+export default function SignUpForm() {
   const [userDetails, setUserDetails] = useState(initialUserDetailsState)
   const { setUsers } = useUsers()
   let navigate = useNavigate()
@@ -117,5 +117,3 @@ const SignUpForm = () => {
     </form>
   )
 }
-
-export default SignUpForm

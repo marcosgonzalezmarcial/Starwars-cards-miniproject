@@ -8,7 +8,7 @@ import SearchButton from 'components/Header/SearchButton'
 import './Header.scss'
 import { LoginMenuCtxProvider } from 'contexts/LoginMenuCtx'
 
-const Header = () => {
+export default function Header() {
   return (
     <header className="main-header">
       <div className="main-header__container">
@@ -31,5 +31,3 @@ const Header = () => {
     </header>
   )
 }
-
-export default Header

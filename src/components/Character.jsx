@@ -1,7 +1,7 @@
 import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
 import { useNavigate } from 'react-router-dom'
 
-const Character = ({ elementData }) => {
+export default function Character({ elementData }) {
   let navigate = useNavigate()
   const handleItemClick = (e) => {
     const planetSelected = e.target.textContent
@@ -76,5 +76,3 @@ const Character = ({ elementData }) => {
     </>
   )
 }
-
-export default Character
