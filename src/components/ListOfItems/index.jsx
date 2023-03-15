@@ -4,7 +4,7 @@ import { Spinner } from 'components/Spinner'
 import { useLisOfData } from 'hooks/useListOfData'
 import './ListOfItems.scss'
 
-const ListOfItems = ({ itemType, listOfUrls }) => {
+function ListOfItems({ itemType, listOfUrls }) {
   const { loading, data } = useLisOfData({ listOfUrls })
   let navigate = useNavigate()
 

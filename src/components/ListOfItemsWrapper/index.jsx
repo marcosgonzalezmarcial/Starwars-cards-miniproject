@@ -4,33 +4,39 @@ import ListOfItems from 'components/ListOfItems'
 
 import './ListOfItemsWrapper.scss'
 
-const ListOfItemsWrapper = ({ itemType, elementData, itemSubType }) => {
-  const { dynamicSize, fromRef } = useHeightObserver({ isLoading: false })
+function ListOfItemsWrapper({ itemType, elementData, itemSubType }) {
+  const {
+    fromRef,
+    dynamicSize: { height }
+  } = useHeightObserver({ isLoading: false })
+
+  const filmsQty = elementData?.films?.length
+  const starshipsQty = elementData?.starships?.length
 
   const showButton = useCallback(() => {
     if (window.innerWidth < 700) {
-      if (dynamicSize.height > 130) {
-        if (dynamicSize.height < 140) {
+      if (height > 130) {
+        if (height < 140) {
           if (itemSubType === 'pilots') {
             return null
           }
         }
       }
       if (itemType === 'films') {
-        if (elementData?.films?.length < 6) {
+        if (filmsQty < 6) {
           return null
         }
       }
       if (itemType === 'starships') {
-        if (elementData?.starships?.length < 6) {
+        if (starshipsQty < 6) {
           return null
         }
       }
-      if (dynamicSize.height > 130) {
+      if (height > 130) {
         return <input type="checkbox" className="view-more-btn" />
       }
     }
-  }, [dynamicSize.height, itemSubType])
+  }, [height, itemSubType, starshipsQty, filmsQty, itemType])
 
   return (
     <>
