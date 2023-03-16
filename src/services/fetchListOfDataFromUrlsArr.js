@@ -5,5 +5,6 @@ export async function fetchListOfDataFromUrlsArr({ listOfUrls, signal }) {
       .catch(console.log)
   )
   // return the full list of items whn all promises are resolved
-  return Promise.all(filmsPromises)
+  return filmsPromises ? Promise.all(filmsPromises) : []
+  // return filmsPromises
 }
