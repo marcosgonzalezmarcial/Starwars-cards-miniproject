@@ -1,0 +1,11 @@
+#app:has(> .detail-page-layout-container ) {
+  grid-template-rows: 100.83px 1fr;
+  gap: 1rem;
+  @media (min-width: 576px) {
+    grid-template-rows: 104.75px 1fr;
+  }
+  @media (min-width: 768px) {
+    grid-template-rows: 145.74px 1fr;
+  }
+}
+

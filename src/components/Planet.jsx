@@ -1,6 +1,6 @@
 import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
 
-export default function Planet({ elementData }) {
+export default function Planet({ containerRef, elementData }) {
   return (
     <>
       <div className="detail-page__img">
@@ -36,7 +36,11 @@ export default function Planet({ elementData }) {
                 <span>No films registered for this planet</span>
               </>
             ) : (
-              <ListOfItemsWrapper itemType="films" elementData={elementData} />
+              <ListOfItemsWrapper
+                itemType="films"
+                elementData={elementData}
+                containerRef={containerRef}
+              />
             )}
           </div>
           <div>
@@ -50,6 +54,7 @@ export default function Planet({ elementData }) {
                 itemType="characters"
                 itemSubType="residents"
                 elementData={elementData}
+                containerRef={containerRef}
               />
             )}
           </div>

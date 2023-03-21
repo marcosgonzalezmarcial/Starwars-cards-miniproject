@@ -1,7 +1,7 @@
 import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
 import { useNavigate } from 'react-router-dom'
 
-export default function Character({ elementData }) {
+export default function Character({ elementData, containerRef }) {
   let navigate = useNavigate()
   const handleItemClick = (e) => {
     const planetSelected = e.target.textContent
@@ -55,7 +55,11 @@ export default function Character({ elementData }) {
                 <span>No films registered for this character</span>
               </>
             ) : (
-              <ListOfItemsWrapper itemType="films" elementData={elementData} />
+              <ListOfItemsWrapper
+                itemType="films"
+                containerRef={containerRef}
+                elementData={elementData}
+              />
             )}
           </div>
           <div>
@@ -68,6 +72,7 @@ export default function Character({ elementData }) {
               <ListOfItemsWrapper
                 itemType="starships"
                 elementData={elementData}
+                containerRef={containerRef}
               />
             )}
           </div>

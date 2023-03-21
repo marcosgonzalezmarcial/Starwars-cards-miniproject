@@ -1,9 +1,10 @@
+
 /* Animation properties */
 
 .animation-wrapper {
-  margin-inline: auto;
   min-width: 100vw;
-  min-height: calc(100vh - 300px);
+  min-height:100vh;
+  margin-inline: auto;
   position: relative;
   display: grid;
   place-items: center;
@@ -174,6 +175,7 @@
   .starwars-demo {
     height: 8rem;
     width: 17.5rem;
+    margin-block-end: 200px;
     h2 {
       font-size: var(--step-0);
     }
@@ -192,8 +194,8 @@
 
 @media (max-width: 380px) {
   .starwars-demo {
-    height: 3.5rem;
-    width: 8.5rem;
+    height: 4rem;
+    width: 9.5rem;
     h2 {
       font-size: var(--step--2);
     }

@@ -1,9 +1,15 @@
 @import "../../styles/variables.scss";
 
+#app:has(> .grid-items ) {
+  display: initial;
+}
+
+
 .grid-items {
   max-width: calc(min(92vw, 1200px));
   margin-inline: auto;
   margin-block: 1rem;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
   grid-auto-rows: minmax(275px, 30vh);

@@ -1,42 +1,30 @@
-import { memo, useCallback } from 'react'
+import { memo } from 'react'
 import { useHeightObserver } from 'hooks/useHeightObserver'
 import ListOfItems from 'components/ListOfItems'
 
+import { useIsOverflowing } from 'hooks/useIsOverflowing'
+
 import './ListOfItemsWrapper.scss'
 
-function ListOfItemsWrapper({ itemType, elementData, itemSubType }) {
+function ListOfItemsWrapper({
+  itemType,
+  elementData,
+  itemSubType,
+  containerRef
+}) {
   const {
     fromRef,
-    dynamicSize: { height }
+    dynamicSize: { height, posY }
   } = useHeightObserver({ isLoading: false })
 
-  const filmsQty = elementData?.films?.length
-  const starshipsQty = elementData?.starships?.length
+  const { isOverflowing } = useIsOverflowing({
+    containerRef,
+    elementRef: fromRef,
+    height,
+    posY
+  })
 
-  const showButton = useCallback(() => {
-    if (window.innerWidth < 700) {
-      if (height > 130) {
-        if (height < 140) {
-          if (itemSubType === 'pilots') {
-            return null
-          }
-        }
-      }
-      if (itemType === 'films') {
-        if (filmsQty < 6) {
-          return null
-        }
-      }
-      if (itemType === 'starships') {
-        if (starshipsQty < 6) {
-          return null
-        }
-      }
-      if (height > 130) {
-        return <input type="checkbox" className="view-more-btn" />
-      }
-    }
-  }, [height, itemSubType, starshipsQty, filmsQty, itemType])
+  const buttonStyles = { position: 'absolute', top: `${220}px` }
 
   return (
     <>
@@ -72,7 +60,15 @@ function ListOfItemsWrapper({ itemType, elementData, itemSubType }) {
           </>
         )}
       </div>
-      {showButton()}
+      {isOverflowing && height > 0 && (
+        <button
+          // style={buttonStyles}
+          onClick={() => {}}
+          className="view-more-btn"
+        >
+          View more
+        </button>
+      )}
     </>
   )
 }

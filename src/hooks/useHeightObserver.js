@@ -8,7 +8,8 @@ export const useHeightObserver = ({ isLoading }) => {
     if (!fromRef || isLoading) return // wait for the elementRef to be available and loading finishes
     const resizeObserver = new ResizeObserver((entries) => {
       setDynamicSize({
-        height: entries[0].contentRect.height
+        height: entries[0].contentRect.height,
+        posY: entries[0].target.getBoundingClientRect().y
       })
     })
     resizeObserver.observe(fromRef.current)

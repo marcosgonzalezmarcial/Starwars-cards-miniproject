@@ -1,0 +1,9 @@
+#app:has( > .home-page-layout-container) {
+  grid-template-rows: 100.84px calc(100vh - 100.84px);
+  @media (min-width: 576px) {
+    grid-template-rows: 104.75px calc(100vh - 104.75px);
+  }
+  @media (min-width: 768px) {
+    grid-template-rows: 145.74px calc(100vh - 145.74px);
+  }
+}

@@ -6,6 +6,7 @@ import Film from 'components/Film'
 import { Spinner } from 'components/Spinner'
 import { useSingleElementData } from 'hooks/useSingleElementData'
 import './DetailPage.scss'
+import { useRef } from 'react'
 
 const lookUp = {
   starships: Starship,
@@ -16,6 +17,8 @@ const lookUp = {
 
 export default function DetailPage({ currentPath }) {
   let { itemName } = useParams()
+
+  let fromRef = useRef()
 
   if (currentPath === 'characters') {
     currentPath = 'people'
@@ -34,8 +37,8 @@ export default function DetailPage({ currentPath }) {
       {loading ? (
         <Spinner />
       ) : (
-        <main className="detail-page">
-          <Component elementData={elementData} />
+        <main ref={fromRef} className="detail-page">
+          <Component containerRef={fromRef} elementData={elementData} />
         </main>
       )}
     </>

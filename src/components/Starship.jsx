@@ -1,6 +1,6 @@
 import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
 
-export default function Starship({ elementData }) {
+export default function Starship({ elementData, containerRef }) {
   return (
     <>
       <div className="detail-page__img">
@@ -36,7 +36,11 @@ export default function Starship({ elementData }) {
                 <span>No films registered for this character</span>
               </>
             ) : (
-              <ListOfItemsWrapper itemType="films" elementData={elementData} />
+              <ListOfItemsWrapper
+                containerRef={containerRef}
+                itemType="films"
+                elementData={elementData}
+              />
             )}
           </div>
           <div>
@@ -50,6 +54,7 @@ export default function Starship({ elementData }) {
                 itemType="characters"
                 itemSubType="pilots"
                 elementData={elementData}
+                containerRef={containerRef}
               />
             )}
           </div>

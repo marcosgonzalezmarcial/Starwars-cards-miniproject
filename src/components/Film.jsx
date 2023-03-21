@@ -1,7 +1,6 @@
-import ListOfItemsWrapper from "components/ListOfItemsWrapper";
+import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
 
-
-const Film = ({ elementData }) => {
+const Film = ({ elementData, containerRef }) => {
   return (
     <>
       <div className="detail-page__img">
@@ -34,6 +33,7 @@ const Film = ({ elementData }) => {
               <ListOfItemsWrapper
                 itemType="starships"
                 elementData={elementData}
+                containerRef={containerRef}
               />
             )}
           </div>
@@ -44,7 +44,7 @@ const Film = ({ elementData }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Film;
+export default Film

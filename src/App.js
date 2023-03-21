@@ -4,11 +4,13 @@ import SignUpForm from 'pages/SignUpForm'
 import SignInForm from 'pages/SignInForm'
 import Header from 'components/Header'
 import SearchResults from 'components/SearchResults'
+import DetailPageLayout from 'layouts/DetailPageLayout'
 import DetailPage from 'pages/DetailPage'
 import ErrorPage from 'pages/ErrorPage'
 import ProtectedRoute from 'pages/ProtectedRoute'
 import NestedRoutes from 'pages/NestedRoutes'
 import GridLayoutPage from 'pages/GridLayoutPage'
+import HomePageLayout from 'layouts/HomePageLayout'
 import Modal from 'components/Modal'
 import { DataContextProvider } from 'contexts/DataContext'
 import { UsersContextProvider } from 'contexts/UsersContext'
@@ -19,7 +21,14 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<NestedRoutes />}>
-          <Route index element={<Home />} />
+          <Route
+            index
+            element={
+              <HomePageLayout>
+                <Home />
+              </HomePageLayout>
+            }
+          />
           <Route
             path="login"
             element={
@@ -50,7 +59,11 @@ export default function App() {
               />
               <Route
                 path=":itemName"
-                element={<DetailPage currentPath="starships" />}
+                element={
+                  <DetailPageLayout>
+                    <DetailPage currentPath="starships" />
+                  </DetailPageLayout>
+                }
               />
             </Route>
 
@@ -58,7 +71,11 @@ export default function App() {
               <Route index element={<GridLayoutPage currentPath="planets" />} />
               <Route
                 path=":itemName"
-                element={<DetailPage currentPath="planets" />}
+                element={
+                  <DetailPageLayout>
+                    <DetailPage currentPath="planets" />
+                  </DetailPageLayout>
+                }
               />
             </Route>
 
@@ -69,14 +86,22 @@ export default function App() {
               />
               <Route
                 path=":itemName"
-                element={<DetailPage currentPath="characters" />}
+                element={
+                  <DetailPageLayout>
+                    <DetailPage currentPath="characters" />{' '}
+                  </DetailPageLayout>
+                }
               />
             </Route>
 
             <Route path="films" element={<NestedRoutes />}>
               <Route
                 path=":itemName"
-                element={<DetailPage currentPath="films" />}
+                element={
+                  <DetailPageLayout>
+                    <DetailPage currentPath="films" />{' '}
+                  </DetailPageLayout>
+                }
               />
             </Route>
             <Route path="search" element={<SearchResults />} />
