@@ -6,19 +6,19 @@
   // position: relative;
 
   // blurred effect on last line
-  &:has(+ .view-more-btn) {
-    &::after {
-      content: "";
-      position: sticky;
-      height: 90px;
-      width: 120px;
-      bottom: 9.1%;
-      pointer-events: none;
-      background: linear-gradient(to bottom,
-          transparent,
-          var(--bg-dark-gray) 50%);
-    }
-  }
+  // &:has(+ .view-more-btn) {
+  //   &::after {
+  //     content: "";
+  //     position: sticky;
+  //     height: 90px;
+  //     width: 120px;
+  //     bottom: 9.1%;
+  //     pointer-events: none;
+  //     background: linear-gradient(to bottom,
+  //         transparent,
+  //         var(--bg-dark-gray) 50%);
+  //   }
+  // }
 
   h3 {
     margin-block: 0.5rem;
@@ -41,8 +41,13 @@
   color: var(--gray-blue);
   background-color: white;
   position: sticky;
-  bottom: 3.5vh;
+  bottom: 3%;
+  z-index: 10;
+  &.hide {
+    display: none;
+  }
 }
+
 
 // .view-more-btn::before {
 //   color: var(--gray-blue);

@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { useHeightObserver } from 'hooks/useHeightObserver'
 import ListOfItems from 'components/ListOfItems'
 
@@ -12,10 +12,13 @@ function ListOfItemsWrapper({
   itemSubType,
   containerRef
 }) {
+  const buttonRef = useRef(null)
   const {
     fromRef,
     dynamicSize: { height, posY }
   } = useHeightObserver({ isLoading: false })
+
+  // console.log({ posY })
 
   const { isOverflowing } = useIsOverflowing({
     containerRef,
@@ -24,7 +27,25 @@ function ListOfItemsWrapper({
     posY
   })
 
-  const buttonStyles = { position: 'absolute', top: `${220}px` }
+  const changeStyles = () => {
+    //expand the heightof the container
+    containerRef.current.classList.add('expand')
+    // not display the button when the heigh of container changes
+    fromRef.current.nextSibling.classList.add('hide')
+    fromRef.current.parentElement.parentElement
+      .querySelector('.view-more-btn')
+      .classList.add('hide')
+    // console.log(
+    //   fromRef.current.parentElement.parentElement.querySelector(
+    //     '.view-more-btn'
+    //   )
+    // )
+  }
+
+  useEffect(() => {
+    isOverflowing &&
+      containerRef.current.style.setProperty('--min-height', '120px')
+  }, [isOverflowing, containerRef])
 
   return (
     <>
@@ -60,11 +81,13 @@ function ListOfItemsWrapper({
           </>
         )}
       </div>
-      {isOverflowing && height > 0 && (
+      {isOverflowing && (
         <button
-          // style={buttonStyles}
-          onClick={() => {}}
+          ref={buttonRef}
           className="view-more-btn"
+          onClick={() => {
+            changeStyles()
+          }}
         >
           View more
         </button>

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 
-export const useHeightObserver = ({ isLoading }) => {
+export const useHeightObserver = ({ isLoading } = { isLoading: false }) => {
   const fromRef = useRef()
   const [dynamicSize, setDynamicSize] = useState({})
 
@@ -12,7 +12,9 @@ export const useHeightObserver = ({ isLoading }) => {
         posY: entries[0].target.getBoundingClientRect().y
       })
     })
+
     resizeObserver.observe(fromRef.current)
+
     return () => resizeObserver.disconnect() // clean up
   }, [isLoading, fromRef])
 
