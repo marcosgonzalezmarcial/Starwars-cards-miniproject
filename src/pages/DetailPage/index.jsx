@@ -1,36 +1,36 @@
-import { useParams } from 'react-router-dom'
-import Character from 'components/Character'
-import Starship from 'components/Starship'
-import Planet from 'components/Planet'
-import Film from 'components/Film'
-import { Spinner } from 'components/Spinner'
-import { useSingleElementData } from 'hooks/useSingleElementData'
-import './DetailPage.scss'
-import { useRef } from 'react'
+import { useParams } from "react-router-dom";
+import Character from "components/Character";
+import Starship from "components/Starship";
+import Planet from "components/Planet";
+import Film from "components/Film";
+import { Spinner } from "components/Spinner";
+import { useSingleElementData } from "hooks/useSingleElementData";
+import "./DetailPage.scss";
+import { useRef } from "react";
 
 const lookUp = {
   starships: Starship,
   people: Character,
   planets: Planet,
-  films: Film
-}
+  films: Film,
+};
 
 export default function DetailPage({ currentPath }) {
-  let { itemName } = useParams()
+  let { itemName } = useParams();
 
-  let fromRef = useRef()
+  let fromRef = useRef();
 
-  if (currentPath === 'characters') {
-    currentPath = 'people'
+  if (currentPath === "characters") {
+    currentPath = "people";
   }
 
   const { loading, elementData } = useSingleElementData({
     paramFromUrl: itemName,
-    typeOfData: currentPath
-  })
+    typeOfData: currentPath,
+  });
 
   // conditionally render component according to current path
-  const Component = lookUp[currentPath]
+  const Component = lookUp[currentPath];
 
   return (
     <>
@@ -42,5 +42,5 @@ export default function DetailPage({ currentPath }) {
         </main>
       )}
     </>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
+import ListOfItemsWrapper from "components/ListOfItemsWrapper";
 
 export default function Starship({ elementData, containerRef }) {
   return (
@@ -15,7 +15,7 @@ export default function Starship({ elementData, containerRef }) {
           </div>
           <div>
             <h3>Length:</h3>
-            <span>{elementData.length ? elementData.length : 'Unknown'}</span>
+            <span>{elementData.length ? elementData.length : "Unknown"}</span>
           </div>
         </div>
         <div className="detail-page__info--row">
@@ -61,5 +61,5 @@ export default function Starship({ elementData, containerRef }) {
         </div>
       </div>
     </>
-  )
+  );
 }

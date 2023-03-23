@@ -1,9 +1,7 @@
-import { memo, useEffect, useRef } from "react";
+import { memo, useEffect } from "react";
 import { useHeightObserver } from "hooks/useHeightObserver";
 import ListOfItems from "components/ListOfItems";
-
 import { useIsOverflowing } from "hooks/useIsOverflowing";
-
 import "./ListOfItemsWrapper.scss";
 
 function ListOfItemsWrapper({
@@ -12,7 +10,6 @@ function ListOfItemsWrapper({
   itemSubType,
   containerRef,
 }) {
-  const buttonRef = useRef(null);
   const {
     fromRef,
     dynamicSize: { height, posY },
