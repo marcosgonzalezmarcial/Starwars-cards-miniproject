@@ -1,22 +1,22 @@
-import { memo, useCallback, useEffect, useRef, useState } from 'react'
-import { useHeightObserver } from 'hooks/useHeightObserver'
-import ListOfItems from 'components/ListOfItems'
+import { memo, useEffect, useRef } from "react";
+import { useHeightObserver } from "hooks/useHeightObserver";
+import ListOfItems from "components/ListOfItems";
 
-import { useIsOverflowing } from 'hooks/useIsOverflowing'
+import { useIsOverflowing } from "hooks/useIsOverflowing";
 
-import './ListOfItemsWrapper.scss'
+import "./ListOfItemsWrapper.scss";
 
 function ListOfItemsWrapper({
   itemType,
   elementData,
   itemSubType,
-  containerRef
+  containerRef,
 }) {
-  const buttonRef = useRef(null)
+  const buttonRef = useRef(null);
   const {
     fromRef,
-    dynamicSize: { height, posY }
-  } = useHeightObserver({ isLoading: false })
+    dynamicSize: { height, posY },
+  } = useHeightObserver({ isLoading: false });
 
   // console.log({ posY })
 
@@ -24,39 +24,30 @@ function ListOfItemsWrapper({
     containerRef,
     elementRef: fromRef,
     height,
-    posY
-  })
+    posY,
+  });
 
   const changeStyles = () => {
-    //expand the heightof the container
-    containerRef.current.classList.add('expand')
-    // not display the button when the heigh of container changes
-    fromRef.current.nextSibling.classList.add('hide')
-    fromRef.current.parentElement.parentElement
-      .querySelector('.view-more-btn')
-      .classList.add('hide')
-    // console.log(
-    //   fromRef.current.parentElement.parentElement.querySelector(
-    //     '.view-more-btn'
-    //   )
-    // )
-  }
+    //expand the height of the container
+    containerRef.current.classList.add("expand");
+  };
 
+  // add blurred effect if is overflowing to better see the button
   useEffect(() => {
     isOverflowing &&
-      containerRef.current.style.setProperty('--min-height', '120px')
-  }, [isOverflowing, containerRef])
+      containerRef.current.style.setProperty("--min-height", "120px");
+  }, [isOverflowing, containerRef]);
 
   return (
     <>
       <div ref={fromRef} className="list-of-items-wrapper">
-        {itemType === 'films' && (
+        {itemType === "films" && (
           <>
             <h3>Appearances</h3>
             <ListOfItems itemType={itemType} listOfUrls={elementData.films} />
           </>
         )}
-        {itemType === 'starships' && (
+        {itemType === "starships" && (
           <>
             <h3>Starships</h3>
             <ListOfItems
@@ -65,13 +56,13 @@ function ListOfItemsWrapper({
             />
           </>
         )}
-        {itemType === 'characters' && itemSubType === 'pilots' && (
+        {itemType === "characters" && itemSubType === "pilots" && (
           <>
             <h3>Pilots</h3>
             <ListOfItems itemType={itemType} listOfUrls={elementData.pilots} />
           </>
         )}
-        {itemType === 'characters' && itemSubType === 'residents' && (
+        {itemType === "characters" && itemSubType === "residents" && (
           <>
             <h3>Residents</h3>
             <ListOfItems
@@ -83,17 +74,16 @@ function ListOfItemsWrapper({
       </div>
       {isOverflowing && (
         <button
-          ref={buttonRef}
           className="view-more-btn"
           onClick={() => {
-            changeStyles()
+            changeStyles();
           }}
         >
           View more
         </button>
       )}
     </>
-  )
+  );
 }
 
-export default memo(ListOfItemsWrapper)
+export default memo(ListOfItemsWrapper);

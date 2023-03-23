@@ -10,7 +10,7 @@ import ErrorPage from 'pages/ErrorPage'
 import ProtectedRoute from 'pages/ProtectedRoute'
 import NestedRoutes from 'pages/NestedRoutes'
 import GridLayoutPage from 'pages/GridLayoutPage'
-import HomePageLayout from 'layouts/HomePageLayout'
+
 import Modal from 'components/Modal'
 import { DataContextProvider } from 'contexts/DataContext'
 import { UsersContextProvider } from 'contexts/UsersContext'
@@ -23,11 +23,7 @@ export default function App() {
         <Route path="/" element={<NestedRoutes />}>
           <Route
             index
-            element={
-              <HomePageLayout>
-                <Home />
-              </HomePageLayout>
-            }
+            element={<Home />}
           />
           <Route
             path="login"

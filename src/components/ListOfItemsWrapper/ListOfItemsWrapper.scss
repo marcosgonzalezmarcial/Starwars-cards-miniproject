@@ -1,33 +1,15 @@
 .list-of-items-wrapper {
-  --max-lines: 6;
-  --line-height: 1.5;
-  line-height: var(--line-height);
+  line-height: 1.5;
   overflow: hidden;
-  // position: relative;
-
-  // blurred effect on last line
-  // &:has(+ .view-more-btn) {
-  //   &::after {
-  //     content: "";
-  //     position: sticky;
-  //     height: 90px;
-  //     width: 120px;
-  //     bottom: 9.1%;
-  //     pointer-events: none;
-  //     background: linear-gradient(to bottom,
-  //         transparent,
-  //         var(--bg-dark-gray) 50%);
-  //   }
-  // }
 
   h3 {
     margin-block: 0.5rem;
   }
 
   @media (max-width: 575px) {
-   & {
-     margin-inline-end: 0.5rem;
-    } 
+    & {
+      margin-inline-end: 0.5rem;
+    }
   }
 }
 
@@ -39,93 +21,17 @@
   width: 100px;
   font-size: var(--step--2);
   color: var(--gray-blue);
-  background-color: white;
+  background-color: transparent;
   position: sticky;
   bottom: 3%;
   z-index: 10;
+
   &.hide {
     display: none;
   }
+
+  &:hover {
+    color: var(--main-white);
+    border-color: var(--main-white);
+  }
 }
-
-
-// .view-more-btn::before {
-//   color: var(--gray-blue);
-//   content: "View more";
-//   position: absolute;
-//   top: 18%;
-//   right: 18%;
-// }
-
-// change text of input (btn) when checked
-.view-more-btn:checked::before {
-  content: "Collapse";
-  left: 25%;
-}
-
-// expand list when input is checked (button clicked)
-// .list-of-items-wrapper:has(+ .view-more-btn:checked) {
-//   max-height: none;
-
-//   &::before {
-//     height: 0;
-//   }
-// }
-
-// @media (max-width: 576px) {
-//   .list-of-items-wrapper {
-//     --max-lines: 5;
-//   }
-
-//   .detail-page:has(img[src*="Planets"]) {
-//     .list-of-items-wrapper {
-//       --max-lines: 4.5;
-//     }
-//   }
-
-//   .detail-page:has(img[src*="vignette"]) {
-//     .list-of-items-wrapper {
-//       --max-lines: 3;
-//     }
-//   }
-// }
-
-// @media (min-width: 576px) {
-//   .detail-page:has(img[src*="Planets"]) {
-//     .list-of-items-wrapper {
-//       --max-lines: 3;
-//     }
-//   }
-
-//   .detail-page:has(img[src*="Films"]) {
-//     .list-of-items-wrapper {
-//       --max-lines: 9;
-//     }
-//   }
-
-//   .detail-page:has(img[src*="vignette"]) {
-//     .list-of-items-wrapper {
-//       --max-lines: 7;
-//     }
-//   }
-// }
-
-// @media (min-width: 576px) and (max-width: 700px) {
-//   .detail-page:has(img[src*="Films"], img[src*="vignette"]) {
-//     .list-of-items-wrapper::before {
-//       height: 0;
-//     }
-
-//     .view-more-btn {
-//       display: none;
-//     }
-//   }
-// }
-
-// @media (min-width: 700px) {
-//   .detail-page:has(img[src*="Planets"], img[src*="Films"]) {
-//     .list-of-items-wrapper {
-//       --max-lines: 10;
-//     }
-//   }
-// }
