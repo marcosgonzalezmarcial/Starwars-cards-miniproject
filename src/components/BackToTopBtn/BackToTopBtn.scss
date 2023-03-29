@@ -1,21 +1,17 @@
-@import "../../styles/variables.scss";
-
 .back-to-top-btn {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--primary-white);
   width: 50px;
   height: 50px;
-  text-align: center;
   border-radius: 50%;
   position: fixed;
   bottom: 30px;
   right: 30px;
-  transition: background-color .3s, 
-    opacity .5s, visibility .5s;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
   opacity: 0;
   visibility: hidden;
-  z-index: 1000;
-  border: none;
   box-shadow: var(--primary-card-shadow);
 }
 
@@ -31,19 +27,6 @@
   visibility: visible;
 }
 
-@media (min-width: 500px) {
-  .back-to-top-btn {
-    margin: 30px;
-  }
-}
-
-
-
 .back-to-top-btn__img {
-  width: 53px;
-  height: 53px;
-  position: relative;
-  top:50%;
-  right: 50%;
-  transform: translate(46%, -50%);
+  width: 52px;
 }

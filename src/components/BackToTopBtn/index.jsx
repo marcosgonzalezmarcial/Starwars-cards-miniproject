@@ -1,30 +1,30 @@
-import { useEffect, useRef } from 'react'
-import './BackToTopBtn.scss'
-import upChevronBtn from 'assets/icons/up-chevron-btn.svg'
+import { useEffect, useRef } from "react";
+import "./BackToTopBtn.scss";
+import upChevronBtn from "assets/icons/up-chevron-btn.svg";
 
 export function BackToTopBtn() {
-  const BackToTopBtnRef = useRef(null)
+  const BackToTopBtnRef = useRef(null);
 
   useEffect(() => {
     const backToTop = () => {
       if (window.scrollY > 300) {
-        BackToTopBtnRef.current.classList.add('show')
+        BackToTopBtnRef.current.classList.add("show");
       } else {
-        BackToTopBtnRef.current.classList.remove('show')
+        BackToTopBtnRef.current.classList.remove("show");
       }
-    }
+    };
     if (BackToTopBtnRef.current) {
-      window.addEventListener('scroll', backToTop)
+      window.addEventListener("scroll", backToTop);
     }
-    return () => window.removeEventListener('scroll', backToTop)
-  }, [])
+    return () => window.removeEventListener("scroll", backToTop);
+  }, []);
 
   return (
     <button
       onClick={() =>
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: "smooth",
         })
       }
       ref={BackToTopBtnRef}
@@ -36,5 +36,5 @@ export function BackToTopBtn() {
         alt="search icon"
       />
     </button>
-  )
+  );
 }

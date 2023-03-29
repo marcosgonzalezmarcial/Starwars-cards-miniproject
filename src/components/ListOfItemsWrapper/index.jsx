@@ -29,7 +29,6 @@ function ListOfItemsWrapper({
 
   // add blurred effect if is overflowing to better see the button
   useEffect(() => {
-    console.log(isOverflowing);
     isOverflowing
       ? containerRef.current.style.setProperty("--min-height", "120px")
       : containerRef.current.style.setProperty("--min-height", "0");
