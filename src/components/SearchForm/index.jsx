@@ -1,28 +1,41 @@
-import { useRef } from 'react'
-import { createSearchParams, useNavigate } from 'react-router-dom'
-import './SearchForm.scss'
+import { useRef, useState } from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
+import "./SearchForm.scss";
 
 export default function SearchForm({ handleClose }) {
-  let navigate = useNavigate()
+  const [error, setError] = useState(null)
 
-  const inputRef = useRef(null)
-  const inputRadioRef = useRef(null)
+  let navigate = useNavigate();
+
+  const inputRef = useRef(null);
+  const inputRadioRef = useRef(null);
 
   const handleSelection = (e) => {
-    inputRadioRef.current = e.target.getAttribute('data-type')
-  }
+    inputRadioRef.current = e.target.getAttribute("data-type");
+  };
+  // regex to validate search term no special characters but -    
+  const validateSearchTerm = ({ searchTerm }) => searchTerm.match(/^[a-zA-Z0-9-]*$/);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    handleClose()
+    e.preventDefault();
+    if (!validateSearchTerm({ searchTerm: inputRef.current.value })) {
+      setError("Please enter search term without special characters");
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+      return;
+    }
+
+    handleClose();
     navigate({
-      pathname: 'search',
+      pathname: "search",
       search: `?${createSearchParams([
-        ['category', inputRadioRef.current],
-        ['searchTerm', inputRef.current.value]
-      ])}`
-    })
-  }
+        ["category", inputRadioRef.current],
+        ["searchTerm", inputRef.current.value],
+      ])}`,
+    });
+
+  };
 
   return (
     <form onSubmit={handleSubmit} className="search-form">
@@ -90,6 +103,7 @@ export default function SearchForm({ handleClose }) {
           className="search-form__input-field"
           ref={inputRef}
         />
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
       <div className="modal-section-wrapper">
         <button className="search-modal__submit-btn" type="submit">
@@ -97,5 +111,5 @@ export default function SearchForm({ handleClose }) {
         </button>
       </div>
     </form>
-  )
+  );
 }

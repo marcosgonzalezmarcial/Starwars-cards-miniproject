@@ -6,7 +6,6 @@ export default function SearchResults() {
   const searchCategory = searchParams.get("category");
   const searchTerm = searchParams.get("searchTerm");
   const { searchResultsItems } = useSearch({ searchCategory, searchTerm });
-  console.log({ searchResultsItems });
 
   return (
     <>
