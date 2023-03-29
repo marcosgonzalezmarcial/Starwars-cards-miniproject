@@ -15,8 +15,6 @@ function ListOfItemsWrapper({
     dynamicSize: { height, posY },
   } = useHeightObserver({ isLoading: false });
 
-  // console.log({ posY })
-
   const { isOverflowing } = useIsOverflowing({
     containerRef,
     elementRef: fromRef,
@@ -25,14 +23,16 @@ function ListOfItemsWrapper({
   });
 
   const changeStyles = () => {
-    //expand the height of the container
+    //expand the max-height of the container
     containerRef.current.classList.add("expand");
   };
 
   // add blurred effect if is overflowing to better see the button
   useEffect(() => {
-    isOverflowing &&
-      containerRef.current.style.setProperty("--min-height", "120px");
+    console.log(isOverflowing);
+    isOverflowing
+      ? containerRef.current.style.setProperty("--min-height", "120px")
+      : containerRef.current.style.setProperty("--min-height", "0");
   }, [isOverflowing, containerRef]);
 
   return (

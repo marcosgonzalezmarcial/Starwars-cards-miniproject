@@ -1,19 +1,19 @@
-import { Routes, Route } from 'react-router-dom'
-import Home from 'pages/Home'
-import SignUpForm from 'pages/SignUpForm'
-import SignInForm from 'pages/SignInForm'
-import Header from 'components/Header'
-import SearchResults from 'components/SearchResults'
-import DetailPageLayout from 'layouts/DetailPageLayout'
-import DetailPage from 'pages/DetailPage'
-import ErrorPage from 'pages/ErrorPage'
-import ProtectedRoute from 'pages/ProtectedRoute'
-import NestedRoutes from 'pages/NestedRoutes'
-import GridLayoutPage from 'pages/GridLayoutPage'
+import { Routes, Route } from "react-router-dom";
+import Home from "pages/Home";
+import SignUpForm from "pages/SignUpForm";
+import SignInForm from "pages/SignInForm";
+import Header from "components/Header";
+import SearchResults from "components/SearchResults";
+import DetailPageLayout from "layouts/DetailPageLayout";
+import DetailPage from "pages/DetailPage";
+import ErrorPage from "pages/ErrorPage";
+import ProtectedRoute from "pages/ProtectedRoute";
+import NestedRoutes from "pages/NestedRoutes";
+import GridLayoutPage from "pages/GridLayoutPage";
 
-import Modal from 'components/Modal'
-import { DataContextProvider } from 'contexts/DataContext'
-import { UsersContextProvider } from 'contexts/UsersContext'
+import Modal from "components/Modal";
+import { DataContextProvider } from "contexts/DataContext";
+import { UsersContextProvider } from "contexts/UsersContext";
 
 export default function App() {
   return (
@@ -21,10 +21,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<NestedRoutes />}>
-          <Route
-            index
-            element={<Home />}
-          />
+          <Route index element={<Home />} />
           <Route
             path="login"
             element={
@@ -84,7 +81,7 @@ export default function App() {
                 path=":itemName"
                 element={
                   <DetailPageLayout>
-                    <DetailPage currentPath="characters" />{' '}
+                    <DetailPage currentPath="characters" />
                   </DetailPageLayout>
                 }
               />
@@ -95,7 +92,7 @@ export default function App() {
                 path=":itemName"
                 element={
                   <DetailPageLayout>
-                    <DetailPage currentPath="films" />{' '}
+                    <DetailPage currentPath="films" />
                   </DetailPageLayout>
                 }
               />
@@ -106,5 +103,5 @@ export default function App() {
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </UsersContextProvider>
-  )
+  );
 }

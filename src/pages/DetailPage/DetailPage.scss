@@ -1,13 +1,35 @@
 .detail-page {
-  max-height: calc(100vh - 132.83px);
-  max-height: 75vh;
+  max-width: calc(min(94vw, 540px));
+  max-height: min(75vh, 600px);
   display: flex;
+  flex-direction: column;
   margin-inline: auto;
   border-radius: 15px;
-  flex-direction: column;
   overflow: hidden;
   box-shadow: 0px 0px 9px 2px rgba(231, 203, 209, 0.45);
 
+  // blurred effect
+  &::after {
+    content: "";
+    position: sticky;
+    min-height: var(--min-height);
+    width: 100%;
+    //avoid some overlapping on small pages
+    bottom: -1%;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--bg-dark-gray) 50%
+    );
+
+    // don't show after pseudo-element in bigger screen so it doesn't change the flex layout of the container
+    @media (min-width: 576px) {
+      flex-basis: 0%;
+    }
+  }
+
+  // styles applied when view more button is clicked
   &.expand {
     max-height: initial;
     --min-height: 0;
@@ -18,86 +40,80 @@
       }
     }
 
-    //don't show the blurred effect if the main lement is expanded
+    //don't show the blurred effect if the main element is expanded
     &::after {
       display: none;
     }
-    // if main element is expanded don't show the
+
+    // if main element is expanded don't show the button
     .view-more-btn {
       display: none;
     }
   }
 
-  // blurred effect on last line
-  &::after {
-    content: "";
-    position: sticky;
-    min-height: var(--min-height, 0);
-    width: 100%;
-    //avoid some overlaping on small pages
-    bottom: -1%;
-    pointer-events: none;
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      var(--bg-dark-gray) 50%
-    );
+  // rotate main layout from column to row from medium screens and above
+  @media (min-width: 576px) {
+    max-width: calc(min(90vw, 758px));
+    flex-direction: row;
 
-    @media (min-width: 568px) {
-      & {
-        display: none;
+    &__info {
+      border-top: 3px solid var(--primary-pink);
+      border-left: none;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    // center film images
+    &:has(img[src*="Films"], img[src*="Planets"]) {
+      align-items: center;
+    }
+
+    img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      aspect-ratio: 5.35 / 2;
+      object-view-box: inset(10px 0 0 0);
+
+      @media (min-width: 576px) {
+        max-height: 100%;
+        aspect-ratio: initial;
       }
     }
-  }
 
-  .detail-page__img {
-    display: grid;
-    width: 50%;
-    // stop initial layout shift
-    min-height: 185px;
+    img[src*="Planets"] {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
 
-    &:has(img[src*="Planets"]) {
-      place-content: center;
+      @media (min-width: 576px) {
+        max-height: initial;
+      }
+    }
+    // when layout changes the size if the flex items shuould take up 50% of its container
+    @media (min-width: 576px) {
+      width: 50%;
     }
   }
 
-  .detail-page__info {
+  &__info {
     padding: 1rem;
     background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
     background-size: 8px;
     background-repeat: repeat-x;
     background-color: var(--bg-dark-gray);
     color: var(--primary-white);
-    border-left: 3px solid var(--primary-pink);
-    width: 50%;
+    border-top: 3px solid var(--primary-pink);
+    width: 100%;
 
-    &--row {
-      display: flex;
-      flex-wrap: wrap;
-      margin-block: 0.5rem;
-      padding-top: 0.25rem;
-      gap: 0.5rem;
-
-      h3 {
-        margin-block: 0.5rem;
-      }
-
-      & > * {
-        flex: 1 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      @media (max-width: 575px) {
-        & {
-          padding: 0;
-          margin: 0;
-        }
-
-        & > * {
-          margin-inline-end: 1rem;
-        }
-      }
+    // small spinner styles
+    .loadingio-spinner-eclipse-3z3n0w49pdf {
+      width: 120px;
+      height: 120px;
     }
 
     h1 {
@@ -106,6 +122,7 @@
 
     h3 {
       font-size: var(--step--1);
+      margin-block: 0.5rem;
     }
 
     span {
@@ -114,117 +131,49 @@
       color: var(--primary-gray);
     }
 
-    .loadingio-spinner-eclipse-3z3n0w49pdf {
-      width: 120px;
-      height: 120px;
-    }
+    &--row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-block: 0.5rem;
+      padding-top: 0.25rem;
+      gap: 0.5rem;
 
-    @media (max-width: 575px) {
-      padding-block: 0.6rem;
-    }
-  }
+      & > * {
+        flex: 1 0;
+        width: 100%;
+        max-width: 100%;
+      }
 
-  img {
-    width: 100%;
-    max-height: calc(min(24.5vh, 600px));
-    min-height: 100%;
-    object-fit: cover;
-  }
+      @media (max-width: 576px) {
+        padding: 0;
+        margin: 0;
 
-  img[src*="vignette"] {
-    object-position: 50% 30%;
-  }
-
-  img[src*="Films"] {
-    @media (max-width: 575px) {
-      object-position: 50% 30%;
-    }
-  }
-
-  @media (max-width: 575px) {
-    width: 100%;
-    max-width: calc(min(94vw, 540px));
-  }
-
-  @media (min-width: 576px) and (max-width: 768px) {
-    &:has(img[src*="vignette"], img[src*="Films"]) {
-      flex-direction: row;
-
-      .detail-page__info {
-        border-left: 3px solid var(--primary-pink);
-        border-top: none;
+        & > * {
+          margin-inline-end: 1rem;
+        }
       }
     }
+
+    @media (min-width: 576px) {
+      width: 50%;
+      border-left: 3px solid var(--primary-pink);
+      border-top: none;
+    }
   }
 
-  @media (min-width: 576px) {
-    max-width: calc(min(90vw, 758px));
-    min-height: calc(min(65vh, 500px));
-  }
-
+  // special styles for some specific images
   @media (max-width: 768px) {
-    .detail-page__info {
-      border-top: 3px solid var(--primary-pink);
-      border-left: none;
-      width: 100%;
-    }
-
-    .detail-page__img {
-      width: 100%;
-      // &:has(img[src*=Planets]) {
-      //   margin-block: 0.5rem;
-      // }
-    }
-
-    :is(img[src*="Yavin4"], img[src*="Bestine"], img[src*="Dantooine"]) {
-      clip-path: circle(88px);
-    }
-
-    img[src*="Mygeeto"] {
-      max-height: 30vh;
-      clip-path: circle(90px);
+    :is(
+        img[src*="Yavin4"],
+        img[src*="Bestine"],
+        img[src*="Dantooine"],
+        img[src*="Mygeeto"]
+      ) {
+      clip-path: circle(96px);
     }
 
     img[src*="Saleucami"] {
       clip-path: circle(73px);
-    }
-  }
-
-  @media (min-width: 700px) {
-    img[src*="Planets"] {
-      max-height: calc(max(25vh, 300px));
-    }
-  }
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-
-    h1 {
-      font-size: var(--step-3);
-      padding-inline-start: 0;
-    }
-  }
-
-  @media (min-width: 992px) {
-    img[src*="Films"] {
-      object-position: top;
-    }
-  }
-}
-
-@media (min-width: 700px) {
-  .detail-page {
-    flex-direction: row;
-
-    &::after {
-      display: none;
-    }
-
-    &:has(img[src*="Starships"], img[src*="Planets"]) {
-      .detail-page__info {
-        border-left: 3px solid var(--primary-pink);
-        border-top: none;
-      }
     }
   }
 }
