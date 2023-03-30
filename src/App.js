@@ -4,13 +4,11 @@ import SignUpForm from "pages/SignUpForm";
 import SignInForm from "pages/SignInForm";
 import Header from "components/Header";
 import SearchResults from "components/SearchResults";
-import DetailPageLayout from "layouts/DetailPageLayout";
 import DetailPage from "pages/DetailPage";
 import ErrorPage from "pages/ErrorPage";
 import ProtectedRoute from "pages/ProtectedRoute";
 import NestedRoutes from "pages/NestedRoutes";
 import GridLayoutPage from "pages/GridLayoutPage";
-
 import Modal from "components/Modal";
 import { DataContextProvider } from "contexts/DataContext";
 import { UsersContextProvider } from "contexts/UsersContext";
@@ -52,11 +50,7 @@ export default function App() {
               />
               <Route
                 path=":itemName"
-                element={
-                  <DetailPageLayout>
-                    <DetailPage currentPath="starships" />
-                  </DetailPageLayout>
-                }
+                element={<DetailPage currentPath="starships" />}
               />
             </Route>
 
@@ -64,11 +58,7 @@ export default function App() {
               <Route index element={<GridLayoutPage currentPath="planets" />} />
               <Route
                 path=":itemName"
-                element={
-                  <DetailPageLayout>
-                    <DetailPage currentPath="planets" />
-                  </DetailPageLayout>
-                }
+                element={<DetailPage currentPath="planets" />}
               />
             </Route>
 
@@ -79,22 +69,14 @@ export default function App() {
               />
               <Route
                 path=":itemName"
-                element={
-                  <DetailPageLayout>
-                    <DetailPage currentPath="characters" />
-                  </DetailPageLayout>
-                }
+                element={<DetailPage currentPath="characters" />}
               />
             </Route>
 
             <Route path="films" element={<NestedRoutes />}>
               <Route
                 path=":itemName"
-                element={
-                  <DetailPageLayout>
-                    <DetailPage currentPath="films" />
-                  </DetailPageLayout>
-                }
+                element={<DetailPage currentPath="films" />}
               />
             </Route>
             <Route path="search" element={<SearchResults />} />

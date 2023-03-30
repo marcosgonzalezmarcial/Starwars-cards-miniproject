@@ -1,50 +1,58 @@
-@import "./variables";
+@import './variables';
 
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  background-image: url("https://res.cloudinary.com/dn9mr6kwc/image/upload/v1666519655/Starwars%20miniproject/star-wars-background-img_cpqurg.jpg");
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 16px;
-  letter-spacing: 0.12rem;
-  scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
-  line-height: 1.35;
+	background-image: url('https://res.cloudinary.com/dn9mr6kwc/image/upload/v1666519655/Starwars%20miniproject/star-wars-background-img_cpqurg.jpg');
+	font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+	font-size: 16px;
+	letter-spacing: 0.12rem;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.35;
 }
 
 #app {
-  min-height: 100vh;
-  display: grid;
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr;
+	gap: 1rem;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+	text-decoration: none;
+	color: inherit;
 
-  &:hover {
-    color: inherit;
-  }
+	&:hover {
+		color: inherit;
+	}
 }
 
 input,
 button,
 textarea,
 select {
-  font-size: inherit;
-  font: inherit;
+	font-size: inherit;
+	font: inherit;
 }
 
 img {
-  vertical-align: middle;
+	vertical-align: middle;
 }
 
 // overrides bootstrap default margins
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
 }

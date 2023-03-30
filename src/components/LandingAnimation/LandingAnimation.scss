@@ -1,206 +1,205 @@
-
 /* Animation properties */
 
 .animation-wrapper {
-  min-width: 100vw;
-  min-height:100vh;
-  margin-inline: auto;
-  position: relative;
-  display: grid;
-  place-items: center;
+	min-width: 100vw;
+	min-height: 100%;
+	margin-inline: auto;
+	position: relative;
+	display: grid;
+	place-items: center;
 }
 
 .star {
-  animation: star 10s ease-out infinite;
+	animation: star 10s ease-out infinite;
 }
 .wars {
-  animation: wars 10s ease-out infinite;
+	animation: wars 10s ease-out infinite;
 }
 .byline span {
-  animation: spin-letters 10s linear infinite;
+	animation: spin-letters 10s linear infinite;
 }
 .byline {
-  animation: move-byline 10s linear infinite;
+	animation: move-byline 10s linear infinite;
 }
 
 /* Keyframes */
 @keyframes star {
-  0% {
-    opacity: 0;
-    transform: scale(1.5) translateY(-0.75em);
-  }
-  20% {
-    opacity: 1;
-  }
-  89% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateZ(-1000em);
-  }
+	0% {
+		opacity: 0;
+		transform: scale(1.5) translateY(-0.75em);
+	}
+	20% {
+		opacity: 1;
+	}
+	89% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translateZ(-1000em);
+	}
 }
 
 @keyframes wars {
-  0% {
-    opacity: 0;
-    transform: scale(1.5) translateY(0.5em);
-  }
-  20% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateZ(-1000em);
-  }
+	0% {
+		opacity: 0;
+		transform: scale(1.5) translateY(0.5em);
+	}
+	20% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translateZ(-1000em);
+	}
 }
 
 @keyframes spin-letters {
-  0%,
-  10% {
-    opacity: 0;
-    transform: rotateY(90deg);
-  }
-  30% {
-    opacity: 1;
-  }
-  70%,
-  86% {
-    transform: rotateY(0);
-    opacity: 1;
-  }
-  95%,
-  100% {
-    opacity: 0;
-  }
+	0%,
+	10% {
+		opacity: 0;
+		transform: rotateY(90deg);
+	}
+	30% {
+		opacity: 1;
+	}
+	70%,
+	86% {
+		transform: rotateY(0);
+		opacity: 1;
+	}
+	95%,
+	100% {
+		opacity: 0;
+	}
 }
 
 @keyframes move-byline {
-  0% {
-    transform: translateZ(5em);
-  }
-  100% {
-    transform: translateZ(0);
-  }
+	0% {
+		transform: translateZ(5em);
+	}
+	100% {
+		transform: translateZ(0);
+	}
 }
 
 /* Make the 3D work on the container */
 
 .starwars-demo {
-  perspective: 800px;
-  transform-style: preserve3d;
-  height: 28vh;
-  width: 48vw;
+	perspective: 800px;
+	transform-style: preserve3d;
+	height: 28vh;
+	width: 48vw;
 
-  img {
-    width: 100%;
-  }
+	img {
+		width: 100%;
+	}
 }
 
 .star,
 .wars,
 .byline {
-  position: absolute;
+	position: absolute;
 }
 
 .star {
-  top: -0.75em;
+	top: -0.75em;
 }
 
 .wars {
-  bottom: -0.5em;
+	bottom: -0.5em;
 }
 
 .byline {
-  color: var(--primary-white);
-  font-size: var(--step-0);
-  left: -2em;
-  right: -2em;
-  text-align: center;
-  text-transform: uppercase;
-  top: 120%;
+	color: var(--primary-white);
+	font-size: var(--step-0);
+	left: -2em;
+	right: -2em;
+	text-align: center;
+	text-transform: uppercase;
+	top: 120%;
 }
 
 /*** Media queries for adjusting to different screen sizes ***/
 
 @media (min-width: 1440px) {
-  .starwars-demo {
-    height: 11rem;
-    width: 24rem;
-    h2 {
-      font-size: var(--step-1);
-    }
-    .byline {
-      top: 115%;
-    }
-  }
+	.starwars-demo {
+		height: 11rem;
+		width: 24rem;
+		h2 {
+			font-size: var(--step-1);
+		}
+		.byline {
+			top: 115%;
+		}
+	}
 }
 
 @media (max-width: 1440px) {
-  .starwars-demo {
-    height: 10.3rem;
-    width: 22rem;
-    h2 {
-      font-size: var(--step-0);
-    }
-    .byline {
-      top: 125%;
-    }
-  }
+	.starwars-demo {
+		height: 10.3rem;
+		width: 22rem;
+		h2 {
+			font-size: var(--step-0);
+		}
+		.byline {
+			top: 125%;
+		}
+	}
 }
 
 @media (max-width: 800px) {
-  .starwars-demo {
-    height: 9.75rem;
-    width: 21rem;
-  }
+	.starwars-demo {
+		height: 9.75rem;
+		width: 21rem;
+	}
 }
 
 @media (max-width: 700px) {
-  .starwars-demo {
-    height: 8.75rem;
-    width: 19rem;
-    h2 {
-      font-size: var(--step-0);
-    }
-  }
+	.starwars-demo {
+		height: 8.75rem;
+		width: 19rem;
+		h2 {
+			font-size: var(--step-0);
+		}
+	}
 }
 
 @media (max-width: 600px) {
-  .starwars-demo {
-    height: 8rem;
-    width: 17.5rem;
-    margin-block-end: 200px;
-    h2 {
-      font-size: var(--step-0);
-    }
-  }
+	.starwars-demo {
+		height: 8rem;
+		width: 17.5rem;
+		margin-block-end: 200px;
+		h2 {
+			font-size: var(--step-0);
+		}
+	}
 }
 
 @media (max-width: 400px) {
-  .starwars-demo {
-    height: 5.5rem;
-    width: 13rem;
-    .byline {
-      top: 135%;
-    }
-  }
+	.starwars-demo {
+		height: 5.5rem;
+		width: 13rem;
+		.byline {
+			top: 135%;
+		}
+	}
 }
 
 @media (max-width: 380px) {
-  .starwars-demo {
-    height: 4rem;
-    width: 9.5rem;
-    h2 {
-      font-size: var(--step--2);
-    }
-    .byline {
-      top: 150%;
-    }
-  }
+	.starwars-demo {
+		height: 4rem;
+		width: 9.5rem;
+		h2 {
+			font-size: var(--step--2);
+		}
+		.byline {
+			top: 150%;
+		}
+	}
 }
