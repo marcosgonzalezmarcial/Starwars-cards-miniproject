@@ -1,6 +1,7 @@
 {
   "editor.wordWrap": "on",
-  "editor.fontSize": 12,
+  "editor.fontSize": 14,
   "editor.lineHeight": 22,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": true
 }

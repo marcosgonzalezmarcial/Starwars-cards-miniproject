@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Modal from 'components/Modal'
 import SearchForm from 'components/SearchForm'
 import { useUsers } from 'hooks/useUsers'
-import searchIconSvg from 'assets/icons/search-icon.svg'
+import { ReactComponent as SearchIcon } from 'assets/icons/search-icon.svg'
 import './SearchIcon.scss'
 
 export default function SearchButton() {
@@ -24,7 +24,7 @@ export default function SearchButton() {
   return (
     <>
       <button className="search-icon-btn" onClick={handleSearchClick}>
-        <img src={searchIconSvg} alt="search icon" />
+        <SearchIcon className="search-icon-svg" />
       </button>
       {showModal && (
         <Modal handleClose={handleClose}>
