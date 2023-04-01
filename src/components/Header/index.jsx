@@ -8,7 +8,7 @@ import SearchButton from 'components/Header/SearchButton'
 import './Header.scss'
 import { LoginMenuCtxProvider } from 'contexts/LoginMenuCtx'
 
-const Header = ({ loggedIn, setLoggedIn }) => {
+export default function Header() {
   return (
     <header className="main-header">
       <div className="main-header__container">
@@ -19,11 +19,11 @@ const Header = ({ loggedIn, setLoggedIn }) => {
             <img className="main-header__logo" src={smallLogo} alt="logo" />
           </picture>
         </Link>
-        <SearchButton loggedIn={loggedIn} />
+        <SearchButton />
         <span></span>
         <LoginMenuCtxProvider>
           <ToggleLoginMenuBtn />
-          <LoginNav loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+          <LoginNav />
         </LoginMenuCtxProvider>
         <span></span>
       </div>
@@ -31,5 +31,3 @@ const Header = ({ loggedIn, setLoggedIn }) => {
     </header>
   )
 }
-
-export default Header

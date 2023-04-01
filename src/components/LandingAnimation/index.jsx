@@ -1,5 +1,5 @@
 import './LandingAnimation.scss'
-export const LandingAnimation = () => {
+export function LandingAnimation() {
   return (
     <div className="starwars-demo">
       <img

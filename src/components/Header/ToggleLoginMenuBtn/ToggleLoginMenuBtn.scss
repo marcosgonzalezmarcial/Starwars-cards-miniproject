@@ -1,15 +1,27 @@
 .toggle-login-menu-btn {
+  height: 35px;
+  width: 45px;
   margin-inline-end: auto;
   background-color: transparent;
   border: 1px solid var(--gray-blue);
   border-radius: 5px;
   order: -1;
+  transition: border-color 125ms ease-in-out, fill 125ms ease-in-out;
+
   &:hover {
     cursor: pointer;
+    border-color: var(--primary-white);
+
+    .toggle-login-menu-svg__path {
+      fill: var(--primary-white);
+    }
   }
-  img {
-    width: 43px;
-    height: 33px;
+
+
+  .toggle-login-menu-svg {
+    width: 100%;
+    height: 100%;
+    margin: auto;
     pointer-events: none;
   }
 

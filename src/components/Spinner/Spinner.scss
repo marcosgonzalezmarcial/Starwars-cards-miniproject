@@ -10,9 +10,6 @@
     }
   }
 }
-/* .spinner-wrapper.small {
-  width: 40%;
-} */
 
 :is(.spinner-wrapper.small) .ldio-c0fsg7uppru div {
   position: absolute;
@@ -20,16 +17,11 @@
   width: 58px;
   height: 58px;
   top: 0px;
-  left: 20px; 
+  left: 20px;
   /* border-radius: 50%; */
   box-shadow: 0 4px 0 0 #3f6dac;
   transform-origin: 30px 30.75px;
 }
-
-// :is(.spinner-wrapper.small) .loadingio-spinner-eclipse-3z3n0w49pdf {
-//   width: 100px;
-//   height: 100px;
-// }
 
 @keyframes ldio-c0fsg7uppru {
   0% {

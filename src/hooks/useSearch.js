@@ -1,80 +1,83 @@
-// TODO: dont show GridItems when searching
-
 import { useEffect, useState } from 'react'
-import { useLocation, useSearchParams } from 'react-router-dom'
 import { API_URL } from '../constants'
 import { transformDataArray } from '../utils/transformDataArray'
 import { TYPE_OF_DATA } from '../constants'
 
-export const useSearch = () => {
+export function useSearch({ searchCategory, searchTerm }) {
   const [searchResultsItems, setSearchResultsItems] = useState([])
-  const [searchParams] = useSearchParams()
-  const query = searchParams.get('search')
-  let { pathname: category } = useLocation()
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true)
     let myAbortController = new AbortController()
     const signal = myAbortController.signal
 
-    if (query && category === `/${TYPE_OF_DATA.PLANETS}/`) {
-      fetch(`${API_URL}/${category}/?search=${query}`, { signal })
+    if (searchTerm && searchCategory === TYPE_OF_DATA.PLANETS) {
+      fetch(`${API_URL}/${searchCategory}/?search=${searchTerm}`, { signal })
         .then((res) => res.json())
         .then(({ results }) => {
-          if (results.length === 0) {
-            let res = setSearchResultsItems(['No results found'])
-            return res
-          } else {
+          if (results.length > 0) {
             const newArr = transformDataArray({
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.PLANETS
             })
             setSearchResultsItems((prev) => [...prev, ...newArr])
+          } else {
+            setSearchResultsItems([])
           }
+        }).catch((error) => {
+          console.log(error)
+        }).finally(() => {
+          setLoading(false)
         })
     }
-    if (query && category === '/characters/') {
+    if (searchTerm && searchCategory === 'characters') {
       let newCategory = TYPE_OF_DATA.PEOPLE
-      fetch(`${API_URL}/${newCategory}/?search=${query}`)
+      fetch(`${API_URL}/${newCategory}/?search=${searchTerm}`, { signal })
         .then((res) => res.json())
         .then(({ results }) => {
-          if (results.length === 0) {
-            let res = setSearchResultsItems(['No results found'])
-            return res
-          } else {
+          if (results.length > 0) {
             const newArr = transformDataArray({
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.PEOPLE
             })
             setSearchResultsItems((prev) => [...prev, ...newArr])
+          } else {
+            setSearchResultsItems([])
           }
+        }).catch((error) => {
+          console.log(error)
+        }).finally(() => {
+          setLoading(false)
         })
     }
-    if (query && category === `/${TYPE_OF_DATA.STARSHIPS}/`) {
-      fetch(`${API_URL}/${category}/?search=${query}`)
+    if (searchTerm && searchCategory === TYPE_OF_DATA.STARSHIPS) {
+      fetch(`${API_URL}/${searchCategory}/?search=${searchTerm}`, { signal })
         .then((res) => res.json())
         .then(({ results }) => {
-          // console.log(results)
-          if (results.length === 0) {
-            let res = setSearchResultsItems(['No results found'])
-            return res
-          } else {
+          if (results.length > 0) {
             const newArr = transformDataArray({
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.STARSHIPS
             })
             setSearchResultsItems((prev) => [...prev, ...newArr])
+          } else {
+            setSearchResultsItems([])
           }
-          // }
+        }).catch((error) => {
+          console.log(error)
+        }).finally(() => {
+          setLoading(false)
         })
     }
     return () => {
       myAbortController.abort()
-      // delete previous serched items
+      // delete previous searched items
       setSearchResultsItems([])
     }
-  }, [query, category])
+  }, [searchTerm, searchCategory])
 
   return {
-    searchResultsItems
+    searchResultsItems, loading
   }
 }

@@ -1,15 +1,18 @@
-import { useCallback, useRef } from 'react'
+import { useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { useLoginMenuCtx } from 'contexts/LoginMenuCtx'
-import { useClickOutside } from 'hooks/useClickOutside'
+import { useUsers } from 'hooks/useUsers'
 import '../Header.scss'
 import './LoginNav.scss'
 
-const LoginNav = ({ loggedIn, setLoggedIn }) => {
-  const loginNavRef = useRef()
-  const { isToggled: toggleMenu, toggle: handleToggle } = useLoginMenuCtx()
-  useClickOutside(loginNavRef)
-  // console.log({ isElementOpen })
+export default function LoginNav() {
+  const { loggedIn, setLoggedIn } = useUsers()
+
+  const {
+    isToggled: toggleMenu,
+    toggle: handleToggle,
+    elementRef
+  } = useLoginMenuCtx()
 
   const dynamicStyles = useCallback(() => {
     if (!loggedIn) {
@@ -28,7 +31,7 @@ const LoginNav = ({ loggedIn, setLoggedIn }) => {
   ])
 
   return (
-    <nav ref={loginNavRef} className={`login-nav ${dynamicStyles()}`}>
+    <nav ref={elementRef} className={`login-nav ${dynamicStyles()}`}>
       {loggedIn ? (
         <Link onClick={handleCLickLogin} to="/" className="login-nav__link">
           LOG OUT
@@ -47,4 +50,3 @@ const LoginNav = ({ loggedIn, setLoggedIn }) => {
     </nav>
   )
 }
-export default LoginNav

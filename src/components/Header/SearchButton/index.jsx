@@ -1,12 +1,14 @@
 import { useCallback, useState } from 'react'
-import './SearchIcon.scss'
-import searchIconSvg from 'assets/icons/search-icon.svg'
 import { useNavigate } from 'react-router-dom'
 import Modal from 'components/Modal'
 import SearchForm from 'components/SearchForm'
+import { useUsers } from 'hooks/useUsers'
+import { ReactComponent as SearchIcon } from 'assets/icons/search-icon.svg'
+import './SearchIcon.scss'
 
-const SearchButton = ({ loggedIn }) => {
+export default function SearchButton() {
   const [showModal, setShowModal] = useState(false)
+  const { loggedIn } = useUsers()
 
   let navigate = useNavigate()
 
@@ -22,7 +24,7 @@ const SearchButton = ({ loggedIn }) => {
   return (
     <>
       <button className="search-icon-btn" onClick={handleSearchClick}>
-        <img src={searchIconSvg} alt="search icon" />
+        <SearchIcon className="search-icon-svg" />
       </button>
       {showModal && (
         <Modal handleClose={handleClose}>
@@ -32,5 +34,3 @@ const SearchButton = ({ loggedIn }) => {
     </>
   )
 }
-
-export default SearchButton

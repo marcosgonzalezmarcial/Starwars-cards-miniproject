@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { NavLink } from 'react-router-dom'
 import './SectionNav.scss'
 
-const SectionNav = () => {
+function SectionNav() {
   const renderSections = () =>
     ['planets', 'characters', 'starships'].map((section) => (
       <NavLink

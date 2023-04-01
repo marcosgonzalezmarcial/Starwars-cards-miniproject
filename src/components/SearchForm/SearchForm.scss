@@ -1,4 +1,5 @@
 .search-form {
+  width: calc(min(500px, 85vw));
   padding-block-start: 1rem;
   display: flex;
   flex-direction: column;
@@ -10,6 +11,10 @@
   font-size: var(--step--1);
   color: var(--primary-yellow);
 
+  @media (max-width: 596px) {
+    min-width: calc(100vw - 0.25rem);
+  }
+
 
   &__title {
     margin: 0 auto 1rem 1.5rem;
@@ -18,10 +23,11 @@
     line-height: 1.5;
   }
 
-  
-  &__fieldset-wrapper{
+
+  &__fieldset-wrapper {
     width: 90%;
     display: flex;
+
     fieldset {
       min-width: 0;
       margin: 0;
@@ -32,13 +38,16 @@
       border: none;
       outline: none;
     }
+
     @media (max-width: 596px) {
       width: 100%;
     }
   }
+
   &__radio-input-wrapper {
     display: inline-block;
     margin-inline-end: 0.375rem;
+
     input {
       @media (max-width: 596px) {
         display: table-cell;
@@ -52,12 +61,13 @@
     display: inline-block;
     font-size: var(--step--1);
     margin-inline-end: 0.75rem;
+
     @media (max-width: 596px) {
       font-size: var(--step--2);
     }
   }
 
-  &__input-field{
+  &__input-field {
     width: 90%;
     padding: 0.7rem;
     border-radius: 5px;
@@ -65,6 +75,7 @@
     outline: none;
     margin-block: 1rem;
     margin-block-start: 0.25rem;
+
     &:focus {
       outline: 2px solid var(--primary-yellow);
       background-color: var(--secondary-gray);
@@ -72,6 +83,7 @@
     }
   }
 }
+
 .modal-section-wrapper {
   width: 100%;
   border-top: 1px solid var(--primary-white);
@@ -85,11 +97,12 @@ button[type='submit'] {
   border: none;
   outline: none;
 
-  &:focus {
+  &:active {
     outline: 2px solid var(--primary-yellow);
     background-color: var(--secondary-gray);
     color: var(--primary-yellow);
   }
+
   display: block;
   width: 90%;
   margin: 1.3rem auto;

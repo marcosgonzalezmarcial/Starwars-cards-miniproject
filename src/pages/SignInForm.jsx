@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useUsers } from 'hooks/useUsers'
 import yellowSwLogo from 'assets/yellow-sw-logo.svg'
 import './RegisterForm.scss'
 
 const initialUserDataState = { email: '', password: '' }
 
-const LoginForm = ({ setLoggedIn, users }) => {
+export default function SignInForm() {
   const [userData, setUserData] = useState(initialUserDataState)
+  const { users, setLoggedIn } = useUsers()
 
   const formRef = useRef()
 
@@ -69,12 +71,10 @@ const LoginForm = ({ setLoggedIn, users }) => {
   }, [formRef, handleClick])
 
   return (
-    <form className={`register-form ` /*is-open*/} onSubmit={handleSubmit}>
+    <form className={`register-form `} onSubmit={handleSubmit}>
       <div ref={formRef} className="register-form__inner-wrapper">
         <img className="register-form__img" src={yellowSwLogo} alt="logo" />
-        <button className="register-form__close-btn" onClick={handleClick}>
-          X
-        </button>
+
         <h1 className="register-form__title">SIGN IN</h1>
         <input
           className="register-form__input-field"
@@ -100,5 +100,3 @@ const LoginForm = ({ setLoggedIn, users }) => {
     </form>
   )
 }
-
-export default LoginForm

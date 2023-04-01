@@ -1,7 +1,7 @@
 import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
 import { useNavigate } from 'react-router-dom'
 
-const Character = ({ elementData }) => {
+export default function Character({ elementData, containerRef }) {
   let navigate = useNavigate()
   const handleItemClick = (e) => {
     const planetSelected = e.target.textContent
@@ -39,11 +39,11 @@ const Character = ({ elementData }) => {
             <span className="list-of-items" onClick={handleItemClick}>
               {Array.isArray(elementData.homeworld)
                 ? `${elementData?.homeworld[0]
-                    .toUpperCase()
-                    .at(0)}${elementData?.homeworld[0].substring(1)}`
+                  .toUpperCase()
+                  .at(0)}${elementData?.homeworld[0].substring(1)}`
                 : `${elementData?.homeworld
-                    ?.toUpperCase()
-                    .at(0)}${elementData?.homeworld?.substring(1)}`}
+                  ?.toUpperCase()
+                  .at(0)}${elementData?.homeworld?.substring(1)}`}
             </span>
           </div>
         </div>
@@ -55,7 +55,11 @@ const Character = ({ elementData }) => {
                 <span>No films registered for this character</span>
               </>
             ) : (
-              <ListOfItemsWrapper itemType="films" elementData={elementData} />
+              <ListOfItemsWrapper
+                itemType="films"
+                containerRef={containerRef}
+                elementData={elementData}
+              />
             )}
           </div>
           <div>
@@ -68,6 +72,7 @@ const Character = ({ elementData }) => {
               <ListOfItemsWrapper
                 itemType="starships"
                 elementData={elementData}
+                containerRef={containerRef}
               />
             )}
           </div>
@@ -76,5 +81,3 @@ const Character = ({ elementData }) => {
     </>
   )
 }
-
-export default Character

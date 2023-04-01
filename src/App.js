@@ -1,84 +1,89 @@
-import { Routes, Route } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
-import Home from 'pages/Home'
-import SignUpForm from 'pages/SignUpForm'
-import Header from 'components/Header'
-import DetailPage from 'pages/DetailPage'
-import ErrorPage from 'pages/ErrorPage'
-import ProtectedRoute from 'pages/ProtectedRoute'
-import NestedRoutes from 'pages/NestedRoutes'
-import GridLayoutPage from 'pages/GridLayoutPage'
-import LoginForm from 'pages/LoginForm'
-import LoginModal from 'components/LoginModal'
-import { DataContextProvider } from 'contexts/DataContext'
+import { Routes, Route } from "react-router-dom";
+import Home from "pages/Home";
+import SignUpForm from "pages/SignUpForm";
+import SignInForm from "pages/SignInForm";
+import Header from "components/Header";
+import SearchResults from "components/SearchResults";
+import DetailPage from "pages/DetailPage";
+import ErrorPage from "pages/ErrorPage";
+import ProtectedRoute from "pages/ProtectedRoute";
+import NestedRoutes from "pages/NestedRoutes";
+import GridLayoutPage from "pages/GridLayoutPage";
+import Modal from "components/Modal";
+import { DataContextProvider } from "contexts/DataContext";
+import { UsersContextProvider } from "contexts/UsersContext";
 
-function App() {
-  const [users, setUsers] = useState(
-    JSON.parse(localStorage.getItem('users')) || []
-  )
-
-  const [loggedIn, setLoggedIn] = useState(
-    JSON.parse(localStorage.getItem('loggedIn')) || false
-  )
-  useEffect(() => {
-    localStorage.setItem('users', JSON.stringify(users))
-    localStorage.setItem('loggedIn', JSON.stringify(loggedIn))
-  }, [users, loggedIn])
-
+export default function App() {
   return (
-    <>
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-
+    <UsersContextProvider>
+      <Header />
       <Routes>
         <Route path="/" element={<NestedRoutes />}>
-          <Route index element={<Home loggedIn={loggedIn} />} />
+          <Route index element={<Home />} />
           <Route
             path="login"
             element={
-              <LoginModal>
-                <LoginForm users={users} setLoggedIn={setLoggedIn} />
-              </LoginModal>
+              <Modal>
+                <SignInForm />
+              </Modal>
             }
           />
           <Route
             path="signup"
             element={
-              <LoginModal>
-                <SignUpForm setUsers={setUsers} />
-              </LoginModal>
+              <Modal>
+                <SignUpForm />
+              </Modal>
             }
           />
           <Route
             element={
               <DataContextProvider>
-                <ProtectedRoute loggedIn={loggedIn} />
+                <ProtectedRoute />
               </DataContextProvider>
             }
           >
             <Route path="starships" element={<NestedRoutes />}>
-              <Route index element={<GridLayoutPage mainPath="starships" />} />
-              <Route path=":itemName" element={<DetailPage />} />
+              <Route
+                index
+                element={<GridLayoutPage currentPath="starships" />}
+              />
+              <Route
+                path=":itemName"
+                element={<DetailPage currentPath="starships" />}
+              />
             </Route>
 
             <Route path="planets" element={<NestedRoutes />}>
-              <Route index element={<GridLayoutPage mainPath="planets" />} />
-              <Route path=":itemName" element={<DetailPage />} />
+              <Route index element={<GridLayoutPage currentPath="planets" />} />
+              <Route
+                path=":itemName"
+                element={<DetailPage currentPath="planets" />}
+              />
             </Route>
 
             <Route path="characters" element={<NestedRoutes />}>
-              <Route index element={<GridLayoutPage mainPath="characters" />} />
-              <Route path=":itemName" element={<DetailPage />} />
+              <Route
+                index
+                element={<GridLayoutPage currentPath="characters" />}
+              />
+              <Route
+                path=":itemName"
+                element={<DetailPage currentPath="characters" />}
+              />
             </Route>
 
             <Route path="films" element={<NestedRoutes />}>
-              <Route path=":itemName" element={<DetailPage />} />
+              <Route
+                path=":itemName"
+                element={<DetailPage currentPath="films" />}
+              />
             </Route>
+            <Route path="search" element={<SearchResults />} />
           </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-    </>
-  )
+    </UsersContextProvider>
+  );
 }
-
-export default App
