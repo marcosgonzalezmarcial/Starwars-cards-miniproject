@@ -81,6 +81,13 @@
       @media (min-width: 576px) {
         max-height: 100%;
         aspect-ratio: initial;
+
+        // styles for 13" macbook pro
+        @media (max-height: 688px) {
+          aspect-ratio: 5.35 / 2;
+          object-view-box: unset;
+        }
+
       }
     }
 
