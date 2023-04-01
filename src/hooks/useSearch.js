@@ -5,8 +5,10 @@ import { TYPE_OF_DATA } from '../constants'
 
 export function useSearch({ searchCategory, searchTerm }) {
   const [searchResultsItems, setSearchResultsItems] = useState([])
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true)
     let myAbortController = new AbortController()
     const signal = myAbortController.signal
 
@@ -21,8 +23,12 @@ export function useSearch({ searchCategory, searchTerm }) {
             })
             setSearchResultsItems((prev) => [...prev, ...newArr])
           } else {
-            setSearchResultsItems(null)
+            setSearchResultsItems([])
           }
+        }).catch((error) => {
+          console.log(error)
+        }).finally(() => {
+          setLoading(false)
         })
     }
     if (searchTerm && searchCategory === 'characters') {
@@ -37,8 +43,12 @@ export function useSearch({ searchCategory, searchTerm }) {
             })
             setSearchResultsItems((prev) => [...prev, ...newArr])
           } else {
-            setSearchResultsItems(null)
+            setSearchResultsItems([])
           }
+        }).catch((error) => {
+          console.log(error)
+        }).finally(() => {
+          setLoading(false)
         })
     }
     if (searchTerm && searchCategory === TYPE_OF_DATA.STARSHIPS) {
@@ -52,18 +62,22 @@ export function useSearch({ searchCategory, searchTerm }) {
             })
             setSearchResultsItems((prev) => [...prev, ...newArr])
           } else {
-            setSearchResultsItems(null)
+            setSearchResultsItems([])
           }
+        }).catch((error) => {
+          console.log(error)
+        }).finally(() => {
+          setLoading(false)
         })
     }
     return () => {
       myAbortController.abort()
-      // delete previous serched items
+      // delete previous searched items
       setSearchResultsItems([])
     }
   }, [searchTerm, searchCategory])
 
   return {
-    searchResultsItems
+    searchResultsItems, loading
   }
 }
