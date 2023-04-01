@@ -24,6 +24,11 @@ body {
 	display: grid;
 	grid-template-rows: auto 1fr;
 	gap: 1rem;
+
+	// styles for the detail page
+	&:has(> .detail-page) {
+		grid-template-rows: min-content min-content;
+	}
 }
 
 a {

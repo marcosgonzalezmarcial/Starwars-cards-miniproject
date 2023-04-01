@@ -17,11 +17,9 @@
     //avoid some overlapping on small pages
     bottom: -1%;
     pointer-events: none;
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      var(--bg-dark-gray) 50%
-    );
+    background: linear-gradient(to bottom,
+        transparent,
+        var(--bg-dark-gray) 50%);
 
     // don't show after pseudo-element in bigger screen so it doesn't change the flex layout of the container
     @media (min-width: 576px) {
@@ -74,6 +72,7 @@
 
     img {
       width: 100%;
+      height: 100%;
       max-height: 200px;
       object-fit: cover;
       aspect-ratio: 5.35 / 2;
@@ -94,6 +93,18 @@
         max-height: initial;
       }
     }
+
+    img[src*="Starships"] {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+
+      @media (min-width: 576px) {
+        max-height: initial;
+        object-fit: contain;
+      }
+    }
+
     // when layout changes the size if the flex items shuould take up 50% of its container
     @media (min-width: 576px) {
       width: 50%;
@@ -109,6 +120,7 @@
     color: var(--primary-white);
     border-top: 3px solid var(--primary-pink);
     width: 100%;
+    flex-grow: 1;
 
     // small spinner styles
     .loadingio-spinner-eclipse-3z3n0w49pdf {
@@ -138,7 +150,7 @@
       padding-top: 0.25rem;
       gap: 0.5rem;
 
-      & > * {
+      &>* {
         flex: 1 0;
         width: 100%;
         max-width: 100%;
@@ -148,7 +160,7 @@
         padding: 0;
         margin: 0;
 
-        & > * {
+        &>* {
           margin-inline-end: 1rem;
         }
       }
@@ -163,12 +175,11 @@
 
   // special styles for some specific images
   @media (max-width: 768px) {
-    :is(
-        img[src*="Yavin4"],
-        img[src*="Bestine"],
-        img[src*="Dantooine"],
-        img[src*="Mygeeto"]
-      ) {
+
+    :is(img[src*="Yavin4"],
+      img[src*="Bestine"],
+      img[src*="Dantooine"],
+      img[src*="Mygeeto"]) {
       clip-path: circle(96px);
     }
 
