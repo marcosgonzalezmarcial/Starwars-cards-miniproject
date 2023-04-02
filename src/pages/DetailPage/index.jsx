@@ -10,7 +10,7 @@ import { useRef } from "react";
 
 const componentMap = {
   starships: Starship,
-  people: Character,
+  characters: Character,
   planets: Planet,
   films: Film,
 };
