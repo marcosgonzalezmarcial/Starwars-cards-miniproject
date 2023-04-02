@@ -4,33 +4,29 @@ import Starship from "components/Starship";
 import Planet from "components/Planet";
 import Film from "components/Film";
 import { Spinner } from "components/Spinner";
-import { useSingleElementData } from "hooks/useSingleElementData";
+import { useElementData } from "hooks/useElementData";
 import "./DetailPage.scss";
 import { useRef } from "react";
 
-const lookUp = {
+const componentMap = {
   starships: Starship,
   people: Character,
   planets: Planet,
   films: Film,
 };
 
-export default function DetailPage({ currentPath }) {
+export default function DetailPage({ currentPath: resourceType }) {
   let { itemName } = useParams();
 
   let fromRef = useRef();
 
-  if (currentPath === "characters") {
-    currentPath = "people";
-  }
-
-  const { loading, elementData } = useSingleElementData({
+  const { loading, elementData } = useElementData({
     paramFromUrl: itemName,
-    typeOfData: currentPath,
+    typeOfData: resourceType === "characters" ? "people" : resourceType,
   });
 
   // conditionally render component according to current path
-  const Component = lookUp[currentPath];
+  const Component = componentMap[resourceType];
 
   return (
     <>
