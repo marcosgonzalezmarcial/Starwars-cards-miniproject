@@ -4,10 +4,20 @@ import ListOfItems from "components/ListOfItems";
 import { useIsOverflowing } from "hooks/useIsOverflowing";
 import "./ListOfItemsWrapper.scss";
 
+
+function Element({ title, itemType, elementData }) {
+  return (
+    <>
+      <h3>{title}</h3>
+      <ListOfItems itemType={itemType} listOfUrls={elementData[itemType]} />
+    </>
+  );
+};
+
+
 function ListOfItemsWrapper({
   itemType,
   elementData,
-  itemSubType,
   containerRef,
 }) {
   const {
@@ -22,57 +32,30 @@ function ListOfItemsWrapper({
     posY,
   });
 
-  const changeStyles = () => {
+
+  const expandContainer = () => {
     //expand the max-height of the container
     containerRef.current.classList.add("expand");
   };
 
-  // add blurred effect if is overflowing to better see the button
+  // add blurred effect if is overflowing to see the button
   useEffect(() => {
     isOverflowing
       ? containerRef.current.style.setProperty("--min-height", "120px")
       : containerRef.current.style.setProperty("--min-height", "0");
   }, [isOverflowing, containerRef]);
 
+
   return (
     <>
       <div ref={fromRef} className="list-of-items-wrapper">
-        {itemType === "films" && (
-          <>
-            <h3>Appearances</h3>
-            <ListOfItems itemType={itemType} listOfUrls={elementData.films} />
-          </>
-        )}
-        {itemType === "starships" && (
-          <>
-            <h3>Starships</h3>
-            <ListOfItems
-              itemType={itemType}
-              listOfUrls={elementData.starships}
-            />
-          </>
-        )}
-        {itemType === "characters" && itemSubType === "pilots" && (
-          <>
-            <h3>Pilots</h3>
-            <ListOfItems itemType={itemType} listOfUrls={elementData.pilots} />
-          </>
-        )}
-        {itemType === "characters" && itemSubType === "residents" && (
-          <>
-            <h3>Residents</h3>
-            <ListOfItems
-              itemType={itemType}
-              listOfUrls={elementData.residents}
-            />
-          </>
-        )}
+        <Element title={`${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}`} elementData={elementData} itemType={itemType} />
       </div>
       {isOverflowing && (
         <button
           className="view-more-btn"
           onClick={() => {
-            changeStyles();
+            expandContainer();
           }}
         >
           View more

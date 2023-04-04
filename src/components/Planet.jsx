@@ -51,8 +51,7 @@ export default function Planet({ containerRef, elementData }) {
               </>
             ) : (
               <ListOfItemsWrapper
-                itemType="characters"
-                itemSubType="residents"
+                itemType="residents"
                 elementData={elementData}
                 containerRef={containerRef}
               />

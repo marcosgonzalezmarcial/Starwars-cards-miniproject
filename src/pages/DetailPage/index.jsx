@@ -25,7 +25,7 @@ export default function DetailPage({ currentPath: resourceType }) {
     typeOfData: resourceType === "characters" ? "people" : resourceType,
   });
 
-  // conditionally render component according to current path
+  // conditionally render component according to resource type
   const Component = componentMap[resourceType];
 
   return (

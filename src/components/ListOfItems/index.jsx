@@ -7,6 +7,14 @@ import "./ListOfItems.scss";
 function ListOfItems({ itemType, listOfUrls }) {
   const { loading, data } = useLisOfData({ listOfUrls });
 
+  let newResourceType
+
+  if (itemType === "pilots" || itemType === "residents") {
+    newResourceType = "characters"
+  } else {
+    newResourceType = itemType
+  }
+
   return (
     <>
       {loading ? (
@@ -15,7 +23,7 @@ function ListOfItems({ itemType, listOfUrls }) {
         data?.map((item) => (
           <Link
             key={item.name || item.title}
-            to={`/${itemType}/${(item.name || item.title).replaceAll(
+            to={`/${newResourceType}/${(item.name || item.title).replaceAll(
               " ",
               "~"
             )}`}
