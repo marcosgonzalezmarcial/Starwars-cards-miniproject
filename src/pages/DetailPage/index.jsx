@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useParams } from "react-router-dom";
 import Character from "components/Character";
 import Starship from "components/Starship";
@@ -6,7 +7,6 @@ import Film from "components/Film";
 import { Spinner } from "components/Spinner";
 import { useElementData } from "hooks/useElementData";
 import "./DetailPage.scss";
-import { useRef } from "react";
 
 const componentMap = {
   starships: Starship,

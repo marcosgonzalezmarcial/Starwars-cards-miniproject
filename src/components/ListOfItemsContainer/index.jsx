@@ -15,7 +15,7 @@ function Element({ title, itemType, elementData }) {
 };
 
 
-function ListOfItemsWrapper({
+function ListOfItemsContainer({
   itemType,
   elementData,
   containerRef,
@@ -65,4 +65,4 @@ function ListOfItemsWrapper({
   );
 }
 
-export default memo(ListOfItemsWrapper);
+export default memo(ListOfItemsContainer);

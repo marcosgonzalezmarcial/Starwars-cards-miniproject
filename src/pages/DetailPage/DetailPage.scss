@@ -1,6 +1,6 @@
 .detail-page {
   max-width: calc(min(94vw, 540px));
-  max-height: min(75vh, 600px);
+  max-height: min(70vh, 600px);
   display: flex;
   flex-direction: column;
   margin-inline: auto;
@@ -80,10 +80,17 @@
 
       @media (min-width: 576px) {
         max-height: 100%;
-        aspect-ratio: initial;
+
+        &:not([src*="vignette"]) {
+          aspect-ratio: initial;
+        }
+
+        &[src*="C-3PO"] {
+          aspect-ratio: initial;
+        }
 
         // styles for 13" macbook pro
-        @media (max-height: 688px) {
+        @media (max-height: 597px) {
           aspect-ratio: 5.35 / 2;
           object-view-box: unset;
         }
@@ -112,7 +119,7 @@
       }
     }
 
-    // when layout changes the size if the flex items shuould take up 50% of its container
+    // when layout changes the size if the flex items should take up 50% of its container
     @media (min-width: 576px) {
       width: 50%;
     }

@@ -1,4 +1,4 @@
-import ListOfItemsWrapper from "components/ListOfItemsWrapper";
+import ListOfItemsWrapper from "components/ListOfItemsContainer";
 import { Link } from "react-router-dom";
 
 function PlanetLink({ name }) {
