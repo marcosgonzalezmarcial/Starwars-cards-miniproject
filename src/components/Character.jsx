@@ -1,11 +1,18 @@
-import ListOfItemsWrapper from "components/ListOfItemsContainer";
+import ListOfItemsContainer from "components/ListOfItemsContainer";
 import { Link } from "react-router-dom";
 
 function PlanetLink({ name }) {
-  return <Link className="list-item">{name}</Link>;
+  if (typeof name === "string") {
+    return <Link to={`/planets/${name.replaceAll(" ", "~")}`} className="list-item">{name}</Link>;
+  } else {
+    return name?.map((planet) => (
+      <Link to={`/planets/${planet.replaceAll(" ", "~")}`} className="list-item">{planet}</Link>
+    ));
+  }
 }
 
 export default function Character({ elementData, containerRef }) {
+
   return (
     <>
       <div className="detail-page__img">
@@ -36,10 +43,13 @@ export default function Character({ elementData, containerRef }) {
             <h3>Homeworld</h3>
             <div>
               <PlanetLink
-                name={`${elementData.homeworld
+                name={elementData?.homeworld}
+              />
+              {/* <PlanetLink
+                name={`${elementData?.homeworld
                   ?.charAt(0)
                   .toUpperCase()}${elementData.homeworld?.substring(1)}`}
-              />
+              /> */}
             </div>
           </div>
         </div>
@@ -51,7 +61,7 @@ export default function Character({ elementData, containerRef }) {
                 <span>No films registered for this character</span>
               </>
             ) : (
-              <ListOfItemsWrapper
+              <ListOfItemsContainer
                 itemType="films"
                 containerRef={containerRef}
                 elementData={elementData}
@@ -65,7 +75,7 @@ export default function Character({ elementData, containerRef }) {
                 <span>No starships registered for this character</span>
               </>
             ) : (
-              <ListOfItemsWrapper
+              <ListOfItemsContainer
                 itemType="starships"
                 elementData={elementData}
                 containerRef={containerRef}
