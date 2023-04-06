@@ -3,5 +3,15 @@
   "editor.fontSize": 14,
   "editor.lineHeight": 22,
   "editor.formatOnSave": true,
-  "editor.guides.bracketPairs": true
+  "editor.guides.bracketPairs": true,
+  "cSpell.words": [
+    "Artoo",
+    "Bestine",
+    "Dantooine",
+    "homeworld",
+    "loadingio",
+    "Mygeeto",
+    "Saleucami",
+    "Yavin"
+  ]
 }
