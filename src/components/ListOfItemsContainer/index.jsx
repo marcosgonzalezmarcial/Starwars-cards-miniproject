@@ -2,7 +2,7 @@ import { memo, useEffect } from "react";
 import { useHeightObserver } from "hooks/useHeightObserver";
 import ListOfItems from "components/ListOfItems";
 import { useIsOverflowing } from "hooks/useIsOverflowing";
-import "./ListOfItemsWrapper.scss";
+import "./ListOfItemsContainer.scss";
 
 
 function Element({ title, itemType, elementData }) {
