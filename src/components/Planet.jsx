@@ -1,4 +1,4 @@
-import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
+import ListOfItemsWrapper from 'components/ListOfItemsContainer'
 
 export default function Planet({ containerRef, elementData }) {
   return (
@@ -51,8 +51,7 @@ export default function Planet({ containerRef, elementData }) {
               </>
             ) : (
               <ListOfItemsWrapper
-                itemType="characters"
-                itemSubType="residents"
+                itemType="residents"
                 elementData={elementData}
                 containerRef={containerRef}
               />

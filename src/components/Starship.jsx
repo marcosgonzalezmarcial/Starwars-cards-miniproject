@@ -1,4 +1,4 @@
-import ListOfItemsWrapper from "components/ListOfItemsWrapper";
+import ListOfItemsWrapper from "components/ListOfItemsContainer";
 
 export default function Starship({ elementData, containerRef }) {
   return (
@@ -51,8 +51,7 @@ export default function Starship({ elementData, containerRef }) {
               </>
             ) : (
               <ListOfItemsWrapper
-                itemType="characters"
-                itemSubType="pilots"
+                itemType="pilots"
                 elementData={elementData}
                 containerRef={containerRef}
               />

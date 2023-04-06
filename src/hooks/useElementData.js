@@ -10,7 +10,7 @@ import { urlStringify } from 'utils/urlStringify'
 import { fetchItemByTypeAndId } from 'services/fetchItemByTypeAndId'
 import { transformDataArray } from 'utils/transformDataArray'
 
-export const useSingleElementData = ({ paramFromUrl, typeOfData }) => {
+export const useElementData = ({ paramFromUrl, typeOfData }) => {
   const [loading, setIsLoading] = useState(false)
   const [elementData, setElementData] = useState({})
 

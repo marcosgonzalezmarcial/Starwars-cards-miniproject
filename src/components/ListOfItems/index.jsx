@@ -1,17 +1,19 @@
 import { memo } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Spinner } from "components/Spinner";
 import { useLisOfData } from "hooks/useListOfData";
 import "./ListOfItems.scss";
 
 function ListOfItems({ itemType, listOfUrls }) {
   const { loading, data } = useLisOfData({ listOfUrls });
-  let navigate = useNavigate();
 
-  const selectItem = (e) => {
-    const selectedValue = e.target.textContent;
-    navigate(`/${itemType}/${selectedValue.replaceAll(" ", "~")}`);
-  };
+  let newResourceType
+
+  if (itemType === "pilots" || itemType === "residents") {
+    newResourceType = "characters"
+  } else {
+    newResourceType = itemType
+  }
 
   return (
     <>
@@ -19,13 +21,16 @@ function ListOfItems({ itemType, listOfUrls }) {
         <Spinner small />
       ) : (
         data?.map((item) => (
-          <p
+          <Link
             key={item.name || item.title}
-            onClick={selectItem}
+            to={`/${newResourceType}/${(item.name || item.title).replaceAll(
+              " ",
+              "~"
+            )}`}
             className="list-item"
           >
             {item.name || item.title}
-          </p>
+          </Link>
         ))
       )}
     </>

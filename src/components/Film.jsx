@@ -1,4 +1,4 @@
-import ListOfItemsWrapper from 'components/ListOfItemsWrapper'
+import ListOfItemsWrapper from 'components/ListOfItemsContainer'
 
 const Film = ({ elementData, containerRef }) => {
   return (

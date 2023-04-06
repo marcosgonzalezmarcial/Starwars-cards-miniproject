@@ -7,23 +7,24 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0px 0px 9px 2px rgba(231, 203, 209, 0.45);
+  position: relative;
 
   // blurred effect
   &::after {
     content: "";
     position: sticky;
+    position: absolute;
     min-height: var(--min-height);
     width: 100%;
     //avoid some overlapping on small pages
-    bottom: -1%;
+    bottom: -0.5%;
     pointer-events: none;
     background: linear-gradient(to bottom,
         transparent,
         var(--bg-dark-gray) 50%);
 
-    // don't show after pseudo-element in bigger screen so it doesn't change the flex layout of the container
     @media (min-width: 576px) {
-      flex-basis: 0%;
+      left: 50.5%;
     }
   }
 
@@ -51,6 +52,7 @@
 
   // rotate main layout from column to row from medium screens and above
   @media (min-width: 576px) {
+    max-height: min(75vh, 500px);
     max-width: calc(min(90vw, 758px));
     flex-direction: row;
 
@@ -65,7 +67,7 @@
     display: flex;
     justify-content: center;
 
-    // center film images
+    // center films and planets images
     &:has(img[src*="Films"], img[src*="Planets"]) {
       align-items: center;
     }
@@ -76,14 +78,21 @@
       max-height: 200px;
       object-fit: cover;
       aspect-ratio: 5.35 / 2;
-      object-view-box: inset(10px 0 0 0);
 
       @media (min-width: 576px) {
         max-height: 100%;
-        aspect-ratio: initial;
+
+        &:not([src*="vignette"]) {
+          aspect-ratio: initial;
+        }
+
+        &[src*="C-3PO"],
+        &[src*="Artoo"] {
+          aspect-ratio: initial;
+        }
 
         // styles for 13" macbook pro
-        @media (max-height: 688px) {
+        @media (max-height: 597px) {
           aspect-ratio: 5.35 / 2;
           object-view-box: unset;
         }
@@ -112,14 +121,14 @@
       }
     }
 
-    // when layout changes the size if the flex items shuould take up 50% of its container
+    // when layout changes the size if the flex items should take up 50% of its container
     @media (min-width: 576px) {
       width: 50%;
     }
   }
 
   &__info {
-    padding: 1rem;
+    padding: 0.25rem 1rem;
     background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
     background-size: 8px;
     background-repeat: repeat-x;
@@ -137,6 +146,7 @@
 
     h1 {
       font-size: var(--step-1);
+      margin-block: 0.25rem;
     }
 
     h3 {
@@ -153,7 +163,7 @@
     &--row {
       display: flex;
       flex-wrap: wrap;
-      margin-block: 0.5rem;
+      margin-block: 0.25rem;
       padding-top: 0.25rem;
       gap: 0.5rem;
 

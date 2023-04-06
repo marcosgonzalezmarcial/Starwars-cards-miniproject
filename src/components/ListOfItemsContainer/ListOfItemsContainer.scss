@@ -21,11 +21,6 @@
   z-index: 10;
   transition: color, border-color, 125ms ease-in-out;
 
-  // dont display the button on larger screens to avoid user poor user experience
-  @media (min-width: 576px) {
-    display: none;
-  }
-
   &:hover {
     color: var(--main-white);
     border-color: var(--main-white);
