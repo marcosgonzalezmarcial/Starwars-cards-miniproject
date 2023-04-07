@@ -42,14 +42,14 @@ export default function Character({ elementData, containerRef }) {
           <div>
             <h3>Homeworld</h3>
             <div>
-              <PlanetLink
-                name={elementData?.homeworld}
-              />
               {/* <PlanetLink
+                name={elementData?.homeworld}
+              /> */}
+              <PlanetLink
                 name={`${elementData?.homeworld
                   ?.charAt(0)
                   .toUpperCase()}${elementData.homeworld?.substring(1)}`}
-              /> */}
+              />
             </div>
           </div>
         </div>
