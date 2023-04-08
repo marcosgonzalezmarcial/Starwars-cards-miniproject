@@ -1,50 +1,45 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import "./SearchForm.scss";
 
 export default function SearchForm({ handleClose }) {
   const [error, setError] = useState(null)
   const [selectedOption, setSelectedOption] = useState("");
-
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+  const [searchTerm, setSearchTerm] = useState("");
 
   let navigate = useNavigate();
 
-  const inputRef = useRef(null);
 
   // regex to validate search term no special characters but -    
   const inputValidationRegex = /^[a-zA-Z0-9-]*$/
   const validateSearchTerm = ({ searchTerm }) => inputValidationRegex.test(searchTerm);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const isValidSearchTerm = validateSearchTerm({ searchTerm: inputRef.current?.value.trim() });
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value);
+    console.log(event.target.value);
+    const isValidSearchTerm = validateSearchTerm({ searchTerm: event.target.value.trim() });
     if (isValidSearchTerm === false) {
       setError("Please enter search term without special characters");
-      return;
+    } else {
+      setError(null);
     }
+  }
+  const handleSearch = (e) => {
+    e.preventDefault();
     handleClose();
     navigate({
       pathname: "search",
       search: `?${createSearchParams([
         ["category", selectedOption],
-        ["searchTerm", inputRef.current.value],
+        ["searchTerm", searchTerm],
       ])}`,
     });
 
   };
 
-  useEffect(() => {
-    let timer;
-    if (error) {
-      timer = setTimeout(() => {
-        setError(null);
-      }, 3000);
-    }
-    return () => clearTimeout(timer);
-  }, [error]);
 
   return (
     <form onSubmit={handleSearch} className="search-form">
@@ -107,13 +102,14 @@ export default function SearchForm({ handleClose }) {
         </div>
 
         <input
-          name="searchInput"
+          name="searchTerm"
           placeholder="Enter search term after selecting the type"
           required
           type="text"
           id="form.Name"
           className="search-form__input-field"
-          ref={inputRef}
+          value={searchTerm}
+          onChange={handleSearchTermChange}
         />
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
