@@ -1,44 +1,53 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import "./SearchForm.scss";
 
 export default function SearchForm({ handleClose }) {
   const [error, setError] = useState(null)
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   let navigate = useNavigate();
 
   const inputRef = useRef(null);
-  const inputRadioRef = useRef(null);
 
-  const handleSelection = (e) => {
-    inputRadioRef.current = e.target.getAttribute("data-type");
-  };
   // regex to validate search term no special characters but -    
-  const validateSearchTerm = ({ searchTerm }) => searchTerm.match(/^[a-zA-Z0-9-]*$/);
+  const inputValidationRegex = /^[a-zA-Z0-9-]*$/
+  const validateSearchTerm = ({ searchTerm }) => inputValidationRegex.test(searchTerm);
 
-  const handleSubmit = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
-    if (!validateSearchTerm({ searchTerm: inputRef.current.value })) {
+    const isValidSearchTerm = validateSearchTerm({ searchTerm: inputRef.current?.value.trim() });
+    if (isValidSearchTerm === false) {
       setError("Please enter search term without special characters");
-      setTimeout(() => {
-        setError(null);
-      }, 3000);
       return;
     }
-
     handleClose();
     navigate({
       pathname: "search",
       search: `?${createSearchParams([
-        ["category", inputRadioRef.current],
+        ["category", selectedOption],
         ["searchTerm", inputRef.current.value],
       ])}`,
     });
 
   };
 
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => {
+        setError(null);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
+
   return (
-    <form onSubmit={handleSubmit} className="search-form">
+    <form onSubmit={handleSearch} className="search-form">
       <h1 className="search-form__title">Search</h1>
       <div className="modal-section-wrapper">
         <div className="search-form__fieldset-wrapper">
@@ -52,9 +61,10 @@ export default function SearchForm({ handleClose }) {
                   required
                   data-type="planets"
                   type="radio"
-                  ref={inputRadioRef}
                   className="search-form__check-input"
-                  onChange={handleSelection}
+                  value={"planets"}
+                  checked={selectedOption === "planets"}
+                  onChange={handleOptionChange}
                 />
               </div>
               Planets
@@ -68,9 +78,10 @@ export default function SearchForm({ handleClose }) {
                   required
                   data-type="characters"
                   type="radio"
-                  ref={inputRadioRef}
-                  onChange={handleSelection}
+                  onChange={handleOptionChange}
                   className="search-form__check-input"
+                  value={"characters"}
+                  checked={selectedOption === "characters"}
                 />
               </div>
               Characters
@@ -78,14 +89,15 @@ export default function SearchForm({ handleClose }) {
             <label className="search-form__label">
               <div className="search-form__radio-input-wrapper">
                 <input
-                  onChange={handleSelection}
+                  onChange={handleOptionChange}
+                  value={"starships"}
+                  checked={selectedOption === "starships"}
                   name="radio-stacked"
                   role="switch"
                   aria-checked="false"
                   required
                   data-type="starships"
                   type="radio"
-                  ref={inputRadioRef}
                   className="search-form__check-input"
                 />
               </div>
