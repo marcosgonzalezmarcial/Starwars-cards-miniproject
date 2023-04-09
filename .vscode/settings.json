@@ -2,7 +2,6 @@
   "editor.wordWrap": "on",
   "editor.fontSize": 14,
   "editor.lineHeight": 22,
-  "editor.formatOnSave": true,
   "editor.guides.bracketPairs": true,
   "cSpell.words": [
     "Artoo",
@@ -13,5 +12,15 @@
     "Mygeeto",
     "Saleucami",
     "Yavin"
-  ]
+  ],
+  "editor.stickyScroll.enabled": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  }
 }
