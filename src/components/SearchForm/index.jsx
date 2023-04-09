@@ -3,43 +3,47 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import "./SearchForm.scss";
 
 export default function SearchForm({ handleClose }) {
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
   const [selectedOption, setSelectedOption] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   let navigate = useNavigate();
 
-
-  // regex to validate search term no special characters but -    
-  const inputValidationRegex = /^[a-zA-Z0-9-]*$/
-  const validateSearchTerm = ({ searchTerm }) => inputValidationRegex.test(searchTerm);
+  // regex to validate search term no special characters but -
+  const inputValidationRegex = /^[a-zA-Z0-9-]*$/;
+  const validateSearchTerm = ({ searchTerm }) =>
+    inputValidationRegex.test(searchTerm);
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
   const handleSearchTermChange = (event) => {
-    setSearchTerm(event.target.value);
-    console.log(event.target.value);
-    const isValidSearchTerm = validateSearchTerm({ searchTerm: event.target.value.trim() });
+    setInputValue(event.target.value);
+    const isValidSearchTerm = validateSearchTerm({
+      searchTerm: event.target.value.trim(),
+    });
     if (isValidSearchTerm === false) {
       setError("Please enter search term without special characters");
     } else {
+      setSearchTerm(event.target.value.trim());
       setError(null);
     }
-  }
+  };
   const handleSearch = (e) => {
     e.preventDefault();
-    handleClose();
-    navigate({
-      pathname: "search",
-      search: `?${createSearchParams([
-        ["category", selectedOption],
-        ["searchTerm", searchTerm],
-      ])}`,
-    });
 
+    if (searchTerm) {
+      handleClose();
+      navigate({
+        pathname: "search",
+        search: `?${createSearchParams([
+          ["category", selectedOption],
+          ["searchTerm", searchTerm],
+        ])}`,
+      });
+    }
   };
-
 
   return (
     <form onSubmit={handleSearch} className="search-form">
@@ -108,13 +112,17 @@ export default function SearchForm({ handleClose }) {
           type="text"
           id="form.Name"
           className="search-form__input-field"
-          value={searchTerm}
+          value={inputValue}
           onChange={handleSearchTermChange}
         />
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
       <div className="modal-section-wrapper">
-        <button className="search-modal__submit-btn" type="submit">
+        <button
+          disabled={searchTerm ? false : true}
+          className="search-modal__submit-btn"
+          type="submit"
+        >
           Search
         </button>
       </div>
