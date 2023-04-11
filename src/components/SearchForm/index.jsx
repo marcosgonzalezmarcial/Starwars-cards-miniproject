@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
+import { validateSearchTerm } from "utils/validateSearchTerm.js";
 import "./SearchForm.scss";
 
 export default function SearchForm({ handleClose }) {
@@ -10,26 +11,21 @@ export default function SearchForm({ handleClose }) {
 
   let navigate = useNavigate();
 
-  // regex to validate search term no special characters but -
-  const inputValidationRegex = /^[a-zA-Z0-9-]*$/;
-  const validateSearchTerm = ({ searchTerm }) =>
-    inputValidationRegex.test(searchTerm);
-
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
   const handleSearchTermChange = (event) => {
     setInputValue(event.target.value);
     const isValidSearchTerm = validateSearchTerm({
-      searchTerm: event.target.value.trim(),
+      searchTerm: event.target.value,
     });
     if (isValidSearchTerm === false) {
       setError("Please enter search term without special characters");
       setSearchTerm(null);
-    } else {
-      setSearchTerm(event.target.value.trim());
-      setError(null);
+      return;
     }
+    setSearchTerm(event.target.value.trim());
+    setError(null);
   };
 
   const handleSearch = (e) => {
