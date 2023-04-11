@@ -25,14 +25,15 @@ export default function SearchForm({ handleClose }) {
     });
     if (isValidSearchTerm === false) {
       setError("Please enter search term without special characters");
+      setSearchTerm(null);
     } else {
       setSearchTerm(event.target.value.trim());
       setError(null);
     }
   };
+
   const handleSearch = (e) => {
     e.preventDefault();
-
     if (searchTerm) {
       handleClose();
       navigate({
