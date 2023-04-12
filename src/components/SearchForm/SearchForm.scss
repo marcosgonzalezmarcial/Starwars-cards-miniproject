@@ -1,129 +1,125 @@
 .search-form {
-  width: calc(min(500px, 85vw));
-  padding-block-start: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  background-color: var(--bg-dark-gray);
-  letter-spacing: 0.06em;
-  font-size: var(--step--1);
-  color: var(--primary-yellow);
+	width: calc(min(500px, 85vw));
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	position: relative;
+	background-color: var(--bg-dark-gray);
+	letter-spacing: 0.06em;
+	font-size: var(--step--1);
+	color: var(--primary-yellow);
 
-  @media (max-width: 596px) {
-    min-width: calc(100vw - 0.25rem);
-  }
+	@media (max-width: 596px) {
+		min-width: calc(100vw - 0.25rem);
+	}
 
+	&__title {
+		margin: 1rem auto 1rem 1.5rem;
+		font-size: var(--step-1);
+		font-weight: 500;
+		line-height: 1.5;
+	}
 
-  &__title {
-    margin: 0 auto 1rem 1.5rem;
-    font-size: var(--step-1);
-    font-weight: 500;
-    line-height: 1.5;
-  }
+	&__fieldset-wrapper {
+		width: 90%;
+		display: flex;
 
+		fieldset {
+			min-width: 0;
+			margin: 0;
+			padding: 0.7rem;
+			padding-inline-start: 1.5rem;
+			padding-block-end: 0.5rem;
+			border-radius: 5px;
+			border: none;
+			outline: none;
+		}
 
-  &__fieldset-wrapper {
-    width: 90%;
-    display: flex;
+		@media (max-width: 596px) {
+			width: 100%;
+		}
+	}
 
-    fieldset {
-      min-width: 0;
-      margin: 0;
-      padding: 0.7rem;
-      padding-inline-start: 1.5rem;
-      padding-block-end: 0.5rem;
-      border-radius: 5px;
-      border: none;
-      outline: none;
-    }
+	&__radio-input-wrapper {
+		display: inline-block;
+		margin-inline-end: 0.375rem;
 
-    @media (max-width: 596px) {
-      width: 100%;
-    }
-  }
+		input {
+			@media (max-width: 596px) {
+				display: table-cell;
+				vertical-align: middle;
+			}
+		}
+	}
 
-  &__radio-input-wrapper {
-    display: inline-block;
-    margin-inline-end: 0.375rem;
+	&__label {
+		display: inline-block;
+		font-size: var(--step--1);
+		margin-inline-end: 0.75rem;
 
-    input {
-      @media (max-width: 596px) {
-        display: table-cell;
-        vertical-align: middle
-      }
+		@media (max-width: 596px) {
+			font-size: var(--step--2);
+		}
+	}
 
-    }
-  }
+	&__input-field {
+		width: 90%;
+		padding: 0.7rem;
+		border-radius: 5px;
+		border: none;
+		outline: none;
+		margin-block: 1rem;
+		margin-block-start: 0.25rem;
 
-  &__label {
-    display: inline-block;
-    font-size: var(--step--1);
-    margin-inline-end: 0.75rem;
-
-    @media (max-width: 596px) {
-      font-size: var(--step--2);
-    }
-  }
-
-  &__input-field {
-    width: 90%;
-    padding: 0.7rem;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    margin-block: 1rem;
-    margin-block-start: 0.25rem;
-
-    &:focus {
-      outline: 2px solid var(--primary-yellow);
-      background-color: var(--secondary-gray);
-      color: var(--primary-yellow);
-    }
-  }
+		&:focus {
+			outline: 2px solid var(--primary-yellow);
+			background-color: var(--secondary-gray);
+			color: var(--primary-yellow);
+		}
+	}
 }
 
 .modal-section-wrapper {
-  width: 100%;
-  border-top: 1px solid var(--primary-white);
-  padding-block: 0.5rem;
+	width: 100%;
+	border-top: 1px solid var(--primary-white);
+	padding-block: 0.5rem;
 }
 
 button[type='submit'] {
-  width: 90%;
-  padding: 0.7rem;
-  border-radius: 5px;
-  border: none;
-  outline: none;
+	width: 90%;
+	padding: 0.7rem;
+	border-radius: 5px;
+	border: none;
+	outline: none;
 
-  &:active {
-    outline: 2px solid var(--primary-yellow);
-    background-color: var(--secondary-gray);
-    color: var(--primary-yellow);
-  }
+	&:active {
+		outline: 2px solid var(--primary-yellow);
+		background-color: var(--secondary-gray);
+		color: var(--primary-yellow);
+	}
 
-  display: block;
-  width: 90%;
-  margin: 1.3rem auto;
-  border: none;
-  border-radius: 5px;
-  font-weight: 500;
-  font-size: var(--step--1);
-  background-color: var(--secondary-gray);
-  color: var(--primary-white);
-  transition: background-color 175ms;
+	display: block;
+	width: 90%;
+	margin: 1.3rem auto;
+	border: none;
+	border-radius: 5px;
+	font-weight: 500;
+	font-size: var(--step--1);
+	background-color: var(--secondary-gray);
+	color: var(--primary-white);
+	transition: background-color 175ms;
 
-  &:hover {
-    cursor: pointer;
-    background-color: var(--primary-blue);
-  }
+	&:hover {
+		cursor: pointer;
+		background-color: var(--primary-blue);
+	}
 
-  &:disabled {
-    opacity: 0.6;
+	&:disabled {
+		opacity: 0.6;
 
-    &:hover {
-      cursor: not-allowed;
-    }
-  }
+		&:hover {
+			cursor: not-allowed;
+		}
+	}
 }

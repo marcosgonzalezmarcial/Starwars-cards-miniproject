@@ -7,30 +7,28 @@ import { ReactComponent as SearchIcon } from 'assets/icons/search-icon.svg'
 import './SearchIcon.scss'
 
 export default function SearchButton() {
-  const [showModal, setShowModal] = useState(false)
-  const { loggedIn } = useUsers()
+	const [showModal, setShowModal] = useState(false)
+	const { loggedIn } = useUsers()
 
-  let navigate = useNavigate()
+	let navigate = useNavigate()
 
-  function handleSearchClick() {
-    if (!loggedIn) return navigate('/login')
-    setShowModal(true)
-  }
+	function handleSearchClick() {
+		if (!loggedIn) return navigate('/login')
+		setShowModal(true)
+	}
 
-  const handleClose = useCallback(() => {
-    setShowModal(false)
-  }, [])
+	const handleCloseForm = () => setShowModal(false)
 
-  return (
-    <>
-      <button className="search-icon-btn" onClick={handleSearchClick}>
-        <SearchIcon className="search-icon-svg" />
-      </button>
-      {showModal && (
-        <Modal handleClose={handleClose}>
-          <SearchForm handleClose={handleClose} />
-        </Modal>
-      )}
-    </>
-  )
+	return (
+		<>
+			<button className="search-icon-btn" onClick={handleSearchClick}>
+				<SearchIcon className="search-icon-svg" />
+			</button>
+			{showModal && (
+				<Modal handleCloseForm={handleCloseForm}>
+					<SearchForm handleCloseForm={handleCloseForm} />
+				</Modal>
+			)}
+		</>
+	)
 }
