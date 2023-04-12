@@ -1,80 +1,65 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useUsers } from 'hooks/useUsers'
-import yellowSwLogo from 'assets/yellow-sw-logo.svg'
-import './RegisterForm.scss'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useUsers } from "hooks/useUsers";
+import yellowSwLogo from "assets/yellow-sw-logo.svg";
+import { validateEmail } from "utils/validateEmail";
+import { validatePassword } from "utils/validatePassword";
+import "./RegisterForm.scss";
 
-const initialUserDataState = { email: '', password: '' }
+const initialUserDataState = { email: "", password: "" };
 
 export default function SignInForm() {
-  const [userData, setUserData] = useState(initialUserDataState)
-  const { users, setLoggedIn } = useUsers()
+  const [userData, setUserData] = useState(initialUserDataState);
+  const { setLoggedIn, isUserRegistered = false } = useUsers();
+  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
 
-  const formRef = useRef()
-
-  let navigate = useNavigate()
-
-  const handleClick = useCallback(() => {
-    navigate('/')
-  }, [navigate])
+  let navigate = useNavigate();
 
   const handleChangeEmail = (e) => {
-    const user = e.target.value
-    setUserData({ ...userData, email: user })
-    // setErrorLog(null);
-  }
+    const email = e.target.value;
+    setUserData({ ...userData, email });
+    const isValidEmail = validateEmail({ email });
+    if ((isValidEmail === false) & (email !== "")) {
+      setEmailErrorMessage("Invalid email Address");
+    } else {
+      setEmailErrorMessage(null);
+    }
+  };
   const handleChangePassword = (e) => {
-    const password = e.target.value
-    setUserData({ ...userData, password: password })
-    // setErrorLog(null);
-  }
+    const password = e.target.value;
+    setUserData({ ...userData, password });
+    const isValidPassword = validatePassword({ password });
+    if ((isValidPassword === false) & (password !== "")) {
+      setPasswordErrorMessage(
+        "It must contain at least one lowercase letter, one uppercase letter, one digit, one special character (i.e. one of @, $, !, %, *, ?, or &), and it must be at least 8 characters long."
+      );
+    } else {
+      setPasswordErrorMessage(null);
+    }
+  };
+  const areValidCredentials = () =>
+    !emailErrorMessage & !passwordErrorMessage ? false : true;
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    const isRegistered = isUserRegistered({ user: userData });
 
-    const inputValidation = (user) => {
-      return (
-        user.email === userData.email && user.password === userData.password
-      )
+    if (isRegistered === false) {
+      console.log("El usuario introducido no existe");
+      return;
     }
 
-    if (users.length > 0) {
-      const checkUser = users.some((user) => inputValidation(user))
-
-      if (checkUser) {
-        setLoggedIn(true)
-        console.log('El usuario se logueó correctamente')
-        navigate('/')
-        // setError(false)
-      } else {
-        console.log('El usuario introducido no existe')
-        // setError(true)
-      }
-    }
-    setUserData(initialUserDataState)
-  }
-
-  // close form clicking ouside
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      if (formRef.current && !formRef.current.contains(e.target)) {
-        handleClick()
-      }
-    }
-
-    document.addEventListener('mousedown', checkIfClickedOutside)
-
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener('mousedown', checkIfClickedOutside)
-    }
-  }, [formRef, handleClick])
+    setLoggedIn(true);
+    console.log("El usuario se logueó correctamente");
+    navigate("/");
+    setUserData(initialUserDataState);
+  };
 
   return (
     <form className={`register-form `} onSubmit={handleSubmit}>
-      <div ref={formRef} className="register-form__inner-wrapper">
+      <div className="register-form__inner-wrapper">
         <img className="register-form__img" src={yellowSwLogo} alt="logo" />
-
         <h1 className="register-form__title">SIGN IN</h1>
         <input
           className="register-form__input-field"
@@ -84,6 +69,9 @@ export default function SignInForm() {
           value={userData.email}
           required={true}
         />
+        {emailErrorMessage && (
+          <p style={{ color: "red" }}>{emailErrorMessage}</p>
+        )}
         <input
           className="register-form__input-field"
           onChange={handleChangePassword}
@@ -92,11 +80,16 @@ export default function SignInForm() {
           value={userData.password}
           required={true}
         />
-        <input type="submit" value="Sign In" />
+        {passwordErrorMessage && (
+          <p style={{ color: "red" }}>{passwordErrorMessage}</p>
+        )}
+        <button disabled={areValidCredentials()} type="submit">
+          Sign In
+        </button>
         <div className="register-form__signup-link">
           <Link to="/signup">Create an account</Link>
         </div>
       </div>
     </form>
-  )
+  );
 }

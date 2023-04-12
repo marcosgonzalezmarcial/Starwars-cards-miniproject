@@ -17,7 +17,7 @@
     display: grid;
     place-items: center;
   }
- 
+
   &-content {
     position: relative;
     @media (max-width: 596px) {
@@ -26,7 +26,7 @@
   }
   &__close-btn {
     position: absolute;
-    right:0.75rem;
+    right: 0.75rem;
     top: 0.5rem;
     border: 0;
     background-color: transparent;
@@ -35,12 +35,10 @@
     z-index: 10;
     padding: 0.5rem;
     // transition: color 175ms ease-in-out;
-  
+
     &:hover {
       color: var(--primary-blue);
       cursor: pointer;
     }
   }
-
-  
 }

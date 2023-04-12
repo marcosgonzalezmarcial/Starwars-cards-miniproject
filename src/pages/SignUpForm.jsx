@@ -14,9 +14,8 @@ const initialUserDetailsState = {
 export default function SignUpForm() {
   const [userDetails, setUserDetails] = useState(initialUserDetailsState);
   const { setUsers } = useUsers();
-  let navigate = useNavigate();
 
-  const formRef = useRef();
+  let navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,10 +24,6 @@ export default function SignUpForm() {
     alert("User created, you can login now");
     navigate("/login");
   };
-
-  const handleClick = useCallback(() => {
-    navigate("/");
-  }, [navigate]);
 
   const handleChangeFirstName = (e) => {
     const inputFirstName = e.target.value;
@@ -47,29 +42,11 @@ export default function SignUpForm() {
     setUserDetails({ ...userDetails, password: inputPassword });
   };
 
-  // close form clicking ouside
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      if (formRef.current && !formRef.current.contains(e.target)) {
-        handleClick();
-      }
-    };
-
-    document.addEventListener("mousedown", checkIfClickedOutside);
-
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, [formRef, handleClick]);
-
   return (
     <form className={`register-form `} onSubmit={handleSubmit} action="">
-      <div ref={formRef} className="register-form__inner-wrapper">
+      <div className="register-form__inner-wrapper">
         <img className="register-form__img" src={yellowSwLogo} alt="logo" />
-
         <h1 className="register-form__title">CREATE YOUR ACCOUNT</h1>
-
         <input
           className="register-form__input-field"
           onChange={handleChangeFirstName}
