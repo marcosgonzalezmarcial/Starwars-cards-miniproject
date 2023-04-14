@@ -17,7 +17,6 @@ function Modal({ children, handleCloseForm }) {
 	}, [navigate, handleCloseForm])
 
 	useEffect(() => {
-		console.log('running Modal Effect')
 		const checkIfClickedOutside = e => {
 			if (modalRef.current && !modalRef.current.contains(e.target)) {
 				handleCloseModal()

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Modal from 'components/Modal'
 import SearchForm from 'components/SearchForm'
@@ -7,24 +7,24 @@ import { ReactComponent as SearchIcon } from 'assets/icons/search-icon.svg'
 import './SearchIcon.scss'
 
 export default function SearchButton() {
-	const [showModal, setShowModal] = useState(false)
+	const [showSearchModal, setShowSearchModal] = useState(false)
 	const { loggedIn } = useUsers()
 
 	let navigate = useNavigate()
 
-	function handleSearchClick() {
+	function openSearchModal() {
 		if (!loggedIn) return navigate('/login')
-		setShowModal(true)
+		setShowSearchModal(true)
 	}
 
-	const handleCloseForm = () => setShowModal(false)
+	const handleCloseForm = () => setShowSearchModal(false)
 
 	return (
 		<>
-			<button className="search-icon-btn" onClick={handleSearchClick}>
+			<button className="search-icon-btn" onClick={openSearchModal}>
 				<SearchIcon className="search-icon-svg" />
 			</button>
-			{showModal && (
+			{showSearchModal && (
 				<Modal handleCloseForm={handleCloseForm}>
 					<SearchForm handleCloseForm={handleCloseForm} />
 				</Modal>
