@@ -1,115 +1,128 @@
-import { useRef, useState } from "react";
-import { createSearchParams, useNavigate } from "react-router-dom";
-import "./SearchForm.scss";
+import { useState } from 'react'
+import { createSearchParams, useNavigate } from 'react-router-dom'
+import { validateSearchTerm } from 'utils/validateSearchTerm.js'
+import './SearchForm.scss'
 
-export default function SearchForm({ handleClose }) {
-  const [error, setError] = useState(null)
+export default function SearchForm({ handleCloseForm }) {
+	const [error, setError] = useState(null)
+	const [selectedOption, setSelectedOption] = useState('')
+	const [searchTerm, setSearchTerm] = useState('')
+	const [inputValue, setInputValue] = useState('')
 
-  let navigate = useNavigate();
+	let navigate = useNavigate()
 
-  const inputRef = useRef(null);
-  const inputRadioRef = useRef(null);
+	const handleOptionChange = event => {
+		setSelectedOption(event.target.value)
+	}
+	const handleSearchTermChange = event => {
+		setInputValue(event.target.value)
+		const isValidSearchTerm = validateSearchTerm({
+			searchTerm: event.target.value,
+		})
+		if (isValidSearchTerm === false) {
+			setError('Please enter search term without special characters')
+			setSearchTerm(null)
+			return
+		}
+		setSearchTerm(event.target.value.trim())
+		setError(null)
+	}
 
-  const handleSelection = (e) => {
-    inputRadioRef.current = e.target.getAttribute("data-type");
-  };
-  // regex to validate search term no special characters but -    
-  const validateSearchTerm = ({ searchTerm }) => searchTerm.match(/^[a-zA-Z0-9-]*$/);
+	const handleSearch = e => {
+		e.preventDefault()
+		if (searchTerm) {
+			handleCloseForm()
+			navigate({
+				pathname: 'search',
+				search: `?${createSearchParams([
+					['category', selectedOption],
+					['searchTerm', searchTerm],
+				])}`,
+			})
+		}
+	}
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validateSearchTerm({ searchTerm: inputRef.current.value })) {
-      setError("Please enter search term without special characters");
-      setTimeout(() => {
-        setError(null);
-      }, 3000);
-      return;
-    }
+	return (
+		<form onSubmit={handleSearch} className="search-form">
+			<h1 className="search-form__title">Search</h1>
+			<div className="modal-section-wrapper">
+				<div className="search-form__fieldset-wrapper">
+					<fieldset>
+						<label className="search-form__label">
+							<div className="search-form__radio-input-wrapper">
+								<input
+									name="radio-stacked"
+									role="switch"
+									aria-checked="false"
+									required
+									data-type="planets"
+									type="radio"
+									className="search-form__check-input"
+									value={'planets'}
+									checked={selectedOption === 'planets'}
+									onChange={handleOptionChange}
+								/>
+							</div>
+							Planets
+						</label>
+						<label className="search-form__label">
+							<div className="search-form__radio-input-wrapper">
+								<input
+									name="radio-stacked"
+									role="switch"
+									aria-checked="false"
+									required
+									data-type="characters"
+									type="radio"
+									onChange={handleOptionChange}
+									className="search-form__check-input"
+									value={'characters'}
+									checked={selectedOption === 'characters'}
+								/>
+							</div>
+							Characters
+						</label>
+						<label className="search-form__label">
+							<div className="search-form__radio-input-wrapper">
+								<input
+									onChange={handleOptionChange}
+									value={'starships'}
+									checked={selectedOption === 'starships'}
+									name="radio-stacked"
+									role="switch"
+									aria-checked="false"
+									required
+									data-type="starships"
+									type="radio"
+									className="search-form__check-input"
+								/>
+							</div>
+							Starships
+						</label>
+					</fieldset>
+				</div>
 
-    handleClose();
-    navigate({
-      pathname: "search",
-      search: `?${createSearchParams([
-        ["category", inputRadioRef.current],
-        ["searchTerm", inputRef.current.value],
-      ])}`,
-    });
-
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="search-form">
-      <h1 className="search-form__title">Search</h1>
-      <div className="modal-section-wrapper">
-        <div className="search-form__fieldset-wrapper">
-          <fieldset>
-            <label className="search-form__label">
-              <div className="search-form__radio-input-wrapper">
-                <input
-                  name="radio-stacked"
-                  role="switch"
-                  aria-checked="false"
-                  required
-                  data-type="planets"
-                  type="radio"
-                  ref={inputRadioRef}
-                  className="search-form__check-input"
-                  onChange={handleSelection}
-                />
-              </div>
-              Planets
-            </label>
-            <label className="search-form__label">
-              <div className="search-form__radio-input-wrapper">
-                <input
-                  name="radio-stacked"
-                  role="switch"
-                  aria-checked="false"
-                  required
-                  data-type="characters"
-                  type="radio"
-                  ref={inputRadioRef}
-                  onChange={handleSelection}
-                  className="search-form__check-input"
-                />
-              </div>
-              Characters
-            </label>
-            <label className="search-form__label">
-              <div className="search-form__radio-input-wrapper">
-                <input
-                  onChange={handleSelection}
-                  name="radio-stacked"
-                  role="switch"
-                  aria-checked="false"
-                  required
-                  data-type="starships"
-                  type="radio"
-                  ref={inputRadioRef}
-                  className="search-form__check-input"
-                />
-              </div>
-              Starships
-            </label>
-          </fieldset>
-        </div>
-
-        <input
-          name="searchInput"
-          placeholder="Enter search term after selecting the type"
-          required
-          type="text"
-          id="form.Name"
-          className="search-form__input-field"
-          ref={inputRef}
-        />
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      </div>
-      <div className="modal-section-wrapper">
-        <button className="search-modal__submit-btn" type="submit">
-          Search
-        </button>
-      </div>
-    </form>
-  );
+				<input
+					name="searchTerm"
+					placeholder="Enter search term after selecting the type"
+					required
+					type="text"
+					id="form.Name"
+					className="search-form__input-field"
+					value={inputValue}
+					onChange={handleSearchTermChange}
+				/>
+				{error && <p style={{ color: 'red' }}>{error}</p>}
+			</div>
+			<div className="modal-section-wrapper">
+				<button
+					disabled={searchTerm ? false : true}
+					className="search-modal__submit-btn"
+					type="submit"
+				>
+					Search
+				</button>
+			</div>
+		</form>
+	)
 }
