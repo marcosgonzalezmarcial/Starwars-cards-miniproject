@@ -1,29 +1,16 @@
 .modal {
+  min-height: 100vh;
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   background-color: var(--bg-form-overlay);
   backdrop-filter: blur(2px);
-  align-items: center;
-  justify-content: center;
   display: grid;
   place-content: center;
-  @media (max-width: 596px) {
-    display: initial;
-  }
-  &:has(.search-form) {
-    display: grid;
-    place-items: center;
-  }
 
   &-content {
     position: relative;
-    @media (max-width: 596px) {
-      min-width: calc(100vw - 0.25rem);
-    }
   }
+
   &__close-btn {
     position: absolute;
     right: 0.75rem;
@@ -34,7 +21,6 @@
     color: var(--primary-white);
     z-index: 10;
     padding: 0.5rem;
-    // transition: color 175ms ease-in-out;
 
     &:hover {
       color: var(--primary-blue);

@@ -42,11 +42,3 @@ export const inputs = [
 		required: true,
 	},
 ]
-
-// ^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*\d)(?=.*[!\"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!\"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]{8,20}$
-
-/* <input type="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*\d)(?=.*[!\"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!\"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]{8,20}$" required> */
-
-{
-	/* <input type="password" placeholder="password" pattern="^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*\d)(?=.*[!&quot;#$%&amp;'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d!&quot;#$%&amp;'()*+,-./:;<=>?@[\]^_`{|}~]{8,20}$" required="" class="register-form__input-field" focused="true" name="password" value="Aa@123456"> */
-}

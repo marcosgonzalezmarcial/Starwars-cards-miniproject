@@ -1,155 +1,130 @@
 .register-form {
-	&__img {
-		margin-block: 1.5rem;
-		padding: 0.5rem;
-	}
+  width: 100vw;
+  text-align: center;
+  background-color: var(--bg-dark-gray);
+  letter-spacing: 0.06em;
+  font-size: var(--step--1);
+  color: var(--primary-yellow);
 
-	&__title {
-		margin-block-end: 1rem;
-		font-size: var(--step-1);
-	}
+  @media (min-width: 576px) {
+    width: calc(min(540px, 85vw));
+    border-radius: 15px;
+    overflow: hidden;
+  }
 
-	&__inner-wrapper {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		position: relative;
-		padding: 1rem;
-		background-color: var(--bg-dark-gray);
-		letter-spacing: 0.06em;
-		width: calc(min(540px, 85vw));
-		font-size: var(--step--1);
-		color: var(--primary-yellow);
+  &__inner-wrapper {
+    min-height: 100vh;
+    padding: 1rem;
 
-		.register-form__input-field {
-			width: 90%;
-			padding: 0.7rem;
-			border-radius: 5px;
-			border: none;
-			outline: none;
+    @media (min-width: 576px) {
+      min-height: initial;
+    }
 
-			&:invalid[focused='true']+.error-message {
-				display: block;
-			}
+    label {
+      display: none;
+      /* Show the label text only to screen readers */
+      &[for="username"]::after {
+        content: "Username:";
+        clip: rect(0, 0, 0, 0);
+        position: absolute;
+      }
+    }
 
-			&:focus {
-				outline: 2px solid var(--primary-yellow);
-				background-color: var(--secondary-gray);
-				color: var(--primary-yellow);
+    .error-message {
+      font-size: var(--step--2);
+      padding: 3px;
+      color: red;
+      display: none;
+    }
 
-				&:invalid[focused='true'] {
-					outline: 2px solid red;
-				}
-			}
+    button[type="submit"] {
+      display: block;
+      width: 90%;
+      margin: 1.3rem auto;
+      border: none;
+      border-radius: 5px;
+      font-weight: 500;
+      font-size: var(--step--1);
+      background-color: var(--secondary-gray);
+      color: var(--primary-white);
+      transition: background-color 175ms;
 
-		}
+      &:hover {
+        cursor: pointer;
+        background-color: var(--primary-blue);
+      }
 
-		label {
-			display: none;
-		}
+      &:disabled {
+        opacity: 0.6;
 
-		/* Show the label text only to screen readers */
-		label[for="username"]::after {
-			content: "Username:";
-			clip: rect(0, 0, 0, 0);
-			position: absolute;
-		}
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+  &__img {
+    margin-block: 1.5rem 0.75rem;
+    @media (min-width: 576px) {
+      margin-block: 0.75rem;
+    }
+  }
 
-		.error-message {
-			font-size: 12px;
-			padding: 3px;
-			color: red;
-			display: none;
-		}
+  &__title {
+    margin-block: 0.75rem 1rem;
+    font-size: var(--step-1);
+  }
 
+  &__input-field {
+    margin-block: 1rem;
+    width: 90%;
+    padding: 0.7rem;
+    border-radius: 5px;
+    border: none;
+    outline: none;
 
-		button[type='submit'] {
-			display: block;
-			width: 90%;
-			margin: 1.3rem auto;
-			border: none;
-			border-radius: 5px;
-			font-weight: 500;
-			font-size: var(--step--1);
-			background-color: var(--secondary-gray);
-			color: var(--primary-white);
-			transition: background-color 175ms;
+    &:invalid[focused="true"] + .error-message {
+      display: block;
+    }
 
-			&:hover {
-				cursor: pointer;
-				background-color: var(--primary-blue);
-			}
+    &:focus {
+      outline: 2px solid var(--primary-yellow);
+      background-color: var(--secondary-gray);
+      color: var(--primary-yellow);
 
-			&:disabled {
-				opacity: 0.6;
+      &:invalid[focused="true"] {
+        outline: 2px solid red;
+      }
+    }
+  }
 
-				&:hover {
-					cursor: not-allowed;
-				}
-			}
-		}
+  &__signup-link {
+    width: 90%;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    border: 0;
+    border-radius: 5px;
+    transition: outline 225ms ease-in-out;
 
-		&:last-child {
-			a[href='/loginform']:hover {
-				text-decoration: underline;
-			}
-		}
-	}
+    &:hover {
+      outline: solid 1px var(--primary-yellow);
+    }
+  }
 
-	&__input-field {
-		width: 90%;
-		margin-block: 1rem;
-	}
+  &__signin-link {
+    margin: 1rem;
+    font-size: var(--step--2);
+    &:hover {
+      text-decoration: underline;
+    }
 
-	&__signup-link {
-		width: 90%;
-		margin: 0 auto;
-		margin-block: 1rem;
-		padding: 0.5rem;
-		border: 0;
-		border-radius: 5px;
-		transition: outline 225ms;
+    p {
+      display: inline-block;
+      color: var(--gray-blue);
+    }
 
-		&:hover {
-			outline: solid 1px var(--primary-yellow);
-		}
-	}
-
-	&__signin-link {
-		margin: 1rem;
-
-		p {
-			display: inline-block;
-			color: var(--gray-blue);
-		}
-
-		span {
-			margin-inline: 1rem;
-		}
-	}
-
-	@media (max-width: 576px) {
-		& {
-			width: 100%;
-			position: absolute;
-			top: 0;
-			//avoid mobile keyword partially hiding the form
-			min-height: calc(max(700px, 100vh));
-		}
-
-		& {
-			width: 100%;
-			height: 100%;
-
-			&__signin-link {
-				font-size: var(--step--2);
-			}
-		}
-
-		.register-form__inner-wrapper {
-			width: 100%;
-			height: 100%;
-		}
-	}
+    span {
+      margin-inline: 1rem;
+    }
+  }
 }
