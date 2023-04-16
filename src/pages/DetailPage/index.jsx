@@ -1,42 +1,43 @@
-import { useRef } from "react";
-import { useParams } from "react-router-dom";
-import Character from "components/Character";
-import Starship from "components/Starship";
-import Planet from "components/Planet";
-import Film from "components/Film";
+import { Suspense, lazy, useRef } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import { Spinner } from "components/Spinner";
 import { useElementData } from "hooks/useElementData";
 import "./DetailPage.scss";
 
 const componentMap = {
-  starships: Starship,
-  characters: Character,
-  planets: Planet,
-  films: Film,
+  starships: lazy(() => import("components/Starship")),
+  characters: lazy(() => import("components/Character")),
+  planets: lazy(() => import("components/Planet")),
+  films: lazy(() => import("components/Film")),
 };
 
-export default function DetailPage({ currentPath: resourceType }) {
-  let { itemName } = useParams();
-
+const LazyDetailElementPage = ({ resourceType, elementData }) => {
   let fromRef = useRef();
+  // conditionally render component according to resource type
+  const Component = componentMap[resourceType];
+  return (
+    <main ref={fromRef} className="detail-page">
+      <Component containerRef={fromRef} elementData={elementData} />
+    </main>
+  );
+};
 
-  const { loading, elementData } = useElementData({
-    paramFromUrl: itemName,
+export default function DetailPage() {
+  let { elementNameFromUrl } = useParams();
+  const location = useLocation();
+  const resourceType = location.pathname.split("/")[1];
+
+  const { elementData } = useElementData({
+    elementNameFromUrl,
     typeOfData: resourceType === "characters" ? "people" : resourceType,
   });
 
-  // conditionally render component according to resource type
-  const Component = componentMap[resourceType];
-
   return (
-    <>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <main ref={fromRef} className="detail-page">
-          <Component containerRef={fromRef} elementData={elementData} />
-        </main>
-      )}
-    </>
+    <Suspense fallback={<Spinner />}>
+      <LazyDetailElementPage
+        resourceType={resourceType}
+        elementData={elementData}
+      />
+    </Suspense>
   );
 }
