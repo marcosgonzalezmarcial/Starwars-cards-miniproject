@@ -4,15 +4,16 @@ import { useData } from 'hooks/useData'
 import { BackToTopBtn } from 'components/BackToTopBtn'
 import ItemCard from 'components/ItemCard'
 import { Spinner } from 'components/Spinner'
-import './GridLayoutPage.scss'
+import './ElementsGrid.scss'
 
-export default function GridLayoutPage({ currentPath }) {
+export default function ElementsGrid({ currentPath }) {
 	const { isNearScreen, fromRef } = useIsNearScreen({ once: false })
 	const { data, dispatch } = useData()
 
 	const next = data[currentPath].next
 	const isLoading = data.isLoading
 	const currentData = data[currentPath].data
+
 	// scroll down pagination
 	useEffect(() => {
 		// stops pagination when data is loading
@@ -41,7 +42,7 @@ export default function GridLayoutPage({ currentPath }) {
 				{/* show small Spinner when loading more items  */}
 				{isLoading && currentData.length > 0 && <Spinner />}
 			</main>
-			{/* is near screen viewfinder */}
+			{/* is near screen view finder */}
 			<div ref={fromRef}></div>
 			<BackToTopBtn />
 		</>
