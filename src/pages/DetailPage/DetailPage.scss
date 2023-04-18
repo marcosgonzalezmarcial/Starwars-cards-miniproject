@@ -1,207 +1,209 @@
 .detail-page {
-	max-width: calc(min(94vw, 540px));
-	max-height: min(70vh, 600px);
-	display: flex;
-	flex-direction: column;
-	margin-inline: auto;
-	border-radius: 15px;
-	overflow: hidden;
-	box-shadow: 0px 0px 9px 2px rgba(231, 203, 209, 0.45);
-	position: relative;
+  width: calc(min(94vw, 540px));
+  max-height: min(70vh, 600px);
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 0px 9px 2px rgba(231, 203, 209, 0.45);
+  position: relative;
 
-	// blurred effect
-	&::after {
-		content: '';
-		position: absolute;
-		min-height: var(--min-height);
-		width: 100%;
-		//avoid some overlapping on small pages
-		bottom: -0.5%;
-		pointer-events: none;
-		background: linear-gradient(
-			to bottom,
-			transparent,
-			var(--bg-dark-gray) 50%
-		);
+  // blurred effect
+  &::after {
+    content: "";
+    position: absolute;
+    min-height: var(--min-height);
+    width: 100%;
+    //avoid some overlapping on small pages
+    bottom: -0.5%;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--bg-dark-gray) 50%
+    );
 
-		@media (min-width: 576px) {
-			left: 50.5%;
-		}
-	}
+    @media (min-width: 576px) {
+      left: 50.5%;
+    }
+  }
 
-	// styles applied when view more button is clicked
-	&.expand {
-		max-height: initial;
-		--min-height: 0;
+  // styles applied when view more button is clicked
+  &.expand {
+    max-height: initial;
+    --min-height: 0;
 
-		@media (max-width: 768px) {
-			& {
-				margin-block-end: 1rem;
-			}
-		}
+    @media (max-width: 768px) {
+      & {
+        margin-block-end: 1rem;
+      }
+    }
 
-		//don't show the blurred effect if the main element is expanded
-		&::after {
-			display: none;
-		}
+    //don't show the blurred effect if the main element is expanded
+    &::after {
+      display: none;
+    }
 
-		// if main element is expanded don't show the button
-		.view-more-btn {
-			display: none;
-		}
-	}
+    // if main element is expanded don't show the button
+    .view-more-btn {
+      display: none;
+    }
+  }
 
-	// rotate main layout from column to row from medium screens and above
-	@media (min-width: 576px) {
-		max-width: calc(min(90vw, 758px));
-		flex-direction: row;
+  // rotate main layout from column to row from medium screens and above
+  @media (min-width: 576px) {
+    width: calc(min(90vw, 758px));
+    flex-direction: row;
 
-		&__info {
-			border-top: 3px solid var(--primary-pink);
-			border-left: none;
-		}
-	}
+    &__info {
+      border-top: 3px solid var(--primary-pink);
+      border-left: none;
+    }
+  }
 
-	&__img {
-		width: 100%;
-		display: flex;
-		justify-content: center;
+  &__img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
-		// center films and planets images
-		&:has(img[src*='Films'], img[src*='Planets']) {
-			align-items: center;
-		}
+    // center films and planets images
+    &:has(img[src*="Films"], img[src*="Planets"]) {
+      align-items: center;
+    }
 
-		img {
-			width: 100%;
-			height: 100%;
-			max-height: 200px;
-			object-fit: cover;
-			aspect-ratio: 5.35 / 2;
+    img {
+      width: 100%;
+      height: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      aspect-ratio: 5 / 2.75;
 
-			@media (min-width: 576px) {
-				max-height: 100%;
+      @media (min-width: 576px) {
+        max-height: 100%;
 
-				&:not([src*='vignette']) {
-					aspect-ratio: initial;
-				}
+        &:not([src*="vignette"]) {
+          aspect-ratio: initial;
+        }
 
-				&[src*='C-3PO'],
-				&[src*='Artoo'] {
-					aspect-ratio: initial;
-				}
+        &[src*="C-3PO"],
+        &[src*="Artoo"] {
+          aspect-ratio: initial;
+        }
 
-				// styles for 13" macbook pro
-				@media (max-height: 597px) {
-					aspect-ratio: 5.35 / 2;
-					object-view-box: unset;
-				}
-			}
-		}
+        // styles for 13" macbook pro
+        @media (max-height: 597px) {
+          aspect-ratio: 5.35 / 2;
+          object-view-box: unset;
+        }
+      }
+    }
 
-		img[src*='Planets'] {
-			width: 100%;
-			max-height: 200px;
-			object-fit: contain;
+    img[src*="Planets"] {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
 
-			@media (min-width: 576px) {
-				max-height: initial;
-			}
-		}
+      @media (min-width: 576px) {
+        max-height: initial;
+      }
+    }
 
-		img[src*='Starships'] {
-			width: 100%;
-			max-height: 200px;
-			object-fit: cover;
+    img[src*="Starships"] {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
 
-			@media (min-width: 576px) {
-				max-height: initial;
-				object-fit: contain;
-			}
-		}
+      @media (min-width: 576px) {
+        max-height: initial;
+        object-fit: contain;
+      }
+    }
 
-		// when layout changes the size if the flex items should take up 50% of its container
-		@media (min-width: 576px) {
-			width: 50%;
-		}
-	}
+    // when layout changes the size if the flex items should take up 50% of its container
+    @media (min-width: 576px) {
+      width: 50%;
+    }
+  }
 
-	&__info {
-		padding: 0.25rem 1rem;
-		background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
-		background-size: 8px;
-		background-repeat: repeat-x;
-		background-color: var(--bg-dark-gray);
-		color: var(--primary-white);
-		border-top: 3px solid var(--primary-pink);
-		width: 100%;
-		flex-grow: 1;
+  &__info {
+    min-height: min(60vh, 300px);
+    padding: 0.25rem 1rem;
+    background-image: url(https://static-mh.content.disney.io/starwars/assets/shared/bg_hash_top-dca2c5ab1b2e.png);
+    background-size: 8px;
+    background-repeat: repeat-x;
+    background-color: var(--bg-dark-gray);
+    color: var(--primary-white);
+    border-top: 3px solid var(--primary-pink);
+    width: 100%;
+    flex-grow: 1;
 
-		// small spinner styles
-		.loadingio-spinner-eclipse-3z3n0w49pdf {
-			width: 120px;
-			height: 120px;
-		}
+    // small spinner styles
+    .loadingio-spinner-eclipse-3z3n0w49pdf {
+      width: 120px;
+      height: 120px;
+    }
 
-		h1 {
-			font-size: var(--step-1);
-			margin-block: 0.25rem;
-		}
+    h1 {
+      font-size: var(--step-1);
+      margin-block: 0.25rem;
+    }
 
-		h3 {
-			font-size: var(--step--1);
-			margin-block: 0.5rem;
-		}
+    h3 {
+      font-size: var(--step--1);
+      margin-block: 0.5rem;
+    }
 
-		span {
-			font-size: var(--step--2);
-			display: block;
-			color: var(--primary-gray);
-		}
+    span {
+      font-size: var(--step--2);
+      display: block;
+      color: var(--primary-gray);
+    }
 
-		&--row {
-			display: flex;
-			flex-wrap: wrap;
-			margin-block: 0.25rem;
-			padding-top: 0.25rem;
-			gap: 0.5rem;
+    &--row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-block: 0.25rem;
+      padding-top: 0.25rem;
+      gap: 0.5rem;
 
-			& > * {
-				flex: 1 0;
-				width: 100%;
-				max-width: 100%;
-			}
+      & > * {
+        flex: 1 0;
+        width: 100%;
+        max-width: 100%;
+      }
 
-			@media (max-width: 576px) {
-				padding: 0;
-				margin: 0;
+      @media (max-width: 576px) {
+        padding: 0;
+        margin: 0;
 
-				& > * {
-					margin-inline-end: 1rem;
-				}
-			}
-		}
+        & > * {
+          margin-inline-end: 1rem;
+        }
+      }
+    }
 
-		@media (min-width: 576px) {
-			width: 50%;
-			border-left: 3px solid var(--primary-pink);
-			border-top: none;
-		}
-	}
+    @media (min-width: 576px) {
+      min-height: min(65vh, 550px);
+      width: 50%;
+      border-left: 3px solid var(--primary-pink);
+      border-top: none;
+    }
+  }
 
-	// special styles for some specific images
-	@media (max-width: 768px) {
-		:is(
-				img[src*='Yavin4'],
-				img[src*='Bestine'],
-				img[src*='Dantooine'],
-				img[src*='Mygeeto']
-			) {
-			clip-path: circle(96px);
-		}
+  // special styles for some specific images
+  @media (max-width: 768px) {
+    :is(
+        img[src*="Yavin4"],
+        img[src*="Bestine"],
+        img[src*="Dantooine"],
+        img[src*="Mygeeto"]
+      ) {
+      clip-path: circle(96px);
+    }
 
-		img[src*='Saleucami'] {
-			clip-path: circle(73px);
-		}
-	}
+    img[src*="Saleucami"] {
+      clip-path: circle(73px);
+    }
+  }
 }

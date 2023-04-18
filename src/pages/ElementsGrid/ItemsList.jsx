@@ -5,7 +5,7 @@ export default function ItemsList({ currentData, isLoading }) {
   return (
     <>
       {currentData.map((item) => {
-        // avoid rendering specific elements not working
+        // avoid rendering specific elements
         if (item.name !== "unknown" && item.name !== "Jakku") {
           return <ItemCard key={item.model ?? item.name} item={item} />;
         } else {

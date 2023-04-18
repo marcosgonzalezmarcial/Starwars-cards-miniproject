@@ -19,7 +19,7 @@ export const useLisOfData = ({ listOfUrls }) => {
       .finally(() => {
         setIsLoading(false);
       });
-    // return () => myAbortController.abort();
+    return () => myAbortController.abort();
   }, [listOfUrls]);
 
   return {

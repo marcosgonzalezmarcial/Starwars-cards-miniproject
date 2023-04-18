@@ -67,6 +67,7 @@ export const DataContextProvider = ({ children }) => {
     return () => {
       myAbortController.abort();
     };
+    // eslint-disable-next-line
   }, [elementType, currentPage]);
 
   // momoized value to avoid re renders

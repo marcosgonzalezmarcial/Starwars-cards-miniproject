@@ -1,4 +1,4 @@
-import { useEffect, lazy } from "react";
+import { useEffect } from "react";
 import { useIsNearScreen } from "hooks/useIsNearScreen.js";
 import { useData } from "hooks/useData";
 import { BackToTopBtn } from "components/BackToTopBtn";
