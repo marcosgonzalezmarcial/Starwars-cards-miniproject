@@ -8,7 +8,7 @@ import {
 } from "utils/mocked-data";
 import { urlStringify } from "utils/urlStringify";
 import { fetchItemByTypeAndId } from "services/fetchItemByTypeAndId";
-import { transformDataArray } from "utils/transformDataArray";
+import { transformData } from "utils/transformData";
 
 export const useElementData = ({ elementNameFromUrl, typeOfData }) => {
   const [loading, setIsLoading] = useState(false);
@@ -33,7 +33,7 @@ export const useElementData = ({ elementNameFromUrl, typeOfData }) => {
           signal,
         })
           .then((item) => {
-            const [transformedElementData] = transformDataArray({
+            const [transformedElementData] = transformData({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
               typeOfData,
@@ -52,7 +52,7 @@ export const useElementData = ({ elementNameFromUrl, typeOfData }) => {
           signal,
         })
           .then((item) => {
-            const [transformedElementData] = transformDataArray({
+            const [transformedElementData] = transformData({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
               typeOfData,
@@ -71,7 +71,7 @@ export const useElementData = ({ elementNameFromUrl, typeOfData }) => {
           signal,
         })
           .then((item) => {
-            const [transformedElementData] = transformDataArray({
+            const [transformedElementData] = transformData({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
               typeOfData,
@@ -93,7 +93,7 @@ export const useElementData = ({ elementNameFromUrl, typeOfData }) => {
           signal,
         })
           .then((item) => {
-            const [transformedElementData] = transformDataArray({
+            const [transformedElementData] = transformData({
               // fetched data must be an array for implementation requirements
               fetchedData: [item],
               typeOfData,

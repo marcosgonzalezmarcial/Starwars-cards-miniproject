@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { API_URL } from '../constants'
-import { transformDataArray } from '../utils/transformDataArray'
+import { transformData } from '../utils/transformData'
 import { TYPE_OF_DATA } from '../constants'
 
 export function useSearch({ searchCategory, searchTerm }) {
@@ -17,7 +17,7 @@ export function useSearch({ searchCategory, searchTerm }) {
         .then((res) => res.json())
         .then(({ results }) => {
           if (results.length > 0) {
-            const newArr = transformDataArray({
+            const newArr = transformData({
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.PLANETS
             })
@@ -37,7 +37,7 @@ export function useSearch({ searchCategory, searchTerm }) {
         .then((res) => res.json())
         .then(({ results }) => {
           if (results.length > 0) {
-            const newArr = transformDataArray({
+            const newArr = transformData({
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.PEOPLE
             })
@@ -56,7 +56,7 @@ export function useSearch({ searchCategory, searchTerm }) {
         .then((res) => res.json())
         .then(({ results }) => {
           if (results.length > 0) {
-            const newArr = transformDataArray({
+            const newArr = transformData({
               fetchedData: results,
               typeOfData: TYPE_OF_DATA.STARSHIPS
             })
