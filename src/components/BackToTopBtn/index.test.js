@@ -1,14 +1,36 @@
-import { render } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-import { BackToTopBtn } from '.'
+import React from "react";
+import { render, fireEvent, screen, cleanup } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+import { BackToTopBtn } from "./index";
 
-// Tests that the BackToTopBtn component renders with the correct class and image.
+describe("BackToTopBtn component", () => {
+  afterEach(cleanup);
 
-it('test_back_to_top_btn_renders_correctly', () => {
-	const { getByTitle } = render(<BackToTopBtn />)
-	const backToTopBtn = getByTitle('Back to top button')
-	expect(backToTopBtn).toHaveClass('back-to-top-btn')
-	expect(backToTopBtn).toContainHTML(
-		'<img class="back-to-top-btn__img" src="upChevronBtn" alt="search icon">'
-	)
-})
+  it("renders without errors", () => {
+    render(<BackToTopBtn />);
+  });
+
+  it("has the correct title and role attributes", () => {
+    const { getByRole } = render(<BackToTopBtn />);
+    const backToTopBtn = getByRole("button");
+    expect(backToTopBtn).toHaveAttribute("title", "Back to top button");
+    expect(backToTopBtn).toHaveAttribute("role", "button");
+  });
+
+  it("is hidden when the page first loads", () => {
+    const { queryByRole } = render(<BackToTopBtn />);
+    const backToTopBtn = queryByRole("button");
+    expect(backToTopBtn).not.toHaveClass("show");
+  });
+
+  it("scrolls the page to the top when clicked", () => {
+    window.scrollTo = jest.fn();
+    const { getByRole } = render(<BackToTopBtn />);
+    const backToTopBtn = getByRole("button");
+    fireEvent.click(backToTopBtn);
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+});
