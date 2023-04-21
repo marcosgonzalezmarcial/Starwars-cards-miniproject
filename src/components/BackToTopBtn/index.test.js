@@ -2,6 +2,7 @@ import React from "react";
 import { render, fireEvent, screen, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { prettyDOM } from "@testing-library/dom";
+// import { toHaveStyle } from "@testing-library/jest-dom";
 
 import { BackToTopBtn } from "./index";
 

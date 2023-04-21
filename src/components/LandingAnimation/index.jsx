@@ -1,4 +1,4 @@
-import './LandingAnimation.scss'
+import "./LandingAnimation.scss";
 export function LandingAnimation() {
   return (
     <div className="starwars-demo">
@@ -13,17 +13,8 @@ export function LandingAnimation() {
         className="wars"
       />
       <h2 className="byline" id="byline">
-        <span>L</span>
-        <span>o</span>
-        <span>g</span> <span>i</span>
-        <span>n</span> <span>t</span>
-        <span>h</span>
-        <span>e</span> <span>F</span>
-        <span>o</span>
-        <span>r</span>
-        <span>c</span>
-        <span>e</span>
+        <span>Log in the Force</span>
       </h2>
     </div>
-  )
+  );
 }
